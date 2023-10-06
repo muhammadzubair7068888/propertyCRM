@@ -110,13 +110,13 @@
         {
             "url": "landlord/profile",
             "name": "profile",
-            "icon": "gift",
+            "icon": "user-check",
             "slug": "profile"
         },
         {
             "url": "landlord/logout",
             "name": "logout",
-            "icon": "book",
+            "icon": "log-out",
             "slug": "logout"
         }
     ],
@@ -136,7 +136,7 @@
         {
             "url": "tenant/invoice",
             "name": "Invoice",
-            "icon": "home",
+            "icon": "book",
             "slug": "invoice"
         },
         {
@@ -154,20 +154,20 @@
         {
             "url": "tenant/document",
             "name": "document",
-            "icon": "user-plus",
+            "icon": "file-text",
             "slug": "document"
         },
 
         {
             "url": "tenant/profile",
             "name": "profile",
-            "icon": "gift",
+            "icon": "user-check",
             "slug": "profile"
         },
         {
             "url": "tenant/logout",
             "name": "logout",
-            "icon": "book",
+            "icon": "log-out",
             "slug": "logout"
         }
     ]
