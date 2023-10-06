@@ -1,9 +1,4 @@
 /node_modules
-/public/hot
-/public/data
-/public/fonts
-/public/images
-/public/storage
 /storage/*.key
 /vendor
 .env
