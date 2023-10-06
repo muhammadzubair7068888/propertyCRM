@@ -47,52 +47,51 @@ use App\Http\Controllers\LanguageController;
 |
 */
 
+Route::get('/', [AuthController::class, 'login_page'])->name('login');
+Route::get('login', [AuthController::class, 'login_page'])->name('login');
+Route::get('attempt_login', [AuthController::class, 'login'])->name('login.attempt');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
 ###### admin routes ######
-Route::prefix('admin')->group(function () {
-Route::get('/', [StaterkitController::class, 'home'])->name('home');
-Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
-Route::resource('landlord', LandlordController::class);
-Route::resource('properties', PropertyController::class);
-Route::resource('tenants', TenentController::class);
-Route::resource('leases', LeaseController::class);
-Route::resource('utilities', UtilitiesController::class);
-Route::resource('invoice', InvoiceController::class);
-Route::resource('payment', PaymentController::class);
-Route::resource('vacate_notice', VacateNoticeController::class);
-Route::resource('setting', SettingController::class);
-Route::resource('report', ReportController::class);
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('/', [StaterkitController::class, 'home'])->name('home');
+    Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
+    Route::resource('landlord', LandlordController::class);
+    Route::resource('properties', PropertyController::class);
+    Route::resource('tenants', TenentController::class);
+    Route::resource('leases', LeaseController::class);
+    Route::resource('utilities', UtilitiesController::class);
+    Route::resource('invoice', InvoiceController::class);
+    Route::resource('payment', PaymentController::class);
+    Route::resource('vacate_notice', VacateNoticeController::class);
+    Route::resource('setting', SettingController::class);
+    Route::resource('report', ReportController::class);
 });
 
 
-    ##### landlord routes #####
-    Route::prefix('landlord')->group(function () {
+##### landlord routes #####
+Route::prefix('landlord')->name('landlord.')->middleware('auth')->group(function () {
     Route::get('/', [StaterkitController::class, 'home'])->name('home');
     Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
     Route::resource('document', DocumentController::class);
     Route::resource('leases', LandlordLeaseController::class);
-    Route::get('logout', function(){
-        return view('auth.login');
-    });
     Route::resource('payment', LandLoardPaymentController::class);
     // Route::get('profile', [ProfileController::class,'index']);
+
     Route::resource('properties', LandloardPropertyController::class);
     Route::resource('vacate_notice', LandloardVacateNoticeController::class);
-    });
+});
 
-    ###### Tenant routes ######
-    Route::prefix('tenant')->group(function () {
+###### Tenant routes ######
+Route::prefix('tenant')->name('tenant.')->middleware('auth')->group(function () {
     Route::get('/', [StaterkitController::class, 'home'])->name('home');
     Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
     Route::resource('document', TenantDocumentController::class);
     Route::resource('invoice', TenantInvoiceController::class);
     Route::resource('leases', TenantLeaseController::class);
-    Route::get('logout', function(){
-        return view('auth.login');
-    });
     Route::resource('payment', TenantPaymentController::class);
     // Route::resource('profile', TenantProfileController::class);
     Route::resource('vacate_notice', TenantVacateNoticeController::class);
-
 });
 // Route Components
 Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
@@ -102,9 +101,8 @@ Route::get('layouts/empty', [StaterkitController::class, 'layout_empty'])->name(
 Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name('layout-blank');
 
 
-Route::get('login', [AuthController::class, 'login_basic'])->name('auth-login');
+
+
 
 // locale Route
 // Route::get('lang/{locale}', [LanguageController::class, 'swap']);
-
-

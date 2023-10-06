@@ -1,0 +1,116 @@
+{
+  "menu": [
+    {
+      "url": "dashboard",
+      "name": "Dashboard",
+      "icon": "layout",
+      "slug": "dashboard"
+    },
+    {
+      "name": "Page Layouts",
+      "icon": "mail",
+      "slug": "",
+      "badge": "5",
+      "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
+      "submenu": [
+        {
+          "url": "layouts/collapsed-menu",
+          "name": "Collapsed Menu",
+          "icon": "circle",
+          "slug": "collapsed-menu"
+        },
+        {
+          "url": "layouts/full",
+          "name": "Layout Full",
+          "icon": "circle",
+          "slug": "layout-full"
+        },
+        {
+          "url": "layouts/without-menu",
+          "name": "Without Menu",
+          "icon": "circle",
+          "slug": "without-menu"
+        },
+        {
+          "url": "layouts/empty",
+          "name": "Layout Empty",
+          "icon": "circle",
+          "slug": "layout-empty"
+        },
+        {
+          "url": "layouts/blank",
+          "name": "Layout Blank",
+          "icon": "circle",
+          "slug": "layout-blank"
+        }
+      ]
+    },
+
+      {
+        "url": "landlord",
+        "name": "Landlords",
+        "icon": "users",
+        "slug": "landlord"
+      }
+      ,
+      {
+        "url": "properties",
+        "name": "Properties",
+        "icon": "home",
+        "slug": "properties"
+      }
+      ,
+      {
+        "url": "tenants",
+        "name": "Tenants",
+        "icon": "user-plus",
+        "slug": "tenants"
+      }
+      ,
+      {
+        "url": "leases",
+        "name": "Leases",
+        "icon": "lock",
+        "slug": "leases"
+      }
+      ,
+      {
+        "url": "utilities",
+        "name": "Utilities",
+        "icon": "gift",
+        "slug": "utilities"
+      }
+      ,
+      {
+        "url": "invoice",
+        "name": "Invoice",
+        "icon": "book",
+        "slug": "invoice"
+      }      ,
+      {
+        "url": "payment",
+        "name": "Payment",
+        "icon": "credit-card",
+        "slug": "payment"
+      }
+      ,
+      {
+        "url": "vacate_notice",
+        "name": "Vacate Notice",
+        "icon": "lock",
+        "slug": "vacate_notice"
+      }      ,
+      {
+        "url": "setting",
+        "name": "Setting",
+        "icon": "settings",
+        "slug": "setting"
+      }      ,
+      {
+        "url": "reports",
+        "name": "Reports",
+        "icon": "layers",
+        "slug": "reports"
+      }
+  ]
+}
