@@ -34,8 +34,7 @@ class CreateUsersTable extends Migration
             $table->date('DOB')->nullable();
             $table->string('martial_status')->nullable();
             $table->string('postal_code')->nullable();
-            
-            $table->timestamps();
+             $table->timestamps();
         });
     }
 
