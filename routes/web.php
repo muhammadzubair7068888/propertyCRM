@@ -69,6 +69,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 
+
+
 ##### landlord routes #####
 Route::prefix('landlord')->name('landlord.')->middleware('auth')->group(function () {
     Route::get('/', [StaterkitController::class, 'home'])->name('home');

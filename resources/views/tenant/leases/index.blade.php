@@ -3,5 +3,9 @@
 @section('title', 'Landlord')
 
 @section('content')
- this is lease page
+
+
+
+this is lease page
+
 @endsection

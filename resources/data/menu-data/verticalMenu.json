@@ -6,7 +6,6 @@
             "icon": "layout",
             "slug": "dashboard"
         },
-
         {
             "url": "admin/landlord",
             "name": "Landlords",
