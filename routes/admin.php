@@ -38,6 +38,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('vacate_notice', VacateNoticeController::class);
     Route::resource('setting', SettingController::class);
     Route::resource('report', ReportController::class);
+    // Route::get('landlord', [LandlordController::class],'creat');
 });
 
 // locale Route

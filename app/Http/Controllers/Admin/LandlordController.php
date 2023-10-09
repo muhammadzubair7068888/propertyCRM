@@ -28,7 +28,7 @@ class LandlordController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.landlord.addlandlord');
     }
 
     /**
@@ -86,5 +86,5 @@ class LandlordController extends Controller
     {
         //
     }
- 
+
 }
