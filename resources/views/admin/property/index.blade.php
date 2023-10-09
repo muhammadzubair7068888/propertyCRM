@@ -18,7 +18,7 @@
           <h4 class="card-title">Multilingual</h4>
         </div>
         <div class="col-12 d-flex justify-content-end ">
-                <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Property</button>
+              <a href="{{route('admin.properties.create')}}"> <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Property</button></a>
         </div>
         <div class="card-datatable">
           <table class="dt-multilingual table">

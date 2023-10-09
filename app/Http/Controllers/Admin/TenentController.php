@@ -24,7 +24,7 @@ class TenentController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.tenent.addtenant");
     }
 
     /**
