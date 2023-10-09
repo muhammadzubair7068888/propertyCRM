@@ -29,6 +29,7 @@ Route::prefix('tenant')->name('tenant.')->middleware('auth')->group(function () 
     Route::resource('invoice', TenantInvoiceController::class);
     Route::resource('leases', TenantLeaseController::class);
     Route::resource('payment', TenantPaymentController::class);
+    Route::resource('profile', TenantProfileController::class);
     // Route::resource('profile', TenantProfileController::class);
     Route::resource('vacate_notice', TenantVacateNoticeController::class);
 });

@@ -29,6 +29,7 @@ Route::prefix('landlord')->name('landlord.')->middleware('auth')->group(function
     Route::resource('document', DocumentController::class);
     Route::resource('leases', LandlordLeaseController::class);
     Route::resource('payment', LandLoardPaymentController::class);
+    Route::resource('profile', ProfileController::class);
     // Route::get('profile', [ProfileController::class,'index']);
 
     Route::resource('properties', LandloardPropertyController::class);

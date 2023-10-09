@@ -26,8 +26,8 @@
         <button type="button" class="step-trigger">
           <span class="bs-stepper-box">1</span>
           <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Account Details</span>
-            <span class="bs-stepper-subtitle">Setup Account Details</span>
+            <span class="bs-stepper-title">Lease Info</span>
+
           </span>
         </button>
       </div>
@@ -35,8 +35,8 @@
         <button type="button" class="step-trigger">
           <span class="bs-stepper-box">2</span>
           <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Personal Info</span>
-            <span class="bs-stepper-subtitle">Add Personal Info</span>
+            <span class="bs-stepper-title">Deposits</span>
+
           </span>
         </button>
       </div>
@@ -44,8 +44,8 @@
         <button type="button" class="step-trigger">
           <span class="bs-stepper-box">3</span>
           <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Address</span>
-            <span class="bs-stepper-subtitle">Add Address</span>
+            <span class="bs-stepper-title">Tenants</span>
+
           </span>
         </button>
       </div>
@@ -53,11 +53,47 @@
         <button type="button" class="step-trigger">
           <span class="bs-stepper-box">4</span>
           <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Social Links</span>
-            <span class="bs-stepper-subtitle">Add Social Links</span>
+            <span class="bs-stepper-title">Extra Charges</span>
+
           </span>
         </button>
       </div>
+      {{-- <div class="step" data-target="#" role="tab" id="">
+        <button type="button" class="step-trigger">
+          <span class="bs-stepper-box">5</span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Late Fees</span>
+
+          </span>
+        </button>
+      </div>
+      <div class="step" data-target="#" role="tab" id="">
+        <button type="button" class="step-trigger">
+          <span class="bs-stepper-box">6</span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Utilities</span>
+
+          </span>
+        </button>
+      </div>
+      <div class="step" data-target="#" role="tab" id="">
+        <button type="button" class="step-trigger">
+          <span class="bs-stepper-box">7</span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Payment Settings</span>
+
+          </span>
+        </button>
+      </div>
+      <div class="step" data-target="#" role="tab" id="">
+        <button type="button" class="step-trigger">
+          <span class="bs-stepper-box">8</span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Lease Settings</span>
+
+          </span>
+        </button>
+      </div> --}}
     </div>
     <div class="bs-stepper-content">
       <div
@@ -67,44 +103,54 @@
         aria-labelledby="account-details-vertical-trigger"
       >
         <div class="content-header">
-          <h5 class="mb-0">Account Details</h5>
-          <small class="text-muted">Enter Your Account Details.</small>
+          <h5 class="mb-0">Lease Info</h5>
+
         </div>
         <div class="row">
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-username">Username</label>
-            <input type="text" id="vertical-username" class="form-control" placeholder="johndoe" />
+         <label class="form-label" for="property">Property</label>
+            <select class="form-select" id="property">
+              <option>IT</option>
+              <option>Blade Runner</option>
+              <option>Thor Ragnarok</option>
+            </select>
           </div>
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-email">Email</label>
-            <input
-              type="email"
-              id="vertical-email"
-              class="form-control"
-              placeholder="john.doe@email.com"
-              aria-label="john.doe"
-            />
+            <label class="form-label" for="unit-type">Unit</label>
+            <select class="form-select" id="unit-type">
+              <option>IT</option>
+              <option>Blade Runner</option>
+              <option>Thor Ragnarok</option>
+            </select>
           </div>
         </div>
         <div class="row">
+            <div class="mb-1 col-md-6">
+                <label class="form-label" for="lease-type">Lease Type</label>
+                <select class="form-select" id="lease-type">
+                  <option>IT</option>
+                  <option>Blade Runner</option>
+                  <option>Thor Ragnarok</option>
+                </select>
+              </div>
           <div class="mb-1 form-password-toggle col-md-6">
-            <label class="form-label" for="vertical-password">Password</label>
-            <input
-              type="password"
-              id="vertical-password"
-              class="form-control"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-            />
+            <label class="form-label" for="rent-amount">Rent Amount</label>
+            <input type="text" id="rent-amount" class="form-control" placeholder="Rent Amount" />
           </div>
-          <div class="mb-1 form-password-toggle col-md-6">
-            <label class="form-label" for="vertical-confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              id="vertical-confirm-password"
-              class="form-control"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-            />
-          </div>
+        </div>
+        <div class="row">
+            <div class="mb-1 col-md-6">
+                <label class="form-label" for="lease-date">Starts Date</label>
+                <input type="text" id="lease-date" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
+              </div>
+              <div class="mb-1 col-md-6">
+                <label class="form-label" for="lease-date">Due On(Day of Month)</label>
+                <select class="form-select" id="lease-type">
+                    <option>IT</option>
+                    <option>Blade Runner</option>
+                    <option>Thor Ragnarok</option>
+                  </select>
+              </div>
         </div>
         <div class="d-flex justify-content-between">
           <button class="btn btn-outline-secondary btn-prev" disabled>
@@ -119,40 +165,20 @@
       </div>
       <div id="personal-info-vertical" class="content" role="tabpanel" aria-labelledby="personal-info-vertical-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Personal Info</h5>
-          <small>Enter Your Personal Info.</small>
+          <h5 class="mb-0">Deposits</h5>
+
         </div>
         <div class="row">
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-first-name">First Name</label>
-            <input type="text" id="vertical-first-name" class="form-control" placeholder="John" />
+            <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount</label>
+            <input type="text" id="rent-deposit-amount" class="form-control" placeholder="Rent Deposit Amount" />
           </div>
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-last-name">Last Name</label>
-            <input type="text" id="vertical-last-name" class="form-control" placeholder="Doe" />
-          </div>
+
         </div>
         <div class="row">
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-country">Country</label>
-            <select class="select2 w-100" id="vertical-country">
-              <option label=" "></option>
-              <option>UK</option>
-              <option>USA</option>
-              <option>Spain</option>
-              <option>France</option>
-              <option>Italy</option>
-              <option>Australia</option>
-            </select>
-          </div>
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-language">Language</label>
-            <select class="select2 w-100" id="vertical-language" multiple>
-              <option>English</option>
-              <option>French</option>
-              <option>Spanish</option>
-            </select>
-          </div>
+            <div class="col-12 d-flex justify-content-start ">
+                <a href=""> <button type="submit" class="btn btn-primary me-2 mt-1 mb-2 " name="submit" value="Submit">+ Add Lease</button></a>
+         </div>
         </div>
         <div class="d-flex justify-content-between">
           <button class="btn btn-primary btn-prev">
@@ -167,34 +193,20 @@
       </div>
       <div id="address-step-vertical" class="content" role="tabpanel" aria-labelledby="address-step-vertical-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Address</h5>
-          <small>Enter Your Address.</small>
+          <h5 class="mb-0">Tenants</h5>
         </div>
         <div class="row">
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-address">Address</label>
-            <input
-              type="text"
-              id="vertical-address"
-              class="form-control"
-              placeholder="98  Borough bridge Road, Birmingham"
-            />
+            <label class="form-label" for="basicSelect">Basic Select</label>
+            <select class="form-select" id="basicSelect">
+              <option>IT</option>
+              <option>Blade Runner</option>
+              <option>Thor Ragnarok</option>
+            </select>
           </div>
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-landmark">Landmark</label>
-            <input type="text" id="vertical-landmark" class="form-control" placeholder="Borough bridge" />
-          </div>
+
         </div>
-        <div class="row">
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="pincode2">Pincode</label>
-            <input type="text" id="pincode2" class="form-control" placeholder="658921" />
-          </div>
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="city2">City</label>
-            <input type="text" id="city2" class="form-control" placeholder="Birmingham" />
-          </div>
-        </div>
+
         <div class="d-flex justify-content-between">
           <button class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -208,29 +220,46 @@
       </div>
       <div id="social-links-vertical" class="content" role="tabpanel" aria-labelledby="social-links-vertical-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Social Links</h5>
-          <small>Enter Your Social Links.</small>
+          <h5 class="mb-0">Extra Charges</h5>
         </div>
         <div class="row">
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-twitter">Twitter</label>
-            <input type="text" id="vertical-twitter" class="form-control" placeholder="https://twitter.com/abc" />
-          </div>
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-facebook">Facebook</label>
-            <input type="text" id="vertical-facebook" class="form-control" placeholder="https://facebook.com/abc" />
-          </div>
+         <div class="mb-1 col-md-3 col-sm-3">
+            <label class="form-label" for="extra-charge-name">Extra Charge Name</label>
+            <select class="form-select" id="extra-charge-name">
+              <option>IT</option>
+              <option>Blade Runner</option>
+              <option>Thor Ragnarok</option>
+            </select>
+         </div>
+         <div class="mb-1 col-md-3 col-sm-3">
+            <label class="form-label" for="extra-charge-name">Extra Charge Value</label>
+            <input type="text" id="extra-charge-name" class="form-control" placeholder="Extra Charge Value" />
+         </div>
+         <div class="mb-1 col-md-2 col-sm-2">
+            <label class="form-label" for="extra-charge-type">Extra Charge Type</label>
+            <select class="form-select" id="extra-charge-type">
+              <option>IT</option>
+              <option>Blade Runner</option>
+              <option>Thor Ragnarok</option>
+            </select>
+         </div>
+         <div class="mb-1 col-md-2 col-sm-2">
+            <label class="form-label" for="extra-charge-frequency">Frequency</label>
+            <select class="form-select" id="extra-charge-frequency">
+              <option>IT</option>
+              <option>Blade Runner</option>
+              <option>Thor Ragnarok</option>
+            </select>
+         </div>
+         <div class="mb-1 col-md-2 col-sm-2">
+           <a href="#" class="d-inline-block mt-1"><i data-feather="copy" class="text-primary" style="font-size: 24px;"></i></a>
+
+          <a href="" class="pl-3"><i data-feather='delete'></i></a>
+
+         </div>
+
         </div>
-        <div class="row">
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-google">Google+</label>
-            <input type="text" id="vertical-google" class="form-control" placeholder="https://plus.google.com/abc" />
-          </div>
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-linkedin">Linkedin</label>
-            <input type="text" id="vertical-linkedin" class="form-control" placeholder="https://linkedin.com/abc" />
-          </div>
-        </div>
+
         <div class="d-flex justify-content-between">
           <button class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
