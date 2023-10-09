@@ -252,9 +252,11 @@
             </select>
          </div>
          <div class="mb-1 col-md-2 col-sm-2">
-           <a href="#" class="d-inline-block mt-1"><i data-feather="copy" class="text-primary" style="font-size: 24px;"></i></a>
+            <a href="#" class="d-inline-block mt-2">
+                <i data-feather="copy" class="text-primary" style="font-size: 36px;"></i>
+              </a>
 
-          <a href="" class="pl-3"><i data-feather='delete'></i></a>
+          <a href="" class="pl-3"><i class="fs-4" data-feather="delete"></i></a>
 
          </div>
 
