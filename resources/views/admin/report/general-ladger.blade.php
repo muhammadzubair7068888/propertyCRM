@@ -42,9 +42,7 @@
 
 @section('page-script')
 
-<script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
 
-<script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 
 <script>
  

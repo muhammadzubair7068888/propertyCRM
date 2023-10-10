@@ -89,12 +89,12 @@
                   </div>
                 </div>
             <div class="tab-pane" id="profile" aria-labelledby="profile-tab" role="tabpanel">
-                @include('admin.report.general-ladger')
+                {{-- @include('admin.report.general-ladger') --}}
              
             </div>
           
             <div class="tab-pane" id="about" aria-labelledby="about-tab" role="tabpanel">
-            @include('admin.report.journal')
+            {{-- @include('admin.report.journal') --}}
             </div>
           </div>
         </div>
