@@ -1,31 +1,23 @@
-@extends('layouts/contentLayoutMaster')
-@section('title', 'DataTables')
-@section('vendor-style')
-  {{-- vendor css files --}}
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
 
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
 
-  @endsection
-@section('content')
+
 <!-- Multilingual -->
 <section id="multilingual-datatable">
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-header border-bottom">
-          <h4 class="card-title">Vacate Notices</h4>
+            <div class="col-md-4 mb-1">
+                <label class="form-label" for="Properties">Property</label>
+                <select class="select2 form-select" id="Properties">
+                  <option value="1">Property</option>
+                  <option value="2" >Option2</option>
+                  <option value="3">Option3</option>
+                  <option value="4" >Option4</option>
+                </select>
+              </div>
         </div>
-        <div class="col-12 d-flex justify-content-end " >
-         
-            <button type="submit" class="btn btn-primary me-2 mt-2 " data-bs-toggle="modal" data-bs-target="#addNewCard" >+ Add Payment</button>
-           
-        </div>
+       
         <div class="card-datatable">
           <table class="dt-multilingual table">
             <thead>
@@ -46,26 +38,13 @@
     </div>
   </div>
 </section>
-@include('admin.payment.modal-add-new-cc')
 <!--/ Multilingual -->
-@endsection
-@section('vendor-script')
-  {{-- vendor files --}}
-  <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
- 
-  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 
-  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
-
-@endsection
 @section('page-script')
-  {{-- Page js files --}}
-  {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
+
+<script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
 
 <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
-
-<script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 
 <script>
  
@@ -189,20 +168,5 @@
  
 </script>
 
-<script>
-  const textarea = document.getElementById('floatingTextarea2');
-  const charCount = document.getElementById('charCount');
-
-  textarea.addEventListener('input', function() {
-    const currentCharCount = textarea.value.length;
-    charCount.textContent = `${currentCharCount} / 150 characters`;
-
-    if (currentCharCount > 150) {
-      // Agar 150 se zyada characters enter kiye gaye hain, to unhe rokna
-      textarea.value = textarea.value.slice(0, 150);
-      charCount.textContent = '150 / 150 characters';
-    }
-  });
-</script>
 
 @endsection

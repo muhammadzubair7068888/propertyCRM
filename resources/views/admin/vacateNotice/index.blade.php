@@ -7,7 +7,11 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
-@endsection
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
+
+  @endsection
 @section('content')
 <!-- Multilingual -->
 <section id="multilingual-datatable">
@@ -48,35 +52,20 @@
 @section('vendor-script')
   {{-- vendor files --}}
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap5.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/jszip.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/pdfmake.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/vfs_fonts.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.html5.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
+ 
+  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 
-  <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/forms/cleave/cleave.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/forms/cleave/addons/cleave-phone.us.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
 @endsection
 @section('page-script')
   {{-- Page js files --}}
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
-<script src="{{ asset(mix('js/scripts/pages/modal-add-new-cc.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/pages/page-pricing.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/pages/modal-add-new-address.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/pages/modal-create-app.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/pages/modal-two-factor-auth.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/pages/modal-edit-user.js')) }}"></script>
- <script src="{{ asset(mix('js/scripts/pages/modal-share-project.js')) }}"></script>
+
+<script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
+
+<script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 
 <script>
  
@@ -200,5 +189,20 @@
  
 </script>
 
+<script>
+  const textarea = document.getElementById('vacatingreason');
+  const charCount = document.getElementById('charCount');
+
+  textarea.addEventListener('input', function() {
+    const currentCharCount = textarea.value.length;
+    charCount.textContent = `${currentCharCount} / 150 characters`;
+
+    if (currentCharCount > 150) {
+      // Agar 150 se zyada characters enter kiye gaye hain, to unhe rokna
+      textarea.value = textarea.value.slice(0, 150);
+      charCount.textContent = '150 / 150 characters';
+    }
+  });
+</script>
 
 @endsection
