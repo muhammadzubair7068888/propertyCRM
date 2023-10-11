@@ -90,39 +90,12 @@
                 </div>
             <div class="tab-pane" id="profile" aria-labelledby="profile-tab" role="tabpanel">
               
-              <section id="multilingual-datatable">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="card">
-                      <div class="card-header border-bottom">
-                        <h4 class="card-title">Invoice</h4>
-                      </div>
-                     
-                      <div class="card-datatable">
-                        <table class="dt-multilingual table">
-                          <thead>
-                             <tr>
-                              <th></th>
-                              <th>Name</th>
-                              <th>Position</th>
-                              <th>Email</th>
-                              <th>Date</th>
-                              <th>Salary</th>
-                              <th>Status</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
+              @include('admin.report.general-ladger')
              
             </div>
           
             <div class="tab-pane" id="about" aria-labelledby="about-tab" role="tabpanel">
-        dfdf
+   @include('admin.report.journal')
             </div>
           </div>
         </div>
@@ -166,13 +139,13 @@
  
 @endsection
 {{-- @section('page-script') --}}
-@section('page-script')
+@push('page-script')
 
 
   {{-- Page js files --}}
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
 
-  <script>
+  {{-- <script>
  
     $('.dt-multilingual').DataTable({
         ajax:'{{ asset('data/table-datatable.json') }}',
@@ -187,12 +160,12 @@
           { data: '' }
         ],
         columnDefs: [
-          {
-            // For Responsive
-            className: 'control',
-            orderable: false,
-            targets: 0
-          },
+          // {
+          //   // For Responsive
+          //   className: 'control',
+          //   orderable: false,
+          //   targets: 0
+          // },
           {
             // Label
             targets: -2,
@@ -258,14 +231,18 @@
         dom: '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
         displayLength: 7,
         lengthMenu: [7, 10, 25, 50, 75, 100],
+        
         responsive: {
+         
           details: {
+        
             display: $.fn.dataTable.Responsive.display.modal({
               header: function (row) {
                 var data = row.data();
                 return 'Details of ' + data['full_name'];
               }
             }),
+
             type: 'column',
             renderer: function (api, rowIdx, columns) {
               var data = $.map(columns, function (col, i) {
@@ -292,7 +269,7 @@
         }
       });
    
-  </script>
+  </script> --}}
   
   <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
 
@@ -300,7 +277,7 @@
   
   
 
-  @endsection
+  @endpush
 
 {{-- @endsection --}}
 
