@@ -16,16 +16,15 @@ class UserTypeMiddleware
      */
     public function handle($request, Closure $next, ...$allowedUserTypes)
     {
-        // $user = $request->user();
-    
-        // if (!$user || !in_array($user->user_type, $allowedUserTypes)) {
-        //     // Redirect or deny access based on your requirements
-        //     return redirect()->route('login'); // Replace '/home' with the desired URL or response
-        // }
-        // else{
-        //     return redirect()->route('home');
-        // }
-    
-        return $next($request);
+        $user = $request->user();
+
+        if (!$user || $user->user_type !== 'admin') {
+            // Redirect or deny access based on your requirements
+            return redirect()->route('login'); // Replace '/home' with the desired URL or response
+        }
+        else{
+            return $next($request);
+        }
+
     }
 }
