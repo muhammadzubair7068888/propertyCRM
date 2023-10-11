@@ -35,7 +35,7 @@
                 <th>Property Name</th>
                 <th>Location</th>
                 <th>Unit</th>
-                <th>Action </th>      
+                <th>Action </th>
               </tr>
             </thead>
             <tbody>
@@ -43,18 +43,14 @@
               <td>HOUSE</td>
               <td>gzwr</td>
               <td>90</td>
-              <div>
-              <td>
-                <a href="{{route('landlord.properties.create')}}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye font-medium-2 text-body"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                </a></td>
-              </div>
+              <td><i data-feather='eye'></i></td>
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
+
 </section>
 
 
@@ -89,3 +85,4 @@
   <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
   <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
 @endsection
+
