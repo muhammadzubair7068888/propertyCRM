@@ -62,7 +62,7 @@
   {{-- Page js files --}}
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
   <script>
- 
+
     $('.dt-multilingual').DataTable({
         ajax:'{{ asset('data/table-datatable.json') }}',
         columns: [
@@ -71,9 +71,9 @@
           { data: 'post' },
           { data: 'salary' },
           { data: 'email' },
-          
+
           { data: '' },
-          
+
         ],
         columnDefs: [
           {
@@ -129,7 +129,7 @@
                 // 'Delete</a>' +
                 // '</div>' +
                 // '</div>' +
-                '<a href="javascript:;" class="item-edit pe-1">' +
+                '<a href="{{route('admin.view.property')}}" class="item-edit pe-1">' +
                 feather.icons['eye'].toSvg({ class: 'font-small-4' }) +
                 '</a>'+
                 '<a href="javascript:;" class="item-edit">' +
@@ -177,13 +177,13 @@
                       '</tr>'
                   : '';
               }).join('');
-  
+
               return data ? $('<table class="table"/>').append('<tbody>' + data + '</tbody>') : false;
             }
           }
         }
       });
-   
+
   </script>
 
 @endsection

@@ -259,10 +259,10 @@
                         </div>
                         <div class="mb-1 col-md-2 col-sm-2">
                             <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="copy" class="text-dark"></i>
+                                <i data-feather="copy" class="text-dark font-medium-5" ></i>
                             </a>
                             <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="delete" class="text-danger "></i>
+                                <i data-feather="delete" class="text-danger font-medium-5 "></i>
                             </a>
 
                         </div>
@@ -331,10 +331,10 @@
                         </div>
                         <div class="mb-1 col-md-4 ">
                             <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="copy" class="text-dark"></i>
+                                <i data-feather="copy" class="text-dark font-medium-5"></i>
                             </a>
                             <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="delete" class="text-danger "></i>
+                                <i data-feather="delete" class="text-danger font-medium-5 "></i>
                             </a>
                         </div>
                         <div class="row">
@@ -388,10 +388,10 @@
 
                         <div class="mb-1 col-md-3">
                             <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="copy" class="text-dark"></i>
+                                <i data-feather="copy" class="text-dark font-medium-5"></i>
                             </a>
                             <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="delete" class="text-danger "></i>
+                                <i data-feather="delete" class="text-danger font-medium-5 "></i>
                             </a>
 
                         </div>
@@ -442,10 +442,10 @@
 
             <div class="mb-1 col-md-2">
                 <a href="#" class="d-inline-block mt-2">
-                    <i data-feather="copy" class="text-dark"></i>
+                    <i data-feather="copy" class="text-dark font-medium-5"></i>
                 </a>
                 <a href="#" class="d-inline-block mt-2">
-                    <i data-feather="delete" class="text-danger "></i>
+                    <i data-feather="delete" class="text-danger font-medium-5"></i>
                 </a>
 
             </div>
