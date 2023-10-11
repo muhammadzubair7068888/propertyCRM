@@ -3,15 +3,10 @@
 
 @section('title', 'Landlord')
 
-@section('content')
- <h1>This Page is Under Constration</h1>
-@endsection
 
 
-{{-- @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Landlord')
-@section('vendor-style')
+ @section('vendor-style')
   {{-- Vendor Css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
