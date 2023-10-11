@@ -24,7 +24,7 @@ class UtilitiesController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.utilities.addutilities");
     }
 
     /**

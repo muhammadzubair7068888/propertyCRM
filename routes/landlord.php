@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
 
+use App\Http\Controllers\landlord\DocumentController;
+use App\Http\Controllers\landlord\LeaseController as LandlordLeaseController;
+use App\Http\Controllers\landlord\LogoutController;
+use App\Http\Controllers\landlord\PaymentController as LandLoardPaymentController;
+use App\Http\Controllers\landlord\ProfileController;
+use App\Http\Controllers\landlord\PropertyController as LandloardPropertyController;
+use App\Http\Controllers\landlord\VacateNoticeController as LandloardVacateNoticeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,16 +23,18 @@ use App\Http\Controllers\LanguageController;
 |
 */
 
-Route::get('/', [StaterkitController::class, 'home'])->name('home');
-Route::get('/dashboard', [StaterkitController::class, 'home'])->name('home');
-Route::get('home', [StaterkitController::class, 'home'])->name('home');
-// Route Components
+Route::prefix('landlord')->name('landlord.')->middleware('auth')->group(function () {
+    Route::get('/', [StaterkitController::class, 'home'])->name('home');
+    Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
+    Route::resource('document', DocumentController::class);
+    Route::resource('leases', LandlordLeaseController::class);
+    Route::resource('payment', LandLoardPaymentController::class);
+    Route::resource('profile', ProfileController::class);
+    // Route::get('profile', [ProfileController::class,'index']);
 
-Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
-Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('layout-full');
-Route::get('layouts/without-menu', [StaterkitController::class, 'without_menu'])->name('without-menu');
-Route::get('layouts/empty', [StaterkitController::class, 'layout_empty'])->name('layout-empty');
-Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name('layout-blank');
+    Route::resource('properties', LandloardPropertyController::class);
+    Route::resource('vacate_notice', LandloardVacateNoticeController::class);
+});
 
 
 // locale Route

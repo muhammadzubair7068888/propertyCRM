@@ -1,38 +1,64 @@
 @extends('layouts/contentLayoutMaster')
-
-@section('title', 'Landlord')
-
-
+@section('title', 'DataTables')
+@section('vendor-style')
+  {{-- vendor css files --}}
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+@endsection
 @section('content')
-<section class="invoice-list-wrapper">
-  <div class="card">
-    <div class="title">Landlords</div>
-    <div class="card-datatable table-responsive">
-      <table class="invoice-list-table table">
-        <div class="d-flex">
-      <span class="v-btn__prepend"><button class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" tag="i" class="v-icon notranslate v-theme--dark v-icon--size-default iconify iconify--tabler" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5v14m-7-7h14"></path></svg>Add Landlord</button></span>
-      <div _ngcontent-ags-c190="" class="col-7"><mat-form-field _ngcontent-ags-c190="" class="mat-form-field search-form-field ng-tns-c65-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-has-label mat-form-field-hide-placeholder ng-star-inserted"><div class="mat-form-field-wrapper ng-tns-c65-0"><div class="mat-form-field-flex ng-tns-c65-0"><!----><!----><div class="mat-form-field-infix ng-tns-c65-0">Filter<input _ngcontent-ags-c190="" matinput="" autocomplete="off" class="mat-input-element mat-form-field-autofill-control ng-tns-c65-0 cdk-text-field-autofill-monitored" id="mat-input-0" data-placeholder="Filter" aria-invalid="false" aria-required="false"><span class="mat-form-field-label-wrapper ng-tns-c65-0"><label class="mat-form-field-label ng-tns-c65-0 mat-empty mat-form-field-empty ng-star-inserted" id="mat-form-field-label-1" for="mat-input-0" aria-owns="mat-input-0"><span class="ng-tns-c65-0 ng-star-inserted"></span><!----><!----><!----><!----></label><!----></span></div><!----></div><div class="mat-form-field-underline ng-tns-c65-0 ng-star-inserted"><span class="mat-form-field-ripple ng-tns-c65-0"></span></div><!----><div class="mat-form-field-subscript-wrapper ng-tns-c65-0"><!----><div class="mat-form-field-hint-wrapper ng-tns-c65-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted" style="opacity: 1; transform: translateY(0%);"><!----><div class="mat-form-field-hint-spacer ng-tns-c65-0"></div></div><!----></div></div></mat-form-field></div>
+<!-- Multilingual -->
+<section id="multilingual-datatable">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header border-bottom">
+          <h4 class="card-title">Multilingual</h4>
+        </div>
+        <div class="col-12 d-flex justify-content-end ">
+               <a href="{{route('admin.landlord.create')}}"> <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Landlord</button></a>
+        </div>
+        <div class="card-datatable">
+          <table class="dt-multilingual table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>Salary</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
-        <thead>
-          <tr>
-            <th>First Name<i data-feather="trending-up"></i></th>
-            <th>Last Name</th>
-            <th>Phone<i data-feather="trending-up"></i></th>
-            <th class="text-truncate">Email</th>
-            <th class="cell-fit">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <td>LORD</td>
-          <td>Joe</td>
-          <td>09838738783</td>
-          <td>oing@gmail.com</td>
-          <td>del </td>
-
-        </tbody>
-      </table>
-
     </div>
-  </div> 
+  </div>
 </section>
+<!--/ Multilingual -->
+@endsection
+@section('vendor-script')
+  {{-- vendor files --}}
+  <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap5.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/jszip.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/pdfmake.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/vfs_fonts.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.html5.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+@endsection
+@section('page-script')
+  {{-- Page js files --}}
+  <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script>
 @endsection

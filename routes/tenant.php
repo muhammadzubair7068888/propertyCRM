@@ -4,6 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
 
+use App\Http\Controllers\tenant\DocumentController as TenantDocumentController;
+use App\Http\Controllers\tenant\LeaseController as TenantLeaseController;
+use App\Http\Controllers\tenant\LogoutController as TenentLogoutController;
+use App\Http\Controllers\tenant\PaymentController as TenantPaymentController;
+use App\Http\Controllers\tenant\ProfileController as TenantProfileController;
+use App\Http\Controllers\tenant\InvoiceController as TenantInvoiceController;
+use App\Http\Controllers\tenant\VacateNoticeController as TenantVacateNoticeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,15 +22,17 @@ use App\Http\Controllers\LanguageController;
 |
 */
 
-Route::get('/', [StaterkitController::class, 'home'])->name('home');
-Route::get('/dashboard', [StaterkitController::class, 'home'])->name('home');
-Route::get('home', [StaterkitController::class, 'home'])->name('home');
-// Route Components
-Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
-Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('layout-full');
-Route::get('layouts/without-menu', [StaterkitController::class, 'without_menu'])->name('without-menu');
-Route::get('layouts/empty', [StaterkitController::class, 'layout_empty'])->name('layout-empty');
-Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name('layout-blank');
+Route::prefix('tenant')->name('tenant.')->middleware('auth')->group(function () {
+    Route::get('/', [StaterkitController::class, 'home'])->name('home');
+    Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
+    Route::resource('document', TenantDocumentController::class);
+    Route::resource('invoice', TenantInvoiceController::class);
+    Route::resource('leases', TenantLeaseController::class);
+    Route::resource('payment', TenantPaymentController::class);
+    Route::resource('profile', TenantProfileController::class);
+    // Route::resource('profile', TenantProfileController::class);
+    Route::resource('vacate_notice', TenantVacateNoticeController::class);
+});
 
 
 // locale Route
