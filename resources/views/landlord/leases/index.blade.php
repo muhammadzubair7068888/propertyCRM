@@ -45,7 +45,8 @@
                 <td>56</td>
               
                 <td>pdf</td>
-                <td><span class="badge rounded-pill badge-light-success me-1">Active</span></td>
+                <td>
+                <span class="badge rounded-pill badge-light-success me-1">Active</span></td>
               
             </tbody>
           </table>
