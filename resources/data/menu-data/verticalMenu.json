@@ -113,7 +113,7 @@
             "slug": "profile"
         },
         {
-            "url": "landlord/logout",
+            "url": "logout",
             "name": "logout",
             "icon": "log-out",
             "slug": "logout"
@@ -164,7 +164,7 @@
             "slug": "profile"
         },
         {
-            "url": "tenant/logout",
+            "url": "logout",
             "name": "logout",
             "icon": "log-out",
             "slug": "logout"

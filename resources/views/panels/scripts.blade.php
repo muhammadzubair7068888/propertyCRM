@@ -18,4 +18,5 @@
 <!-- END: Theme JS-->
 <!-- BEGIN: Page JS-->
 @yield('page-script')
+@stack('page-scripts')
 <!-- END: Page JS-->

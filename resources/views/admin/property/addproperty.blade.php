@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Form Wizard')
+@section('title', 'Add Property')
 
 @section('vendor-style')
     <!-- vendor css files -->
@@ -235,31 +235,8 @@
                     </div>
                 </div>
 
-                <div id="Utilities" class="content" role="tabpanel" aria-labelledby="account-details-vertical-trigger">
-                    <div class="content-header">
-                        <h5 class="mb-0">Utilities</h5>
-                        <small class="text-muted">Enter Your Account Details.</small>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-start ">
-                            <a href=""> <button type="submit" class="btn btn-primary mb-2 " name="submit"
-                                    value="Submit">+ Add Utilities</button></a>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-outline-secondary btn-prev" disabled>
-                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                        </button>
-                        <button class="btn btn-primary btn-next">
-                            <span class="align-middle d-sm-inline-block d-none">Next</span>
-                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                        </button>
-                    </div>
-                </div>
-                <div id="social-links-vertical" class="content" role="tabpanel"
-                aria-labelledby="social-links-vertical-trigger">
+           
+                <div id="social-links-vertical" class="content" role="tabpanel" aria-labelledby="social-links-vertical-trigger">
                 <div class="content-header">
                     <h5 class="mb-0">Late Fee</h5>
                     <small>Enter Your Social Links.</small>
@@ -319,7 +296,31 @@
                         <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                         <span class="align-middle d-sm-inline-block d-none">Previous</span>
                     </button>
+                    <button class="btn btn-primary btn-next">
+                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="Utilities" class="content" role="tabpanel" aria-labelledby="account-details-vertical-trigger">
+                <div class="content-header">
+                    <h5 class="mb-0">Utilities</h5>
+                    <small class="text-muted">Enter Your Account Details.</small>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-start ">
+                        <a href=""> <button type="submit" class="btn btn-primary mb-2 " name="submit"
+                                value="Submit">+ Add Utilities</button></a>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-outline-secondary btn-prev disable" >
+                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                        <span class="align-middle d-sm-inline-block d-none ">Previous</span>
+                    </button>
                     <button class="btn btn-success btn-submit">Submit</button>
+                  
                 </div>
             </div>
             </div>
