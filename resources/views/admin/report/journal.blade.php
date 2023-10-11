@@ -1,7 +1,7 @@
 
 
 <!-- Multilingual -->
-<section id="multilingual-datatable">
+<section id="multilingual-datatable1">
     <div class="row">
       <div class="col-12">
         <div class="card">
@@ -39,10 +39,11 @@
   </section>
   <!--/ Multilingual -->
   
-  @section('page-script')
+  {{-- @section('page-script') --}}
+  {{-- @push('page-scripts')
   <script>
    
-    $('.dt-multilingual').DataTable({
+    $('.dt-multilingual1').DataTable({
         ajax:'{{ asset('data/table-datatable.json') }}',
         columns: [
           { data: 'responsive_id' },
@@ -161,4 +162,5 @@
       });
    
   </script>
-  @endsection
+  @endpush --}}
+  {{-- @endsection --}}

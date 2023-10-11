@@ -1,4 +1,14 @@
+
 @extends('layouts/contentLayoutMaster')
+
+@section('title', 'Landlord')
+
+@section('content')
+ <h1>This Page is Under Constration</h1>
+@endsection
+
+
+{{-- @extends('layouts/contentLayoutMaster')
 
 @section('title', 'Landlord')
 @section('vendor-style')
@@ -254,4 +264,4 @@
 @section('page-script')
   <!-- Page js files -->
   <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
-@endsection
+@endsection --}}

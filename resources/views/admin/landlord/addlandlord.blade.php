@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Form Layouts')
+@section('title', 'Add Landlord')
 
 @section('content')
 

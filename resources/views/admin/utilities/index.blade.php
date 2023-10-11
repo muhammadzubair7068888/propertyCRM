@@ -1,5 +1,5 @@
 @extends('layouts/contentLayoutMaster')
-@section('title', 'DataTables')
+@section('title', 'Utility')
 @section('vendor-style')
   {{-- vendor css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
@@ -15,10 +15,10 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header border-bottom">
-          <h4 class="card-title">Multilingual</h4>
+          <h4 class="card-title">Utilities</h4>
         </div>
         <div class="col-12 d-flex justify-content-end ">
-               <a href="{{route('admin.utilities.create')}}"> <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add tenant</button></a>
+               <a href="{{route('admin.utilities.create')}}"> <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Utility Bill</button></a>
         </div>
         <div class="card-datatable">
           <table class="dt-multilingual table">

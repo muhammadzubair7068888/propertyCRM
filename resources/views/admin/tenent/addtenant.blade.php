@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Form Wizard')
+@section('title', 'Add Tenant')
 
 @section('vendor-style')
     <!-- vendor css files -->

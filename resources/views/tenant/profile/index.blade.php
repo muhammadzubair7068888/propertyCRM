@@ -3,5 +3,5 @@
 @section('title', 'Landlord')
 
 @section('content')
- this is profile page
+ <h1>This Page Under Constration</h1>
 @endsection

@@ -123,7 +123,7 @@
 
 
 
-
+<h3>General Setting</h3>
    <form class="needs-validation" novalidate>
     <div class="mb-1">
       <label class="form-label" for="basic-addon-name">Name</label>

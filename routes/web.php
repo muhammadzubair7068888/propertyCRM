@@ -25,7 +25,7 @@ require_once __DIR__.'/tenant.php';
 Route::get('/', [AuthController::class, 'login_page'])->name('login');
 Route::get('login', [AuthController::class, 'login_page'])->name('login');
 Route::get('attempt_login', [AuthController::class, 'login'])->name('login.attempt');
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
