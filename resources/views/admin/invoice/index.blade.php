@@ -28,8 +28,10 @@
                 <th>Email</th>
                 <th>Date</th>
                 <th>Salary</th>
+                <th>Age</th>
                 <th>Status</th>
                 <th>Action</th>
+                
               </tr>
             </thead>
           </table>
@@ -72,8 +74,10 @@
         { data: 'email' },
         { data: 'start_date' },
         { data: 'salary' },
+        { data: 'age' },
         { data: 'status' },
-        { data: '' }
+        { data: '' },
+        
       ],
       columnDefs: [
         {
