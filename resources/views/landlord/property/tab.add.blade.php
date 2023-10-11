@@ -1,7 +1,7 @@
 <section id="nav-filled">
   <div class="row match-height">
     <!-- Filled Tabs starts -->
-    <div class="col-xl-8 col-lg-12">
+    <div class="col-xl-10 col-lg-12">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title">Property Details</h4>
@@ -55,6 +55,18 @@
                 aria-controls="settings-fill"
                 aria-selected="false"
                 >Invoices</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="vacate-tab-fill"
+                data-bs-toggle="tab"
+                href="#vacate-fill"
+                role="tab"
+                aria-controls="settings-fill"
+                aria-selected="false"
+                >Vacate Notice</a
               >
             </li>
           </ul>
@@ -239,7 +251,47 @@
     </div>
   </div>
 </div>
-            </div>
+   </div>
+<div class="tab-pane" id="vacate-fill" role="tabpanel" aria-labelledby="vacate-tab-fill">
+<div class="row" id="table-hover-row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"></h4>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+        
+        </p>
+      </div>
+        <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Vacating date</th>
+              <th>Tenant</th>
+              <th>Lease</th>
+              <th>Units</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="fw-bold">house</span>
+              </td>
+              <td>1234</td>
+              <td>sah house</td>
+              <td>grw</td>
+             
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+   </div>
+         
           </div>
         </div>
       </div>

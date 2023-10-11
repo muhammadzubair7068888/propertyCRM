@@ -55,6 +55,7 @@
       </div>
     </div>
   </div>
+  
 </section>
 
 
@@ -85,3 +86,4 @@
   <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
   <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
 @endsection
+
