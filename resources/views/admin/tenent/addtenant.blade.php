@@ -54,7 +54,7 @@
                     <button type="button" class="step-trigger">
                         <span class="bs-stepper-box">4</span>
                         <span class="bs-stepper-label">
-                            <span class="bs-stepper-title">Bussiness Details</span>
+                        <span class="bs-stepper-title">Bussiness Details</span>
 
                         </span>
                     </button>
@@ -67,11 +67,11 @@
                         <h5 class="mb-0">Tenant Info</h5>
 
                     </div>
-
+<form action="">
                     <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="tenant-type">Tenant Type</label>
-                            <select class="form-select" id="tenant-type">
+                            <select class="form-select" id="tenant-type" required>
                                 <option>IT</option>
                                 <option>Blade Runner</option>
                                 <option>Thor Ragnarok</option>
@@ -80,7 +80,7 @@
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="first-name-column">First Name</label>
                             <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
-                                name="fname-column" />
+                                name="fname-column"  required/>
                         </div>
 
                     </div>
@@ -88,18 +88,18 @@
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="middle-name-column">Middle Name</label>
                             <input type="text" id="middle-name-column" class="form-control" placeholder="Middle Name"
-                                name="middle-name-column" />
+                                name="middle-name-column" required />
                         </div>
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="vertical-last-name">Last Name</label>
-                            <input type="text" id="vertical-last-name" class="form-control" placeholder="Last Name" />
+                            <input type="text" id="vertical-last-name" class="form-control" placeholder="Last Name" required />
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="gender">Gender</label>
-                            <select class="form-select" id="gender">
+                            <select class="form-select" id="gender" required>
                                 <option>male</option>
                                 <option>female</option>
                                 <option>other</option>
@@ -108,7 +108,7 @@
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="date">Date</label>
                             <input type="text" id="date" class="form-control flatpickr-basic"
-                                placeholder="YYYY-MM-DD" />
+                                placeholder="YYYY-MM-DD" required/>
                         </div>
                     </div>
                     <div class="row">
@@ -121,13 +121,14 @@
                                   class="form-control"
                                   placeholder="National ID or Passport"
                                   name="passport"
+                                  required
                                 />
                               </div>
                         </div>
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="martial-status">Martial Status</label>
                             <input type="text" id="martial-status" class="form-control" placeholder="Martial Status"
-                                name="fname-column" />
+                                name="fname-column"  required/>
                         </div>
                     </div>
                     <div class="row">
@@ -140,6 +141,7 @@
                                   class="form-control"
                                   name="phone"
                                   placeholder="Phone"
+                                  required
                                 />
                               </div>
                         </div>
@@ -152,6 +154,7 @@
                                   class="form-control"
                                   name="email-id-column"
                                   placeholder="Email"
+                                  required
                                 />
                               </div>
                         </div>
@@ -166,6 +169,7 @@
                                   class="form-control"
                                   placeholder="Country "
                                   name="country"
+                                  required
                                 />
                               </div>
                         </div>
@@ -178,6 +182,7 @@
                                   class="form-control"
                                   placeholder="City"
                                   name="city"
+                                  required
                                 />
                               </div>
                         </div>
@@ -192,6 +197,7 @@
                                   class="form-control"
                                   placeholder="Postal Code"
                                   name="postal-code"
+                                  required
                                 />
                               </div>
                         </div>
@@ -204,6 +210,7 @@
                                   class="form-control"
                                   placeholder="Postal Address"
                                   name="postal-address"
+                                  required
                                 />
                               </div>
                         </div>
@@ -218,6 +225,7 @@
                                 class="form-control"
                                 placeholder="Physical Address"
                                 name="physical-address"
+                                required
                               />
                             </div>
                           </div>
@@ -232,6 +240,7 @@
                                 class="form-control"
                                 placeholder="Password"
                                 name="password"
+                                required
                               />
                             </div>
                           </div>
@@ -243,11 +252,13 @@
                                 id="confirm-password"
                                 class="form-control"
                                 placeholder="Confirm Password"
-                                name="lname-column"
+                                name="confirm-password"
+                                required
                               />
                             </div>
                           </div>
                     </div>
+                </form>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-outline-secondary btn-prev" disabled>
                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -265,6 +276,7 @@
                         <h5 class="mb-0">Kin & Relation</h5>
 
                     </div>
+                    <form action="">
                     <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="kin-name">Kin Name</label>
@@ -311,6 +323,7 @@
                             <input type="text" id="emergency-physical-address" class="form-control" placeholder="Emergency physical Address" />
                         </div>
                     </div>
+                </form>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-primary btn-prev">
                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -328,6 +341,7 @@
                         <h5 class="mb-0">Employment</h5>
 
                     </div>
+                    <form action="">
                     <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="employment-status">Employment Status</label>
@@ -360,6 +374,7 @@
                             <input type="text" id="employment-physical-address" class="form-control" placeholder="Employment physical Address" />
                         </div>
                     </div>
+                </form>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-primary btn-prev">
                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -377,6 +392,8 @@
                         <h5 class="mb-0">Bussiness Details</h5>
 
                     </div>
+                    {{-- form tag --}}
+                    <form action="">
                     <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="bussiness-name">Business Name</label>
@@ -413,6 +430,7 @@
                                 placeholder="Business Description" />
                         </div>
                     </div>
+                </form>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-primary btn-prev">
                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>

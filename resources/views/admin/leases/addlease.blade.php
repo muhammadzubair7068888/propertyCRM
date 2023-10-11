@@ -108,7 +108,7 @@
                     <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="property">Property</label>
-                            <select class="form-select" id="property">
+                            <select class="form-select" id="property" required>
                                 <option>IT</option>
                                 <option>Blade Runner</option>
                                 <option>Thor Ragnarok</option>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="unit-type">Unit</label>
-                            <select class="form-select" id="unit-type">
+                            <select class="form-select" id="unit-type" required>
                                 <option>IT</option>
                                 <option>Blade Runner</option>
                                 <option>Thor Ragnarok</option>
@@ -126,7 +126,7 @@
                     <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="lease-type">Lease Type</label>
-                            <select class="form-select" id="lease-type">
+                            <select class="form-select" id="lease-type" required>
                                 <option>IT</option>
                                 <option>Blade Runner</option>
                                 <option>Thor Ragnarok</option>
@@ -134,18 +134,18 @@
                         </div>
                         <div class="mb-1 form-password-toggle col-md-6">
                             <label class="form-label" for="rent-amount">Rent Amount</label>
-                            <input type="text" id="rent-amount" class="form-control" placeholder="Rent Amount" />
+                            <input type="text" id="rent-amount"  class="form-control" placeholder="Rent Amount" required />
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="lease-date">Starts Date</label>
                             <input type="text" id="lease-date" class="form-control flatpickr-basic"
-                                placeholder="YYYY-MM-DD" />
+                                placeholder="YYYY-MM-DD"  required/>
                         </div>
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="lease-date">Due On(Day of Month)</label>
-                            <select class="form-select" id="lease-type">
+                            <select class="form-select" id="lease-type" required>
                                 <option>IT</option>
                                 <option>Blade Runner</option>
                                 <option>Thor Ragnarok</option>
@@ -280,7 +280,10 @@
                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                             <span class="align-middle d-sm-inline-block d-none">Previous</span>
                         </button>
-                        <button class="btn btn-success btn-submit">Submit</button>
+                        <button class="btn btn-primary btn-next">
+                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -513,14 +516,12 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <button class="btn btn-primary btn-prev">
+            <button class="btn btn-primary btn-prev disable">
                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
             </button>
-            <button class="btn btn-primary btn-next">
-                <span class="align-middle d-sm-inline-block d-none">Next</span>
-                <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-            </button>
+            <button class="btn btn-success btn-submit">Submit</button>
+
         </div>
     </div>
             </div>
