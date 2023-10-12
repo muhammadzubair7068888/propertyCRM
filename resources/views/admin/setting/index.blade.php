@@ -17,12 +17,9 @@
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/katex.min.css'))}}">
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/monokai-sublime.min.css'))}}">
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/quill.snow.css'))}}">
-  <style>
-    .nav-vertical .nav.nav-tabs.nav-left ~ .tab-content .tab-pane{
-      overflow-y: unset !important  ;
-    }
-  </style>
   @endsection
+>
+
 
 
 
@@ -31,6 +28,11 @@
    {{-- Page Css files --}}
    <link rel="stylesheet" type="text/css" href="{{asset(mix('css/base/plugins/forms/form-quill-editor.css'))}}">
    <link rel="stylesheet" type="text/css" href="{{asset(mix('css/base/pages/page-blog.css'))}}">
+   <style>
+    .nav-vertical .nav.nav-tabs.nav-left ~ .tab-content .tab-pane{
+      overflow-y: unset !important  ;
+    }
+  </style>
    @endsection
 
 
@@ -212,17 +214,11 @@
 
 <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
-<<<<<<< HEAD
  <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
- {{-- ####### --}}
+
  <script src="{{asset(mix('js/scripts/pages/page-blog-edit.js'))}}"></script>
-@endsection
-
-
-
-
-=======
-
-  <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
 @endpush
->>>>>>> sahil
+
+
+
+
