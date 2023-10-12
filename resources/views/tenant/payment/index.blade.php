@@ -44,6 +44,7 @@
     </div>
   </div>
 </section>
+
 <!--/ Multilingual -->
 @endsection
 @section('vendor-script')
