@@ -17,6 +17,11 @@
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/katex.min.css'))}}">
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/monokai-sublime.min.css'))}}">
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/quill.snow.css'))}}">
+  <style>
+    .nav-vertical .nav.nav-tabs.nav-left ~ .tab-content .tab-pane{
+      overflow-y: unset !important  ;
+    }
+  </style>
   @endsection
 
 
@@ -49,7 +54,7 @@
         </div>
         <div class="card-body">
           <div class="nav-vertical">
-            <ul class="nav nav-tabs nav-left flex-column" role="tablist">
+            <ul class="nav nav-tabs nav-left flex-column shadow " role="tablist">
               <li class="nav-item " >
                 <a
                 style="padding-right:100px"
@@ -138,7 +143,7 @@
               </li>
             </ul>
             <div class="tab-content">
-              <div class="tab-pane active" id="tabVerticalLeft1" role="tabpanel" aria-labelledby="baseVerticalLeft-tab1">
+              <div class="tab-pane active " id="tabVerticalLeft1" role="tabpanel" aria-labelledby="baseVerticalLeft-tab1">
                @include('admin.setting.system')
               </div>
               <div class="tab-pane" id="tabVerticalLeft2" role="tabpanel" aria-labelledby="baseVerticalLeft-tab2">
@@ -170,21 +175,7 @@
                 </p>
               </div>
               <div class="tab-pane" id="tabVerticalLeft7" role="tabpanel" aria-labelledby="baseVerticalLeft-tab7">
-                <p>
-                  Icing croissant powder jelly bonbon cake marzipan fruitcake. Tootsie roll marzipan tart marshmallow
-                  pastry cupcake chupa chups cookie. Fruitcake dessert lollipop pudding jelly. Cookie dragée jujubes
-                  croissant lemon drops cotton candy. Carrot cake candy canes powder donut toffee cookie.
-                </p>
-                <p>
-                  Icing croissant powder jelly bonbon cake marzipan fruitcake. Tootsie roll marzipan tart marshmallow
-                  pastry cupcake chupa chups cookie. Fruitcake dessert lollipop pudding jelly. Cookie dragée jujubes
-                  croissant lemon drops cotton candy. Carrot cake candy canes powder donut toffee cookie.
-                </p>
-                <p>
-                  Icing croissant powder jelly bonbon cake marzipan fruitcake. Tootsie roll marzipan tart marshmallow
-                  pastry cupcake chupa chups cookie. Fruitcake dessert lollipop pudding jelly. Cookie dragée jujubes
-                  croissant lemon drops cotton candy. Carrot cake candy canes powder donut toffee cookie.
-                </p>
+               @include('admin.setting.rolesandpermission.index')
               </div>
             </div>
           </div>
@@ -217,10 +208,11 @@
 <script src="{{asset(mix('vendors/js/editors/quill/quill.min.js'))}}"></script>
 @endsection
 
-@section('page-script')
+@push('page-script')
 
 <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+<<<<<<< HEAD
  <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
  {{-- ####### --}}
  <script src="{{asset(mix('js/scripts/pages/page-blog-edit.js'))}}"></script>
@@ -229,3 +221,8 @@
 
 
 
+=======
+
+  <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
+@endpush
+>>>>>>> sahil

@@ -43,6 +43,10 @@
                                 <a class="nav-link" id="settings-tab-fill" data-bs-toggle="tab" href="#settings-fill"
                                     role="tab" aria-controls="settings-fill" aria-selected="false">Invoices</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="vacate-tab-fill" data-bs-toggle="tab" href="#vacate-fill"
+                                    role="tab" aria-controls="settings-fill" aria-selected="false">Vacate Notice</a>
+                            </li>
                         </ul>
 
                         <!-- Tab panes -->
@@ -234,6 +238,44 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane" id="vacate-fill" role="tabpanel"
+                                aria-labelledby="vacate-tab-fill">
+                                <div class="row" id="table-hover-row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title"></h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">
+
+                                                </p>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Vacating date</th>
+                                                            <th>Tenant</th>
+                                                            <th>Lease</th>
+                                                            <th>Units</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1234</td>
+                                                            <td>grw</td>
+                                                            <td>LS8000</td>
+                                                            <td>90</td>
+                                                           
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -242,7 +284,33 @@
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">Summary</h4>
-                </div></div></div>
+                </div> 
+                <div class="ms-3 justify-content-start row">
+                    <div class="mb-1 col-3">Total Units:
+                        <p>3</p>
+                    </div>
+                    <div class="mb-1 col-3">Occupied:
+                        <p>3</p>
+                    </div>
+                    <div class="mb-1 col-3">Vacant:
+                        <p>0</p>
+                    </div>
+                  </div>
+                  <div class="row ms-3">
+                    <div class="col-6">
+                        <div  class="card-category text-gray"> Name: </div>
+                        <div  class="text-black  mb-1">Sahil House</div>
+                    </div>
+                    <div _ngcontent-diy-c215="" class="col-6">
+                        <div class="card-category text-gray"> Code: </div>
+                        <div class="text-black" >sahil123</div>
+                    </div>
+                </div>
+                  <div class="card-category text-gray p-1 ms-3 "> Location:
+                  <div  class="text-black">gujranwala</div>
+                  </div>
+                </div></div>
+                
             <!-- Filled Tabs ends -->
         </div>
     </section>

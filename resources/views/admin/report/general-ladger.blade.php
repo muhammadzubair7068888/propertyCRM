@@ -58,7 +58,6 @@
         { data: 'salary' },
         { data: 'full_name' },
         { data: 'age' },
-       
         { data: '' }
       ],
       columnDefs: [

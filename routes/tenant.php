@@ -33,6 +33,7 @@ Route::prefix('tenant')->name('tenant.')->middleware('auth')->group(function () 
     Route::resource('profile', TenantProfileController::class);
     // Route::resource('profile', TenantProfileController::class);
     Route::resource('vacate_notice', TenantVacateNoticeController::class);
+    Route::get('view/vacate_notice', [TenantVacateNoticeController::class,'view'])->name('view');
 });
 
 
