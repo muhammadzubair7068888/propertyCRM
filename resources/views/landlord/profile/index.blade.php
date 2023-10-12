@@ -10,12 +10,15 @@
   {{-- Vendor Css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
 @endsection
 
 @section('page-style')
   {{-- Page Css files --}}
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+  <link rel="stylesheet" href="{{asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css'))}}">
 @endsection
 @section('content')
 <section class="bs-validation">
@@ -202,11 +205,12 @@
               <div class="invalid-feedback">Please confirm your password.</div>
             </div>
             </div>
-            <button type="submit" data-bs-target="alerts-closable" class="btn btn-success">Update Profile </button>
+                <button type="submit" class="btn btn-success">Update Profile </button> 
           </form>
         </div>
       </div>
     </div>
+    
     <!-- /Profile validations -->
   </div>
 </section>
@@ -216,10 +220,12 @@
   <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
 @endsection
 @section('page-script')
   <!-- Page js files -->
   <script src="{{ asset(mix('js/scripts/forms/form-validation.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/extensions/ext-component-sweet-alerts.js')) }}"></script>
   <script src="{{asset(mix('js/scripts/components/components-alerts.js'))}}"></script>
-  <script src="{{ asset(mix('js/scripts/components/components-modals.js')) }}"></script>
 @endsection
