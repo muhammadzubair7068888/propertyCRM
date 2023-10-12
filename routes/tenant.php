@@ -25,6 +25,7 @@ use App\Http\Controllers\tenant\VacateNoticeController as TenantVacateNoticeCont
 Route::prefix('tenant')->name('tenant.')->middleware('auth')->group(function () {
     Route::get('/', [StaterkitController::class, 'home'])->name('home');
     Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
+   
     Route::resource('document', TenantDocumentController::class);
     Route::resource('invoice', TenantInvoiceController::class);
     Route::resource('leases', TenantLeaseController::class);

@@ -10,10 +10,31 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
-
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
+  {{-- ########### --}}
 
+  <link rel="stylesheet" href="{{asset(mix('vendors/css/forms/select/select2.min.css'))}}">
+  <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/katex.min.css'))}}">
+  <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/monokai-sublime.min.css'))}}">
+  <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/quill.snow.css'))}}">
   @endsection
+
+
+
+
+   @section('page-style')
+   {{-- Page Css files --}}
+   <link rel="stylesheet" type="text/css" href="{{asset(mix('css/base/plugins/forms/form-quill-editor.css'))}}">
+   <link rel="stylesheet" type="text/css" href="{{asset(mix('css/base/pages/page-blog.css'))}}">
+   @endsection
+
+
+
+
+
+
+
+
 
 @section('content')
 
@@ -122,36 +143,19 @@
               </div>
               <div class="tab-pane" id="tabVerticalLeft2" role="tabpanel" aria-labelledby="baseVerticalLeft-tab2">
                 <p>
-                  Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake fruitcake
-                  jelly chupa chups. Sweet fruitcake cheesecake biscuit cotton candy. Cookie powder marshmallow donut.
-                  Pudding caramels pastry powder cake soufflé wafer caramels. Jelly-o pie cupcake.
+                    @include('admin.setting.property')
                 </p>
               </div>
               <div class="tab-pane" id="tabVerticalLeft3" role="tabpanel" aria-labelledby="baseVerticalLeft-tab3">
                 <p>
-                  Icing croissant powder jelly bonbon cake marzipan fruitcake. Tootsie roll marzipan tart marshmallow
-                  pastry cupcake chupa chups cookie. Fruitcake dessert lollipop pudding jelly. Cookie dragée jujubes
-                  croissant lemon drops cotton candy. Carrot cake candy canes powder donut toffee cookie.
+                    @include('admin.setting.lease.index')
                 </p>
               </div>
               <div class="tab-pane" id="tabVerticalLeft4" role="tabpanel" aria-labelledby="baseVerticalLeft-tab4">
-                <p>
-                  Icing croissant powder jelly bonbon cake marzipan fruitcake. Tootsie roll marzipan tart marshmallow
-                  pastry cupcake chupa chups cookie. Fruitcake dessert lollipop pudding jelly. Cookie dragée jujubes
-                  croissant lemon drops cotton candy. Carrot cake candy canes powder donut toffee cookie.
-                </p>
-                <p>
-                  Icing croissant powder jelly bonbon cake marzipan fruitcake. Tootsie roll marzipan tart marshmallow
-                  pastry cupcake chupa chups cookie. Fruitcake dessert lollipop pudding jelly. Cookie dragée jujubes
-                  croissant lemon drops cotton candy. Carrot cake candy canes powder donut toffee cookie.
-                </p>
+              @include('admin.setting.tenant.index')
               </div>
               <div class="tab-pane" id="tabVerticalLeft5" role="tabpanel" aria-labelledby="baseVerticalLeft-tab5">
-                <p>
-                  Icing croissant powder jelly bonbon cake marzipan fruitcake. Tootsie roll marzipan tart marshmallow
-                  pastry cupcake chupa chups cookie. Fruitcake dessert lollipop pudding jelly. Cookie dragée jujubes
-                  croissant lemon drops cotton candy. Carrot cake candy canes powder donut toffee cookie.
-                </p>
+               @include('admin.setting.notification.index')
               </div>
               <div class="tab-pane" id="tabVerticalLeft6" role="tabpanel" aria-labelledby="baseVerticalLeft-tab6">
                 <p>
@@ -204,18 +208,24 @@
   {{-- vendor files --}}
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
-
   <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
-
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
-
+{{-- ######## --}}
+<script src="{{asset(mix('vendors/js/forms/select/select2.full.min.js'))}}"></script>
+<script src="{{asset(mix('vendors/js/editors/quill/katex.min.js'))}}"></script>
+<script src="{{asset(mix('vendors/js/editors/quill/highlight.min.js'))}}"></script>
+<script src="{{asset(mix('vendors/js/editors/quill/quill.min.js'))}}"></script>
 @endsection
 
 @section('page-script')
 
 <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
-
 <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
-
-  <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
+ <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
+ {{-- ####### --}}
+ <script src="{{asset(mix('js/scripts/pages/page-blog-edit.js'))}}"></script>
 @endsection
+
+
+
+

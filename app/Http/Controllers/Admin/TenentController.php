@@ -16,6 +16,10 @@ class TenentController extends Controller
     {
         return view("admin.tenent.index");
     }
+    public function view()
+    {
+        return view('admin.tenent.addtenent');
+    }
 
     /**
      * Show the form for creating a new resource.
