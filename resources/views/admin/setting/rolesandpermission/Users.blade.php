@@ -7,7 +7,7 @@
         <div class="card">
          
             <div class="col-12 d-flex justify-content-end ">
-                <a href="{{route('admin.landlord.create')}}"> <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Landlord</button></a>
+                <a href=""> <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add User</button></a> 
          </div>
    
          
@@ -100,7 +100,7 @@
                 // 'Details</a>' +
                 '<a href="javascript:;" class="dropdown-item">' +
                 feather.icons['edit'].toSvg({ class: 'me-50 font-medium-4 text-success' }) +
-                'Archive</a>' +
+                'Edit</a>' +
                 '<a href="javascript:;" class="dropdown-item delete-record">' +
                 feather.icons['trash-2'].toSvg({ class: 'me-50 font-medium-4 text-danger' }) +
                 'Delete</a>' +
