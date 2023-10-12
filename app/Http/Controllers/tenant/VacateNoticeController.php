@@ -24,7 +24,7 @@ class VacateNoticeController extends Controller
      */
     public function create()
     {
-        //
+        return view('tenant.vacateNotice.add-vacatenotice');
     }
 
     /**

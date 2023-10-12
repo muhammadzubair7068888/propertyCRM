@@ -43,21 +43,17 @@
               <td>HOUSE</td>
               <td>gzwr</td>
               <td>90</td>
-              <td><i data-feather='eye'></i></td>
+              <td>
+                <a href="{{route('landlord.properties.create')}}">
+                <i data-feather='eye'></i></a>
+              </td>
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-
 </section>
-
-
-
-
-
-
 <!--/ Multilingual -->
 @endsection
 @section('vendor-script')
