@@ -132,7 +132,7 @@
                 // '<a href="javascript:;" class="item-edit pe-2">' +
                 // feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
                 // '</a>' +
-                '<a href="javascript:;" class="item-edit">' +
+                '<a href="{{route('landlord.view')}}" class="item-edit">' +
                 feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
                 '</a>'
               );

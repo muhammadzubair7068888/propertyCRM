@@ -34,6 +34,7 @@ Route::prefix('landlord')->name('landlord.')->middleware('auth')->group(function
 
     Route::resource('properties', LandloardPropertyController::class);
     Route::resource('vacate_notice', LandloardVacateNoticeController::class);
+    Route::get('view/vacate_notice', [LandloardVacateNoticeController::class,'view'])->name('view');
 });
 
 

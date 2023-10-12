@@ -1,5 +1,5 @@
 @extends('layouts/contentLayoutMaster')
-@section('title', 'DataTables')
+@section('title', 'Leases')
 @section('vendor-style')
   {{-- vendor css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
@@ -35,19 +35,7 @@
                 <th>Statement</th>
               </tr>
             </thead>
-            <tbody>
-              
-                <td>456</td>
-                <td>098</td>
-                <td>890</td>
-                <td>7890</td>
-                <td>8</td>
-                <td>56</td>
-              
-                <td>pdf</td>
-                <td><span class="badge rounded-pill badge-light-success me-1">Active</span></td>
-              
-            </tbody>
+           
           </table>
         </div>
       </div>
@@ -74,5 +62,112 @@
 @endsection
 @section('page-script')
   {{-- Page js files --}}
-  <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script>
-@endsection
+  {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
+  <script>
+     
+    $('.dt-multilingual').DataTable({
+        ajax:'{{ asset('data/table-datatable.json') }}',
+        columns: [
+          { data: 'responsive_id' },
+          { data: 'salary' },
+          { data: 'full_name' },
+          { data: 'full_name' },
+          { data: 'age' },
+          { data: 'start_date' },
+          { data: 'start_date' },
+          { data: 'status' },
+          { data: '' }
+        ],
+        columnDefs: [
+          // {
+          //   // For Responsive
+          //   className: 'control',
+          //   orderable: false,
+          //   targets: 0
+          // },
+          {
+            // Label
+            targets: -2,
+            render: function (data, type, full, meta) {
+              var $status_number = full['status'];
+              var $status = {
+                1: { title: 'Active', class: 'badge-light-success' },
+                2: { title: 'Unactive', class: ' badge-light-danger' },
+                3: { title: 'Active', class: 'badge-light-success' },
+                4: { title: 'Unactive', class: ' badge-light-danger' },
+                5: { title: 'Active', class: 'badge-light-success' }
+              };
+              if (typeof $status[$status_number] === 'undefined') {
+                return data;
+              }
+              return (
+                '<span class="badge rounded-pill ' +
+                $status[$status_number].class +
+                '">' +
+                $status[$status_number].title +
+                '</span>'
+              );
+            }
+          },
+          {
+            // Actions
+            targets: -1,
+            title: 'Actions',
+            orderable: false,
+            render: function (data, type, full, meta) {
+              return (
+              
+                '<a href="javascript:;" class="item-edit">' +
+                feather.icons['file-text'].toSvg({ class: 'font-medium-4' }) +
+                '</a>'
+              );
+            }
+          }
+        ],
+      //   language: {
+      //     url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/' + lang + '.json',
+      //     paginate: {
+      //       // remove previous & next text from pagination
+      //       previous: '&nbsp;',
+      //       next: '&nbsp;'
+      //     }
+      //   },
+        dom: '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+        displayLength: 7,
+        lengthMenu: [7, 10, 25, 50, 75, 100],
+        responsive: {
+          details: {
+            display: $.fn.dataTable.Responsive.display.modal({
+              header: function (row) {
+                var data = row.data();
+                return 'Details of ' + data['full_name'];
+              }
+            }),
+            type: 'column',
+            renderer: function (api, rowIdx, columns) {
+              var data = $.map(columns, function (col, i) {
+                return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
+                  ? '<tr data-dt-row="' +
+                      col.rowIdx +
+                      '" data-dt-column="' +
+                      col.columnIndex +
+                      '">' +
+                      '<td>' +
+                      col.title +
+                      ':' +
+                      '</td> ' +
+                      '<td>' +
+                      col.data +
+                      '</td>' +
+                      '</tr>'
+                  : '';
+              }).join('');
+  
+              return data ? $('<table class="table"/>').append('<tbody>' + data + '</tbody>') : false;
+            }
+          }
+        }
+      });
+   
+  </script>
+  @endsection
