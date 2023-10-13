@@ -281,10 +281,10 @@
               </section>
           </div>
           <div class="tab-pane" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-justified">
-           @include('admin.landlord.viewlandlord.properties')
+           @include('admin.landlord.view.properties')
           </div>
           <div class="tab-pane" id="messages-just" role="tabpanel" aria-labelledby="messages-tab-justified">
-           @include('admin.landlord.viewlandlord.documents')
+           @include('admin.landlord.view.documents')
           </div>
          
         </div>

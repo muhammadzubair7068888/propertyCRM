@@ -75,7 +75,7 @@ class LandlordController extends Controller
     public function show($id)
     {
         $pagedata['user'] = User::find($id);
-        return view('admin.landlord.addlandlord',$pagedata);
+        return view('admin.landlord.view.index',$pagedata);
     }
 
     /**
@@ -86,7 +86,8 @@ class LandlordController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pagedata['user'] = User::find($id);
+        return view('admin.landlord.addlandlord',$pagedata);
     }
 
     /**
