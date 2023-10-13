@@ -143,7 +143,7 @@
               // 'Delete</a>' +
               // '</div>' +
               // '</div>' +
-              '<a href="javascript:;" class="item-edit">' +
+              '<a href="{{route('admin.invoice.create')}}" class="item-edit">' +
               feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
               '</a>'
             );
