@@ -151,11 +151,71 @@
         <!-- Tab panes -->
         <div class="tab-content pt-1">
           <div class="tab-pane active" id="home-just" role="tabpanel" aria-labelledby="home-tab-justified">
-         1st
+            <form class="form"  method="post">
+                @csrf
+                <input type="hidden" name="user_type" value="landlord">
+                <input type="hidden" name="gender" value="male">
+                <input type="hidden" name="status" value="1">
+                  <div class="row">
+                      <div class=" col-12">
+                          <div class="mb-1">
+                              <label class="form-label " for="property-type">Property Type</label>
+                              <input type="text" id="property-typ" readonly
+                                  class="form-control   "
+                                  placeholder="Property Type" name="property-typ" />
+                          </div>
+                      </div>
+                      <div class=" col-6">
+                        <div class="mb-1">
+                            <label class="form-label " for="property-name ">Property Name</label>
+                            <input type="text" id="property-name " readonly
+                                class="form-control "
+                                placeholder="Property Name" name="property-name " />
+                        </div>
+                    </div>
+                    <div class=" col-6">
+                        <div class="mb-1">
+                            <label class="form-label " for="property-code">Property Code</label>
+                            <input type="text" id="property-code" readonly
+                                class="form-control   "
+                                placeholder="Property Code" name="property-code" />
+                        </div>
+                    </div>
+                    <div class=" col-6">
+                        <div class="mb-1">
+                            <label class="form-label " for="location">Location</label>
+                            <input type="text" id="location" readonly
+                                class="form-control   "
+                                placeholder="Location" name="location" />
+                        </div>
+                    </div>
+                    <div class=" col-6">
+                        <div class="mb-1">
+                            <label class="form-label " for="address">Address</label>
+                            <input type="text" id="address"readonly
+                                class="form-control  "
+                                placeholder="Address" name="address" />
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                  </div>
+              </form>
+
+
+
+
+
           </div>
           <div class="tab-pane" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-justified">
             @include('admin.property.viewproperty.units')
-           
+
           </div>
           <div class="tab-pane" id="messages-just" role="tabpanel" aria-labelledby="messages-tab-justified">
        @include('admin.property.viewproperty.lease')
@@ -166,7 +226,7 @@
           <div class="tab-pane" id="vacate-notice" role="tabpanel" aria-labelledby="vacate-notices">
 @include('admin.property.viewproperty.vacate-notices')
           </div>
-         
+
         </div>
       </div>
     </div>
@@ -177,7 +237,7 @@
   {{-- vendor files --}}
   {{-- <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script> --}}
   {{-- <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script> --}}
- 
+
   <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
@@ -193,7 +253,7 @@
   <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
- 
+
 @endsection
 
   @push('page-script')
