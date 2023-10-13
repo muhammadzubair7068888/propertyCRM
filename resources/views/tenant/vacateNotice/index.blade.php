@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
 @endsection
+
 @section('page-style')
 <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
@@ -24,17 +25,10 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header border-bottom">
-<<<<<<< HEAD
-          <h4 class="card-title">Vacate Notice</h4>
-        </div>
-        <div class="col-12 d-flex justify-content-end ">
-        <button type="submit" class="btn btn-primary me-2 mt-2 " data-bs-toggle="modal" data-bs-target="#inlineForm" >+ Add Vacate Notice</button>
-=======
           <h4 class="card-title">Vacate Notices</h4>
         </div>
         <div class="col-12 d-flex justify-content-end ">
               <button type="button" class="btn btn-primary me-2 mt-2 " data-bs-toggle="modal" data-bs-target="#inlineForm">+ Add Vacate Notice</button>
->>>>>>> sahil
         </div>
         
         <div class="card-datatable">
@@ -56,14 +50,12 @@
       </div>
     </div>
   </div>
+  @include('tenant.vacateNotice.add-vacatenotice')
 </section>
-<<<<<<< HEAD
-=======
-@include('tenant.vacateNotice.add-vacatenotice')
->>>>>>> sahil
-<!--/ Multilingual -->
-@include('tenant.vacateNotice.add-vacatenotice')
+
+
 @endsection
+
 @section('vendor-script')
   {{-- vendor files --}}
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
@@ -85,6 +77,7 @@
   <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 @endsection
+
 @section('page-script')
   {{-- Page js files --}}
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
