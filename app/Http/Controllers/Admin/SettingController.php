@@ -26,6 +26,10 @@ class SettingController extends Controller
     {
         //
     }
+    public function view()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.

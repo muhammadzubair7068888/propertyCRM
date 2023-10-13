@@ -1,14 +1,14 @@
-{{-- 
+{{--
 
 
 <div>
-   
+
 
 
     <!-- form -->
     <form id="systemSetting" class="row " onsubmit="return false">
-    
-      
+
+
       <div class="col-md-12 mb-1">
         <label class="form-label" for="Tenant">Tenant</label>
         <select class="select2 form-select" id="Tenant">
@@ -41,7 +41,7 @@
           />
         </div>
       </div>
-      
+
       <div class="col-md-4 mb-1">
         <label class="form-label" for="paymentmethod">Payment Method</label>
         <select class="select2 form-select" id="paymentmethod">
@@ -82,7 +82,7 @@
           />
         </div>
       </div>
-      
+
       <div class="col-md-12 ">
         <div class="mb-3">
           <label class="form-label" for="paidby">Paid By</label>
@@ -95,7 +95,7 @@
           />
         </div>
       </div>
-    
+
 
       <div class="form-floating">
         <textarea
@@ -110,7 +110,7 @@
       </div>
 
      <div class="col-12 text-center">
-        
+
         <button type="reset" class="btn  mt-1" data-bs-dismiss="modal" aria-label="Close">
       Cancel
         </button>
@@ -118,123 +118,181 @@
       </div>
     </form>
   </div>
-  
+
    --}}
 
 
 
+<h3>General Setting</h3>
+<form class="needs-validation" novalidate>
+    <div class="row">
+        <div class="mb-1 col-8">
+            <label class="form-label" for="basic-addon-name">Name</label>
+            <input type="text" id="basic-addon-name" class="form-control" placeholder="Name" aria-label="Name"
+                aria-describedby="basic-addon-name" required />
 
-   <form class="needs-validation" novalidate>
-    <div class="mb-1">
-      <label class="form-label" for="basic-addon-name">Name</label>
-      <input
-        type="text"
-        id="basic-addon-name"
-        class="form-control"
-        placeholder="Name"
-        aria-label="Name"
-        aria-describedby="basic-addon-name"
-        required
-      />
-    
+          </div>
+          <div class="col-3">
+            <div class="d-flex flex-column align-items-center">
+              <img
+                src="{{asset('images/slider/03.jpg')}}"
+                id="blog-feature-image"
+                class="rounded me-2 mb-1 mb-md-0"
+                width="170"
+                height="110"
+                alt="Blog Featured Image"
+              />
+
+
+                <div class="d-inline-block pt-1">
+                  <input class="form-control" type="file" id="blogCustomFile" accept="image/*" />
+
+              </div>
+            </div>
+          </div>
+
+
     </div>
-    <div class="mb-1">
-      <label class="form-label" for="basic-default-email1">Email</label>
-      <input
-        type="email"
-        id="basic-default-email1"
-        class="form-control"
-        placeholder="john.doe@email.com"
-        aria-label="john.doe@email.com"
-        required
-      />
-      
+    <div class="row">
+        <div class="mb-1 col-4">
+            <label class="form-label" for="basic-default-email1">Contact Email</label>
+            <input
+              type="email"
+              id="basic-default-email1"
+              class="form-control"
+              placeholder="john.doe@email.com"
+              aria-label="john.doe@email.com"
+              required
+            />
+
+          </div>
+          <div class="mb-1 col-4">
+            <label class="form-label" for="phone">Phone</label>
+            <input
+              type="email"
+              id="phone"
+              class="form-control"
+              placeholder=""
+              aria-label=""
+              required
+            />
+
+        </div>
     </div>
-    <div class="mb-1">
-      <label class="form-label" for="basic-default-password1">Password</label>
-      <input
-        type="password"
-        id="basic-default-password1"
-        class="form-control"
-        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-        required
-      />
-     
+
+    <div class="row">
+        <div class="col-8 mb-1">
+            <label class="form-label" for="currency">Default Currency</label>
+            <select class="select2 form-select" id="currency">
+                <option value="AK">Alaska</option>
+                <option value="HI">Hawaii</option>
+                <option value="CA">California</option>
+                <option value="SC">South Carolina</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WV">West Virginia</option>
+            </select>
+        </div>
     </div>
-    <div class="mb-1">
-      <label class="form-label" for="bsDob">DOB</label>
-      <input type="text" class="form-control " name="dob" id="bsDob" required />
-   
+    <div class="row">
+        <div class="col-8 mb-1">
+            <label class="form-label" for="color-theme">Color Theme</label>
+            <select class="select2 form-select" id="color-theme">
+                <option value="AK">Alaska</option>
+                <option value="HI">Hawaii</option>
+                <option value="CA">California</option>
+                <option value="SC">South Carolina</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WV">West Virginia</option>
+            </select>
+        </div>
     </div>
-    <div class="mb-1">
-      <label class="form-label" for="select-country1">Country</label>
-      <select class="form-select" id="select-country1" required>
-        <option value="">Select Country</option>
-        <option value="usa">USA</option>
-        <option value="uk">UK</option>
-        <option value="france">France</option>
-        <option value="australia">Australia</option>
-        <option value="spain">Spain</option>
-      </select>
-      
+    <div class="row">
+        <div class="col-8 mb-1">
+            <label class="form-label" for="language">Language</label>
+            <select class="select2 form-select" id="language">
+                <option value="AK">Alaska</option>
+                <option value="HI">Hawaii</option>
+                <option value="CA">California</option>
+                <option value="SC">South Carolina</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WV">West Virginia</option>
+            </select>
+        </div>
     </div>
-    <div class="mb-1">
-      <label for="customFile1" class="form-label">Profile pic</label>
-      <input class="form-control" type="file" id="customFile1" required />
+    <div class="row">
+        <div class="mb-1 col-12">
+            <label class="form-label" for="physical-address">Physical Adress</label>
+            <input type="text" class="form-control " name="physical-address" id="physical-address" required />
+
+        </div>
     </div>
-    <div class="mb-1">
-      <label class="form-label" class="d-block">Gender</label>
-      <div class="form-check my-50">
-        <input
-          type="radio"
-          id="validationRadio3"
-          name="validationRadioBootstrap"
-          class="form-check-input"
-          required
-        />
-        <label class="form-check-label" for="validationRadio3">Male</label>
-      </div>
-      <div class="form-check">
-        <input
-          type="radio"
-          id="validationRadio4"
-          name="validationRadioBootstrap"
-          class="form-check-input"
-          required
-        />
-        <label class="form-check-label" for="validationRadio4">Female</label>
-      </div>
+    <div class="row">
+        <div class="mb-1 col-12">
+            <label class="form-label" for="postal-address">Postal Adress</label>
+            <input type="text" class="form-control " name="postal-address" id="postal-address" required />
+
+        </div>
     </div>
-    <div class="mb-1">
-      <label for="validationCustomUsername" class="form-label">Username</label>
-      <div class="input-group has-validation">
-        <span class="input-group-text" id="inputGroupPrepend">@</span>
-        <input
-          type="text"
-          class="form-control"
-          id="validationCustomUsername"
-          aria-describedby="inputGroupPrepend"
-          required
-        />
-        <div class="invalid-feedback">Please choose a username.</div>
-      </div>
+    <div class="row">
+        <div class="mb-1 col-12">
+            <label class="form-label" for="website-url">Website Url</label>
+            <input type="text" class="form-control " name="website-url" id="website-url" required />
+
+        </div>
     </div>
-    <div class="mb-1">
-      <label class="d-block form-label" for="validationBioBootstrap">Bio</label>
-      <textarea
-        class="form-control"
-        id="validationBioBootstrap"
-        name="validationBioBootstrap"
-        rows="3"
-        required
-      ></textarea>
+    <div class="row">
+        <div class="mb-1 col-6">
+            <label class="form-label" for="zip-code">Zip Code</label>
+            <input type="text" class="form-control " name="zip-code" id="zip-code" required />
+
+        </div>
+        <div class="mb-1 col-6">
+            <label class="form-label" for="date-formate">Date Formate</label>
+            <input type="text" class="form-control " name="date-formate" id="date-formate" required />
+
+        </div>
     </div>
-    <div class="mb-1">
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="validationCheckBootstrap" required />
-        <label class="form-check-label" for="validationCheckBootstrap">Agree to our terms and conditions</label>
-        <div class="invalid-feedback">You must agree before submitting.</div>
-      </div>
+    <div class="row">
+        <div class="mb-1 col-4">
+            <label class="form-label" for="amount-thousand-separator">Amount Thousand Separator</label>
+            <select class="select2 form-select" id="amount-thousand-separator">
+                <option value="AK">Alaska</option>
+                <option value="HI">Hawaii</option>
+                <option value="CA">California</option>
+                <option value="SC">South Carolina</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WV">West Virginia</option>
+            </select>
+        </div>
+        <div class="mb-1 col-4">
+            <label class="form-label" for="amount-decimal-separator">Amount Decimal Separator</label>
+            <select class="select2 form-select" id="amount-decimal-separator">
+                <option value="AK">Alaska</option>
+                <option value="HI">Hawaii</option>
+                <option value="CA">California</option>
+                <option value="SC">South Carolina</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WV">West Virginia</option>
+            </select>
+        </div>
+        <div class="mb-1 col-4">
+            <label class="form-label" for="amount-decimal">Amount Decimals</label>
+            <select class="select2 form-select" id="amount-decimal">
+                <option value="AK">Alaska</option>
+                <option value="HI">Hawaii</option>
+                <option value="CA">California</option>
+                <option value="SC">South Carolina</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WV">West Virginia</option>
+            </select>
+        </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+</form>
+

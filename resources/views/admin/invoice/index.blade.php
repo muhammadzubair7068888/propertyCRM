@@ -1,5 +1,5 @@
 @extends('layouts/contentLayoutMaster')
-@section('title', 'DataTables')
+@section('title', 'Invoice')
 @section('vendor-style')
   {{-- vendor css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
@@ -23,13 +23,22 @@
             <thead>
                <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Email</th>
-                <th>Date</th>
-                <th>Salary</th>
+                <th>Invoice Number</th>
+                <th>Invoice Date</th>
+                <th>
+                  Lease</th>
+                <th>
+                  Period</th>
+                <th>
+                  Amount</th>
+                <th>
+                  Paid</th>
+                <th>Balance</th>
+                <th>
+                  Due On</th>
                 <th>Status</th>
-                <th>Action</th>
+                {{-- <th>Action</th> --}}
+                
               </tr>
             </thead>
           </table>
@@ -67,13 +76,17 @@
       ajax:'{{ asset('data/table-datatable.json') }}',
       columns: [
         { data: 'responsive_id' },
-        { data: 'full_name' },
-        { data: 'post' },
-        { data: 'email' },
+        { data: 'salary' },
         { data: 'start_date' },
         { data: 'salary' },
+        { data: 'start_date' },
+        { data: 'salary' },
+        { data: 'age' },
+        { data: 'salary' },
+        { data: 'start_date' },
         { data: 'status' },
-        { data: '' }
+        // { data: '' },
+        
       ],
       columnDefs: [
         {
@@ -84,15 +97,16 @@
         },
         {
           // Label
-          targets: -2,
+          targets: -1,
           render: function (data, type, full, meta) {
             var $status_number = full['status'];
             var $status = {
-              1: { title: 'Current', class: 'badge-light-primary' },
-              2: { title: 'Professional', class: ' badge-light-success' },
-              3: { title: 'Rejected', class: ' badge-light-danger' },
-              4: { title: 'Resigned', class: ' badge-light-warning' },
-              5: { title: 'Applied', class: ' badge-light-info' }
+              1: { title: 'Paid', class: ' badge-light-success' },
+              
+              2: { title: 'Over Due', class: ' badge-light-danger' },
+              3: { title: 'Paid', class: ' badge-light-success' },
+              4:  { title: 'Over Due', class: ' badge-light-danger' },
+              5: { title: 'Paid', class: ' badge-light-success' },
             };
             if (typeof $status[$status_number] === 'undefined') {
               return data;
@@ -106,35 +120,35 @@
             );
           }
         },
-        {
-          // Actions
-          targets: -1,
-          title: 'Actions',
-          orderable: false,
-          render: function (data, type, full, meta) {
-            return (
-              '<div class="d-inline-flex">' +
-              '<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
-              feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
-              '</a>' +
-              '<div class="dropdown-menu dropdown-menu-end">' +
-              '<a href="javascript:;" class="dropdown-item">' +
-              feather.icons['file-text'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Details</a>' +
-              '<a href="javascript:;" class="dropdown-item">' +
-              feather.icons['archive'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Archive</a>' +
-              '<a href="javascript:;" class="dropdown-item delete-record">' +
-              feather.icons['trash-2'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Delete</a>' +
-              '</div>' +
-              '</div>' +
-              '<a href="javascript:;" class="item-edit">' +
-              feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
-              '</a>'
-            );
-          }
-        }
+        // {
+        //   // Actions
+        //   targets: -1,
+        //   title: 'Actions',
+        //   orderable: false,
+        //   render: function (data, type, full, meta) {
+        //     return (
+        //       '<div class="d-inline-flex">' +
+        //       '<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
+        //       feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
+        //       '</a>' +
+        //       '<div class="dropdown-menu dropdown-menu-end">' +
+        //       '<a href="javascript:;" class="dropdown-item">' +
+        //       feather.icons['file-text'].toSvg({ class: 'me-50 font-small-4' }) +
+        //       'Details</a>' +
+        //       '<a href="javascript:;" class="dropdown-item">' +
+        //       feather.icons['archive'].toSvg({ class: 'me-50 font-small-4' }) +
+        //       'Archive</a>' +
+        //       '<a href="javascript:;" class="dropdown-item delete-record">' +
+        //       feather.icons['trash-2'].toSvg({ class: 'me-50 font-small-4' }) +
+        //       'Delete</a>' +
+        //       '</div>' +
+        //       '</div>' +
+        //       '<a href="javascript:;" class="item-edit">' +
+        //       feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
+        //       '</a>'
+        //     );
+        //   }
+        // }
       ],
     //   language: {
     //     url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/' + lang + '.json',

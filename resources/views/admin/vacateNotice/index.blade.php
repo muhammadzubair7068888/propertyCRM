@@ -1,5 +1,5 @@
 @extends('layouts/contentLayoutMaster')
-@section('title', 'DataTables')
+@section('title', 'Vacate Notices')
 @section('vendor-style')
   {{-- vendor css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
@@ -31,12 +31,15 @@
             <thead>
                <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Email</th>
-                <th>Date</th>
-                <th>Salary</th>
-                <th>Status</th>
+                <th>Vacating Date</th>
+                <th>
+                  Tenant</th>
+                <th>Lease</th>
+                <th>
+                  Property</th>
+                <th>
+                  Unit</th>
+                {{-- <th>Status</th> --}}
                 <th>Action</th>
               </tr>
             </thead>
@@ -73,12 +76,12 @@
       ajax:'{{ asset('data/table-datatable.json') }}',
       columns: [
         { data: 'responsive_id' },
-        { data: 'full_name' },
-        { data: 'post' },
-        { data: 'email' },
         { data: 'start_date' },
+        { data: 'full_name' },
+        { data: 'age' },
+        { data: 'city' },
         { data: 'salary' },
-        { data: 'status' },
+        // { data: 'status' },
         { data: '' }
       ],
       columnDefs: [
@@ -88,30 +91,30 @@
           orderable: false,
           targets: 0
         },
-        {
-          // Label
-          targets: -2,
-          render: function (data, type, full, meta) {
-            var $status_number = full['status'];
-            var $status = {
-              1: { title: 'Current', class: 'badge-light-primary' },
-              2: { title: 'Professional', class: ' badge-light-success' },
-              3: { title: 'Rejected', class: ' badge-light-danger' },
-              4: { title: 'Resigned', class: ' badge-light-warning' },
-              5: { title: 'Applied', class: ' badge-light-info' }
-            };
-            if (typeof $status[$status_number] === 'undefined') {
-              return data;
-            }
-            return (
-              '<span class="badge rounded-pill ' +
-              $status[$status_number].class +
-              '">' +
-              $status[$status_number].title +
-              '</span>'
-            );
-          }
-        },
+        // {
+        //   // Label
+        //   targets: -2,
+        //   render: function (data, type, full, meta) {
+        //     var $status_number = full['status'];
+        //     var $status = {
+        //       1: { title: 'Current', class: 'badge-light-primary' },
+        //       2: { title: 'Professional', class: ' badge-light-success' },
+        //       3: { title: 'Rejected', class: ' badge-light-danger' },
+        //       4: { title: 'Resigned', class: ' badge-light-warning' },
+        //       5: { title: 'Applied', class: ' badge-light-info' }
+        //     };
+        //     if (typeof $status[$status_number] === 'undefined') {
+        //       return data;
+        //     }
+        //     return (
+        //       '<span class="badge rounded-pill ' +
+        //       $status[$status_number].class +
+        //       '">' +
+        //       $status[$status_number].title +
+        //       '</span>'
+        //     );
+        //   }
+        // },
         {
           // Actions
           targets: -1,
@@ -119,24 +122,27 @@
           orderable: false,
           render: function (data, type, full, meta) {
             return (
-              '<div class="d-inline-flex">' +
-              '<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
-              feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
-              '</a>' +
-              '<div class="dropdown-menu dropdown-menu-end">' +
-              '<a href="javascript:;" class="dropdown-item">' +
-              feather.icons['file-text'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Details</a>' +
-              '<a href="javascript:;" class="dropdown-item">' +
-              feather.icons['archive'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Archive</a>' +
-              '<a href="javascript:;" class="dropdown-item delete-record">' +
-              feather.icons['trash-2'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Delete</a>' +
-              '</div>' +
-              '</div>' +
+              // '<div class="d-inline-flex">' +
+              // '<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
+              // feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
+              // '</a>' +
+              // '<div class="dropdown-menu dropdown-menu-end">' +
+              // '<a href="javascript:;" class="dropdown-item">' +
+              // feather.icons['file-text'].toSvg({ class: 'me-50 font-small-4' }) +
+              // 'Details</a>' +
+              // '<a href="javascript:;" class="dropdown-item">' +
+              // feather.icons['archive'].toSvg({ class: 'me-50 font-small-4' }) +
+              // 'Archive</a>' +
+              // '<a href="javascript:;" class="dropdown-item delete-record">' +
+              // feather.icons['trash-2'].toSvg({ class: 'me-50 font-small-4' }) +
+              // 'Delete</a>' +
+              // '</div>' +
+              // '</div>' +
+              '<a href="javascript:;" class="item-edit pe-1">' +
+              feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
+              '</a>'+
               '<a href="javascript:;" class="item-edit">' +
-              feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
+              feather.icons['edit'].toSvg({ class: 'font-medium-4' }) +
               '</a>'
             );
           }

@@ -1,5 +1,5 @@
 @extends('layouts/contentLayoutMaster')
-@section('title', 'DataTables')
+@section('title', 'Payment')
 @section('vendor-style')
   {{-- vendor css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
@@ -31,11 +31,18 @@
             <thead>
                <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Email</th>
-                <th>Date</th>
-                <th>Salary</th>
+                <th>Amount
+                </th>
+                <th>
+                  Payment Method</th>
+                <th>Payment Date</th>
+                <th>Tenant
+                </th>
+                <th>
+                  Lease</th>
+                <th>
+                  Property</th>
+                <th>Receipt Number</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -73,10 +80,12 @@
       ajax:'{{ asset('data/table-datatable.json') }}',
       columns: [
         { data: 'responsive_id' },
-        { data: 'full_name' },
+        { data: 'salary' },
         { data: 'post' },
-        { data: 'email' },
         { data: 'start_date' },
+        { data: 'full_name' },
+        { data: 'salary' },
+        { data: 'city' },
         { data: 'salary' },
         { data: 'status' },
         { data: '' }
@@ -94,11 +103,11 @@
           render: function (data, type, full, meta) {
             var $status_number = full['status'];
             var $status = {
-              1: { title: 'Current', class: 'badge-light-primary' },
-              2: { title: 'Professional', class: ' badge-light-success' },
-              3: { title: 'Rejected', class: ' badge-light-danger' },
-              4: { title: 'Resigned', class: ' badge-light-warning' },
-              5: { title: 'Applied', class: ' badge-light-info' }
+              1:  { title: 'Pending', class: ' badge-light-danger' },
+              2: { title: 'Approved', class: ' badge-light-success' },
+              3: { title: 'Pending', class: ' badge-light-danger' },
+              4: { title: 'Approved', class: ' badge-light-success' },
+              5:  { title: 'Pending', class: ' badge-light-danger' }
             };
             if (typeof $status[$status_number] === 'undefined') {
               return data;
@@ -124,20 +133,20 @@
               feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
               '</a>' +
               '<div class="dropdown-menu dropdown-menu-end">' +
+                '<a href="javascript:;" class="dropdown-item">' +
+              feather.icons['eye'].toSvg({ class: 'me-50 font-medium-4' }) +
+              'View</a>' +
               '<a href="javascript:;" class="dropdown-item">' +
-              feather.icons['file-text'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Details</a>' +
+              feather.icons['file-text'].toSvg({ class: 'me-50 font-medium-4' }) +
+              'Receipt</a>' +
               '<a href="javascript:;" class="dropdown-item">' +
-              feather.icons['archive'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Archive</a>' +
+              feather.icons['check'].toSvg({ class: 'me-50 font-medium-4 text-success' }) +
+              'Approve</a>' +
               '<a href="javascript:;" class="dropdown-item delete-record">' +
-              feather.icons['trash-2'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Delete</a>' +
+              feather.icons['x-circle'].toSvg({ class: 'me-50 font-medium-4 text-danger' }) +
+              'Cancel</a>' +
               '</div>' +
-              '</div>' +
-              '<a href="javascript:;" class="item-edit">' +
-              feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
-              '</a>'
+              '</div>' 
             );
           }
         }

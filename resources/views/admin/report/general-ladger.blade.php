@@ -1,35 +1,35 @@
 
 
 
-<!-- Multilingual -->
 <section id="multilingual-datatable">
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-header border-bottom">
-            <div class="col-md-4 mb-1">
-                <label class="form-label" for="Properties">Property</label>
-                <select class="select2 form-select" id="Properties">
-                  <option value="1">Property</option>
-                  <option value="2" >Option2</option>
-                  <option value="3">Option3</option>
-                  <option value="4" >Option4</option>
-                </select>
-              </div>
-        </div>
+          <div class="col-md-4 mb-1">
+              <label class="form-label" for="ledgerproperty">Property</label>
+              <select class="select2 form-select" id="ledgerproperty">
+                <option value="1">Property</option>
+                <option value="2" >Option2</option>
+                <option value="3">Option3</option>
+                <option value="4" >Option4</option>
+              </select>
+            </div>
+      </div>
        
         <div class="card-datatable">
           <table class="dt-multilingual table">
             <thead>
                <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Email</th>
-                <th>Date</th>
-                <th>Salary</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>Account Number</th>
+                <th>
+                  Account Name</th>
+                <th>
+                  Balance</th>
+                <th>Statement</th>
+            
+           
               </tr>
             </thead>
           </table>
@@ -38,35 +38,35 @@
     </div>
   </div>
 </section>
+
+
+
+<!-- Multilingual -->
+
 <!--/ Multilingual -->
 
-@section('page-script')
+{{-- @section('page-script') --}}
 
-<script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
-
-<script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
+@push('page-script')
 
 <script>
- 
+   
   $('.dt-multilingual').DataTable({
       ajax:'{{ asset('data/table-datatable.json') }}',
       columns: [
         { data: 'responsive_id' },
-        { data: 'full_name' },
-        { data: 'post' },
-        { data: 'email' },
-        { data: 'start_date' },
         { data: 'salary' },
-        { data: 'status' },
+        { data: 'full_name' },
+        { data: 'age' },
         { data: '' }
       ],
       columnDefs: [
-        {
-          // For Responsive
-          className: 'control',
-          orderable: false,
-          targets: 0
-        },
+        // {
+        //   // For Responsive
+        //   className: 'control',
+        //   orderable: false,
+        //   targets: 0
+        // },
         {
           // Label
           targets: -2,
@@ -94,28 +94,31 @@
         {
           // Actions
           targets: -1,
-          title: 'Actions',
+          title: 'Statement',
           orderable: false,
           render: function (data, type, full, meta) {
             return (
-              '<div class="d-inline-flex">' +
-              '<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
-              feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
+              // '<div class="d-inline-flex">' +
+              // '<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
+              // feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
+              // '</a>' +
+              // '<div class="dropdown-menu dropdown-menu-end">' +
+              // '<a href="javascript:;" class="dropdown-item">' +
+              // feather.icons['file-text'].toSvg({ class: 'me-50 font-small-4' }) +
+              // 'Details</a>' +
+              // '<a href="javascript:;" class="dropdown-item">' +
+              // feather.icons['archive'].toSvg({ class: 'me-50 font-small-4' }) +
+              // 'Archive</a>' +
+              // '<a href="javascript:;" class="dropdown-item delete-record">' +
+              // feather.icons['trash-2'].toSvg({ class: 'me-50 font-small-4' }) +
+              // 'Delete</a>' +
+              // '</div>' +
+              // '</div>' +
+              '<a href="javascript:;" class="item-edit pe-2">' +
+              feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
               '</a>' +
-              '<div class="dropdown-menu dropdown-menu-end">' +
-              '<a href="javascript:;" class="dropdown-item">' +
-              feather.icons['file-text'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Details</a>' +
-              '<a href="javascript:;" class="dropdown-item">' +
-              feather.icons['archive'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Archive</a>' +
-              '<a href="javascript:;" class="dropdown-item delete-record">' +
-              feather.icons['trash-2'].toSvg({ class: 'me-50 font-small-4' }) +
-              'Delete</a>' +
-              '</div>' +
-              '</div>' +
               '<a href="javascript:;" class="item-edit">' +
-              feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
+              feather.icons['file-text'].toSvg({ class: 'font-medium-4' }) +
               '</a>'
             );
           }
@@ -168,5 +171,6 @@
  
 </script>
 
+@endpush
 
-@endsection
+{{-- @endsection --}}

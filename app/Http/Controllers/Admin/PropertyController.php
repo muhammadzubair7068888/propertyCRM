@@ -26,6 +26,10 @@ class PropertyController extends Controller
     {
       return view('admin.property.addproperty');
     }
+    public function view()
+    {
+      return view('admin.property.viewproperty');
+    }
 
     /**
      * Store a newly created resource in storage.

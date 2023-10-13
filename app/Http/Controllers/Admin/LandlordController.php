@@ -31,6 +31,11 @@ class LandlordController extends Controller
         return view('admin.landlord.addlandlord');
     }
 
+    public function view()
+    {
+        return view('admin.landlord.viewlandlord');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -50,7 +55,7 @@ class LandlordController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
