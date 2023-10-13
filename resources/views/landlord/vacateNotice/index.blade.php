@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'DataTables')
+@section('title', 'Vacate Notice')
 
 @section('vendor-style')
   {{-- vendor css files --}}
@@ -40,6 +40,7 @@
       </div>
     </div>
   </div>
+
 </section>
 <!--/ Multilingual -->
 @endsection
@@ -132,7 +133,7 @@
                 // '<a href="javascript:;" class="item-edit pe-2">' +
                 // feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
                 // '</a>' +
-                '<a href="javascript:;" class="item-edit">' +
+                '<a href="{{route('landlord.view')}}" class="item-edit">' +
                 feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
                 '</a>'
               );

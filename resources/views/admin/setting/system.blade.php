@@ -131,25 +131,51 @@
             <input type="text" id="basic-addon-name" class="form-control" placeholder="Name" aria-label="Name"
                 aria-describedby="basic-addon-name" required />
 
-        </div>
-        <div class="mb-1 mt-2 col-4">
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                <input type="file" name="file" id="basic-file">
-                <input type="submit" value="Upload" class="mt-2">
-            </form>
-        </div>
+          </div>
+          <div class="col-3">
+            <div class="d-flex flex-column align-items-center">
+              <img
+                src="{{asset('images/slider/03.jpg')}}"
+                id="blog-feature-image"
+                class="rounded me-2 mb-1 mb-md-0"
+                width="170"
+                height="110"
+                alt="Blog Featured Image"
+              />
+
+
+                <div class="d-inline-block pt-1">
+                  <input class="form-control" type="file" id="blogCustomFile" accept="image/*" />
+
+              </div>
+            </div>
+          </div>
+
+
     </div>
     <div class="row">
         <div class="mb-1 col-4">
-            <label class="form-label" for="basic-default-email1">Email</label>
-            <input type="email" id="basic-default-email1" class="form-control" placeholder="john.doe@email.com"
-                aria-label="john.doe@email.com" required />
+            <label class="form-label" for="basic-default-email1">Contact Email</label>
+            <input
+              type="email"
+              id="basic-default-email1"
+              class="form-control"
+              placeholder="john.doe@email.com"
+              aria-label="john.doe@email.com"
+              required
+            />
 
-        </div>
-        <div class="mb-1 col-4">
-            <label class="form-label" for="basic-default-email1">Email</label>
-            <input type="email" id="basic-default-email1" class="form-control" placeholder="john.doe@email.com"
-                aria-label="john.doe@email.com" required />
+          </div>
+          <div class="mb-1 col-4">
+            <label class="form-label" for="phone">Phone</label>
+            <input
+              type="email"
+              id="phone"
+              class="form-control"
+              placeholder=""
+              aria-label=""
+              required
+            />
 
         </div>
     </div>

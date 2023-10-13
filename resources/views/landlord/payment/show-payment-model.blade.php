@@ -1,18 +1,4 @@
-<!-- PENDING MODAL -->
-<section id="form-and-scrolling-components">
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Pending</h4>
-        </div>
-        <div class="card-body">
-          <div class="demo-inline-spacing">
-            <div class="form-modal-ex">
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#inlineForm">
-              <i data-feather='clock'>Pending</i>
-              </button>
+
               <!-- Modal -->
               <div
                 class="modal fade text-start"
@@ -38,7 +24,7 @@
                               id="modern-amount"
                               class="form-control"
                               readonly="readonly"
-                              placeholder=""
+                              placeholder="343"
                             />
                           </div>
                           <div class="mb-1 col-md-6">
@@ -107,21 +93,11 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="scrolling-content-ex">
-              <!-- Button trigger modal -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+            
 
 
 <!-- Approved modal -->
-<section id="form-and-scrolling-components">
+{{-- <section id="form-and-scrolling-components">
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -248,4 +224,4 @@
       </div>
     </div>
   </div>
-</section>
+</section> --}}

@@ -28,6 +28,11 @@ class VacateNoticeController extends Controller
     }
    
 
+    public function view()
+    {
+        return view('tenant.vacateNotice.details');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

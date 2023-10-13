@@ -24,7 +24,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view('landlord.property.property-tabs');
+        return view('landlord.property.property-detail-tabs.index');
     }
 
     /**

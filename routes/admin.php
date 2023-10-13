@@ -33,6 +33,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('properties', PropertyController::class);
     Route::get('view/property', [PropertyController::class,'view'])->name('view.property');
     Route::resource('tenants', TenentController::class);
+    Route::get('view/tenent', [TenentController::class,'view'])->name('view');
     Route::resource('leases', LeaseController::class);
     Route::resource('utilities', UtilitiesController::class);
     Route::resource('invoice', InvoiceController::class);

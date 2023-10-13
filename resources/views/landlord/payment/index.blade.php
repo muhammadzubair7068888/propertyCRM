@@ -1,5 +1,5 @@
 @extends('layouts/contentLayoutMaster')
-@section('title', 'DataTables')
+@section('title', 'Payment')
 @section('vendor-style')
   {{-- vendor css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
@@ -43,7 +43,7 @@
       </div>
     </div>
   </div>
-  
+@include('landlord.payment.show-payment-model')
 </section>
 <!--/ Multilingual -->
 @endsection
@@ -125,12 +125,12 @@
                 feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
                 '</a>' +
                 '<div class="dropdown-menu dropdown-menu-end">' +
-                '<a href="javascript:;" class="dropdown-item">' +
+                  '<a href="javascript:;" class="dropdown-item"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#inlineForm">' +
                 feather.icons['eye'].toSvg({ class: 'me-50 font-medium-4 text-primary' }) +
-                'Details</a>' +
-                '<a href="javascript:;" class="dropdown-item">' +
+                'Details</button></a>' +
+                '<a href="{{route('landlord.payment.create')}}" class="dropdown-item"><button type="button" class="btn">' + 
                 feather.icons['file-text'].toSvg({ class: 'me-50 font-medium-4 text-primary' }) +
-                'Edit</a>' +
+                'Receipt</button></a>' +
                 // '<a href="javascript:;" class="dropdown-item delete-record">' +
                 // feather.icons['trash-2'].toSvg({ class: 'me-50 font-medium-4 text-danger' }) +
                 // 'Delete</a>' +
