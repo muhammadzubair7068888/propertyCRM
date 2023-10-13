@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LandlordController extends Controller
@@ -17,7 +18,8 @@ class LandlordController extends Controller
         $pagedata['breadcrumbs'] = [
             ['link' => "landlord", 'name' => "Landlords"], ['name' => "home"]
         ];
-        return view('admin.landlord.index',$pagedata);
+        $pagedata['users'] = User::get();
+        return view('admin.landlord.index', $pagedata);
     }
 
 
@@ -31,20 +33,37 @@ class LandlordController extends Controller
         return view('admin.landlord.addlandlord');
     }
 
-    public function view()
-    {
-        return view('admin.landlord.viewlandlord');
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $req->validate([
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+            'phone_number' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'registration_date' => 'required|date',
+            'country' => 'required',
+            'national_id' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'postal_address' => 'required',
+            'physical_address' => 'required',
+            'residential_address' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+        $data = $req->except('_token','password_confirmation');
+        $data['created_at'] = now();
+        $data['updated_at'] = now();
+        
+        User::insert($data);
+        
+        return redirect()->route('admin.landlord.index');
     }
 
     /**
@@ -55,7 +74,8 @@ class LandlordController extends Controller
      */
     public function show($id)
     {
-
+        $pagedata['user'] = User::find($id);
+        return view('admin.landlord.addlandlord',$pagedata);
     }
 
     /**
@@ -91,5 +111,4 @@ class LandlordController extends Controller
     {
         //
     }
-
 }
