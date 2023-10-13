@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'DataTables')
+@section('title', 'Vacate Notice')
 
 @section('vendor-style')
   {{-- vendor css files --}}
@@ -40,6 +40,7 @@
       </div>
     </div>
   </div>
+
 </section>
 <!--/ Multilingual -->
 @endsection

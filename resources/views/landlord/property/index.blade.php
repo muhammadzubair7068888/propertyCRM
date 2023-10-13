@@ -1,5 +1,5 @@
 @extends('layouts/contentLayoutMaster')
-@section('title', 'DataTables')
+@section('title', 'Properties')
 @section('vendor-style')
   {{-- vendor css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
@@ -21,6 +21,9 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
+        <div class="card-header border-bottom">
+          <h4 class="card-title">Properties</h4>
+        </div>
        <div class="card-datatable">
           <table class="dt-multilingual table">
             <thead>
