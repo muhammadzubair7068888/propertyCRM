@@ -27,13 +27,14 @@ class CreateUsersTable extends Migration
             $table->string('city')->nullable();
             $table->string('postal_address')->nullable();
             $table->string('physical_address')->nullable();
-            $table->string('residential_adress')->nullable();
+            $table->string('residential_address')->nullable();
             $table->string('password')->nullable();
-            $table->string('user_type')->nullable();
+            $table->enum('user_type',['admin','landlord','tenant'])->nullable();
             $table->string('gender')->nullable();
             $table->date('DOB')->nullable();
             $table->string('martial_status')->nullable();
             $table->string('postal_code')->nullable();
+            $table->enum('status',[0,1,2])->default(0)->comment('0=>Pending','1=>Active','2=>Blocked');
              $table->timestamps();
         });
     }
