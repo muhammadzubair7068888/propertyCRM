@@ -1,19 +1,5 @@
-<<<<<<< HEAD
-<!-- Form and scrolling Components start -->
-<section id="form-and-scrolling-components">
-  <div class="row">
-    <div class="col-12">
-    
-        <div class="card-header">
-          <h4 class="card-title"></h4>
-        </div>
-        <div class="card-body">
-          <div class="demo-inline-spacing">
-            <div class="form-modal-ex">
-              <!-- Button trigger modal -->
-=======
-{{-- 
->>>>>>> sahil
+ 
+              
               <!-- Modal -->
               <div
                 class="modal fade text-start"
@@ -58,26 +44,9 @@
                   </div>
                 </div>
               </div>
-<<<<<<< HEAD
-            </div>
+          
 
-           
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Form and scrolling Components end -->
-=======
-             --}}
-
-             <section id="form-and-scrolling-components">
+             <!-- <section id="form-and-scrolling-components">
               <div class="row">
                 <div class="col-12">
                   <div class="card">
@@ -86,11 +55,11 @@
                     </div>
                     <div class="card-body">
                       <div class="demo-inline-spacing">
-                        <div class="form-modal-ex">
+                        <div class="form-modal-ex"> -->
                           <!-- Button trigger modal -->
                           
                           <!-- Modal -->
-                          <div
+                          <!-- <div
                             class="modal fade text-start"
                             id="inlineForm"
                             tabindex="-1"
@@ -140,5 +109,4 @@
                             </div>
                           </div>
                         </div>
-            </section>
->>>>>>> sahil
+            </section> -->

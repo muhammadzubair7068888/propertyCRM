@@ -48,9 +48,7 @@
                     <div class="card-body">
                       <div class="demo-inline-spacing">
                         <div class="form-modal-ex">
-                          <!-- Button trigger modal -->
-                          
-                          <!-- Modal -->
+                         
                           <div
                             class="modal fade text-start"
                             id="inlineForm"
