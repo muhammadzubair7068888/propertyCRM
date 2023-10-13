@@ -65,7 +65,7 @@
   {{-- Page js files --}}
 
   <script>
- 
+
     $('.dt-multilingual').DataTable({
         ajax:'{{ asset('data/table-datatable.json') }}',
         columns: [
@@ -132,10 +132,10 @@
                 // 'Delete</a>' +
                 // '</div>' +
                 // '</div>' +
-                '<a href="javascript:;" class="item-edit pe-1">' +
+                '<a href="{{route('admin.view.utilities')}}" class="item-edit pe-1">' +
                 feather.icons['eye'].toSvg({ class: 'font-small-4' }) +
                 '</a>'+
-                '<a href="javascript:;" class="item-edit pe-1">' +
+                '<a href="{{route('admin.utilities.create')}}" class="item-edit pe-1">' +
                 feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
                 '</a>'+
                 '<a href="javascript:;" class="item-edit">' +
@@ -183,13 +183,13 @@
                       '</tr>'
                   : '';
               }).join('');
-  
+
               return data ? $('<table class="table"/>').append('<tbody>' + data + '</tbody>') : false;
             }
           }
         }
       });
-   
+
   </script>
 
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}

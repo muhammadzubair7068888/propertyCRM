@@ -26,6 +26,9 @@ class UtilitiesController extends Controller
     {
         return view("admin.utilities.addutilities");
     }
+    public function view(){
+        return view('admin.utilities.viewutilitysumary');
+    }
 
     /**
      * Store a newly created resource in storage.
