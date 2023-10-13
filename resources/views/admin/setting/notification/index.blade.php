@@ -21,7 +21,7 @@
       <div class="col-xl-12 col-lg-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Filled</h4>
+            <h4 class="card-title">Notification Setting</h4>
           </div>
           <div class="card-body">
             <!-- Nav tabs -->

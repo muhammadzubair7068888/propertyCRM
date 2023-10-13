@@ -2,9 +2,9 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <div class="card-header border-bottom">
+          {{-- <div class="card-header border-bottom">
             <h4 class="card-title">Multilingual</h4>
-          </div>
+          </div> --}}
           <div class="card-datatable">
             <table class="dt-multilingual table">
               <thead>
