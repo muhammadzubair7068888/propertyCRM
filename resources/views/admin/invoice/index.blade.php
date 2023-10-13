@@ -17,7 +17,7 @@
         <div class="card-header border-bottom">
           <h4 class="card-title">Invoice</h4>
         </div>
-       
+
         <div class="card-datatable">
           <table class="dt-multilingual table">
             <thead>
@@ -38,7 +38,7 @@
                   Due On</th>
                 <th>Status</th>
                 {{-- <th>Action</th> --}}
-                
+
               </tr>
             </thead>
           </table>
@@ -68,10 +68,10 @@
 @section('page-script')
   {{-- Page js files --}}
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
-  
+
 
 <script>
- 
+
   $('.dt-multilingual').DataTable({
       ajax:'{{ asset('data/table-datatable.json') }}',
       columns: [
@@ -86,7 +86,7 @@
         { data: 'start_date' },
         { data: 'status' },
         // { data: '' },
-        
+
       ],
       columnDefs: [
         {
@@ -102,7 +102,7 @@
             var $status_number = full['status'];
             var $status = {
               1: { title: 'Paid', class: ' badge-light-success' },
-              
+
               2: { title: 'Over Due', class: ' badge-light-danger' },
               3: { title: 'Paid', class: ' badge-light-success' },
               4:  { title: 'Over Due', class: ' badge-light-danger' },
@@ -194,6 +194,9 @@
         }
       }
     });
- 
+
 </script>
 @endsection
+
+
+

@@ -12,7 +12,7 @@
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#accordionOne" aria-expanded="true"
                                 aria-controls="accordionOne">
-                                Accordion Item 1
+                                EMAIL Template
                             </button>
                         </h2>
                         <div id="accordionOne" class="accordion-collapse collapse show"
@@ -96,12 +96,44 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#accordionTwo" aria-expanded="false"
                                 aria-controls="accordionTwo">
-                                Accordion Item 2
+                                SMS Template
                             </button>
                         </h2>
                         <div id="accordionTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
-                            {{-- ########### --}}
+                      <form action="">
+                        <div class=" col-12">
+                            <div class="mb-1">
+                                <label class="form-label" for="name">Name</label>
+                                <input type="text" id="name" class="form-control"
+                                    placeholder="Name" name="name" />
+                            </div>
+                        </div>
+                        <div class=" col-12">
+                            <div class="mb-1">
+                                <label class="form-label" for="template">Template</label>
+                                <input type="text" id="template" class="form-control"
+                                    placeholder="Template" name="template" />
+                            </div>
+                        </div>
+                        <div class=" col-12">
+                            <div class="mb-1">
+                                <label class="form-label" for="body-sms">Body(SMS)</label>
+                                <input type="text" id="body-sms" class="form-control"
+                                    placeholder="Body(SMS)" name="body-sms" />
+                            </div>
+                        </div>
+                        <div class=" col-12">
+                            <div class="mb-1">
+                                <label class="form-label" for="tag">Tag</label>
+                                <input type="text" id="tag" class="form-control" readonly
+                                    placeholder="{agent_name}{agent_name}{agent_name}{agent_name}" name="tag" />
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-end ">
+                            <button type="reset" class="btn btn-primary me-1 ">Update Settings</button>
+                        </div>
+                      </form>
                         </div>
                     </div>
 
