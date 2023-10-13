@@ -24,7 +24,7 @@
                               id="modern-amount"
                               class="form-control"
                               readonly="readonly"
-                              placeholder="343"
+                              placeholder=""
                             />
                           </div>
                           <div class="mb-1 col-md-6">
@@ -97,7 +97,7 @@
 
 
 <!-- Approved modal -->
-{{-- <section id="form-and-scrolling-components">
+<!-- {{-- <section id="form-and-scrolling-components">
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -107,11 +107,11 @@
         <div class="card-body">
           <div class="demo-inline-spacing">
             <div class="form-modal-ex">
-              <!-- Button trigger modal -->
+             
               <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#inlineForm">
               <i data-feather='check-circle'>Approved</i>
               </button>
-              <!-- Modal -->
+             
               <div
                 class="modal fade text-start"
                 id="inlineForm"
@@ -217,11 +217,11 @@
             </div>
 
             <div class="scrolling-content-ex">
-              <!-- Button trigger modal -->
+            
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section> --}}
+</section> --}} -->
