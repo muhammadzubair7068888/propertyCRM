@@ -37,7 +37,7 @@
                 <th>
                   Due On</th>
                 <th>Status</th>
-                {{-- <th>Action</th> --}}
+                <th>Action</th>
 
               </tr>
             </thead>
@@ -85,7 +85,7 @@
         { data: 'salary' },
         { data: 'start_date' },
         { data: 'status' },
-        // { data: '' },
+        { data: '' },
 
       ],
       columnDefs: [
@@ -97,7 +97,7 @@
         },
         {
           // Label
-          targets: -1,
+          targets: -2,
           render: function (data, type, full, meta) {
             var $status_number = full['status'];
             var $status = {
@@ -120,35 +120,35 @@
             );
           }
         },
-        // {
-        //   // Actions
-        //   targets: -1,
-        //   title: 'Actions',
-        //   orderable: false,
-        //   render: function (data, type, full, meta) {
-        //     return (
-        //       '<div class="d-inline-flex">' +
-        //       '<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
-        //       feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
-        //       '</a>' +
-        //       '<div class="dropdown-menu dropdown-menu-end">' +
-        //       '<a href="javascript:;" class="dropdown-item">' +
-        //       feather.icons['file-text'].toSvg({ class: 'me-50 font-small-4' }) +
-        //       'Details</a>' +
-        //       '<a href="javascript:;" class="dropdown-item">' +
-        //       feather.icons['archive'].toSvg({ class: 'me-50 font-small-4' }) +
-        //       'Archive</a>' +
-        //       '<a href="javascript:;" class="dropdown-item delete-record">' +
-        //       feather.icons['trash-2'].toSvg({ class: 'me-50 font-small-4' }) +
-        //       'Delete</a>' +
-        //       '</div>' +
-        //       '</div>' +
-        //       '<a href="javascript:;" class="item-edit">' +
-        //       feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
-        //       '</a>'
-        //     );
-        //   }
-        // }
+        {
+          // Actions
+          targets: -1,
+          title: 'Actions',
+          orderable: false,
+          render: function (data, type, full, meta) {
+            return (
+              // '<div class="d-inline-flex">' +
+              // '<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
+              // feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
+              // '</a>' +
+              // '<div class="dropdown-menu dropdown-menu-end">' +
+              // '<a href="javascript:;" class="dropdown-item">' +
+              // feather.icons['file-text'].toSvg({ class: 'me-50 font-small-4' }) +
+              // 'Details</a>' +
+              // '<a href="javascript:;" class="dropdown-item">' +
+              // feather.icons['archive'].toSvg({ class: 'me-50 font-small-4' }) +
+              // 'Archive</a>' +
+              // '<a href="javascript:;" class="dropdown-item delete-record">' +
+              // feather.icons['trash-2'].toSvg({ class: 'me-50 font-small-4' }) +
+              // 'Delete</a>' +
+              // '</div>' +
+              // '</div>' +
+              '<a href="javascript:;" class="item-edit">' +
+              feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
+              '</a>'
+            );
+          }
+        }
       ],
     //   language: {
     //     url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/' + lang + '.json',

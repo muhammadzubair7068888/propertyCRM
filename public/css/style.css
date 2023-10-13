@@ -1,107 +1,11 @@
-.card{
-	position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #eee;
-    border-radius: .25rem;
-}
-.card .title{
-	color:#fff;
-	background: green;
-	border: 0;
-    margin-bottom: 30px;
-	border-radius: 3px;
-	padding: 15px;
-	box-shadow: 0 4px 20px 0 #dcedc8, 0 7px 10px -5px #dcedc8;
-	margin:0 15px;	
-	border-radius: 3px;
-    margin-top: -20px;
-	font-weight: 400;
-}
+/*================================================================================
+	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+	Version: 2.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
 
-.card .v-btn__prepend {
-    grid-area: prepend;
-    margin-inline-start: calc(var(--v-btn-height) / -9);
-    margin-inline-end: calc(var(--v-btn-height) / 4.5);
-}
-.card .v-btn__prepend button{
-	color:#000;
-	background-color: #fff;
-	border: 2px solid  rgba(0,0,0,.12);
-    margin:10px 15px;	
-}
-.card .col-7 {
-    flex: 0 0 58.3333333333%;
-    max-width: 58.3333333333%;
-	position: relative;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-.card .mat-form-field-appearance-legacy .mat-form-field-infix {
-    padding: .4375em 0;
-}
-
-.card .mat-form-field-infix {
-    display: block;
-    position: relative;
-    flex: auto;
-    min-width: 0;
-    width: 180px;
-}
-.card .mat-form-field-infix {
-    padding: .5em 0;
-    border-top: .84375em solid transparent;
-}
-
-.card .mat-form-field {
-    display: inline-block;
-    position: relative;
-    text-align: left;
-}
-
-.card .mat-form-field {
-    font-size: inherit;
-    font-weight: 400;
-    line-height: 1.125;
-    font-family: Roboto,Helvetica Neue,sans-serif;
-    letter-spacing: normal;
-}
-input.mat-input-element {
-    margin-top: -.0625em;
-}
-.card .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
-    -webkit-animation: cdk-text-field-autofill-end 0s 1ms;
-    animation: cdk-text-field-autofill-end 0s 1ms;
-}
-.card .mat-input-element, .mat-input-element::-webkit-search-cancel-button, .mat-input-element::-webkit-search-decoration, .mat-input-element::-webkit-search-results-button, .mat-input-element::-webkit-search-results-decoration {
-    -webkit-appearance: none;
-}
-
-.card .mat-input-element {
-    font: inherit;
-    background: transparent;
-    color: currentColor;
-    border: none;
-    outline: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    vertical-align: bottom;
-    text-align: inherit;
-    box-sizing: content-box;
-	
-}
-.card .mat-input-element {
-    caret-color: #3f51b5;
-}
-
-.card .invoice-list-table thead tr th{
-	background-color: #fff;
-	color: rgba(0,0,0,.54);
-}
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */

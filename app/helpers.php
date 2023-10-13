@@ -15,3 +15,11 @@ if (!function_exists('route_name')) {
         return $route_name;
     }
 }
+
+if (!function_exists('user_name')) {
+    function user_name()
+    {
+        $name = auth()->user()->first_name . auth()->user()->middle_name . auth()->user()->last_name;
+        return $name;
+    }
+}

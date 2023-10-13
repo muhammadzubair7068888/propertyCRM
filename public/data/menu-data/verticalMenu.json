@@ -1,116 +1,173 @@
 {
-  "menu": [
-    {
-      "url": "dashboard",
-      "name": "Dashboard",
-      "icon": "layout",
-      "slug": "dashboard"
-    },
-    {
-      "name": "Page Layouts",
-      "icon": "mail",
-      "slug": "",
-      "badge": "5",
-      "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
-      "submenu": [
+    "admin": [
         {
-          "url": "layouts/collapsed-menu",
-          "name": "Collapsed Menu",
-          "icon": "circle",
-          "slug": "collapsed-menu"
+            "url": "admin/dashboard",
+            "name": "Dashboard",
+            "icon": "layout",
+            "slug": "dashboard"
         },
         {
-          "url": "layouts/full",
-          "name": "Layout Full",
-          "icon": "circle",
-          "slug": "layout-full"
+            "url": "admin/landlord",
+            "name": "Landlords",
+            "icon": "users",
+            "slug": "landlord"
         },
         {
-          "url": "layouts/without-menu",
-          "name": "Without Menu",
-          "icon": "circle",
-          "slug": "without-menu"
+            "url": "admin/properties",
+            "name": "Properties",
+            "icon": "home",
+            "slug": "properties"
         },
         {
-          "url": "layouts/empty",
-          "name": "Layout Empty",
-          "icon": "circle",
-          "slug": "layout-empty"
+            "url": "admin/tenants",
+            "name": "Tenants",
+            "icon": "user-plus",
+            "slug": "tenants"
         },
         {
-          "url": "layouts/blank",
-          "name": "Layout Blank",
-          "icon": "circle",
-          "slug": "layout-blank"
+            "url": "admin/leases",
+            "name": "Leases",
+            "icon": "lock",
+            "slug": "leases"
+        },
+        {
+            "url": "admin/utilities",
+            "name": "Utilities",
+            "icon": "gift",
+            "slug": "utilities"
+        },
+        {
+            "url": "admin/invoice",
+            "name": "Invoice",
+            "icon": "book",
+            "slug": "invoice"
+        },
+        {
+            "url": "admin/payment",
+            "name": "Payment",
+            "icon": "credit-card",
+            "slug": "payment"
+        },
+        {
+            "url": "admin/vacate_notice",
+            "name": "Vacate Notice",
+            "icon": "lock",
+            "slug": "vacate_notice"
+        },
+        {
+            "url": "admin/setting",
+            "name": "Setting",
+            "icon": "settings",
+            "slug": "setting"
+        },
+        {
+            "url": "admin/report",
+            "name": "Reports",
+            "icon": "layers",
+            "slug": "reports"
         }
-      ]
-    },
+    ],
+    "landlord": [
+        {
+            "url": "landlord/dashboard",
+            "name": "Dashboard",
+            "icon": "layout",
+            "slug": "dashboard"
+        },
+        {
+            "url": "landlord/properties",
+            "name": "Properties",
+            "icon": "home",
+            "slug": "properties"
+        },
+        {
+            "url": "landlord/leases",
+            "name": "Leases",
+            "icon": "file-minus",
+            "slug": "leases"
+        },
+        {
+            "url": "landlord/payment",
+            "name": "Payment",
+            "icon": "credit-card",
+            "slug": "payment"
+        },
+        {
+            "url": "landlord/vacate_notice",
+            "name": "Vacate Notice",
+            "icon": "lock",
+            "slug": "vacate_notice"
+        },
 
-      {
-        "url": "landlord",
-        "name": "Landlords",
-        "icon": "users",
-        "slug": "landlord"
-      }
-      ,
-      {
-        "url": "properties",
-        "name": "Properties",
-        "icon": "home",
-        "slug": "properties"
-      }
-      ,
-      {
-        "url": "tenants",
-        "name": "Tenants",
-        "icon": "user-plus",
-        "slug": "tenants"
-      }
-      ,
-      {
-        "url": "leases",
-        "name": "Leases",
-        "icon": "lock",
-        "slug": "leases"
-      }
-      ,
-      {
-        "url": "utilities",
-        "name": "Utilities",
-        "icon": "gift",
-        "slug": "utilities"
-      }
-      ,
-      {
-        "url": "invoice",
-        "name": "Invoice",
-        "icon": "book",
-        "slug": "invoice"
-      }      ,
-      {
-        "url": "payment",
-        "name": "Payment",
-        "icon": "credit-card",
-        "slug": "payment"
-      }
-      ,
-      {
-        "url": "vacate_notice",
-        "name": "Vacate Notice",
-        "icon": "lock",
-        "slug": "vacate_notice"
-      }      ,
-      {
-        "url": "setting",
-        "name": "Setting",
-        "icon": "settings",
-        "slug": "setting"
-      }      ,
-      {
-        "url": "reports",
-        "name": "Reports",
-        "icon": "layers",
-        "slug": "reports"
-      }
-  ]
+        {
+            "url": "landlord/document",
+            "name": "document",
+            "icon": "file-text",
+            "slug": "document"
+        },
+
+        {
+            "url": "landlord/profile",
+            "name": "profile",
+            "icon": "user-check",
+            "slug": "profile"
+        },
+        {
+            "url": "landlord/logout",
+            "name": "logout",
+            "icon": "log-out",
+            "slug": "logout"
+        }
+    ],
+    "tenant": [
+        {
+            "url": "tenant/dashboard",
+            "name": "Dashboard",
+            "icon": "layout",
+            "slug": "dashboard"
+        },
+        {
+            "url": "tenant/leases",
+            "name": "Leases",
+            "icon": "lock",
+            "slug": "leases"
+        },
+        {
+            "url": "tenant/invoice",
+            "name": "Invoice",
+            "icon": "book",
+            "slug": "invoice"
+        },
+        {
+            "url": "tenant/payment",
+            "name": "Payment",
+            "icon": "credit-card",
+            "slug": "payment"
+        },
+        {
+            "url": "tenant/vacate_notice",
+            "name": "Vacate Notice",
+            "icon": "lock",
+            "slug": "vacate_notice"
+        },
+        {
+            "url": "tenant/document",
+            "name": "document",
+            "icon": "file-text",
+            "slug": "document"
+        },
+
+        {
+            "url": "tenant/profile",
+            "name": "profile",
+            "icon": "user-check",
+            "slug": "profile"
+        },
+        {
+            "url": "tenant/logout",
+            "name": "logout",
+            "icon": "log-out",
+            "slug": "logout"
+        }
+    ]
 }

@@ -83,7 +83,7 @@
               role="tab"
               aria-controls="home-just"
               aria-selected="true"
-              >Total Units</a
+              >Info</a
             >
           </li>
           <li class="nav-item">
@@ -95,7 +95,7 @@
               role="tab"
               aria-controls="profile-just"
               aria-selected="true"
-              >Occupied</a
+              >Units</a
             >
           </li>
           <li class="nav-item">
@@ -107,7 +107,7 @@
               role="tab"
               aria-controls="messages-just"
               aria-selected="false"
-              >Vacant</a
+              >Lease</a
             >
           </li>
           <li class="nav-item">
@@ -119,7 +119,7 @@
               role="tab"
               aria-controls="messages-just"
               aria-selected="false"
-              >Info</a
+              >Invoices</a
             >
           </li>
           <li class="nav-item">

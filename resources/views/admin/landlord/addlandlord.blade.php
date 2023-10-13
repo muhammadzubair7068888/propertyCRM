@@ -3,207 +3,197 @@
 @section('title', 'Add Landlord')
 
 @section('content')
+    <!-- Basic multiple Column Form section start -->
+    <section id="multiple-column-form">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Multiple Column</h4>
+                    </div>
+                    <div class="card-body">
+                        <form class="form" action="{{ route('admin.landlord.store') }}" method="post">
+                          @csrf
+                          <input type="hidden" name="user_type" value="landlord">
+                          <input type="hidden" name="gender" value="male">
+                          <input type="hidden" name="status" value="1">
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('first_name') text-danger @enderror" for="first-name-column">First Name</label>
+                                        <input type="text" id="first-name-column"
+                                            class="form-control @error('first_name') border-1 border-danger @enderror"
+                                            placeholder="First Name" name="first_name" value="{{ @$user->first_name ?? old('first_name') }}"/>
+                                        @error('first_name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('middle_name') text-danger @enderror" for="middle-name-column">Middle Name</label>
+                                        <input type="text" id="middle-name-column"
+                                            class="form-control @error('middle_name') border-1 border-danger @enderror"
+                                            placeholder="Middle Name" name="middle_name" value="{{ @$user->last_name ?? old('last_name') }}"/>
+                                        @error('middle_name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('last_name') text-danger @enderror" for="last-name-column">Last Name</label>
+                                        <input type="text" id="last-name-column"
+                                            class="form-control @error('last_name') border-1 border-danger @enderror"
+                                            placeholder="Last Name" name="last_name" />
+                                        @error('last_name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('phone_number') text-danger @enderror" for="phone_number">phone_number</label>
+                                        <input type="text" id="phone_number"
+                                            class="form-control @error('phone_number') border-1 border-danger @enderror"
+                                            name="phone_number" placeholder="Phone" />
+                                        @error('phone_number')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('email') text-danger @enderror" for="email-id-column">Email</label>
+                                        <input type="email" id="email-id-column"
+                                            class="form-control @error('email') border-1 border-danger text-danger @enderror"
+                                            name="email" placeholder="Email" value="{{ @$user->email ?? old('email') }}"/>
+                                        @error('email')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('registration_date') text-danger @enderror" for="registration-date-column">Registration Date</label>
+                                        <input type="text" id="registration-date-column"
+                                            class="form-control @error('registration_date') border-1 border-danger @enderror" readonly
+                                            name="registration_date" placeholder="Registration Date" value="{{ date('Y-m-d') }}" />
+                                        @error('registration_date')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('country') text-danger @enderror" for="country">Country</label>
+                                        <input type="text" id="country"
+                                            class="form-control @error('country') border-1 border-danger @enderror"
+                                            placeholder="Country " name="country" />
+                                        @error('country')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('national_id') text-danger @enderror" for="passport">National ID or Passport</label>
+                                        <input type="text" id="passport"
+                                            class="form-control @error('national_id') border-1 border-danger @enderror"
+                                            placeholder="National ID or Passport" name="national_id" />
+                                        @error('national_id')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('state') text-danger @enderror" for="state">State</label>
+                                        <input type="text" id="state"
+                                            class="form-control @error('state') border-1 border-danger @enderror"
+                                            placeholder="State" name="state" />
+                                        @error('state')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('city') text-danger @enderror" for="city">City</label>
+                                        <input type="text" id="city"
+                                            class="form-control @error('city') border-1 border-danger @enderror"
+                                            placeholder="City" name="city" />
+                                        @error('city')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
-
-
-<!-- Basic multiple Column Form section start -->
-<section id="multiple-column-form">
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Multiple Column</h4>
-        </div>
-        <div class="card-body">
-          <form class="form">
-            <div class="row">
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="first-name-column">First Name</label>
-                  <input
-                    type="text"
-                    id="first-name-column"
-                    class="form-control"
-                    placeholder="First Name"
-                    name="fname-column"
-                  />
+                                <div class="col-md-12 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('postal_address') text-danger @enderror" for="postal-address">Postal Address</label>
+                                        <input type="text" id="postal-address"
+                                            class="form-control @error('postal_address') border-1 border-danger @enderror"
+                                            placeholder="Postal Address" name="postal_address" />
+                                        @error('postal_address')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('physical_address') text-danger @enderror" for="physical-address">Physical Address</label>
+                                        <input type="text" id="physical-address"
+                                            class="form-control @error('physical_address') border-1 border-danger @enderror"
+                                            placeholder="Physical Address" name="physical_address" />
+                                        @error('physical_address')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('residential_address') text-danger @enderror" for="residential-address">Residential Address</label>
+                                        <input type="text" id="residential-address"
+                                            class="form-control @error('residential_address') border-1 border-danger @enderror"
+                                            placeholder="Residential Address" name="residential_address" />
+                                        @error('residential_address')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('password') text-danger @enderror" for="password">Password</label>
+                                        <input type="password" id="password"
+                                            class="form-control @error('password') border-1 border-danger @enderror"
+                                            placeholder="Password" name="password" />
+                                        @error('password')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label @error('password') text-danger @enderror" for="confirm-password">Confirm Password</label>
+                                        <input type="password" id="confirm-password"
+                                            class="form-control @error('password') border-1 border-danger @enderror"
+                                            placeholder="Confirm Password" name="password_confirmation" />
+                                        @error('password')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-end ">
+                                    <button class="btn btn-primary me-1 ">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="middle-name-column">Middle Name</label>
-                  <input
-                    type="text"
-                    id="middle-name-column"
-                    class="form-control"
-                    placeholder="Middle Name"
-                    name="middle-name-column"
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="last-name-column">Last Name</label>
-                  <input type="text" id="last-name-column" class="form-control" placeholder="Last Name" name="last-name-column" />
-                </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="phone">Phone</label>
-                  <input
-                    type="text"
-                    id="phone"
-                    class="form-control"
-                    name="phone"
-                    placeholder="Phone"
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="email-id-column">Email</label>
-                  <input
-                    type="email"
-                    id="email-id-column"
-                    class="form-control"
-                    name="email-id-column"
-                    placeholder="Email"
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="registration-date-column">Registration Date</label>
-                  <input
-                    type="text"
-                    id="registration-date-column"
-                    class="form-control"
-                    name="registration-date-column"
-                    placeholder="Registration Date"
-                  />
-                </div>
-              </div>
-
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="country">Country</label>
-                  <input
-                    type="text"
-                    id="country"
-                    class="form-control"
-                    placeholder="Country "
-                    name="country"
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="passport">National ID or Passport</label>
-                  <input
-                    type="text"
-                    id="passport"
-                    class="form-control"
-                    placeholder="National ID or Passport"
-                    name="passport"
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="state">State</label>
-                  <input
-                    type="text"
-                    id="state"
-                    class="form-control"
-                    placeholder="State"
-                    name="state"
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="city">City</label>
-                  <input
-                    type="text"
-                    id="city"
-                    class="form-control"
-                    placeholder="City"
-                    name="city"
-                  />
-                </div>
-              </div>
-
-              <div class="col-md-12 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="postal-address">Postal Address</label>
-                  <input
-                    type="text"
-                    id="postal-address"
-                    class="form-control"
-                    placeholder="Postal Address"
-                    name="postal-address"
-                  />
-                </div>
-              </div>
-              <div class="col-md-12 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="physical-address">Physical Address</label>
-                  <input
-                    type="text"
-                    id="physical-address"
-                    class="form-control"
-                    placeholder="Physical Address"
-                    name="physical-address"
-                  />
-                </div>
-              </div>
-              <div class="col-md-12 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="residential-address">Residential Address</label>
-                  <input
-                    type="text"
-                    id="residential-address"
-                    class="form-control"
-                    placeholder="Residential Address"
-                    name="residential-address"
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="password">Password</label>
-                  <input
-                    type="text"
-                    id="password"
-                    class="form-control"
-                    placeholder="Password"
-                    name="password"
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="confirm-password">Confirm Password</label>
-                  <input
-                    type="text"
-                    id="confirm-password"
-                    class="form-control"
-                    placeholder="Confirm Password"
-                    name="lname-column"
-                  />
-                </div>
-              </div>
-              <div class="col-12 d-flex justify-content-end ">
-                <button type="reset" class="btn btn-primary me-1 ">Submit</button>
-
-              </div>
             </div>
-          </form>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Basic Floating Label Form section end -->
+    </section>
+    <!-- Basic Floating Label Form section end -->
 @endsection
