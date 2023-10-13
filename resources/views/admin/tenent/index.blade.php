@@ -152,7 +152,7 @@
                             class: 'font-small-4'
                         }) +
                         '</a>' +
-                        '<a href="javascript:;" class="item-edit">' +
+                        '<a href="{{route('admin.tenants.create')}}" class="item-edit">' +
                         feather.icons['edit'].toSvg({
                             class: 'font-small-4'
                         }) +

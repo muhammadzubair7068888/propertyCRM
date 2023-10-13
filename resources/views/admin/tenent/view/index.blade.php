@@ -2,6 +2,18 @@
 
 @section('title', 'Tabs')
 
+@section('vendor-style')
+  {{-- vendor css files --}}
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+
+
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-lg-4 col-sm-6">
@@ -295,29 +307,16 @@
               </section>
           </div>
           <div class="tab-pane" id="document-just" role="tabpanel" aria-labelledby="profile-tab-justified">
-            <p>
-              Bear claw jelly beans wafer pastry jelly beans candy macaroon biscuit topping. Sesame snaps lemon drops
-              donut gingerbread dessert cotton candy wafer croissant jelly beans. Sweet roll halvah gingerbread bonbon
-              apple pie gummies chocolate bar pastry gummi bears.
-            </p>
-            <p>
-              Croissant danish chocolate bar pie muffin. Gummi bears marshmallow chocolate bar bear claw. Fruitcake
-              halvah chupa chups dragée carrot cake cookie. Carrot cake oat cake cake chocolate bar cheesecake. Wafer
-              gingerbread sweet roll candy chocolate bar gingerbread.
-            </p>
+          @include('admin.tenent.view.documents')
           </div>
 
 
           <div class="tab-pane" id="payment-just" role="tabpanel" aria-labelledby="settings-tab-justified">
-            <p>
-              Candy canes halvah biscuit muffin dessert biscuit marzipan. Gummi bears marzipan bonbon chupa chups
-            </p>
+            @include('admin.tenent.view.payment')
           </div>
           <div class="tab-pane" id="leases-just" role="tabpanel" aria-labelledby="settings-tab-justified">
 
-            <p>
-              Jelly beans caramels muffin wafer sesame snaps chupa chups chocolate cake pastry halvah. Sugar plum
-            </p>
+            @include('admin.tenent.view.lease')
           </div>
         </div>
       </div>
@@ -325,6 +324,29 @@
   </div>
   @endsection
 
-  @section('page-script')
-  <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
+  @section('vendor-script')
+  {{-- vendor files --}}
+  {{-- <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script> --}}
+  {{-- <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script> --}}
+ 
+  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+
+  <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap5.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/jszip.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/pdfmake.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/vfs_fonts.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.html5.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+ 
 @endsection
+
+  @push('page-script')
+  <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
+@endpush

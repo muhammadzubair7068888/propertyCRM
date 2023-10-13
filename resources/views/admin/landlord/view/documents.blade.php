@@ -108,7 +108,7 @@
                         // 'Delete</a>' +
                         // '</div>' +
                         // '</div>' +
-                        '<a href="{{route('admin.view')}}" class="item-edit pe-1">' +
+                        '<a href="" class="item-edit pe-1">' +
                         feather.icons['trash'].toSvg({
                             class: 'font-medium-4 text-danger'
                         }) +
