@@ -33,7 +33,7 @@ class LandlordController extends Controller
 
     public function view()
     {
-        return view('admin.landlord.viewlandlord');
+        return view('admin.landlord.viewlandlord.index');
     }
 
     /**

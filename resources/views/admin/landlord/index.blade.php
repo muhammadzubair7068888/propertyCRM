@@ -139,11 +139,11 @@
                 // 'Delete</a>' +
                 // '</div>' +
                 // '</div>' +
-                '<a href="{{route('admin.view')}}" class="item-edit pe-1">' +
-                feather.icons['eye'].toSvg({ class: 'font-small-4' }) +
+                '<a href="{{route('admin.landlord.view')}}" class="item-edit pe-1">' +
+                feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
                 '</a>'+
-                '<a href="javascript:;" class="item-edit">' +
-                feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
+                '<a href="{{route('admin.landlord.create')}}" class="item-edit">' +
+                feather.icons['edit'].toSvg({ class: 'font-medium-4' }) +
                 '</a>'
               );
             }

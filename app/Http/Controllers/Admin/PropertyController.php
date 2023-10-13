@@ -28,7 +28,7 @@ class PropertyController extends Controller
     }
     public function view()
     {
-      return view('admin.property.viewproperty');
+      return view('admin.property.viewproperty.index');
     }
 
     /**
