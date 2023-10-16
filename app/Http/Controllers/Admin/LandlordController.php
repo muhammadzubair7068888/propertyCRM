@@ -57,7 +57,10 @@ class LandlordController extends Controller
             'residential_address' => 'required',
             'password' => 'required|confirmed',
         ]);
+        dd($req);   
+        
         $data = $req->except('_token','password_confirmation');
+   
         $data['created_at'] = now();
         $data['updated_at'] = now();
         
@@ -110,6 +113,13 @@ class LandlordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=User::find($id);
+        if($user){
+            $user->delete();
+            return redirect()->route('admin.landlord.index')->with('success', 'User deleted successfully.');
+        }
+        else{
+dd('Not deleted............');
+        }
     }
 }

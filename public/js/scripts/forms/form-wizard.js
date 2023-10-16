@@ -152,6 +152,7 @@ $(function () {
     var verticalStepper = new Stepper(verticalWizard, {
       linear: false
     });
+    
     var userID = null ;
     $(verticalWizard)
       .find('.btn-next')
