@@ -152,12 +152,14 @@ $(function () {
     var verticalStepper = new Stepper(verticalWizard, {
       linear: false
     });
-    var userID = null ;
+    var userID = null;
     $(verticalWizard)
       .find('.btn-next')
       .on('click', function (e) {
         e.preventDefault();
-        console.log(userID);
+        if(userID !== null){
+
+        }
         var form = $(this).closest('form');
         if(form){
             var url = form.data('action');
@@ -168,7 +170,6 @@ $(function () {
                 data: formData,
                 dataType: "json",
                 success: function (response) {
-                    console.log(response);
                     if(response.success === 'success' && response.userId){
                         userID == response.userId;
                         verticalStepper.next();
