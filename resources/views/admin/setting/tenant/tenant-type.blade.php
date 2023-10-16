@@ -38,6 +38,7 @@
 {{-- @section('page-script') --}}
 @push('page-script')
     <script>
+        console.log("sdssd");
         $('.dt-multilingual1').DataTable({
             ajax: '{{ asset('data/table-datatable.json') }}',
             columns: [{
@@ -61,9 +62,9 @@
 
             columnDefs: [{
                 // For Responsive
-                // className: 'control',
-                // orderable: false,
-                // targets: 0
+                className: 'control',
+                orderable: false,
+                targets: 0
             },
             // {
             //   // Label

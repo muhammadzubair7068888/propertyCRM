@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Multiple Column</h4>
+                        <h4 class="card-title">New Landlord</h4>
                     </div>
                     <div class="card-body">
                         <form class="form" action="{{ route('admin.landlord.store') }}" method="post">
