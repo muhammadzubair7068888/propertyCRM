@@ -35,6 +35,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('show/{id}', [LandlordController::class, 'show'])->name('show');
         Route::post('store', [LandlordController::class, 'store'])->name('store');
         Route::get('edit/{id}', [LandlordController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [LandlordController::class, 'update'])->name('update');
         Route::get('destroy/{id}', [LandlordController::class, 'destroy'])->name('destroy');
         Route::get('block/{id}', [LandlordController::class,'view'])->name('block');
     });

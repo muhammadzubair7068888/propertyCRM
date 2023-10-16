@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->date('DOB')->nullable();
             $table->string('martial_status')->nullable();
             $table->string('postal_code')->nullable();
-            $table->enum('status',[0,1,2])->default(0)->comment('0=>Pending','1=>Active','2=>Blocked');
+            $table->enum('status',[0,1,2])->default(0)->comment('0=>Pending, 1=>Active, 2=>Blocked');
              $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@
                         <a href="{{ route('admin.landlord.create') }}" class="btn btn-primary">+ Add Landlord</a>
                     </div>
                     <div class="card-datatable">
-                        <table class="dt-multilingual table">
+                        <table class="datatables-table table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -59,10 +59,10 @@
                                             <a href="{{ route('admin.landlord.edit',$user->id) }}" class="item-edit pe-1 text-success">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </a>
-                                            <a onclick="blockUser(`{{ route('admin.landlord.block',$user->id) }}`)" class="item-edit text-danger">
+                                            <a onclick="blockUser(`{{ route('admin.landlord.block',$user->id) }}`)" class="item-edit pe-1 text-danger">
                                                 <i data-feather="slash" class="font-medium-4"></i>
                                             </a>
-                                            <a href="{{ route('admin.landlord.destroy',$user->id) }}" class="item-edit pe-1 text-danger">
+                                            <a href="{{ route('admin.landlord.destroy',$user->id) }}" class="item-edit text-danger">
                                                 <i data-feather="trash" class="font-medium-4"></i>
                                             </a>
                                         </td>
@@ -95,11 +95,11 @@
 @endsection
 @section('page-script')
     {{-- Page js files --}}
-    <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
     <script>
         $(document).ready(function() {
             feather.replace();
-            $('.dt-multilingual').DataTable();
+            $('.datatables-table').DataTable();
         });
         function blockUser(url){
             alert(url);

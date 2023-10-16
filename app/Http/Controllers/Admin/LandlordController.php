@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class LandlordController extends Controller
 {
@@ -19,7 +21,7 @@ class LandlordController extends Controller
         $pagedata['breadcrumbs'] = [
             ['link' => "landlord", 'name' => "Landlords"], ['name' => "home"]
         ];
-        $pagedata['users'] = User::get();
+        $pagedata['users'] = User::whereUserType('landlord')->get();
         return view('admin.landlord.index', $pagedata);
     }
 
@@ -31,7 +33,9 @@ class LandlordController extends Controller
      */
     public function create()
     {
-        return view('admin.landlord.addlandlord');
+        $pagedata['url']='admin.landlord.store';
+        $pagedata['name']='Add';
+        return view('admin.landlord.addlandlord',$pagedata);
     }
 
     /**
@@ -88,8 +92,11 @@ class LandlordController extends Controller
     public function edit($id)
     {
         $pagedata['user'] = User::find($id);
-        return view('admin.landlord.addlandlord', $pagedata);
-    }
+        $pagedata['url'] = 'admin.landlord.update';
+        $pagedata['id'] = $id;
+        $pagedata['name']='Edit';
+        return view('admin.landlord.addlandlord',$pagedata);
+    }   
 
     /**
      * Update the specified resource in storage.
@@ -98,9 +105,37 @@ class LandlordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id)
     {
-        //
+        $data = $req->except('_token');
+        $user=User::find($id)->update($data);
+        if($user){
+            return redirect()->route('admin.landlord.index');  
+        } else{
+                dd('Not Found');
+            };
+    //    if($User){
+    //     $User->first_name=$req->first_name;
+    //     $User->middle_name=$req->middle_name;
+    //     $User->last_name=$req->last_name;
+    //     $User->phone_number=$req->phone_number;
+    //     $User->email=$req->email;
+    //     $User->registration_date=$req->registration_date;
+    //     $User->country=$req->country;
+    //     $User->national_id=$req->national_id;
+    //     $User->state=$req->state;
+    //     $User->city=$req->city;
+    //     $User->postal_address=$req->postal_address;
+    //     $User->physical_address=$req->physical_address;
+    //     $User->postal_address=$req->postal_address;
+    //     $User->residential_address=$req->residential_address;
+    //     $User->password=$req->password;
+    //     $User->save();
+    //    return redirect()->route('admin.landlord.index');
+    //    }
+    //    else{
+    //     dd('Not Found');
+    //    }
     }
 
     /**
@@ -114,9 +149,9 @@ class LandlordController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->delete();
-            return redirect()->route('admin.landlord.index')->with('success', 'User deleted successfully.');
+            return redirect()->back()->with('success', 'User deleted successfully.');
         } else {
-            dd('Not deleted............');
+            return redirect()->back()->with('error', 'User not found.');
         }
     }
 }
