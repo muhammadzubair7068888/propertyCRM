@@ -62,6 +62,9 @@
                                             <a onclick="blockUser(`{{ route('admin.landlord.block',$user->id) }}`)" class="item-edit text-danger">
                                                 <i data-feather="slash" class="font-medium-4"></i>
                                             </a>
+                                            <a href="{{ route('admin.landlord.destroy',$user->id) }}" class="item-edit pe-1 text-danger">
+                                                <i data-feather="trash" class="font-medium-4"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
