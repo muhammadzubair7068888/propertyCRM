@@ -18,7 +18,7 @@
           <h4 class="card-title">Tenants</h4>
         </div>
         <div class="col-12 d-flex justify-content-end ">
-               <a href="{{route('admin.tenants.create')}}"> <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add tenant</button></a>
+               <a href="{{route('admin.tenant.create')}}"> <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add tenant</button></a>
         </div>
         <div class="card-datatable">
           <table class="dt-multilingual table">
@@ -147,12 +147,12 @@
                         // 'Delete</a>' +
                         // '</div>' +
                         // '</div>' +
-                        '<a href="{{route('admin.view')}}" class="item-edit pe-1">' +
+                        '<a href="" class="item-edit pe-1">' +
                         feather.icons['eye'].toSvg({
                             class: 'font-small-4'
                         }) +
                         '</a>' +
-                        '<a href="{{route('admin.tenants.create')}}" class="item-edit">' +
+                        '<a href="{{route('admin.tenant.create')}}" class="item-edit">' +
                         feather.icons['edit'].toSvg({
                             class: 'font-small-4'
                         }) +

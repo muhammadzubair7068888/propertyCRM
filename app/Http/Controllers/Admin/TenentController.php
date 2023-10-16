@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class TenentController extends Controller
@@ -29,6 +31,39 @@ class TenentController extends Controller
     public function create()
     {
         return view("admin.tenent.addtenant");
+    }
+
+    public function tenantInfo(Request $request)
+    {
+        $tenantUser = new User();
+        $tenantUser->first_name = $request->fname;
+        $tenantUser->middle_name = $request->middle_name;
+        $tenantUser->last_name = $request->lname;
+        $tenantUser->phone_number = $request->phone_number;
+        $tenantUser->email = $request->email;
+        $tenantUser->registration_date = $request->date;
+        $tenantUser->country = $request->country;
+        $tenantUser->national_id = $request->passport;
+        $tenantUser->state = $request->fname;
+        $tenantUser->city = $request->city;
+        $tenantUser->postal_address = $request->postal_address;
+        $tenantUser->physical_address = $request->physical_address;
+        $tenantUser->residential_address = $request->residential_address;
+        $tenantUser->password = Hash::make($request->password);
+        $tenantUser->user_type = 'tenant';
+        $tenantUser->gender = $request->gender;
+        $tenantUser->DOB = $request->dob;
+        $tenantUser->martial_status = $request->martial_status;
+        $tenantUser->postal_code = $request->postal_code;
+        $tenantUser->status = 1;
+        $result = $tenantUser->save();
+        $user_id = User::where('email',$request->email)->pluck('id')->first();
+        if($result && $user_id){
+            return response()->json([
+                'success' => 'success',
+                'userId' => $user_id
+            ]);
+        }
     }
 
     /**

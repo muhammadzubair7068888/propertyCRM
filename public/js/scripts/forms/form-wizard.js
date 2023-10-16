@@ -152,11 +152,31 @@ $(function () {
     var verticalStepper = new Stepper(verticalWizard, {
       linear: false
     });
+    var userID = null ;
     $(verticalWizard)
       .find('.btn-next')
-      .on('click', function () {
-        verticalStepper.next();
-      });
+      .on('click', function (e) {
+        e.preventDefault();
+        console.log(userID);
+        var form = $(this).closest('form');
+        if(form){
+            var url = form.data('action');
+            var formData = form.serialize();
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: formData,
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    if(response.success === 'success' && response.userId){
+                        userID == response.userId;
+                        verticalStepper.next();
+                    }
+                }
+            });
+        }
+    });
     $(verticalWizard)
       .find('.btn-prev')
       .on('click', function () {
