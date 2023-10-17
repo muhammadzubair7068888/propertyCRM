@@ -35,11 +35,11 @@ class LandlordController extends Controller
     public function create()
     {
         $pagedata['breadcrumbs'] = [
-            ['link' => "admin/landlord", 'name' => "Landlords"],['name' => "Create"]
+            ['link' => "admin/landlord", 'name' => "Landlords"], ['name' => "Create"]
         ];
-        $pagedata['url']='admin.landlord.store';
-        $pagedata['name']='Add';
-        return view('admin.landlord.addlandlord',$pagedata);
+        $pagedata['url'] = 'admin.landlord.store';
+        $pagedata['name'] = 'Add';
+        return view('admin.landlord.addlandlord', $pagedata);
     }
 
     /**
@@ -73,7 +73,7 @@ class LandlordController extends Controller
 
         User::insert($data);
 
-        return redirect()->route('admin.landlord.index')->with('success','Landlord added successfully');
+        return redirect()->route('admin.landlord.index')->with('success', 'Landlord added successfully');
     }
 
     /**
@@ -85,7 +85,7 @@ class LandlordController extends Controller
     public function show($id)
     {
         $pagedata['breadcrumbs'] = [
-            ['link' => "admin/landlord", 'name' => "Landlords"],['name' => "View"]
+            ['link' => "admin/landlord", 'name' => "Landlords"], ['name' => "View"]
         ];
         $pagedata['user'] = User::find($id);
         return view('admin.landlord.view.index', $pagedata);
@@ -103,7 +103,7 @@ class LandlordController extends Controller
             ['link' => "admin/landlord", 'name' => " Landlords"], ['name' => "Edit"]
         ];
         $pagedata['user'] = User::find($id);
-        return view('admin.landlord.addlandlord',$pagedata);
+        return view('admin.landlord.addlandlord', $pagedata);
     }
 
     /**
@@ -116,34 +116,12 @@ class LandlordController extends Controller
     public function update(Request $req, $id)
     {
         $data = $req->except('_token');
-        $user=User::find($id)->update($data);
-        if($user){
-            return redirect()->route('admin.landlord.index');
-        } else{
-            return redirect()->back()->with('error','User not found');  
-            };
-    //    if($User){
-    //     $User->first_name=$req->first_name;
-    //     $User->middle_name=$req->middle_name;
-    //     $User->last_name=$req->last_name;
-    //     $User->phone_number=$req->phone_number;
-    //     $User->email=$req->email;
-    //     $User->registration_date=$req->registration_date;
-    //     $User->country=$req->country;
-    //     $User->national_id=$req->national_id;
-    //     $User->state=$req->state;
-    //     $User->city=$req->city;
-    //     $User->postal_address=$req->postal_address;
-    //     $User->physical_address=$req->physical_address;
-    //     $User->postal_address=$req->postal_address;
-    //     $User->residential_address=$req->residential_address;
-    //     $User->password=$req->password;
-    //     $User->save();
-    //    return redirect()->route('admin.landlord.index');
-    //    }
-    //    else{
-    //     dd('Not Found');
-    //    }
+        $user = User::find($id)->update($data);
+        if ($user) {
+            return redirect()->route('admin.landlord.index')->with('success', 'Record updated successfully');
+        } else {
+            return redirect()->back()->with('error', 'User not found');
+        };
     }
 
     /**
@@ -166,7 +144,7 @@ class LandlordController extends Controller
     {
         $user = User::find($id)->update(['status' => '2']);
         if ($user) {
-            return redirect()->back()->with('success', 'User deleted successfully.');
+            return redirect()->back()->with('success', 'User blocked successfully.');
         } else {
             return redirect()->back()->with('error', 'User not found.');
         }
@@ -175,7 +153,7 @@ class LandlordController extends Controller
     {
         $user = User::find($id)->update(['status' => '1']);
         if ($user) {
-            return redirect()->back()->with('success', 'User deleted successfully.');
+            return redirect()->back()->with('success', 'User unblocked successfully.');
         } else {
             return redirect()->back()->with('error', 'User not found.');
         }
