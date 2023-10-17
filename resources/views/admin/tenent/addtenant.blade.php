@@ -58,34 +58,39 @@
                     <button type="button" class="step-trigger">
                         <span class="bs-stepper-box">4</span>
                         <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">Bussiness Details</span>
+                            <span class="bs-stepper-title">Bussiness Details</span>
 
                         </span>
                     </button>
                 </div>
             </div>
             <div class="bs-stepper-content">
-                <div id="account-details-vertical" class="content" role="tabpanel"
-                    aria-labelledby="account-details-vertical-trigger">
-                    <div class="content-header">
-                        <h5 class="mb-0">Tenant Info</h5>
+                <form action="{{ route('admin.tenant.store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="user_type" value="tenant">
+                    <input type="hidden" name="status" value="1">
+                    <div id="account-details-vertical" class="content" role="tabpanel"
+                        aria-labelledby="account-details-vertical-trigger">
+                        <div class="content-header">
+                            <h5 class="mb-0">Tenant Info</h5>
 
-                    </div>
-                    <form method="POST" data-action="{{ route('admin.tenant.tenantInfo') }}">
-                        @csrf
+                        </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="tenant-type">Tenant Type</label>
-                                <select class="form-select" id="tenant-type" required>
-                                    <option>IT</option>
-                                    <option>Blade Runner</option>
-                                    <option>Thor Ragnarok</option>
+                                <select class="form-select" id="tenant-type" name="tenant-type" required>
+                                    
+                                   @foreach ($types as $type )
+                                     <option value="{{$type->id}}">{{$type->name}}</option>
+                                  @endforeach
+                                    
+                                   
                                 </select>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="first-name-column">First Name</label>
                                 <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
-                                    name="fname"  required/>
+                                    name="first_name" required />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="middle-name-column">Middle Name</label>
@@ -94,7 +99,8 @@
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-last-name">Last Name</label>
-                                <input type="text" id="vertical-last-name" class="form-control" name="lname" placeholder="Last Name" required />
+                                <input type="text" id="vertical-last-name" class="form-control" name="last_name"
+                                    placeholder="Last Name" required />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="gender">Gender</label>
@@ -106,142 +112,82 @@
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="date">Date</label>
-                                <input type="text" id="date" name="date" class="form-control flatpickr-basic"
-                                    placeholder="YYYY-MM-DD" required/>
+                                <input type="text" id="date"  class="form-control @error('registration_date') border-1 border-danger @enderror" readonly
+                                name="registration_date" placeholder="Date" value="{{ date('Y-m-d') }}" required />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="passport">National ID or Passport</label>
-                                    <input
-                                    type="text"
-                                    id="passport"
-                                    class="form-control"
-                                    placeholder="National ID or Passport"
-                                    name="passport"
-                                    required
-                                    />
+                                    <input type="text" id="passport" class="form-control"
+                                        placeholder="National ID or Passport" name="national_id" required />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="martial-status">Martial Status</label>
-                                <input type="text" id="martial-status" class="form-control" placeholder="Martial Status"
-                                    name="martial_status"  required/>
+                                <input type="text" id="martial-status" class="form-control"
+                                    placeholder="Martial Status" name="martial_status" required />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="phone">Phone</label>
-                                    <input
-                                    type="text"
-                                    id="phone"
-                                    class="form-control"
-                                    name="phone_number"
-                                    placeholder="Phone"
-                                    required
-                                    />
+                                    <input type="text" id="phone" class="form-control" name="phone_number"
+                                        placeholder="Phone" required />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="email-id-column">Email</label>
-                                    <input
-                                    type="email"
-                                    id="email-id-column"
-                                    class="form-control"
-                                    name="email"
-                                    placeholder="Email"
-                                    required
-                                    />
+                                    <input type="email" id="email-id-column" class="form-control" name="email"
+                                        placeholder="Email" required />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="country">Country</label>
-                                    <input
-                                    type="text"
-                                    id="country"
-                                    class="form-control"
-                                    placeholder="Country "
-                                    name="country"
-                                    required
-                                    />
+                                    <input type="text" id="country" class="form-control" placeholder="Country "
+                                        name="country" required />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="city">City</label>
-                                    <input
-                                    type="text"
-                                    id="city"
-                                    class="form-control"
-                                    placeholder="City"
-                                    name="city"
-                                    required
-                                    />
+                                    <input type="text" id="city" class="form-control" placeholder="City"
+                                        name="city" required />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="postal-code">Postal Code</label>
-                                    <input
-                                    type="text"
-                                    id="postal-code"
-                                    class="form-control"
-                                    placeholder="Postal Code"
-                                    name="postal_code"
-                                    required
-                                    />
+                                    <input type="text" id="postal-code" class="form-control"
+                                        placeholder="Postal Code" name="postal_code" required />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="postal-address">Postal Address</label>
-                                    <input
-                                    type="text"
-                                    id="postal-address"
-                                    class="form-control"
-                                    placeholder="Postal Address"
-                                    name="postal_address"
-                                    required
-                                    />
+                                    <input type="text" id="postal-address" class="form-control"
+                                        placeholder="Postal Address" name="postal_address" required />
                                 </div>
                             </div>
                             <div class="col-md-12 col-12">
                                 <div class="mb-1">
-                                <label class="form-label" for="physical-address">Physical Address</label>
-                                <input
-                                    type="text"
-                                    id="physical-address"
-                                    class="form-control"
-                                    placeholder="Physical Address"
-                                    name="physical_address"
-                                    required
-                                />
+                                    <label class="form-label" for="physical-address">Physical Address</label>
+                                    <input type="text" id="physical-address" class="form-control"
+                                        placeholder="Physical Address" name="physical_address" required />
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="mb-1">
-                                <label class="form-label" for="password">Password</label>
-                                <input
-                                    type="text"
-                                    id="password"
-                                    class="form-control"
-                                    placeholder="Password"
-                                    name="password"
-                                    required
-                                />
+                                    <label class="form-label" for="password">Password</label>
+                                    <input type="text" id="password" class="form-control" placeholder="Password"
+                                        name="password" required />
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="mb-1">
-                                <label class="form-label" for="confirm-password">Confirm Password</label>
-                                <input
-                                    type="text"
-                                    id="confirm-password"
-                                    class="form-control"
-                                    placeholder="Confirm Password"
-                                    name="confirm_password"
-                                    required
-                                />
+                                    <label class="form-label" for="confirm-password">Confirm Password</label>
+                                    <input type="text" id="confirm-password" class="form-control"
+                                        placeholder="Confirm Password" name="password_confirmation" required />
                                 </div>
                             </div>
                         </div>
@@ -255,177 +201,191 @@
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
                         </div>
-                    </form>
-                </div>
-                <div id="personal-info-vertical" class="content" role="tabpanel"
-                    aria-labelledby="personal-info-vertical-trigger">
-                    <div class="content-header">
-                        <h5 class="mb-0">Kin & Relation</h5>
 
                     </div>
-                    <form action="">
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="kin-name">Kin Name</label>
-                            <input type="text" id="kin-name" class="form-control" placeholder="Kin Name" />
+
+                    <div id="personal-info-vertical" class="content" role="tabpanel"
+                        aria-labelledby="personal-info-vertical-trigger">
+                        <div class="content-header">
+                            <h5 class="mb-0">Kin & Relation</h5>
+
                         </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="kin-phone">Kin Phone</label>
-                            <input type="text" id="kin-phone" class="form-control" placeholder="Kin Phone" />
+
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="kin-name">Kin Name</label>
+                                <input type="text" id="kin-name" class="form-control" placeholder="Kin Name" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="kin-phone">Kin Phone</label>
+                                <input type="text" id="kin-phone" class="form-control" placeholder="Kin Phone" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="Kin-relation">Kin Relation</label>
-                            <input type="text" id="Kin-relation" class="form-control" placeholder="Kin Relation" />
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="Kin-relation">Kin Relation</label>
+                                <input type="text" id="Kin-relation" class="form-control"
+                                    placeholder="Kin Relation" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="emergency-phone">Emergency Phone</label>
+                                <input type="text" id="emergency-phone" class="form-control"
+                                    placeholder="Emergency Phone" />
+                            </div>
                         </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="emergency-phone">Emergency Phone</label>
-                            <input type="text" id="emergency-phone" class="form-control" placeholder="Emergency Phone" />
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="emergency-email">Emergency Email</label>
+                                <input type="text" id="emergency-email" class="form-control"
+                                    placeholder="Emergency Email" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="emergency-relation">Emergency Relation</label>
+                                <input type="text" id="emergency-relation" class="form-control"
+                                    placeholder="Emergency Relation" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="emergency-email">Emergency Email</label>
-                            <input type="text" id="emergency-email" class="form-control" placeholder="Emergency Email" />
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="emergency-name">Emergency Name</label>
+                                <input type="text" id="emergency-name" class="form-control"
+                                    placeholder="Emergency Name" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="emergency-postal-address">Emergency Postal Address</label>
+                                <input type="text" id="emergency-postal-address" class="form-control"
+                                    placeholder="Emergency Postal Address" />
+                            </div>
                         </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="emergency-relation">Emergency Relation</label>
-                            <input type="text" id="emergency-relation" class="form-control" placeholder="Emergency Relation" />
+                        <div class="row">
+                            <div class="mb-1 col-md-12">
+                                <label class="form-label" for="emergency-physical-address">Emergency physical
+                                    Address</label>
+                                <input type="text" id="emergency-physical-address" class="form-control"
+                                    placeholder="Emergency physical Address" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="emergency-name">Emergency Name</label>
-                            <input type="text" id="emergency-name" class="form-control" placeholder="Emergency Name" />
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary btn-prev">
+                                <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                            </button>
+                            <button class="btn btn-primary btn-next">
+                                <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                            </button>
                         </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="emergency-postal-address">Emergency Postal Address</label>
-                            <input type="text" id="emergency-postal-address" class="form-control" placeholder="Emergency Postal Address" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-12">
-                            <label class="form-label" for="emergency-physical-address">Emergency physical Address</label>
-                            <input type="text" id="emergency-physical-address" class="form-control" placeholder="Emergency physical Address" />
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary btn-prev">
-                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                        </button>
-                        <button class="btn btn-primary btn-next">
-                            <span class="align-middle d-sm-inline-block d-none">Next</span>
-                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                        </button>
-                    </div>
-                </form>
-                </div>
-                <div id="address-step-vertical" class="content" role="tabpanel"
-                    aria-labelledby="address-step-vertical-trigger">
-                    <div class="content-header">
-                        <h5 class="mb-0">Employment</h5>
 
                     </div>
-                    <form action="">
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="employment-status">Employment Status</label>
-                            <input type="text" id="employment-status" class="form-control"
-                                placeholder="Employment Status" />
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="employment-position">Employment Position</label>
-                            <input type="text" id="employment-position" class="form-control"
-                                placeholder="Employment Position" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="pincode2">Employment Contact Phone</label>
-                            <input type="text" id="pincode2" class="form-control" placeholder="Employment Contact Phone" />
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="employment-email">Employment Contact Phone</label>
-                            <input type="text" id="employment-email" class="form-control" placeholder="Employment Contact Email" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="employment-postal-address">Employment Postal Address</label>
-                            <input type="text" id="employment-postal-address" class="form-control" placeholder="Employment physical Address" />
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="employment-physical-address">Employment physical Address</label>
-                            <input type="text" id="employment-physical-address" class="form-control" placeholder="Employment physical Address" />
-                        </div>
-                    </div>
-                </form>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary btn-prev">
-                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                        </button>
-                        <button class="btn btn-primary btn-next">
-                            <span class="align-middle d-sm-inline-block d-none">Next</span>
-                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                        </button>
-                    </div>
-                </div>
-                <div id="social-links-vertical" class="content" role="tabpanel"
-                    aria-labelledby="social-links-vertical-trigger">
-                    <div class="content-header">
-                        <h5 class="mb-0">Bussiness Details</h5>
+                    <div id="address-step-vertical" class="content" role="tabpanel"
+                        aria-labelledby="address-step-vertical-trigger">
+                        <div class="content-header">
+                            <h5 class="mb-0">Employment</h5>
 
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="employment-status">Employment Status</label>
+                                <input type="text" id="employment-status" class="form-control"
+                                    placeholder="Employment Status" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="employment-position">Employment Position</label>
+                                <input type="text" id="employment-position" class="form-control"
+                                    placeholder="Employment Position" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="pincode2">Employment Contact Phone</label>
+                                <input type="text" id="pincode2" class="form-control"
+                                    placeholder="Employment Contact Phone" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="employment-email">Employment Contact Phone</label>
+                                <input type="text" id="employment-email" class="form-control"
+                                    placeholder="Employment Contact Email" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="employment-postal-address">Employment Postal
+                                    Address</label>
+                                <input type="text" id="employment-postal-address" class="form-control"
+                                    placeholder="Employment physical Address" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="employment-physical-address">Employment physical
+                                    Address</label>
+                                <input type="text" id="employment-physical-address" class="form-control"
+                                    placeholder="Employment physical Address" />
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary btn-prev">
+                                <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                            </button>
+                            <button class="btn btn-primary btn-next">
+                                <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                            </button>
+                        </div>
                     </div>
-                    {{-- form tag --}}
-                    <form action="">
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="bussiness-name">Business Name</label>
-                            <input type="text" id="bussiness-name" class="form-control"
-                                placeholder="Business Name" />
+                    <div id="social-links-vertical" class="content" role="tabpanel"
+                        aria-labelledby="social-links-vertical-trigger">
+                        <div class="content-header">
+                            <h5 class="mb-0">Bussiness Details</h5>
+
                         </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="license-number">License Number</label>
-                            <input type="text" id="license-number" class="form-control"
-                                placeholder="License Number" />
+
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="bussiness-name">Business Name</label>
+                                <input type="text" id="bussiness-name" class="form-control"
+                                    placeholder="Business Name" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="license-number">License Number</label>
+                                <input type="text" id="license-number" class="form-control"
+                                    placeholder="License Number" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="tax-id">Tax ID</label>
-                            <input type="text" id="tax-id" class="form-control"
-                                placeholder="Tax ID" />
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="tax-id">Tax ID</label>
+                                <input type="text" id="tax-id" class="form-control" placeholder="Tax ID" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="business-address">Business Address</label>
+                                <input type="text" id="business-address" class="form-control"
+                                    placeholder="Business Address" />
+                            </div>
                         </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="business-address">Business Address</label>
-                            <input type="text" id="business-address" class="form-control"
-                                placeholder="Business Address" />
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="business-industry">Business Industry</label>
+                                <input type="text" id="business-industry" class="form-control"
+                                    placeholder="Business Industry" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="business-description">Business Description</label>
+                                <input type="text" id="business-description" class="form-control"
+                                    placeholder="Business Description" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="business-industry">Business Industry</label>
-                            <input type="text" id="business-industry" class="form-control"
-                                placeholder="Business Industry" />
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="business-description">Business Description</label>
-                            <input type="text" id="business-description" class="form-control"
-                                placeholder="Business Description" />
+
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary btn-prev">
+                                <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                            </button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
                 </form>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary btn-prev">
-                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                        </button>
-                        <button class="btn btn-success btn-submit">Submit</button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -442,5 +402,5 @@
 @section('page-script')
     <!-- Page js files -->
     <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
-    <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+    {{-- <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script> --}}
 @endsection

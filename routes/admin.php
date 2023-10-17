@@ -37,14 +37,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('edit/{id}', [LandlordController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [LandlordController::class, 'update'])->name('update');
         Route::get('destroy/{id}', [LandlordController::class, 'destroy'])->name('destroy');
-        Route::get('block/{id}', [LandlordController::class,'view'])->name('block');
+        Route::get('block/{id}', [LandlordController::class,'block'])->name('block');
+        Route::get('unblock/{id}', [LandlordController::class,'unblock'])->name('unblock');
     });
 
     Route::prefix('tenant')->name('tenant.')->group(function(){
         Route::get('/', [TenentController::class, 'index'])->name('index');
         // Route::get('show', [TenentController::class, 'show'])->name('show');
         Route::get('create', [TenentController::class, 'create'])->name('create');
-        Route::post('info', [TenentController::class, 'tenantInfo'])->name('tenantInfo');
+        Route::post('store', [TenentController::class, 'store'])->name('store');
         // Route::post('store', [TenentController::class, 'store'])->name('store');
         // Route::get('edit/{id}', [TenentController::class, 'edit'])->name('edit');
         // Route::get('block/{id}', [TenentController::class,'view'])->name('block');

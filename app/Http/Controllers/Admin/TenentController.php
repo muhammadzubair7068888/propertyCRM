@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\TenantType;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -15,11 +16,13 @@ class TenentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
+        
         return view("admin.tenent.index");
     }
     public function view()
     {
+       
         return view('admin.tenent.view.index');
     }
 
@@ -30,40 +33,13 @@ class TenentController extends Controller
      */
     public function create()
     {
-        return view("admin.tenent.addtenant");
+        $pagedata['types']= TenantType::get();
+        return view("admin.tenent.addtenant",$pagedata);
     }
 
     public function tenantInfo(Request $request)
     {
-        $tenantUser = new User();
-        $tenantUser->first_name = $request->fname;
-        $tenantUser->middle_name = $request->middle_name;
-        $tenantUser->last_name = $request->lname;
-        $tenantUser->phone_number = $request->phone_number;
-        $tenantUser->email = $request->email;
-        $tenantUser->registration_date = $request->date;
-        $tenantUser->country = $request->country;
-        $tenantUser->national_id = $request->passport;
-        $tenantUser->state = $request->fname;
-        $tenantUser->city = $request->city;
-        $tenantUser->postal_address = $request->postal_address;
-        $tenantUser->physical_address = $request->physical_address;
-        $tenantUser->residential_address = $request->residential_address;
-        $tenantUser->password = Hash::make($request->password);
-        $tenantUser->user_type = 'tenant';
-        $tenantUser->gender = $request->gender;
-        $tenantUser->DOB = $request->dob;
-        $tenantUser->martial_status = $request->martial_status;
-        $tenantUser->postal_code = $request->postal_code;
-        $tenantUser->status = 1;
-        $result = $tenantUser->save();
-        $user_id = User::where('email',$request->email)->pluck('id')->first();
-        if($result && $user_id){
-            return response()->json([
-                'success' => 'success',
-                'userId' => $user_id
-            ]);
-        }
+        
     }
 
     /**
@@ -72,9 +48,47 @@ class TenentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+   
+    //    $req->validate([
+    //     'first_name' => 'required',
+    //     'middle_name' => 'required',
+    //     'last_name' => 'required',
+    //     'gender' => 'required',
+    //     'phone_number' => 'required',
+    //     'email' => 'required|email|unique:users,email',
+    //     'registration_date' => 'required|date',
+    //     'country' => 'required',
+    //     'national_id' => 'required',
+    //     'state' => 'required',
+    //     'city' => 'required',
+    //     'postal_address' => 'required',
+    //     'physical_address' => 'required',
+    //      'password' => 'required|confirmed',
+    //    ]);
+    //    $data = $req->except('_token', 'password_confirmation','tenant-type');
+    //    $data['password'] = Hash::make($req->password);
+
+       $user = User::create([
+        'first_name'=>$req->first_name,
+        'middle_name'=>$req->middle_name,
+        'last_name'=>$req->last_name,
+        'gender'=>$req->gender,
+        'phone_number'=>$req->phone_number,
+        'email'=>$req->email,
+        'registration_date'=>$req->registration_date,
+        'country'=>$req->country,
+        'national_id'=>$req->national_id,
+        'state'=>$req->state,
+        'city'=>$req->city,
+        'postal_address'=>$req->postal_address,
+        'physical_address'=>$req->physical_address,
+        'password'=>Hash::make($req->password),
+       ]);
+
+       return redirect()->route('admin.tenant.index')->with('success','Landlord added successfully');
+       
     }
 
     /**
