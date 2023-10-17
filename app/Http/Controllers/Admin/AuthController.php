@@ -28,6 +28,7 @@ class AuthController extends Controller
 
         if (Hash::check($req->password, $user->password)) {
             Auth::login($user);
+            notification(user_name(),'Successfully Logged in at '.now(),'bell');
             return redirect()->route(route_name('.home'))->with('success','Logged in successfully');
         } else {
             return redirect()->back()->with('error','User Not Found');
