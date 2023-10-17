@@ -19,8 +19,9 @@ class LandlordController extends Controller
     public function index()
     {
         $pagedata['breadcrumbs'] = [
-            ['link' => "landlord", 'name' => "Landlords"], ['name' => "home"]
+            ['link' => "admin/landlord", 'name' => "Landlords"], ['name' => "home"]
         ];
+
         $pagedata['users'] = User::whereUserType('landlord')->get();
         return view('admin.landlord.index', $pagedata);
     }
@@ -33,6 +34,9 @@ class LandlordController extends Controller
      */
     public function create()
     {
+        $pagedata['breadcrumbs'] = [
+            ['link' => "admin/landlord", 'name' => "Landlords"],['name' => "Create"]
+        ];
         $pagedata['url']='admin.landlord.store';
         $pagedata['name']='Add';
         return view('admin.landlord.addlandlord',$pagedata);
@@ -79,6 +83,9 @@ class LandlordController extends Controller
      */
     public function show($id)
     {
+        $pagedata['breadcrumbs'] = [
+            ['link' => "admin/landlord", 'name' => "Landlords"],['name' => "View"]
+        ];
         $pagedata['user'] = User::find($id);
         return view('admin.landlord.view.index', $pagedata);
     }
@@ -91,12 +98,15 @@ class LandlordController extends Controller
      */
     public function edit($id)
     {
+        $pagedata['breadcrumbs'] = [
+            ['link' => "admin/landlord", 'name' => " Landlords"], ['name' => "Edit"]
+        ];
         $pagedata['user'] = User::find($id);
         $pagedata['url'] = 'admin.landlord.update';
         $pagedata['id'] = $id;
         $pagedata['name']='Edit';
         return view('admin.landlord.addlandlord',$pagedata);
-    }   
+    }
 
     /**
      * Update the specified resource in storage.
@@ -110,7 +120,7 @@ class LandlordController extends Controller
         $data = $req->except('_token');
         $user=User::find($id)->update($data);
         if($user){
-            return redirect()->route('admin.landlord.index');  
+            return redirect()->route('admin.landlord.index');
         } else{
                 dd('Not Found');
             };

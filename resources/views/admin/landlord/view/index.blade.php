@@ -113,7 +113,8 @@
                               <div class="mb-1">
                                 <label class="form-label" for="first-name-column">First Name</label>
                                 <input
-                                readonly
+                                  readonly
+                                  value="{{@$user->first_name}}"
                                   type="text"
                                   id="first-name-column"
                                   class="form-control"
@@ -127,6 +128,7 @@
                                   <label class="form-label" for="middle-name-column">Middle Name</label>
                                   <input
                                   readonly
+                                  value="{{@$user->middle_name}}"
                                     type="text"
                                     id="middle-name-column"
                                     class="form-control"
@@ -140,6 +142,7 @@
                                   <label class="form-label" for="last-name-column">Last Name</label>
                                   <input
                                   readonly
+                                  value="{{@$user->last_name}}"
                                     type="text"
                                     id="last-name-column"
                                     class="form-control"
@@ -153,6 +156,7 @@
                                   <label class="form-label" for="phone-name-column">Phone</label>
                                   <input
                                   readonly
+                                  value="{{@$user->phone_number}}"
                                     type="text"
                                     id="phone-name-column"
                                     class="form-control"
@@ -166,6 +170,7 @@
                                   <label class="form-label" for="email-column">Email</label>
                                   <input
                                   readonly
+                                  value="{{@$user->email}}"
                                     type="text"
                                     id="email-column"
                                     class="form-control"
@@ -179,6 +184,7 @@
                                 <label class="form-label" for="registration-name-column">Registration</label>
                                 <input
                                 readonly
+                                value="{{@$user->registration_date}}"
                                   type="text"
                                   id="registration-name-column"
                                   class="form-control"
@@ -190,14 +196,15 @@
                             <div class="col-md-6 col-12">
                               <div class="mb-1">
                                 <label class="form-label" for="country-column">Country</label>
-                                <input readonly type="text" id="country-column" class="form-control" placeholder="Country" name="country-column" />
+                                <input readonly value="{{@$user->country}}" type="text" id="country-column" class="form-control" placeholder="Country" name="country-column" />
                               </div>
                             </div>
                             <div class="col-md-6 col-12">
                               <div class="mb-1">
-                                <label class="form-label" for="city-floating">City</label>
+                                <label class="form-label"  for="city-floating">City</label>
                                 <input
                                 readonly
+                                value="{{@$user->city}}"
                                   type="text"
                                   id="city-floating"
                                   class="form-control"
@@ -211,6 +218,7 @@
                                 <label class="form-label" for="state-column">State</label>
                                 <input
                                 readonly
+                                value="{{@$user->state}}"
                                   type="text"
                                   id="state-column"
                                   class="form-control"
@@ -224,6 +232,7 @@
                                 <label class="form-label" for="passport-id-column">National ID or Passport</label>
                                 <input
                                 readonly
+                                value="{{@$user->national_id}}"
                                   type="email"
                                   id="passport-id-column"
                                   class="form-control"
@@ -237,6 +246,7 @@
                                   <label class="form-label" for="postal-address-column">Postal Address</label>
                                   <input
                                   readonly
+                                  value="{{@$user->postal_address}}"
                                     type="email"
                                     id="postal-address-column"
                                     class="form-control"
@@ -250,6 +260,7 @@
                                     <label class="form-label" for="physical-address-column">Physical Address</label>
                                     <input
                                     readonly
+                                    value="{{@$user->physical_address}}"
                                       type="email"
                                       id="physical-address-column"
                                       class="form-control"
@@ -263,6 +274,7 @@
                                     <label class="form-label" for="residential-address-column">Residential Address</label>
                                     <input
                                     readonly
+                                    value="{{@$user->residential_address}}"
                                       type="email"
                                       id="residential-address-column"
                                       class="form-control"
@@ -286,7 +298,7 @@
           <div class="tab-pane" id="messages-just" role="tabpanel" aria-labelledby="messages-tab-justified">
            @include('admin.landlord.view.documents')
           </div>
-         
+
         </div>
       </div>
     </div>
@@ -297,7 +309,7 @@
   {{-- vendor files --}}
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
- 
+
   <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
@@ -313,7 +325,7 @@
   <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
- 
+
 @endsection
 
  @push('page-script')
