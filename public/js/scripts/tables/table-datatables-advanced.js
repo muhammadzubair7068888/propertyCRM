@@ -93,7 +93,7 @@ var normalizeDate = function (dateString) {
 $(function () {
   var isRtl = $('html').attr('data-textdirection') === 'rtl';
 
-  var dt_ajax_table = $('.datatables-ajax'),
+  var dt_ajax_table = $('.datatables-table'),
     dt_filter_table = $('.dt-column-search'),
     dt_adv_filter_table = $('.dt-advanced-search'),
     dt_responsive_table = $('.dt-responsive'),
@@ -110,7 +110,6 @@ $(function () {
     var dt_ajax = dt_ajax_table.dataTable({
       processing: true,
       dom: '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-      ajax: assetPath + 'data/ajax.php',
       language: {
         paginate: {
           // remove previous & next text from pagination

@@ -15,12 +15,13 @@ class LandlordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $pagedata['breadcrumbs'] = [
             ['link' => "landlord", 'name' => "Landlords"], ['name' => "home"]
         ];
-        $pagedata['users'] = User::get();
+        $pagedata['users'] = User::whereUserType('landlord')->get();
         return view('admin.landlord.index', $pagedata);
     }
 
@@ -44,35 +45,31 @@ class LandlordController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $req)
-    
-{
-    $req->validate([
-        'first_name' => 'required',
-        'middle_name' => 'required',
-        'last_name' => 'required',
-        'phone_number' => 'required',
-        'email' => 'required|email|unique:users,email',
-        'registration_date' => 'required|date',
-        'country' => 'required',
-        'national_id' => 'required',
-        'state' => 'required',
-        'city' => 'required',
-        'postal_address' => 'required',
-        'physical_address' => 'required',
-        'residential_address' => 'required',
-        'password' => 'required|confirmed',
-    ]);
+    {
+        $req->validate([
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+            'phone_number' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'registration_date' => 'required|date',
+            'country' => 'required',
+            'national_id' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'postal_address' => 'required',
+            'physical_address' => 'required',
+            'residential_address' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+        $data = $req->except('_token', 'password_confirmation');
+        $data['created_at'] = now();
+        $data['updated_at'] = now();
 
-    $data = $req->except('_token', 'password_confirmation');
+        User::insert($data);
 
-    // Hash the password before inserting it into the database
-    $data['password'] = Hash::make($req->password);
-
-    User::create($data);
-
-    return redirect()->route('admin.landlord.index');
-}
-
+        return redirect()->route('admin.landlord.index');
+    }
 
     /**
      * Display the specified resource.
@@ -83,7 +80,7 @@ class LandlordController extends Controller
     public function show($id)
     {
         $pagedata['user'] = User::find($id);
-        return view('admin.landlord.view.index',$pagedata);
+        return view('admin.landlord.view.index', $pagedata);
     }
 
     /**
@@ -149,13 +146,12 @@ class LandlordController extends Controller
      */
     public function destroy($id)
     {
-        $user=User::find($id);
-        if($user){
+        $user = User::find($id);
+        if ($user) {
             $user->delete();
-            return redirect()->route('admin.landlord.index')->with('success', 'User deleted successfully.');
-        }
-        else{
-dd('Not deleted............');
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        } else {
+            return redirect()->back()->with('error', 'User not found.');
         }
     }
 }
