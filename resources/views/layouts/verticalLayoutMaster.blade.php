@@ -58,6 +58,9 @@ data-asset-path="{{ asset('/')}}">
   <div class="sidenav-overlay"></div>
   <div class="drag-target"></div>
 
+  {{-- Notification Script --}}
+  @include('panels.notifications')
+
   {{-- include footer --}}
   @include('panels/footer')
 

@@ -57,6 +57,8 @@ data-asset-path="{{ asset('/')}}">
   {{-- include default scripts --}}
   @include('panels/scripts')
 
+
+
   <script type="text/javascript">
     $(window).on('load', function() {
       if (feather) {
@@ -67,7 +69,9 @@ data-asset-path="{{ asset('/')}}">
       }
     })
   </script>
-
+  {{-- Notification Script --}}
+  @include('panels/notifications')
+  
 </body>
 
 </html>

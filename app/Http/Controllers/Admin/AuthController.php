@@ -24,13 +24,13 @@ class AuthController extends Controller
             'email' => 'email',
             'password' => 'required'
         ]);
-        $user = User::whereEmail($req->email)->wherePassword(Hash::check($req->password, 'password'))->whereStatus('1')->first();
+        $user = User::whereEmail($req->email)->whereStatus('1')->first();
 
-        if ($user) {
+        if (Hash::check($req->password, $user->password)) {
             Auth::login($user);
-            return redirect()->route(route_name('.home'));
+            return redirect()->route(route_name('.home'))->with('success','Logged in successfully');
         } else {
-            return redirect()->back()->withErrors('User Not Found');
+            return redirect()->back()->with('error','User Not Found');
         }
     }
 

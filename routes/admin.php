@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LandlordController;
 use App\Http\Controllers\Admin\LeaseController;
 use App\Http\Controllers\Admin\TenentController;
@@ -26,8 +26,8 @@ use App\Http\Controllers\Admin\VacateNoticeController;
 */
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('/', [StaterkitController::class, 'home'])->name('home');
-    Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
+    Route::get('/', [DashboardController::class, 'home'])->name('home');
+    Route::get('dashboard', [DashboardController::class, 'home'])->name('home');
     
     Route::prefix('landlord')->name('landlord.')->group(function(){
         Route::get('/', [LandlordController::class, 'index'])->name('index');

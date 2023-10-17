@@ -13,6 +13,7 @@ class LandlordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $pagedata['breadcrumbs'] = [
@@ -57,12 +58,12 @@ class LandlordController extends Controller
             'residential_address' => 'required',
             'password' => 'required|confirmed',
         ]);
-        $data = $req->except('_token','password_confirmation');
+        $data = $req->except('_token', 'password_confirmation');
         $data['created_at'] = now();
         $data['updated_at'] = now();
-        
+
         User::insert($data);
-        
+
         return redirect()->route('admin.landlord.index');
     }
 
@@ -75,7 +76,7 @@ class LandlordController extends Controller
     public function show($id)
     {
         $pagedata['user'] = User::find($id);
-        return view('admin.landlord.view.index',$pagedata);
+        return view('admin.landlord.view.index', $pagedata);
     }
 
     /**
@@ -87,7 +88,7 @@ class LandlordController extends Controller
     public function edit($id)
     {
         $pagedata['user'] = User::find($id);
-        return view('admin.landlord.addlandlord',$pagedata);
+        return view('admin.landlord.addlandlord', $pagedata);
     }
 
     /**
