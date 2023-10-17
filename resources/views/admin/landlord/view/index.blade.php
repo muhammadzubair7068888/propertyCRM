@@ -295,8 +295,8 @@
 
   @section('vendor-script')
   {{-- vendor files --}}
-  {{-- <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script> --}}
-  {{-- <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script> --}}
+  <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
  
   <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 

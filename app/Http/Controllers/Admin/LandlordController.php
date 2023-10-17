@@ -19,7 +19,7 @@ class LandlordController extends Controller
         $pagedata['breadcrumbs'] = [
             ['link' => "landlord", 'name' => "Landlords"], ['name' => "home"]
         ];
-        $pagedata['users'] = User::get();
+        $pagedata['users'] = User::whereUserType('landlord')->get();
         return view('admin.landlord.index', $pagedata);
     }
 
@@ -114,9 +114,9 @@ class LandlordController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->delete();
-            return redirect()->route('admin.landlord.index')->with('success', 'User deleted successfully.');
+            return redirect()->back()->with('success', 'User deleted successfully.');
         } else {
-            dd('Not deleted............');
+            return redirect()->back()->with('error', 'User not found.');
         }
     }
 }
