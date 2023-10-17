@@ -1,5 +1,5 @@
 @extends('layouts/contentLayoutMaster')
-@section('title', $name . ' Landlord')
+@section('title', (@$user ? 'Edit' : 'Add') . ' Landlord')
 
 @section('content')
 
@@ -9,10 +9,11 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">{{$name}} Landlord</h4>
+                        <h4 class="card-title">{{@$user ? 'Edit' : 'Add'}} Landlord</h4>
                     </div>
                     <div class="card-body">
-                        <form class="form" action="{{ route($url, @$id) }}" method="post">
+                        <form class="form" action="{{ @$user ? route('admin.landlord.update', @$user->id) : route('admin.landlord.store') }}" method="post">
+                        {{-- <form class="form" action="{{ route($url, @$id) }}" method="post"> --}}
                           @csrf
                           <input type="hidden" name="user_type" value="landlord">
                           <input type="hidden" name="gender" value="male">

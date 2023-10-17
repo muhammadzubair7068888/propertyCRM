@@ -33,9 +33,7 @@ class LandlordController extends Controller
      */
     public function create()
     {
-        $pagedata['url']='admin.landlord.store';
-        $pagedata['name']='Add';
-        return view('admin.landlord.addlandlord',$pagedata);
+        return view('admin.landlord.addlandlord');
     }
 
     /**
@@ -63,12 +61,13 @@ class LandlordController extends Controller
             'password' => 'required|confirmed',
         ]);
         $data = $req->except('_token', 'password_confirmation');
+        $data['password'] = Hash::make($req->password);
         $data['created_at'] = now();
         $data['updated_at'] = now();
 
         User::insert($data);
 
-        return redirect()->route('admin.landlord.index');
+        return redirect()->route('admin.landlord.index')->with('success','Landlord added successfully');
     }
 
     /**
@@ -92,9 +91,6 @@ class LandlordController extends Controller
     public function edit($id)
     {
         $pagedata['user'] = User::find($id);
-        $pagedata['url'] = 'admin.landlord.update';
-        $pagedata['id'] = $id;
-        $pagedata['name']='Edit';
         return view('admin.landlord.addlandlord',$pagedata);
     }   
 
