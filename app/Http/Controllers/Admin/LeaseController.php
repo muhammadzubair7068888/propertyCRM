@@ -26,6 +26,10 @@ class LeaseController extends Controller
     {
         return view("admin.leases.addlease");
     }
+    public function view()
+    {
+        return view('admin.leases.view.index');
+    }
 
     /**
      * Store a newly created resource in storage.

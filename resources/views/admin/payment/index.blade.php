@@ -22,9 +22,9 @@
           <h4 class="card-title">Vacate Notices</h4>
         </div>
         <div class="col-12 d-flex justify-content-end " >
-         
+
             <button type="submit" class="btn btn-primary me-2 mt-2 " data-bs-toggle="modal" data-bs-target="#addNewCard" >+ Add Payment</button>
-           
+
         </div>
         <div class="card-datatable">
           <table class="dt-multilingual table">
@@ -52,6 +52,7 @@
       </div>
     </div>
   </div>
+  @include('admin.payment.show-payment-model')
 </section>
 @include('admin.payment.modal-add-new-cc')
 <!--/ Multilingual -->
@@ -60,7 +61,7 @@
   {{-- vendor files --}}
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
- 
+
   <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
@@ -75,7 +76,7 @@
 <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 
 <script>
- 
+
   $('.dt-multilingual').DataTable({
       ajax:'{{ asset('data/table-datatable.json') }}',
       columns: [
@@ -133,10 +134,10 @@
               feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
               '</a>' +
               '<div class="dropdown-menu dropdown-menu-end">' +
-                '<a href="javascript:;" class="dropdown-item">' +
+                '<a href="javascript:;" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#inlineForm">'  +
               feather.icons['eye'].toSvg({ class: 'me-50 font-medium-4' }) +
               'View</a>' +
-              '<a href="javascript:;" class="dropdown-item">' +
+              '<a href="{{route('admin.payment.create')}}" class="dropdown-item">' +
               feather.icons['file-text'].toSvg({ class: 'me-50 font-medium-4' }) +
               'Receipt</a>' +
               '<a href="javascript:;" class="dropdown-item">' +
@@ -146,7 +147,7 @@
               feather.icons['x-circle'].toSvg({ class: 'me-50 font-medium-4 text-danger' }) +
               'Cancel</a>' +
               '</div>' +
-              '</div>' 
+              '</div>'
             );
           }
         }
@@ -195,7 +196,7 @@
         }
       }
     });
- 
+
 </script>
 
 <script>

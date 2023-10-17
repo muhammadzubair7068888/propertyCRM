@@ -4,7 +4,7 @@
       <div class="col-xl-10 col-lg-10">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Filled</h4>
+            <h4 class="card-title">Tenant Setting</h4>
           </div>
           <div class="card-body">
 
@@ -77,9 +77,7 @@
                   </section>
               </div>
               <div class="tab-pane" id="profile-fill" role="tabpanel" aria-labelledby="profile-tab-fill">
-                <p>
-                  Bear claw jelly beans wafer pastry jelly beans  je
-                </p>
+               @include('admin.setting.tenant.tenant-type')
 
               </div>
 

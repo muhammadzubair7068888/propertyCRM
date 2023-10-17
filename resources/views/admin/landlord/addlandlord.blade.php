@@ -1,7 +1,5 @@
 @extends('layouts/contentLayoutMaster')
-
 @section('title', 'Add Landlord')
-
 @section('content')
     <!-- Basic multiple Column Form section start -->
     <section id="multiple-column-form">
@@ -9,7 +7,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Multiple Column</h4>
+                        <h4 class="card-title">New Landlord</h4>
                     </div>
                     <div class="card-body">
                         <form class="form" action="{{ route('admin.landlord.store') }}" method="post">
@@ -84,7 +82,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="col-md-6 col-12">
                                     <div class="mb-1">
                                         <label class="form-label @error('country') text-danger @enderror" for="country">Country</label>
@@ -129,7 +126,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="col-md-12 col-12">
                                     <div class="mb-1">
                                         <label class="form-label @error('postal_address') text-danger @enderror" for="postal-address">Postal Address</label>

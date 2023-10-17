@@ -11,13 +11,17 @@
 <link rel="stylesheet" type="text/css" href="{{asset(mix('css/base/pages/page-blog.css'))}}">
 @endsection
 
+
+
+
+
 <section id="nav-filled">
     <div class="row match-height">
       <!-- Filled Tabs starts -->
       <div class="col-xl-12 col-lg-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Filled</h4>
+            <h4 class="card-title">Notification Setting</h4>
           </div>
           <div class="card-body">
             <!-- Nav tabs -->
@@ -65,7 +69,7 @@
             <div class="tab-content pt-1">
               <div class="tab-pane active" id="general-fill" role="tabpanel" aria-labelledby="home-tab-fill">
                 <p>
-               general
+             @include('admin.setting.notification.general')
                 </p>
 
               </div>
@@ -85,6 +89,7 @@
 
     </div>
   </section>
+
 
   @section('vendor-script')
   <script src="{{asset(mix('vendors/js/forms/select/select2.full.min.js'))}}"></script>

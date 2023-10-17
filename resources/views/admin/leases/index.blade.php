@@ -96,7 +96,7 @@
             {
                 data: 'start_date'
             },
-            
+
             { data: 'status' },
 
             {
@@ -160,12 +160,12 @@
                         // 'Delete</a>' +
                         // '</div>' +
                         // '</div>' +
-                        '<a href="javascript:;" class="item-edit pe-1">' +
+                        '<a href="{{route('admin.view.leases')}}" class="item-edit pe-1">' +
                         feather.icons['eye'].toSvg({
                             class: 'font-small-4'
                         }) +
                         '</a>' +
-                        '<a href="javascript:;" class="item-edit">' +
+                        '<a href="{{route('admin.leases.create')}}" class="item-edit">' +
                         feather.icons['edit'].toSvg({
                             class: 'font-small-4'
                         }) +

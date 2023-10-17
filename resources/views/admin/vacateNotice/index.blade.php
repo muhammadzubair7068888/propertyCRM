@@ -22,9 +22,9 @@
           <h4 class="card-title">Vacate Notices</h4>
         </div>
         <div class="col-12 d-flex justify-content-end " >
-         
+
             <button type="submit" class="btn btn-primary me-2 mt-2 " data-bs-toggle="modal" data-bs-target="#addNewCard" >+ Add Vacate Notice</button>
-           
+
         </div>
         <div class="card-datatable">
           <table class="dt-multilingual table">
@@ -56,7 +56,7 @@
   {{-- vendor files --}}
   <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
- 
+
   <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
@@ -71,7 +71,7 @@
 <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 
 <script>
- 
+
   $('.dt-multilingual').DataTable({
       ajax:'{{ asset('data/table-datatable.json') }}',
       columns: [
@@ -138,10 +138,10 @@
               // 'Delete</a>' +
               // '</div>' +
               // '</div>' +
-              '<a href="javascript:;" class="item-edit pe-1">' +
+              '<a href="{{route('admin.vacate_notice.create')}}" class="item-edit pe-1">' +
               feather.icons['eye'].toSvg({ class: 'font-medium-4' }) +
               '</a>'+
-              '<a href="javascript:;" class="item-edit">' +
+              '<a href="javascript:;"  data-bs-toggle="modal" data-bs-target="#addNewCard2" class="item-edit">' +
               feather.icons['edit'].toSvg({ class: 'font-medium-4' }) +
               '</a>'
             );
@@ -192,7 +192,7 @@
         }
       }
     });
- 
+
 </script>
 
 <script>

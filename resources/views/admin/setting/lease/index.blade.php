@@ -10,10 +10,11 @@
 <link rel="stylesheet" type="text/css" href="{{asset(mix('css/base/plugins/forms/form-quill-editor.css'))}}">
 <link rel="stylesheet" type="text/css" href="{{asset(mix('css/base/pages/page-blog.css'))}}">
 @endsection
+
 <div class="col-xl-12 col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Landlord</h4>
+        <h4 class="card-title">Lease Setting</h4>
       </div>
       <div class="card-body">
         <ul class="nav nav-tabs nav-justified" id="myTab2" role="tablist">
@@ -217,16 +218,14 @@
               </section>
           </div>
           <div class="tab-pane" id="lease-type" role="tabpanel" aria-labelledby="profile-tab-justified">
-            <p>
-         this is lease
-            </p>
+            @include('admin.setting.lease.lease-type')
 
           </div>
 
 
           <div class="tab-pane" id="extra-charges" role="tabpanel" aria-labelledby="settings-tab-justified">
             <p>
-            this is payment
+            @include('admin.setting.lease.extra-charges')
             </p>
           </div>
           <div class="tab-pane" id="contract-document" role="tabpanel" aria-labelledby="settings-tab-justified">
@@ -234,7 +233,7 @@
        @include('admin.setting.lease.contract-document')
 
 
-{{-- ######## --}}
+
             </div>
         </div>
       </div>
@@ -249,6 +248,4 @@
   <script src="{{asset(mix('vendors/js/editors/quill/quill.min.js'))}}"></script>
   @endsection
 
-  @section('page-script')
-  <script src="{{asset(mix('js/scripts/pages/page-blog-edit.js'))}}"></script>
-  @endsection
+ 

@@ -24,7 +24,7 @@ class VacateNoticeController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin.vacateNotice.viewvacantnotice');
     }
 
     /**

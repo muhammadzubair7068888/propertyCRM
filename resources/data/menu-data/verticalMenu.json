@@ -19,7 +19,7 @@
             "slug": "properties"
         },
         {
-            "url": "admin/tenants",
+            "url": "admin/tenant",
             "name": "Tenants",
             "icon": "user-plus",
             "slug": "tenants"

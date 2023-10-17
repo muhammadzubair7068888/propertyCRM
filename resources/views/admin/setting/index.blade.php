@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
-  {{-- ########### --}}
+ 
 
   <link rel="stylesheet" href="{{asset(mix('vendors/css/forms/select/select2.min.css'))}}">
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/katex.min.css'))}}">
@@ -149,9 +149,9 @@
                @include('admin.setting.system')
               </div>
               <div class="tab-pane" id="tabVerticalLeft2" role="tabpanel" aria-labelledby="baseVerticalLeft-tab2">
-                <p>
-                    @include('admin.setting.property')
-                </p>
+              
+                    @include('admin.setting.property.index')
+                
               </div>
               <div class="tab-pane" id="tabVerticalLeft3" role="tabpanel" aria-labelledby="baseVerticalLeft-tab3">
                 <p>
@@ -165,16 +165,7 @@
                @include('admin.setting.notification.index')
               </div>
               <div class="tab-pane" id="tabVerticalLeft6" role="tabpanel" aria-labelledby="baseVerticalLeft-tab6">
-                <p>
-                  Icing croissant powder jelly bonbon cake marzipan fruitcake. Tootsie roll marzipan tart marshmallow
-                  pastry cupcake chupa chups cookie. Fruitcake dessert lollipop pudding jelly. Cookie dragée jujubes
-                  croissant lemon drops cotton candy. Carrot cake candy canes powder donut toffee cookie.
-                </p>
-                <p>
-                  Icing croissant powder jelly bonbon cake marzipan fruitcake. Tootsie roll marzipan tart marshmallow
-                  pastry cupcake chupa chups cookie. Fruitcake dessert lollipop pudding jelly. Cookie dragée jujubes
-                  croissant lemon drops cotton candy. Carrot cake candy canes powder donut toffee cookie.
-                </p>
+              @include('admin.setting.payment.index')
               </div>
               <div class="tab-pane" id="tabVerticalLeft7" role="tabpanel" aria-labelledby="baseVerticalLeft-tab7">
                @include('admin.setting.rolesandpermission.index')
@@ -196,18 +187,27 @@
 
 
 @endsection
-
 @section('vendor-script')
-  {{-- vendor files --}}
-  <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
-{{-- ######## --}}
-<script src="{{asset(mix('vendors/js/forms/select/select2.full.min.js'))}}"></script>
-<script src="{{asset(mix('vendors/js/editors/quill/katex.min.js'))}}"></script>
-<script src="{{asset(mix('vendors/js/editors/quill/highlight.min.js'))}}"></script>
-<script src="{{asset(mix('vendors/js/editors/quill/quill.min.js'))}}"></script>
+{{-- vendor files --}}
+{{-- <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script> --}}
+{{-- <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script> --}}
+
+<script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+
+<script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap5.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/jszip.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/pdfmake.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/vfs_fonts.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/buttons.html5.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+
 @endsection
 
 @push('page-script')
@@ -217,6 +217,8 @@
  <script src="{{asset('js/scripts/components/components-navs.js')}}"></script>
 
  <script src="{{asset(mix('js/scripts/pages/page-blog-edit.js'))}}"></script>
+
+ 
 @endpush
 
 

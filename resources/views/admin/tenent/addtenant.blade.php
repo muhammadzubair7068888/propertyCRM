@@ -6,12 +6,16 @@
     <!-- vendor css files -->
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/wizard/bs-stepper.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
 @endsection
 
 @section('page-style')
     <!-- Page css files -->
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
 @endsection
 
 @section('content')
@@ -67,208 +71,191 @@
                         <h5 class="mb-0">Tenant Info</h5>
 
                     </div>
-<form action="">
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="tenant-type">Tenant Type</label>
-                            <select class="form-select" id="tenant-type" required>
-                                <option>IT</option>
-                                <option>Blade Runner</option>
-                                <option>Thor Ragnarok</option>
-                            </select>
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="first-name-column">First Name</label>
-                            <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
-                                name="fname-column"  required/>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="middle-name-column">Middle Name</label>
-                            <input type="text" id="middle-name-column" class="form-control" placeholder="Middle Name"
-                                name="middle-name-column" required />
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="vertical-last-name">Last Name</label>
-                            <input type="text" id="vertical-last-name" class="form-control" placeholder="Last Name" required />
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="gender">Gender</label>
-                            <select class="form-select" id="gender" required>
-                                <option>male</option>
-                                <option>female</option>
-                                <option>other</option>
-                            </select>
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="date">Date</label>
-                            <input type="text" id="date" class="form-control flatpickr-basic"
-                                placeholder="YYYY-MM-DD" required/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <div class="mb-1">
-                                <label class="form-label" for="passport">National ID or Passport</label>
-                                <input
-                                  type="text"
-                                  id="passport"
-                                  class="form-control"
-                                  placeholder="National ID or Passport"
-                                  name="passport"
-                                  required
-                                />
-                              </div>
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="martial-status">Martial Status</label>
-                            <input type="text" id="martial-status" class="form-control" placeholder="Martial Status"
-                                name="fname-column"  required/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <div class="mb-1">
-                                <label class="form-label" for="phone">Phone</label>
-                                <input
-                                  type="text"
-                                  id="phone"
-                                  class="form-control"
-                                  name="phone"
-                                  placeholder="Phone"
-                                  required
-                                />
-                              </div>
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <div class="mb-1">
-                                <label class="form-label" for="email-id-column">Email</label>
-                                <input
-                                  type="email"
-                                  id="email-id-column"
-                                  class="form-control"
-                                  name="email-id-column"
-                                  placeholder="Email"
-                                  required
-                                />
-                              </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <div class="mb-1">
-                                <label class="form-label" for="country">Country</label>
-                                <input
-                                  type="text"
-                                  id="country"
-                                  class="form-control"
-                                  placeholder="Country "
-                                  name="country"
-                                  required
-                                />
-                              </div>
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <div class="mb-1">
-                                <label class="form-label" for="city">City</label>
-                                <input
-                                  type="text"
-                                  id="city"
-                                  class="form-control"
-                                  placeholder="City"
-                                  name="city"
-                                  required
-                                />
-                              </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <div class="mb-1">
-                                <label class="form-label" for="postal-code">Postal Code</label>
-                                <input
-                                  type="text"
-                                  id="postal-code"
-                                  class="form-control"
-                                  placeholder="Postal Code"
-                                  name="postal-code"
-                                  required
-                                />
-                              </div>
-                        </div>
-                        <div class="mb-1 col-md-6">
-                            <div class="mb-1">
-                                <label class="form-label" for="postal-address">Postal Address</label>
-                                <input
-                                  type="text"
-                                  id="postal-address"
-                                  class="form-control"
-                                  placeholder="Postal Address"
-                                  name="postal-address"
-                                  required
-                                />
-                              </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-12">
-                            <div class="mb-1">
-                              <label class="form-label" for="physical-address">Physical Address</label>
-                              <input
-                                type="text"
-                                id="physical-address"
-                                class="form-control"
-                                placeholder="Physical Address"
-                                name="physical-address"
-                                required
-                              />
+                    <form method="POST" data-action="{{ route('admin.tenant.tenantInfo') }}">
+                        @csrf
+                        <div class="row">
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="tenant-type">Tenant Type</label>
+                                <select class="form-select" id="tenant-type" required>
+                                    <option>IT</option>
+                                    <option>Blade Runner</option>
+                                    <option>Thor Ragnarok</option>
+                                </select>
                             </div>
-                          </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-12">
-                            <div class="mb-1">
-                              <label class="form-label" for="password">Password</label>
-                              <input
-                                type="text"
-                                id="password"
-                                class="form-control"
-                                placeholder="Password"
-                                name="password"
-                                required
-                              />
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="first-name-column">First Name</label>
+                                <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
+                                    name="fname"  required/>
                             </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <div class="mb-1">
-                              <label class="form-label" for="confirm-password">Confirm Password</label>
-                              <input
-                                type="text"
-                                id="confirm-password"
-                                class="form-control"
-                                placeholder="Confirm Password"
-                                name="confirm-password"
-                                required
-                              />
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="middle-name-column">Middle Name</label>
+                                <input type="text" id="middle-name-column" class="form-control" placeholder="Middle Name"
+                                    name="middle_name" required />
                             </div>
-                          </div>
-                    </div>
-                </form>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-outline-secondary btn-prev" disabled>
-                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                        </button>
-                        <button class="btn btn-primary btn-next">
-                            <span class="align-middle d-sm-inline-block d-none">Next</span>
-                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                        </button>
-                    </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="vertical-last-name">Last Name</label>
+                                <input type="text" id="vertical-last-name" class="form-control" name="lname" placeholder="Last Name" required />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="gender">Gender</label>
+                                <select class="form-select" id="gender" name="gender" required>
+                                    <option value="male">male</option>
+                                    <option value="female">female</option>
+                                    <option value="other">other</option>
+                                </select>
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="date">Date</label>
+                                <input type="text" id="date" name="date" class="form-control flatpickr-basic"
+                                    placeholder="YYYY-MM-DD" required/>
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <div class="mb-1">
+                                    <label class="form-label" for="passport">National ID or Passport</label>
+                                    <input
+                                    type="text"
+                                    id="passport"
+                                    class="form-control"
+                                    placeholder="National ID or Passport"
+                                    name="passport"
+                                    required
+                                    />
+                                </div>
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="martial-status">Martial Status</label>
+                                <input type="text" id="martial-status" class="form-control" placeholder="Martial Status"
+                                    name="martial_status"  required/>
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <div class="mb-1">
+                                    <label class="form-label" for="phone">Phone</label>
+                                    <input
+                                    type="text"
+                                    id="phone"
+                                    class="form-control"
+                                    name="phone_number"
+                                    placeholder="Phone"
+                                    required
+                                    />
+                                </div>
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <div class="mb-1">
+                                    <label class="form-label" for="email-id-column">Email</label>
+                                    <input
+                                    type="email"
+                                    id="email-id-column"
+                                    class="form-control"
+                                    name="email"
+                                    placeholder="Email"
+                                    required
+                                    />
+                                </div>
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <div class="mb-1">
+                                    <label class="form-label" for="country">Country</label>
+                                    <input
+                                    type="text"
+                                    id="country"
+                                    class="form-control"
+                                    placeholder="Country "
+                                    name="country"
+                                    required
+                                    />
+                                </div>
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <div class="mb-1">
+                                    <label class="form-label" for="city">City</label>
+                                    <input
+                                    type="text"
+                                    id="city"
+                                    class="form-control"
+                                    placeholder="City"
+                                    name="city"
+                                    required
+                                    />
+                                </div>
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <div class="mb-1">
+                                    <label class="form-label" for="postal-code">Postal Code</label>
+                                    <input
+                                    type="text"
+                                    id="postal-code"
+                                    class="form-control"
+                                    placeholder="Postal Code"
+                                    name="postal_code"
+                                    required
+                                    />
+                                </div>
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <div class="mb-1">
+                                    <label class="form-label" for="postal-address">Postal Address</label>
+                                    <input
+                                    type="text"
+                                    id="postal-address"
+                                    class="form-control"
+                                    placeholder="Postal Address"
+                                    name="postal_address"
+                                    required
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-12">
+                                <div class="mb-1">
+                                <label class="form-label" for="physical-address">Physical Address</label>
+                                <input
+                                    type="text"
+                                    id="physical-address"
+                                    class="form-control"
+                                    placeholder="Physical Address"
+                                    name="physical_address"
+                                    required
+                                />
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="mb-1">
+                                <label class="form-label" for="password">Password</label>
+                                <input
+                                    type="text"
+                                    id="password"
+                                    class="form-control"
+                                    placeholder="Password"
+                                    name="password"
+                                    required
+                                />
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="mb-1">
+                                <label class="form-label" for="confirm-password">Confirm Password</label>
+                                <input
+                                    type="text"
+                                    id="confirm-password"
+                                    class="form-control"
+                                    placeholder="Confirm Password"
+                                    name="confirm_password"
+                                    required
+                                />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-outline-secondary btn-prev" disabled>
+                                <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-next">
+                                <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div id="personal-info-vertical" class="content" role="tabpanel"
                     aria-labelledby="personal-info-vertical-trigger">
@@ -323,7 +310,6 @@
                             <input type="text" id="emergency-physical-address" class="form-control" placeholder="Emergency physical Address" />
                         </div>
                     </div>
-                </form>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-primary btn-prev">
                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -334,6 +320,7 @@
                             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                         </button>
                     </div>
+                </form>
                 </div>
                 <div id="address-step-vertical" class="content" role="tabpanel"
                     aria-labelledby="address-step-vertical-trigger">
@@ -450,8 +437,10 @@
     <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 @endsection
 @section('page-script')
     <!-- Page js files -->
     <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 @endsection
