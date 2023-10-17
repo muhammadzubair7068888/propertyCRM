@@ -16,33 +16,18 @@
                 <div class="card">
                     <div class="card-header border-bottom">
                         <h4 class="card-title">Properties</h4>
-                    </div>
-                    <div class="col-12 d-flex justify-content-end ">
-                        <a href="{{ route('admin.properties.create') }}"> <button type="submit"
-                                class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Property</button></a>
+                        <a href="{{ route('admin.properties.create') }}" class="btn btn-primary">+ Add Property</a>
                     </div>
                     <div class="card-datatable">
                         <table class="dt-multilingual table">
                             <thead>
                                 <tr>
                                     <th></th>
-
                                     <th>Property Code</th>
-                                    <th>
-                                        Property Name</th>
-                                    <th>
-                                        Location</th>
-                                    <th>
-                                        Units</th>
-
+                                    <th>Property Name</th>
+                                    <th>Location</th>
+                                    <th>Units</th>
                                     <th>Action</th>
-                                    {{-- <th>Name</th>
-                <th>Position</th>
-                <th>Email</th>
-                <th>Date</th>
-                <th>Salary</th>
-                <th>Status</th>
-                <th>Action</th> --}}
                                 </tr>
                             </thead>
                         </table>
@@ -149,7 +134,7 @@
                             // 'Delete</a>' +
                             // '</div>' +
                             // '</div>' +
-                            '<a href="{{route('admin.view.property')}}" class="item-edit pe-1">' +
+                            '<a href="{{ route('admin.view.property') }}" class="item-edit pe-1">' +
                             feather.icons['eye'].toSvg({
                                 class: 'font-small-4'
                             }) +

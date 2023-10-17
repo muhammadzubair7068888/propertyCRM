@@ -50,7 +50,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         // Route::get('block/{id}', [TenentController::class,'view'])->name('block');
     });
 
-    Route::resource('properties', PropertyController::class);
+    Route::prefix('properties')->name('properties.')->group(function(){
+        Route::get('/', [PropertyController::class, 'index'])->name('index');
+        Route::get('create', [PropertyController::class, 'create'])->name('create');
+        Route::get('store', [PropertyController::class, 'store'])->name('store');
+    });
+
+    // Route::resource('properties', PropertyController::class);
     Route::get('view/property', [PropertyController::class,'view'])->name('view.property');
     // Route::resource('tenants', TenentController::class);
     // Route::get('view/tenent', [TenentController::class,'view'])->name('view');

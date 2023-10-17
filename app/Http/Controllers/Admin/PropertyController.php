@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
@@ -24,8 +25,10 @@ class PropertyController extends Controller
      */
     public function create()
     {
-      return view('admin.property.addproperty');
+      $pagedata['landlords'] = User::whereUserType('landlord')->whereStatus('1')->get();
+      return view('admin.property.create',$pagedata);
     }
+    
     public function view()
     {
       return view('admin.property.viewproperty.index');
@@ -39,7 +42,7 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('asdjgfasgjd');
     }
 
     /**

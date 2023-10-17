@@ -75,7 +75,6 @@
                     aria-labelledby="account-details-vertical-trigger">
                     <div class="content-header">
                         <h5 class="mb-0">Property Details</h5>
-
                     </div>
                     <div class="row">
                         <div class="mb-1 col-md-6">
@@ -89,22 +88,29 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="mb-1 form-password-toggle col-md-6">
+                        <div class="mb-1 form-password-toggle col-md-12">
                             <label class="form-label" for="vertical-location">Location</label>
                             <input type="text" id="vertical-location" class="form-control" placeholder="Location" />
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="mb-1 col-md-6">
-
-
                             <label class="form-label" for="basicSelect">Landlord</label>
+                            <select class="select2 form-select" id="basicSelect">
+                                @foreach ($landlords as $landlord)
+                                    <option value="{{ $landlord->id }}">{{ $landlord->first_name . $landlord->last_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-1 col-md-6">
+                            <label class="form-label" for="basicSelect">Property Type</label>
                             <select class="form-select" id="basicSelect">
                                 <option>IT</option>
                                 <option>Blade Runner</option>
                                 <option>Thor Ragnarok</option>
                             </select>
-
                         </div>
-
                     </div>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-start ">
@@ -132,7 +138,8 @@
                     <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="agent-commission-value">Agent Commission Value</label>
-                            <input type="number" id="agent-commission-value" class="form-control" placeholder="Agent Commission Value" />
+                            <input type="number" id="agent-commission-value" class="form-control"
+                                placeholder="Agent Commission Value" />
                         </div>
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="agent-commission-type">Agent Commission Value</label>
@@ -159,7 +166,8 @@
                         </div>
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="payment-description">Payment Description</label>
-                            <input type="number" id="payment-description" class="form-control" placeholder="Payment Description" />
+                            <input type="number" id="payment-description" class="form-control"
+                                placeholder="Payment Description" />
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -216,12 +224,12 @@
                         </div>
                     </div>
 
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-start ">
-                                <a href=""> <button type="submit" class="btn btn-primary mb-2 " name="submit"
-                                        value="Submit">+ Add Unit</button></a>
-                            </div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-start ">
+                            <a href=""> <button type="submit" class="btn btn-primary mb-2 " name="submit"
+                                    value="Submit">+ Add Unit</button></a>
                         </div>
+                    </div>
 
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-primary btn-prev">
@@ -236,163 +244,155 @@
                 </div>
 
 
-                <div id="social-links-vertical" class="content" role="tabpanel" aria-labelledby="social-links-vertical-trigger">
-                <div class="content-header">
-                    <h5 class="mb-0">Late Fee</h5>
-                    <small>Enter Your Social Links.</small>
-                </div>
-                <div class="row">
-                    <div class="mb-1 col-md-6">
-                        <label class="form-label" for="late-fee-name">Late Fee Name</label>
-                        <select class="select2 w-100" id="late-fee-name">
-                            <option label=" "></option>
-                            <option>Mpaisa</option>
-                            <option>Cash</option>
-                            <option>Spain</option>
-                        </select>
+                <div id="social-links-vertical" class="content" role="tabpanel"
+                    aria-labelledby="social-links-vertical-trigger">
+                    <div class="content-header">
+                        <h5 class="mb-0">Late Fee</h5>
+                        <small>Enter Your Social Links.</small>
                     </div>
-                    <div class="mb-1 col-md-6">
-                        <label class="form-label" for="late-fee-value">Late Fee Value</label>
-                        <input type="number" id="late-fee-value" class="form-control"
-                            placeholder="Late Fee Value" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="mb-1 col-md-6">
-                        <label class="form-label" for="late-fee-type">Late Fee type</label>
-                        <select class="select2 w-100" id="late-fee-type">
-                            <option label=" "></option>
-                            <option>Mpaisa</option>
-                            <option>Cash</option>
-                            <option>Spain</option>
-                        </select>
-                    </div>
-                    <div class="mb-1 col-md-6">
-                        <label class="form-label" for="grace-period">Grace Period(Days)</label>
-                        <input type="number" id="grace-period" class="form-control"
-                            placeholder="Grace Period(Days)" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="mb-1 col-md-6">
-                        <label class="form-label" for="frequency">Frequency</label>
-                        <select class="select2 w-100" id="frequency">
-                            <option label=" "></option>
-                            <option>Mpaisa</option>
-                            <option>Cash</option>
-                            <option>Spain</option>
-                        </select>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-start ">
-                        <a href=""> <button type="submit" class="btn btn-primary mb-2 " name="submit"
-                                value="Submit">+ Add Unit</button></a>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary btn-prev">
-                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                    </button>
-                    <button class="btn btn-primary btn-next">
-                        <span class="align-middle d-sm-inline-block d-none">Next</span>
-                        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                    </button>
-                </div>
-            </div>
-            <div id="Utilities" class="content" role="tabpanel" aria-labelledby="account-details-vertical-trigger">
-                <section class="form-control-repeater">
                     <div class="row">
-                      <!-- Invoice repeater -->
-                      <div class="col-12">
-                        <div class="card">
-                          <div class="card-header">
-                            <h4 class="card-title">Invoice</h4>
-                          </div>
-                          <div class="card-body">
-                            <form action="#" class="invoice-repeater">
-                              <div data-repeater-list="invoice">
-                                <div data-repeater-item>
-                                  <div class="row align-items-center">
-                                    <div class="col-md-4 col-12">
-                                      <div class="mb-1">
-                                        <label class="form-label" for="itemname">Item Name</label>
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          id="itemname"
-                                          aria-describedby="itemname"
-                                          placeholder="Vuexy Admin Template"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div class="col-md-2 col-12">
-                                      <div class="mb-1">
-                                        <label class="form-label" for="itemcost">Cost</label>
-                                        <input
-                                          type="number"
-                                          class="form-control"
-                                          id="itemcost"
-                                          aria-describedby="itemcost"
-                                          placeholder="32"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div class="col-md-2 col-12">
-                                      <div class="mb-1">
-                                        <label class="form-label" for="itemquantity">Quantity</label>
-                                        <input
-                                          type="number"
-                                          class="form-control"
-                                          id="itemquantity"
-                                          aria-describedby="itemquantity"
-                                          placeholder="1"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div class="col-md-2 col-12 mt-1">
-                                        <button class="btn btn-outline-danger text-nowrap px-1 pr-2" data-repeater-delete type="button">
-                                            <i data-feather="x" class="me-25"></i>
-                                        </button>
-                                        <button class="btn btn-outline-success text-nowrap px-1 pr-2" data-repeater-delete type="button">
-                                            <i data-feather="copy" class="me-25"></i>
-                                        </button>
-                                    </div>
-
-                                  </div>
-                                  <hr />
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-12">
-                                  <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
-                                    <i data-feather="plus" class="me-25"></i>
-                                    <span>Add New</span>
-                                  </button>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
+                        <div class="mb-1 col-md-6">
+                            <label class="form-label" for="late-fee-name">Late Fee Name</label>
+                            <select class="select2 w-100" id="late-fee-name">
+                                <option label=" "></option>
+                                <option>Mpaisa</option>
+                                <option>Cash</option>
+                                <option>Spain</option>
+                            </select>
                         </div>
-                      </div>
-                      <!-- /Invoice repeater -->
+                        <div class="mb-1 col-md-6">
+                            <label class="form-label" for="late-fee-value">Late Fee Value</label>
+                            <input type="number" id="late-fee-value" class="form-control"
+                                placeholder="Late Fee Value" />
+                        </div>
                     </div>
-                  </section>
+                    <div class="row">
+                        <div class="mb-1 col-md-6">
+                            <label class="form-label" for="late-fee-type">Late Fee type</label>
+                            <select class="select2 w-100" id="late-fee-type">
+                                <option label=" "></option>
+                                <option>Mpaisa</option>
+                                <option>Cash</option>
+                                <option>Spain</option>
+                            </select>
+                        </div>
+                        <div class="mb-1 col-md-6">
+                            <label class="form-label" for="grace-period">Grace Period(Days)</label>
+                            <input type="number" id="grace-period" class="form-control"
+                                placeholder="Grace Period(Days)" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-1 col-md-6">
+                            <label class="form-label" for="frequency">Frequency</label>
+                            <select class="select2 w-100" id="frequency">
+                                <option label=" "></option>
+                                <option>Mpaisa</option>
+                                <option>Cash</option>
+                                <option>Spain</option>
+                            </select>
+                        </div>
 
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-outline-secondary btn-prev disable" >
-                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                        <span class="align-middle d-sm-inline-block d-none ">Previous</span>
-                    </button>
-                    <button class="btn btn-success btn-submit">Submit</button>
-
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-start ">
+                            <a href=""> <button type="submit" class="btn btn-primary mb-2 " name="submit"
+                                    value="Submit">+ Add Unit</button></a>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary btn-prev">
+                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                        </button>
+                        <button class="btn btn-primary btn-next">
+                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
+                <div id="Utilities" class="content" role="tabpanel" aria-labelledby="account-details-vertical-trigger">
+                    <section class="form-control-repeater">
+                        <div class="row">
+                            <!-- Invoice repeater -->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Invoice</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="#" class="invoice-repeater">
+                                            <div data-repeater-list="invoice">
+                                                <div data-repeater-item>
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="mb-1">
+                                                                <label class="form-label" for="itemname">Item Name</label>
+                                                                <input type="text" class="form-control" id="itemname"
+                                                                    aria-describedby="itemname"
+                                                                    placeholder="Vuexy Admin Template" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-2 col-12">
+                                                            <div class="mb-1">
+                                                                <label class="form-label" for="itemcost">Cost</label>
+                                                                <input type="number" class="form-control" id="itemcost"
+                                                                    aria-describedby="itemcost" placeholder="32" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-2 col-12">
+                                                            <div class="mb-1">
+                                                                <label class="form-label"
+                                                                    for="itemquantity">Quantity</label>
+                                                                <input type="number" class="form-control"
+                                                                    id="itemquantity" aria-describedby="itemquantity"
+                                                                    placeholder="1" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-2 col-12 mt-1">
+                                                            <button class="btn btn-outline-danger text-nowrap px-1 pr-2"
+                                                                data-repeater-delete type="button">
+                                                                <i data-feather="x" class="me-25"></i>
+                                                            </button>
+                                                            <button class="btn btn-outline-success text-nowrap px-1 pr-2"
+                                                                data-repeater-delete type="button">
+                                                                <i data-feather="copy" class="me-25"></i>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                    <hr />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <button class="btn btn-icon btn-primary" type="button"
+                                                        data-repeater-create>
+                                                        <i data-feather="plus" class="me-25"></i>
+                                                        <span>Add New</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Invoice repeater -->
+                        </div>
+                    </section>
+
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-secondary btn-prev disable">
+                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                            <span class="align-middle d-sm-inline-block d-none ">Previous</span>
+                        </button>
+                        <button class="btn btn-success btn-submit">Submit</button>
+
+                    </div>
+                </div>
             </div>
         </div>
     </section>
