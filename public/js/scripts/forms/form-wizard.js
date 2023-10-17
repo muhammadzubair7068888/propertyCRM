@@ -158,14 +158,12 @@ $(function () {
             .find(".btn-next")
             .on("click", function (e) {
                 e.preventDefault();
-                var form = $(this).closest("form");
-                if (form) {
-                    verticalStepper.next();
-                }
+                verticalStepper.next();
             });
         $(verticalWizard)
             .find(".btn-prev")
-            .on("click", function () {
+            .on("click", function (e) {
+                e.preventDefault();
                 verticalStepper.previous();
             });
 

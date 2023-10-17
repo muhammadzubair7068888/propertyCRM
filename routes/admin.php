@@ -28,7 +28,7 @@ use App\Http\Controllers\Admin\VacateNoticeController;
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'home'])->name('home');
     Route::get('dashboard', [DashboardController::class, 'home'])->name('home');
-    
+
     Route::prefix('landlord')->name('landlord.')->group(function(){
         Route::get('/', [LandlordController::class, 'index'])->name('index');
         Route::get('create', [LandlordController::class, 'create'])->name('create');
@@ -53,7 +53,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::prefix('properties')->name('properties.')->group(function(){
         Route::get('/', [PropertyController::class, 'index'])->name('index');
         Route::get('create', [PropertyController::class, 'create'])->name('create');
-        Route::get('store', [PropertyController::class, 'store'])->name('store');
+        Route::post('store', [PropertyController::class, 'store'])->name('store');
     });
 
     // Route::resource('properties', PropertyController::class);
