@@ -33,17 +33,26 @@
                             <tbody>
                                 @foreach ($users as $user)
                                     @php
-                                        $class = '';
-                                        $name = '';
-                                        if ($user->status == 0) {
-                                            $class = 'badge-light-primary';
-                                            $name = 'Pending';
-                                        } elseif ($user->status == 1) {
+                                        if ($user->status == 1) {
                                             $class = 'badge-light-success';
+                                            $icon_class = 'text-danger';
                                             $name = 'Active';
+                                            $icon = 'slash';
+                                            $url = route('admin.landlord.block', $user->id);
+                                            $message = 'Are you sure you want to block this user?';
+                                            $btn = 'Block';
+                                            $alert_icon="error";
+                                            $color="danger";
                                         } elseif ($user->status == 2) {
                                             $class = 'badge-light-danger';
+                                            $icon_class = 'text-warning';
                                             $name = 'Blocked';
+                                            $icon = 'unlock';
+                                            $url = route('admin.landlord.unblock', $user->id);
+                                            $message = 'Are you sure you want to unblock this user?';
+                                            $btn = 'Unblock';
+                                            $alert_icon="warning";
+                                            $color="warning";
                                         }
                                     @endphp
                                     <tr>
@@ -62,11 +71,11 @@
                                                 class="item-edit pe-1 text-success">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </a>
-                                            <a onclick="blockUser(`{{ route('admin.landlord.block', $user->id) }}`)"
+                                            <a onclick="alert(`{{ $url }}`,'{{ $message }}','{{ $btn }}','{{$alert_icon}}','{{$color}}')"
                                                 class="item-edit pe-1 text-danger">
-                                                <i data-feather="slash" class="font-medium-4"></i>
+                                                <i data-feather="{{ $icon }}" class="{{ $icon_class }} font-medium-4"></i>
                                             </a>
-                                            <a href="{{ route('admin.landlord.destroy', $user->id) }}"
+                                            <a onclick="alert(`{{ route('admin.landlord.destroy', $user->id) }}`,'Are you sure you want to delete this user?','Delete','error','danger')"
                                                 class="item-edit text-danger">
                                                 <i data-feather="trash" class="font-medium-4"></i>
                                             </a>
@@ -105,18 +114,6 @@
         $(document).ready(function() {
             $('.datatables-table').DataTable();
         });
-
-        function blockUser(url) {
-            Swal.fire({
-                title: 'Are you sure to block this user?',
-                icon: 'error',
-                customClass: {
-                    confirmButton: 'btn btn-danger',
-                    title: 'text-danger',
-                },
-                buttonsStyling: false
-            });
-        }
     </script>
 
 @endsection

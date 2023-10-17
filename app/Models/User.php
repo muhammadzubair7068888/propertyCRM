@@ -30,7 +30,13 @@ class User extends Authenticatable
         'postal_address',
         'physical_address',
         'residential_address',
-        'password'
+        'password',
+        'user_type',
+        'gender',
+        'DOB',
+        'martial_status',
+        'postal_code',
+        'status',
     ];
 
     /**

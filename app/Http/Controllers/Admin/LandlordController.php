@@ -120,7 +120,7 @@ class LandlordController extends Controller
         if($user){
             return redirect()->route('admin.landlord.index');
         } else{
-                dd('Not Found');
+            return redirect()->back()->with('error','User not found');  
             };
     //    if($User){
     //     $User->first_name=$req->first_name;
@@ -157,6 +157,24 @@ class LandlordController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->delete();
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        } else {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+    }
+    public function block($id)
+    {
+        $user = User::find($id)->update(['status' => '2']);
+        if ($user) {
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        } else {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+    }
+    public function unblock($id)
+    {
+        $user = User::find($id)->update(['status' => '1']);
+        if ($user) {
             return redirect()->back()->with('success', 'User deleted successfully.');
         } else {
             return redirect()->back()->with('error', 'User not found.');

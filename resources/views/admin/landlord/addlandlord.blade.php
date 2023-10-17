@@ -13,8 +13,7 @@
                     </div>
                     <div class="card-body">
                         <form class="form" action="{{ @$user ? route('admin.landlord.update', @$user->id) : route('admin.landlord.store') }}" method="post">
-                        {{-- <form class="form" action="{{ route($url, @$id) }}" method="post"> --}}
-                          @csrf
+                            @csrf
                           <input type="hidden" name="user_type" value="landlord">
                           <input type="hidden" name="gender" value="male">
                           <input type="hidden" name="status" value="1">

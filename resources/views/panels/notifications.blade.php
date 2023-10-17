@@ -25,4 +25,22 @@
             buttonsStyling: false
         });
     }
+    function alert(url, title,btn,icon,color) {
+    Swal.fire({
+        title: title,
+        icon: icon,
+        customClass: {
+            confirmButton: 'btn btn-'+color,
+            title: color == 'danger' ? "text-danger" : 'text-black',
+        },
+        buttonsStyling: false,
+        showCancelButton: false,
+        confirmButtonText: btn ?? 'Ok',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = url;
+        }
+    });
+}
+
 </script>
