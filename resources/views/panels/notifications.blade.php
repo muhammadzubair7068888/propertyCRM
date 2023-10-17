@@ -9,10 +9,10 @@
     let errors = JSON.parse("{{ $errors }}".replaceAll('&quot;', '"'));
 
     if (status) {
-        alert();
+        backendAlert();
     };
 
-    function alert() {
+    function backendAlert() {
         Swal.fire({
             position: 'top-end',
             icon: status,

@@ -75,6 +75,7 @@ data-asset-path="{{ asset('/')}}">
         });
       }
     })
+    
   </script>
 </body>
 </html>

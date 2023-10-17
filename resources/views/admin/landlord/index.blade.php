@@ -32,37 +32,42 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
-                                @php
-                                $class = '';
-                                $name = '';
-                                if ($user->status == 0) {
-                                    $class = 'badge-light-primary';
-                                    $name = 'Pending';
-                                }elseif ($user->status == 1) {
-                                    $class = 'badge-light-success';
-                                    $name = 'Active';
-                                }elseif ($user->status == 2) {
-                                    $class = 'badge-light-danger';
-                                    $name = 'Blocked';
-                                }
-                                @endphp
+                                    @php
+                                        $class = '';
+                                        $name = '';
+                                        if ($user->status == 0) {
+                                            $class = 'badge-light-primary';
+                                            $name = 'Pending';
+                                        } elseif ($user->status == 1) {
+                                            $class = 'badge-light-success';
+                                            $name = 'Active';
+                                        } elseif ($user->status == 2) {
+                                            $class = 'badge-light-danger';
+                                            $name = 'Blocked';
+                                        }
+                                    @endphp
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user->first_name .' '. $user->last_name }}</td>
+                                        <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone_number }}</td>
-                                        <td><span class="badge rounded-pill {{ $class }}">{{ $name }}</span></td>
+                                        <td><span
+                                                class="badge rounded-pill {{ $class }}">{{ $name }}</span>
+                                        </td>
                                         <td>
-                                            <a href="{{ route('admin.landlord.show',$user->id) }}" class="item-edit pe-1" >
+                                            <a href="{{ route('admin.landlord.show', $user->id) }}" class="item-edit pe-1">
                                                 <i data-feather="eye" class="font-medium-4"></i>
                                             </a>
-                                            <a href="{{ route('admin.landlord.edit',$user->id) }}" class="item-edit pe-1 text-success">
+                                            <a href="{{ route('admin.landlord.edit', $user->id) }}"
+                                                class="item-edit pe-1 text-success">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </a>
-                                            <a onclick="blockUser(`{{ route('admin.landlord.block',$user->id) }}`)" class="item-edit pe-1 text-danger">
+                                            <a onclick="blockUser(`{{ route('admin.landlord.block', $user->id) }}`)"
+                                                class="item-edit pe-1 text-danger">
                                                 <i data-feather="slash" class="font-medium-4"></i>
                                             </a>
-                                            <a href="{{ route('admin.landlord.destroy',$user->id) }}" class="item-edit text-danger">
+                                            <a href="{{ route('admin.landlord.destroy', $user->id) }}"
+                                                class="item-edit text-danger">
                                                 <i data-feather="trash" class="font-medium-4"></i>
                                             </a>
                                         </td>
@@ -98,11 +103,19 @@
     <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
     <script>
         $(document).ready(function() {
-            feather.replace();
             $('.datatables-table').DataTable();
         });
-        function blockUser(url){
-            alert(url);
+
+        function blockUser(url) {
+            Swal.fire({
+                title: 'Are you sure to block this user?',
+                icon: 'error',
+                customClass: {
+                    confirmButton: 'btn btn-danger',
+                    title: 'text-danger',
+                },
+                buttonsStyling: false
+            });
         }
     </script>
 

@@ -67,12 +67,13 @@ class LandlordController extends Controller
             'password' => 'required|confirmed',
         ]);
         $data = $req->except('_token', 'password_confirmation');
+        $data['password'] = Hash::make($req->password);
         $data['created_at'] = now();
         $data['updated_at'] = now();
 
         User::insert($data);
 
-        return redirect()->route('admin.landlord.index');
+        return redirect()->route('admin.landlord.index')->with('success','Landlord added successfully');
     }
 
     /**
@@ -102,9 +103,6 @@ class LandlordController extends Controller
             ['link' => "admin/landlord", 'name' => " Landlords"], ['name' => "Edit"]
         ];
         $pagedata['user'] = User::find($id);
-        $pagedata['url'] = 'admin.landlord.update';
-        $pagedata['id'] = $id;
-        $pagedata['name']='Edit';
         return view('admin.landlord.addlandlord',$pagedata);
     }
 
