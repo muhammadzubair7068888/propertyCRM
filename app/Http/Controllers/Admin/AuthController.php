@@ -26,9 +26,9 @@ class AuthController extends Controller
         ]);
         $user = User::whereEmail($req->email)->whereStatus('1')->first();
 
-        if (Hash::check($req->password, $user->password)) {
+        if ($user && Hash::check($req->password, $user->password)) {
             Auth::login($user);
-            notification(user_name(),'Successfully Logged in at '.now(),'bell');
+            notification('Successfully Logged in at '.now(),'bell','success');
             return redirect()->route(route_name('.home'))->with('success','Logged in successfully');
         } else {
             return redirect()->back()->with('error','User Not Found');

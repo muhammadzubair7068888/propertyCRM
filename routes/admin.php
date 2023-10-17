@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\UtilitiesController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\InvoiceController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\VacateNoticeController;
@@ -58,7 +59,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
 
     // Route::resource('properties', PropertyController::class);
-    Route::get('view/property', [PropertyController::class,'view'])->name('view.property');
+    Route::get('notification', [NotificationController::class,'read'])->name('notification.read');
     // Route::resource('tenants', TenentController::class);
     // Route::get('view/tenent', [TenentController::class,'view'])->name('view');
     Route::resource('leases', LeaseController::class);

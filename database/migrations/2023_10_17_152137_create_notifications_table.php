@@ -20,6 +20,7 @@ class CreateNotificationsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('icon');
+            $table->string('class');
             $table->enum('is_read',[0,1])->default(0)->comment('0=>Pending, 1=>Read');
             $table->timestamps();
         });
