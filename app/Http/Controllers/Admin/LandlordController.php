@@ -39,7 +39,7 @@ class LandlordController extends Controller
         ];
         $pagedata['url'] = 'admin.landlord.store';
         $pagedata['name'] = 'Add';
-        return view('admin.landlord.addlandlord', $pagedata);
+        return view('admin.landlord.create', $pagedata);
     }
 
     /**

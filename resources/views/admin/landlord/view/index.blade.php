@@ -54,6 +54,7 @@
     <div class="card">
       <div class="card-header">
         <h4 class="card-title">Landlord</h4>
+        <a href="{{ route('admin.landlord.index') }}" class="btn btn-secondary">Go Back</a>
       </div>
       <div class="card-body">
         <ul class="nav nav-tabs nav-justified" id="myTab2" role="tablist">

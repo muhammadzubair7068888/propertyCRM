@@ -134,12 +134,12 @@
                             // 'Delete</a>' +
                             // '</div>' +
                             // '</div>' +
-                            '<a href="{{ route('admin.view.property') }}" class="item-edit pe-1">' +
+                            '<a href="#" class="item-edit pe-1">' +
                             feather.icons['eye'].toSvg({
                                 class: 'font-small-4'
                             }) +
                             '</a>' +
-                            '<a href="{{ route('admin.properties.create') }}" class="item-edit">' +
+                            '<a href="#" class="item-edit">' +
                             feather.icons['edit'].toSvg({
                                 class: 'font-small-4'
                             }) +
