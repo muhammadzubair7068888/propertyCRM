@@ -45,29 +45,34 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-          $request->validate([
-              'property_name'=>'required',
-              'property_code'=>'required',
-              'location'=>'required',
-              'agent_commission_value'=>'required',
-              'agent_commission_type'=>'required',
-              'payment_method'=>'required',
-              'payment_description'=>'required',
-              'extra_charge_name'=>'required',
-              'extra_charge_value'=>'required',
-              'extra_charge_type'=>'required',
-              'extra_charge_frequency'=>'required',
-              'late_fee_name'=>'required',
-              'late_fee_type'=>'required',
-              'late_fee_value'=>'required',
-              'late_fee_grace_period'=>'required',
-              'late_fee_frequency'=>'required',
-          ]);
-          $data=$request->except('_token');
+        $request->validate([
+            'user_id' => 'required',
+            'property_name' => 'required',
+            'property_code' => 'required',
+            'location' => 'required',
+            'agent_commission_value' => 'required',
+            'agent_commission_type' => 'required',
+            'payment_method' => 'required',
+            'payment_description' => 'required',
+            'extra_charge_name' => 'required',
+            'extra_charge_value' => 'required',
+            'extra_charge_type' => 'required',
+            'extra_charge_frequency' => 'required',
+            'late_fee_name' => 'required',
+            'late_fee_type' => 'required',
+            'late_fee_value' => 'required',
+            'late_fee_grace_period' => 'required',
+            'late_fee_frequency' => 'required',
+        ]);
 
-          Property::insert($data);
-          return redirect()->route('admin.properties.index')->with('success','record updated successfully');
+        $data = $request->except('_token');
+        dd($data);
+        // Use the Eloquent model to create a new record
+        Property::create($data);
+
+        return redirect()->route('admin.properties.index')->with('success', 'Record updated successfully');
     }
+
 
     /**
      * Display the specified resource.
