@@ -101,7 +101,7 @@ class LandlordController extends Controller
             ['link' => "admin/landlord", 'name' => " Landlords"], ['name' => "Edit"]
         ];
         $pagedata['user'] = User::find($id);
-        return view('admin.landlord.addlandlord', $pagedata);
+        return view('admin.landlord.create', $pagedata);
     }
 
     /**
