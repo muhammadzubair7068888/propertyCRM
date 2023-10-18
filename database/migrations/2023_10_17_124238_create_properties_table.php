@@ -16,7 +16,7 @@ class CreatePropertiesTable extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDeleteCascade()->onUpdateCascade();
-            $table->foreignId('property_type')->constrained()->onDeleteCascade()->onUpdateCascade();
+            $table->foreignId('property_type_id')->constrained()->onDeleteCascade()->onUpdateCascade();
             $table->string('property_name')->nullable();
             $table->string('property_code')->nullable();
             $table->string('location')->nullable();

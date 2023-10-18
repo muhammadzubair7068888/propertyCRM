@@ -82,48 +82,63 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-property">Property Name</label>
-                                <input type="text" id="vertical-property" class="form-control"
-                                    placeholder="Property Name" name="property_name" />
+                                <input type="text" id="vertical-property" class="form-control @error('property_name')
+                                border-1 border-danger
+                                @enderror" placeholder="Property Name" name="property_name" />
+                                @error('property_name')
+                                       <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-property-code">Property Code</label>
-                                <input type="text" id="vertical-property-code" class="form-control"
+                                <input type="text" id="vertical-property-code" class="form-control @error('property_code')
+                                border-1 border-danger
+                                @enderror"
                                     placeholder="Property Code" name="property_code" aria-label="" />
+                                @error('property_code')
+                              <div class="text-danger">{{$message}} </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 form-password-toggle col-md-12">
                                 <label class="form-label" for="vertical-location">Location</label>
-                                <input type="text" id="vertical-location" name="location" class="form-control"
+                                <input type="text" id="vertical-location" name="location" class="form-control @error('location')
+                                   border-1 border-danger
+                                @enderror"
                                     placeholder="Location" />
+                                @error('location')
+                                  <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="basicSelect">Landlord</label>
-                                <select class="select2 form-select" id="basicSelect" name="user_id">
+                                <select class="select2 form-select @error('user_id') border-1 border-danger @enderror" id="basicSelect" name="user_id">
                                     @foreach ($landlords as $landlord)
                                         <option value="{{ $landlord->id }}">
                                             {{ $landlord->first_name . $landlord->last_name }}
                                         </option>
                                     @endforeach
                                 </select>
+                                @error('user_id')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="property-type">Property Type</label>
-                                <select class="select2 w-100" id="property-type" name="property_type">
+                                <select class="select2 w-100 @error('property_type_id') border-1 border-danger @enderror" id="property-type" name="property_type_id">
                                     @foreach ($propertyTypes as $propertyType)
                                         <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('property_type_id')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-start ">
-                                <a href=""> <button type="button" class="btn btn-primary mb-2 " name="submit"
-                                        value="Submit">+ Add Unit</button></a>
-                            </div>
-                        </div>
+
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-outline-secondary btn-prev" disabled>
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -144,34 +159,46 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="agent-commission-value">Agent Commission Value</label>
-                                <input type="number" id="agent-commission-value" class="form-control"
+                                <input type="number" id="agent-commission-value" class="form-control @error('agent_commission_value') border-1 border-danger @enderror"
                                     placeholder="Agent Commission Value" name="agent_commission_value" />
+                                    @error('agent_commission_value')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="agent-commission-type">Agent Commission Type</label>
-                                <select class="select2 w-100" id="agent-commission-type" name="agent_commission_type">
+                                <select class="select2 w-100 @error('agent_commission_type') border-1 border-danger @enderror" id="agent-commission-type" name="agent_commission_type">
                                     <option label=" "></option>
                                     <option>Fixed Value</option>
                                     <option>% Of Total Rent</option>
                                     <option>% Of Total Collected Rent</option>
 
                                 </select>
+                                @error('agent_commission_type')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="payment-method">Payment Method</label>
-                                <select class="select2 w-100" id="payment-method " name="payment_method">
+                                <select class="select2 w-100 @error('payment_method') border-1 border-danger @enderror" id="payment-method" name="payment_method">
                                     <option label=" "></option>
                                     <option>Mpaisa</option>
                                     <option>Cash</option>
                                     <option>Spain</option>
                                 </select>
+                                   @error('payment_method')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="payment-description">Payment Description</label>
-                                <input type="number" id="payment-description" class="form-control"
+                                <input type="number" id="payment-description" class="form-control @error('payment_description') border-1 border-danger @enderror"
                                     placeholder="Payment Description" name="payment_description" />
+                                       @error('payment_description')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -194,37 +221,49 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="extra-charges-name">Extra Charges Name</label>
-                                <select class="select2 w-100" id="extra-charges-name" name="extra_charge_name">
+                                <select class="select2 w-100 @error('extra_charge_name') border-1 border-danger @enderror" id="extra-charges-name" name="extra_charge_name">
 
                                     <option>VAT</option>
                                     <option>Service Fee</option>
                                     <option>Processing Fee</option>
                                 </select>
+                                   @error('extra_charge_name')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="extra-charges-value">Extra Charges Value</label>
-                                <input type="number" id="extra-charges-value" class="form-control"
+                                <input type="number" id="extra-charges-value" class="form-control @error('extra_charge_value') border-1 border-danger @enderror"
                                     placeholder="Extra Charges Value" name="extra_charge_value" />
+                                    @error('extra_charge_value')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="extra-charges-type">Extra Charges type</label>
-                                <select class="select2 w-100" id="extra-charges-type" name="extra_charge_type">
+                                <select class="select2 w-100 @error('extra_charge_type') border-1 border-danger @enderror" id="extra-charges-type" name="extra_charge_type">
                                     <option label=" "></option>
                                     <option>Fixed Value</option>
                                     <option>% Of Total Rent</option>
                                     <option>% Of Total Amount Over Due</option>
                                 </select>
+                                @error('extra_charge_type')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="extra-charges-frequency">Frequency</label>
-                                <select class="select2 w-100" id="extra-charges-frequency" name="extra_charge_frequency">
+                                <select class="select2 w-100 @error('extra_charge_frequency') border-1 border-danger @enderror" id="extra-charges-frequency" name="extra_charge_frequency">
                                     <option label=" "></option>
                                     <option>One Time</option>
                                     <option>Period To Period</option>
 
                                 </select>
+                                   @error('extra_charge_frequency')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -257,38 +296,50 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="late-fee-name">Late Fee Name</label>
-                                <select class="select2 w-100" id="late-fee-name" name="late_fee_name">
+                                <select class="select2 w-100 @error('late_fee_name') border-1 border-danger @enderror" id="late-fee-name" name="late_fee_name">
                                     <option label=" "></option>
                                     <option>Penalty</option>
 
                                 </select>
+                                   @error('late_fee_name')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="late-fee-value">Late Fee Value</label>
-                                <input type="number" id="late-fee-value" class="form-control"
+                                <input type="number" id="late-fee-value" class="form-control @error('late_fee_value') border-1 border-danger @enderror"
                                     placeholder="Late Fee Value" name="late_fee_value" />
+                                       @error('late_fee_value')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="late-fee-type">Late Fee type</label>
-                                <select class="select2 w-100" id="late-fee-type" name="late_fee_type">
+                                <select class="select2 w-100 @error('late_fee_type') border-1 border-danger @enderror" id="late-fee-type" name="late_fee_type">
                                     <option label=" "></option>
                                     <option>Fixed Value</option>
                                     <option>% Of Total Rent</option>
                                     <option>% Of Total Amount Over Due</option>
                                 </select>
+                                   @error('late_fee_type')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="grace-period">Grace Period(Days)</label>
-                                <input type="number" id="grace-period" class="form-control"
+                                <input type="number" id="grace-period" class="form-control @error('late_fee_grace_period') border-1 border-danger @enderror"
                                     placeholder="Grace Period(Days)" name="late_fee_grace_period" />
+                                       @error('late_fee_grace_period')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="frequency">Frequency</label>
-                                <select class="select2 w-100" id="frequency" name="late_fee_frequency">
+                                <select class="select2 w-100 @error('late_fee_frequency') border-1 border-danger @enderror" id="frequency" name="late_fee_frequency">
                                     <option label=" "></option>
                                     <option>One Time</option>
                                     <option>Daily</option>
@@ -296,6 +347,9 @@
                                     <option>Bi Weekly</option>
                                     <option>Monthly</option>
                                 </select>
+                                   @error('late_fee_frequency')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
 
                         </div>
@@ -335,9 +389,9 @@
                                                                 <div class="mb-1">
                                                                     <label class="form-label" for="itemname">Item
                                                                         Name</label>
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="text" class="form-control "
                                                                         id="itemname" aria-describedby="itemname"
-                                                                        placeholder="Vuexy Admin Template" />
+                                                                        placeholder="Vuexy Admin Template" name="test" />
                                                                 </div>
                                                             </div>
 
@@ -419,10 +473,27 @@
     <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+
     <script src="{{ asset(mix('vendors/js/forms/repeater/jquery.repeater.min.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/forms/form-repeater.js')) }}"></script>
 @endsection
 @section('page-script')
     <!-- Page js files -->
+    <script>
+        let formCount = 0;
+
+        function addForm() {
+            formCount++;
+            const formClone = document.getElementById('mainForm').cloneNode(true);
+            formClone.id = `form${formCount}`;
+            formClone.reset(); // Clear the input values
+            document.getElementById('formContainer').appendChild(formClone);
+        }
+    </script>
     <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
-    <script src="{{ asset(mix('js/scripts/forms/form-repeater.js')) }}"></script>
+
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.repeater"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
