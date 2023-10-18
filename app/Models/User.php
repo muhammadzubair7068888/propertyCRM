@@ -59,8 +59,8 @@ class User extends Authenticatable
     ];
    
     
-    public function tenents()
+    public function tenentInfo()
     {
-        return $this->belongsTo(Tenant::class);
+        return $this->belongsTo(TenantInfo::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTenantsTable extends Migration
+class CreateTenantInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateTenantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tenants', function (Blueprint $table) {
+        Schema::create('tenant_infos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDeleteCascade()->onUpdateCascade();
+            $table->string('tenant_type')->nullable();
             $table->string('kin_name')->nullable();
             $table->string('kin_phone_number')->nullable();
             $table->string('kin_relation')->nullable();
@@ -48,6 +49,6 @@ class CreateTenantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tenants');
+        Schema::dropIfExists('tenant_infos');
     }
 }

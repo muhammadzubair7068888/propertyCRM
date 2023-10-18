@@ -48,7 +48,9 @@ class LandlordController extends Controller
      */
     public function store(Request $req)
     {
+       
         $req->validate([
+            
             'first_name' => 'required',
             'middle_name' => 'required',
             'last_name' => 'required',
@@ -63,13 +65,14 @@ class LandlordController extends Controller
             'physical_address' => 'required',
             'residential_address' => 'required',
             'password' => 'required|confirmed',
+           
         ]);
-        $data = $req->except('_token', 'password_confirmation');
+        $data = $req->except('_token');
         $data['password'] = Hash::make($req->password);
-        $data['created_at'] = now();
-        $data['updated_at'] = now();
+        // $data['created_at'] = now();
+        // $data['updated_at'] = now();
 
-        User::insert($data);
+        User::create($data);
 
         return redirect()->route('admin.landlord.index')->with('success', 'Landlord added successfully');
     }

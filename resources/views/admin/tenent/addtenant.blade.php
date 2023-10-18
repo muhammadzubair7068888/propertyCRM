@@ -78,7 +78,7 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="tenant-type">Tenant Type</label>
-                                <select class="form-select" id="tenant-type" name="tenant-type" required>
+                                <select class="form-select" id="tenant-type" name="tenant_type" required>
                                     
                                    @foreach ($types as $type )
                                      <option value="{{$type->id}}">{{$type->name}}</option>
@@ -179,16 +179,21 @@
                             <div class="col-md-6 col-12">
                                 <div class="mb-1">
                                     <label class="form-label" for="password">Password</label>
-                                    <input type="text" id="password" class="form-control" placeholder="Password"
+                                    <input type="password" id="password" class="form-control" placeholder="Password"
                                         name="password" required />
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
-                                <div class="mb-1">
+                             <div class="mb-1">
                                     <label class="form-label" for="confirm-password">Confirm Password</label>
-                                    <input type="text" id="confirm-password" class="form-control"
-                                        placeholder="Confirm Password" name="password_confirmation" required />
+                                    <input type="password" id="confirm-password"
+                                        class="form-control @error('password') border-1 border-danger @enderror"
+                                        placeholder="Confirm Password" name="password_confirmation" />
+                                    @error('password')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -214,55 +219,55 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="kin-name">Kin Name</label>
-                                <input type="text" id="kin-name" class="form-control" placeholder="Kin Name" />
+                                <input type="text" id="kin-name" class="form-control" placeholder="Kin Name" name="kin_name"/>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="kin-phone">Kin Phone</label>
-                                <input type="text" id="kin-phone" class="form-control" placeholder="Kin Phone" />
+                                <input type="text" id="kin-phone" class="form-control" placeholder="Kin Phone" name="kin_phone_number" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="Kin-relation">Kin Relation</label>
                                 <input type="text" id="Kin-relation" class="form-control"
-                                    placeholder="Kin Relation" />
+                                    placeholder="Kin Relation" name="kin_relation" />
+                            </div>
+                            <div class="mb-1 col-md-6">
+                                <label class="form-label" for="emergency-phone">Emergency Name</label>
+                                <input type="text" id="emergency-phone" class="form-control"
+                                    placeholder="Emergency Name" name="kin_emergency_name" />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="emergency-phone">Emergency Phone</label>
                                 <input type="text" id="emergency-phone" class="form-control"
-                                    placeholder="Emergency Phone" />
+                                    placeholder="Emergency Phone" name="kin_emergency_phone_number" />
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="emergency-email">Emergency Email</label>
                                 <input type="text" id="emergency-email" class="form-control"
-                                    placeholder="Emergency Email" />
-                            </div>
-                            <div class="mb-1 col-md-6">
-                                <label class="form-label" for="emergency-relation">Emergency Relation</label>
-                                <input type="text" id="emergency-relation" class="form-control"
-                                    placeholder="Emergency Relation" />
+                                    placeholder="Emergency Email" name="kin_emergency_emial"/>
                             </div>
                         </div>
                         <div class="row">
+                           
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="emergency-name">Emergency Name</label>
-                                <input type="text" id="emergency-name" class="form-control"
-                                    placeholder="Emergency Name" />
+                                <label class="form-label" for="emergency-relation">Emergency Relation</label>
+                                <input type="text" id="emergency-relation" class="form-control"
+                                    placeholder="Emergency Relation" name="kin_emergency_relation"/>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="emergency-postal-address">Emergency Postal Address</label>
                                 <input type="text" id="emergency-postal-address" class="form-control"
-                                    placeholder="Emergency Postal Address" />
+                                    placeholder="Emergency Postal Address" name="kin_emergency_postal_address" />
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="mb-1 col-md-12">
                                 <label class="form-label" for="emergency-physical-address">Emergency physical
                                     Address</label>
                                 <input type="text" id="emergency-physical-address" class="form-control"
-                                    placeholder="Emergency physical Address" />
+                                    placeholder="Emergency physical Address" name="kin_emergency_physical_address" />
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -288,24 +293,24 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="employment-status">Employment Status</label>
                                 <input type="text" id="employment-status" class="form-control"
-                                    placeholder="Employment Status" />
+                                    placeholder="Employment Status" name="employment_status" />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="employment-position">Employment Position</label>
                                 <input type="text" id="employment-position" class="form-control"
-                                    placeholder="Employment Position" />
+                                    placeholder="Employment Position" name="employment_position"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="pincode2">Employment Contact Phone</label>
                                 <input type="text" id="pincode2" class="form-control"
-                                    placeholder="Employment Contact Phone" />
+                                    placeholder="Employment Contact Phone" name="employment_contact_phone" />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="employment-email">Employment Contact Phone</label>
                                 <input type="text" id="employment-email" class="form-control"
-                                    placeholder="Employment Contact Email" />
+                                    placeholder="Employment Contact Email" name="employment_contact_email" />
                             </div>
                         </div>
                         <div class="row">
@@ -313,13 +318,13 @@
                                 <label class="form-label" for="employment-postal-address">Employment Postal
                                     Address</label>
                                 <input type="text" id="employment-postal-address" class="form-control"
-                                    placeholder="Employment physical Address" />
+                                    placeholder="Employment physical Address" name="employment_postal_address" />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="employment-physical-address">Employment physical
                                     Address</label>
                                 <input type="text" id="employment-physical-address" class="form-control"
-                                    placeholder="Employment physical Address" />
+                                    placeholder="Employment physical Address" name="employment_physical_address" />
                             </div>
                         </div>
 
@@ -345,35 +350,35 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="bussiness-name">Business Name</label>
                                 <input type="text" id="bussiness-name" class="form-control"
-                                    placeholder="Business Name" />
+                                    placeholder="Business Name" name="business_name" />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="license-number">License Number</label>
                                 <input type="text" id="license-number" class="form-control"
-                                    placeholder="License Number" />
+                                    placeholder="License Number" name="licence_name" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="tax-id">Tax ID</label>
-                                <input type="text" id="tax-id" class="form-control" placeholder="Tax ID" />
+                                <input type="text" id="tax-id" class="form-control" placeholder="Tax ID" name="tax_id"/>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="business-address">Business Address</label>
                                 <input type="text" id="business-address" class="form-control"
-                                    placeholder="Business Address" />
+                                    placeholder="Business Address" name="bussiness_address" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="business-industry">Business Industry</label>
                                 <input type="text" id="business-industry" class="form-control"
-                                    placeholder="Business Industry" />
+                                    placeholder="Business Industry" name="bussiness_industry" />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="business-description">Business Description</label>
                                 <input type="text" id="business-description" class="form-control"
-                                    placeholder="Business Description" />
+                                    placeholder="Business Description" name="bussiness_description" />
                             </div>
                         </div>
 
