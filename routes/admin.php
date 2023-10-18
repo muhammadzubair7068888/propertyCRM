@@ -57,9 +57,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('create', [PropertyController::class, 'create'])->name('create');
         Route::post('store', [PropertyController::class, 'store'])->name('store');
     });
+    Route::prefix('notification')->name('notification.')->group(function(){
+        Route::get('/', [NotificationController::class,'read'])->name('read');
+    });
 
     // Route::resource('properties', PropertyController::class);
-    Route::get('notification', [NotificationController::class,'read'])->name('notification.read');
     // Route::resource('tenants', TenentController::class);
     // Route::get('view/tenent', [TenentController::class,'view'])->name('view');
     Route::resource('leases', LeaseController::class);

@@ -4,67 +4,67 @@
             "url": "admin/dashboard",
             "name": "Dashboard",
             "icon": "layout",
-            "slug": "dashboard"
+            "slug": "admin.home"
         },
         {
             "url": "admin/landlord",
             "name": "Landlords",
             "icon": "users",
-            "slug": "landlord"
+            "slug": "admin.landlord.index"
         },
         {
             "url": "admin/properties",
             "name": "Properties",
             "icon": "home",
-            "slug": "properties"
+            "slug": "admin.properties.index"
         },
         {
             "url": "admin/tenant",
             "name": "Tenants",
             "icon": "user-plus",
-            "slug": "tenants"
+            "slug": "admin.tenant.index"
         },
         {
             "url": "admin/leases",
             "name": "Leases",
             "icon": "lock",
-            "slug": "leases"
+            "slug": "admin.leases.index"
         },
         {
             "url": "admin/utilities",
             "name": "Utilities",
             "icon": "gift",
-            "slug": "utilities"
+            "slug": "admin.utilities.index"
         },
         {
             "url": "admin/invoice",
             "name": "Invoice",
             "icon": "book",
-            "slug": "invoice"
+            "slug": "admin.invoice.index"
         },
         {
             "url": "admin/payment",
             "name": "Payment",
             "icon": "credit-card",
-            "slug": "payment"
+            "slug": "admin.payment.index"
         },
         {
             "url": "admin/vacate_notice",
             "name": "Vacate Notice",
             "icon": "lock",
-            "slug": "vacate_notice"
+            "slug": "admin.vacate_notice.index"
         },
         {
             "url": "admin/setting",
             "name": "Setting",
             "icon": "settings",
-            "slug": "setting"
+            "slug": "admin.setting.index"
         },
         {
             "url": "admin/report",
             "name": "Reports",
             "icon": "layers",
-            "slug": "reports"
+            "slug": "admin.report.index"
         }
     ],
     "landlord": [
@@ -72,7 +72,7 @@
             "url": "landlord/dashboard",
             "name": "Dashboard",
             "icon": "layout",
-            "slug": "dashboard"
+            "slug": "landlord.home"
         },
         {
             "url": "landlord/properties",
@@ -124,7 +124,7 @@
             "url": "tenant/dashboard",
             "name": "Dashboard",
             "icon": "layout",
-            "slug": "dashboard"
+            "slug": "tenant.home"
         },
         {
             "url": "tenant/leases",

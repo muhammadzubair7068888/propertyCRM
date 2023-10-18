@@ -62,14 +62,14 @@
             {{-- Foreach menu item starts --}}
             @if (isset($menuData[0]))
             @php
-            if(auth()->user()->user_type == 'admin') $menus = $menuData[0]->admin;
-            if(auth()->user()->user_type == 'landlord') $menus = $menuData[0]->landlord;
-            if(auth()->user()->user_type == 'tenant') $menus = $menuData[0]->tenant;
+            if(auth()->user()->user_type === 'admin') $menus = $menuData[0]->admin;
+            if(auth()->user()->user_type === 'landlord') $menus = $menuData[0]->landlord;
+            if(auth()->user()->user_type === 'tenant') $menus = $menuData[0]->tenant;
             @endphp
                 @foreach ($menus as $menu)
                     @if (isset($menu->navheader))
                         <li class="navigation-header">
-                            <span>{{ __('locale.' . $menu->navheader) }}</span>
+                            <span>{{ $menu->navheader }}</span>
                             <i data-feather="more-horizontal"></i>
                         </li>
                     @else
@@ -86,7 +86,7 @@
                                 class="d-flex align-items-center"
                                 target="{{ isset($menu->newTab) ? '_blank' : '_self' }}">
                                 <i data-feather="{{ $menu->icon }}"></i>
-                                <span class="menu-title text-truncate">{{ __('locale.' . $menu->name) }}</span>
+                                <span class="menu-title text-truncate">{{  $menu->name }}</span>
                                 @if (isset($menu->badge))
                                     <?php $badgeClasses = 'badge rounded-pill badge-light-primary ms-auto me-1'; ?>
                                     <span
