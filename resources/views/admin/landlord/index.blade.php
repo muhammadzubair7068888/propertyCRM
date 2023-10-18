@@ -18,6 +18,7 @@
                         <h4 class="card-title">Landlords</h4>
                         <a href="{{ route('admin.landlord.create') }}" class="btn btn-primary">+ Add Landlord</a>
                     </div>
+
                     <div class="card-datatable">
                         <table class="datatables-table table">
                             <thead>

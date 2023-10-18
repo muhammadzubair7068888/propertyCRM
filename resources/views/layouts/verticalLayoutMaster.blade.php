@@ -62,10 +62,13 @@ data-asset-path="{{ asset('/')}}">
   @include('panels.notifications')
 
   {{-- include footer --}}
-  @include('panels/footer')
+  @include('panels.footer')
 
   {{-- include default scripts --}}
-  @include('panels/scripts')
+  @include('panels.scripts')
+
+  {{-- include Modals --}}
+  @include('panels.modals')
 
   <script type="text/javascript">
     $(window).on('load', function() {
@@ -75,7 +78,7 @@ data-asset-path="{{ asset('/')}}">
         });
       }
     })
-    
+
   </script>
 </body>
 </html>

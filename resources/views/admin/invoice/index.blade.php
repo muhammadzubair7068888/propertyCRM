@@ -14,8 +14,15 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-header border-bottom">
-          <h4 class="card-title">Invoice</h4>
+        <div class="card-header border-bottom d-flex justify-content-between">
+         <div>
+            <h4 class="card-title">Invoice</h4>
+        </div>
+        <div>
+    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewAddressModal">
+        Launch demo modal
+    </a>
+       </div>
         </div>
 
         <div class="card-datatable">
@@ -69,6 +76,23 @@
   {{-- Page js files --}}
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
 
+  <script>
+    function showResidentials() {
+        $('#bed-rooms').removeClass('d-none');
+        $('#bath-rooms').removeClass('d-none');
+        $('#bed-rooms').addClass('d-block');
+        $('#bath-rooms').addClass('d-block');
+    }
+
+    function showComercials() {
+        $('#bed-rooms').removeClass('d-block');
+        $('#bath-rooms').removeClass('d-block');
+        $('#bed-rooms').addClass('d-none');
+        $('#bath-rooms').addClass('d-none');
+    }
+
+
+    </script>
 
 <script>
 

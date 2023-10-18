@@ -66,7 +66,7 @@ class PropertyController extends Controller
         ]);
 
         $data = $request->except('_token');
-        dd($data);
+     
         // Use the Eloquent model to create a new record
         Property::create($data);
 
