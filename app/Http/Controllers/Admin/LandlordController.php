@@ -37,8 +37,6 @@ class LandlordController extends Controller
         $pagedata['breadcrumbs'] = [
             ['link' => "admin/landlord", 'name' => "Landlords"], ['name' => "Create"]
         ];
-        $pagedata['url'] = 'admin.landlord.store';
-        $pagedata['name'] = 'Add';
         return view('admin.landlord.create', $pagedata);
     }
 
