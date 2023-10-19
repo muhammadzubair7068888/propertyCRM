@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\TenantInfo;
 use App\Models\TenantType;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
 
 class TenentController extends Controller
 {
@@ -55,54 +53,53 @@ class TenentController extends Controller
     {
         try {
             $req->validate([
-                'form[tenantInfo][user_id]' => 'required',
-                'form[tenantInfo][tenant_type]' => 'required',
-                'form[user][status]' => 'required',
-             
-                'form[user][first_name]' => 'required',
-                'form[user][middle_name]' => 'required',
-                'form[user][last_name]' => 'required',
-                'form[user][gender]' => 'required',
-                'form[user][registration_date]' => 'required|date',
-                'form[user][national_id]' => 'required',
-                'form[user][martial_status]' => 'required',
-                'form[user][phone_number]' => 'required',
-                'form[user][email]' => 'required|email|unique:users,email',
-                'form[user][country]' => 'required',
-                'form[user][city]' => 'required',
-                'form[user][postal_code]' => 'required',
-                'form[user][postal_address]' => 'required',
-                'form[user][physical_address]' => 'required',
-                'form[user][user_type]' => 'required',
-                'form[user][password]' => 'required|confirmed',
+                'form.tenantInfo.tenant_type' => 'required',
+                'form.user.status' => 'required',
+                'form.user.first_name' => 'required',
+                'form.user.middle_name' => 'required',
+                'form.user.last_name' => 'required',
+                'form.user.gender' => 'required',
+                'form.user.registration_date' => 'required|date',
+                'form.user.national_id' => 'required',
+                'form.user.martial_status' => 'required',
+                'form.user.phone_number' => 'required',
+                'form.user.email' => 'required|email|unique:users,email',
+                'form.user.country' => 'required',
+                // 'form.user.state' => 'required',
+                'form.user.city' => 'required',
+                'form.user.postal_code' => 'required',
+                'form.user.postal_address' => 'required',
+                'form.user.physical_address' => 'required',
+                'form.user.user_type' => 'required',
+                'form.user.password' => 'required|confirmed',
 
-                'form[tenantInfo][kin_name]' => 'required',
-                'form[tenantInfo][kin_phone_number]' => 'required',
-                'form[tenantInfo][kin_relation]' => 'required',
+                'form.tenantInfo.kin_name' => 'required',
+                'form.tenantInfo.kin_phone_number' => 'required',
+                'form.tenantInfo.kin_relation' => 'required',
 
-                'form[tenantInfo][kin_emergency_name]' => 'required',
-                'form[tenantInfo][kin_emergency_phone_number]' => 'required',
-                'form[tenantInfo][kin_emergency_emial]' => 'required|email|unique:tenant_infos,kin_emergency_emial',
-                'form[tenantInfo][kin_emergency_relation]' => 'required',
+                'form.tenantInfo.kin_emergency_name' => 'required',
+                'form.tenantInfo.kin_emergency_phone_number' => 'required',
+                'form.tenantInfo.kin_emergency_emial' => 'required|email|unique:tenant_infos,kin_emergency_emial',
+                'form.tenantInfo.kin_emergency_relation' => 'required',
 
-                'form[tenantInfo][kin_emergency_postal_address]' => 'required',
-                'form[tenantInfo][kin_emergency_physical_address]' => 'required',
-                'form[tenantInfo][employment_status]' => 'required',
+                'form.tenantInfo.kin_emergency_postal_address' => 'required',
+                'form.tenantInfo.kin_emergency_physical_address' => 'required',
+                'form.tenantInfo.employment_status' => 'required',
 
-                'form[tenantInfo][employment_position]' => 'required',
-                'form[tenantInfo][employment_contact_phone]' => 'required',
-                'form[tenantInfo][employment_contact_email]' => 'required|email|unique:tenant_infos,employment_contact_email',
+                'form.tenantInfo.employment_position' => 'required',
+                'form.tenantInfo.employment_contact_phone' => 'required',
+                'form.tenantInfo.employment_contact_email' => 'required|email|unique:tenant_infos,employment_contact_email',
 
-                'form[tenantInfo][employment_postal_address]' => 'required',
-                'form[tenantInfo][employment_physical_address]' => 'required',
-                'form[tenantInfo][business_name]' => 'required',
-                'form[tenantInfo][licence_name]' => 'required',
-                'form[tenantInfo][tax_id]' => 'required',
-                'form[tenantInfo][bussiness_address]' => 'required',
-                'form[tenantInfo][bussiness_industry]' => 'required',
-                'form[tenantInfo][bussiness_description]' => 'required',
+                'form.tenantInfo.employment_postal_address' => 'required',
+                'form.tenantInfo.employment_physical_address' => 'required',
+                'form.tenantInfo.business_name' => 'required',
+                'form.tenantInfo.licence_name' => 'required',
+                'form.tenantInfo.tax_id' => 'required',
+                'form.tenantInfo.bussiness_address' => 'required',
+                'form.tenantInfo.bussiness_industry' => 'required',
+                'form.tenantInfo.bussiness_description' => 'required',
             ]);
-            $data = $req->except('_token');
+            $data = $req->except('_token','password_confirmation');
             $userTenant = $data['form']['user'];
             $tenantInfo = $data['form']['tenantInfo'];
            
@@ -112,8 +109,8 @@ class TenentController extends Controller
             TenantInfo::create($tenantInfo);
 
             return redirect()->route('admin.tenant.index')->with('success', 'Tenant added successfully');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', $th->getMessage());
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 

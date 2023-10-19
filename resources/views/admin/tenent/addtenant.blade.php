@@ -66,7 +66,7 @@
                 <form action="{{ route('admin.tenant.store') }}" method="post">
                     @csrf
                     <input type="hidden" name="form[tenantInfo][user_id]" value="1">
-                    <input type="hidden" name="form[tenantInfo][user_type]" value="tenant">
+                    <input type="hidden" name="form[user][user_type]" value="tenant">
                     <input type="hidden" name="form[user][status]" value="1">
                     <div id="account-details-vertical" class="content" role="tabpanel"
                         aria-labelledby="account-details-vertical-trigger">
@@ -234,7 +234,7 @@
                                     <label class="form-label" for="confirm-password">Confirm Password</label>
                                     <input type="password" id="confirm-password"
                                         class="form-control @error('password') border-1 border-danger @enderror"
-                                        placeholder="Confirm Password" name="password_confirmation" />
+                                        placeholder="Confirm Password" name="form[user][password_confirmation]" />
                                     @error('password')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -351,8 +351,7 @@
                                     Address</label>
                                 <input type="text" id="emergency-physical-address" class="form-control"
                                     placeholder="Emergency physical Address"
-                                    name="
-                                form[tenantInfo][kin_emergency_physical_address]" />
+                                    name="form[tenantInfo][kin_emergency_physical_address]" />
                                 @error('form[tenantInfo][kin_emergency_physical_address]')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -386,7 +385,7 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="employment-position">Employment Position</label>
                                 <input type="text" id="employment-position" class="form-control"
-                                    placeholder="Employment Position" name="employment_position" />
+                                    placeholder="Employment Position" name="form[tenantInfo][employment_position]" />
                                 @error('form[tenantInfo][employment_position]')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror

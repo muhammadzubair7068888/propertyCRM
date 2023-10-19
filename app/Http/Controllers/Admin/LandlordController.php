@@ -68,7 +68,7 @@ class LandlordController extends Controller
            
         ]);
         $data = $req->except('_token');
-        $data['password'] = Hash::make($req->password);
+        // $data['password'] = Hash::make($req->password);
         // $data['created_at'] = now();
         // $data['updated_at'] = now();
 
