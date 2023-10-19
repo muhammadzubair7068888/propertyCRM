@@ -31,15 +31,17 @@
 
 {{-- Units Increament --}}
 <script>
+
     var divCounter = 1; // Initialize a counter for the unique ID
 
     function addNew(source, cloned) {
         const sourceForm = $(`#${source}`).clone();
+        console.log(source, cloned);
         var uniqueID = "clonedForm-" + divCounter;
         sourceForm.attr('id', uniqueID);
         sourceForm.find(".rept a.btn-outline-danger").attr('onclick', 'remove(this)');
         $(`#${cloned}`).append(sourceForm);
-        divCounter++; // Increment the counter for the next unique ID
+divCounter        ++; // Increment the counter for the next unique ID
     }
 
     function remove(element) {

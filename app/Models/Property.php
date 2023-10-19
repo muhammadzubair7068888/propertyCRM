@@ -16,17 +16,7 @@ class Property extends Model
         'property_type_id',
         'agent_commission_value',
         'agent_commission_type',
-        'payment_method',
-        'payment_description',
-        'extra_charge_name',
-        'extra_charge_value',
-        'extra_charge_type',
-        'extra_charge_frequency',
-        'late_fee_name',
-        'late_fee_type',
-        'late_fee_value',
-        'late_fee_grace_period',
-        'late_fee_frequency',
+     
     ];
 
 }

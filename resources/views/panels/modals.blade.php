@@ -14,11 +14,11 @@
                   </a> --}}
 
 
-                <form class="row gy-1 gx-2">
+                <form class="row gy-1 gx-2" id="unit_form">
                     <div class="col-12">
                         <div class="d-flex justify-content-row custom-options-checkable">
                             <div class="col-md-6 mb-md-0 mb-2">
-                                    <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showResidentials()">
+                                <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showResidentials()">
                                     <input class="custom-option-item-check" id="homeAddressRadio" checked type="radio"
                                         name="newAddress" value="HomeAddress" />
                                     <label for="homeAddressRadio" class="custom-option-item px-2 py-1">
@@ -28,10 +28,10 @@
                                         </span>
                                         <span class="d-block">Delivery time (7am – 9pm)</span>
                                     </label>
-                                </div>
+                            </div>
                             </a>
                             <div class="col-md-6 mb-md-0 mb-2">
-                                    <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showComercials()">
+                                <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showComercials()">
                                     <input class="custom-option-item-check" id="officeAddressRadio" type="radio"
                                         name="newAddress" value="OfficeAddress" />
                                     <label for="officeAddressRadio" class="custom-option-item px-2 py-1">
@@ -41,7 +41,7 @@
                                         </span>
                                         <span class="d-block">Delivery time (10am – 6pm)</span>
                                     </label>
-                                </div>
+                            </div>
                             </a>
                         </div>
                     </div>
@@ -88,12 +88,11 @@
                     </div>
 
 
-                    <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-primary me-1 mt-2">Submit</button>
-                        <button type="reset" class="btn btn-outline-secondary mt-2" data-bs-dismiss="modal"
-                            aria-label="Close">
+                    <div class="col-12 text-center d-flex justify-content-between">
+                        <a class="btn btn-outline-secondary mt-2" onclick="unitModalDiscard()">
                             Discard
-                        </button>
+                        </a>
+                        <a class="btn btn-primary me-1 mt-2" onclick="unitModalSubmit()">Submit</a>
                     </div>
                 </form>
             </div>
