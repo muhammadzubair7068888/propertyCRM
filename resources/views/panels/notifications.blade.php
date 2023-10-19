@@ -25,6 +25,7 @@
             buttonsStyling: false
         });
     }
+    
     function alert(url, title,btn,icon,color) {
     Swal.fire({
         title: title,

@@ -78,7 +78,7 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="tenant-type">Tenant Type</label>
-                                <select class="form-select" id="tenant-type" name="tenant_type" required>
+                                <select class="form-select" id="tenant-type" name="tenant_type" >
                                     
                                    @foreach ($types as $type )
                                      <option value="{{$type->id}}">{{$type->name}}</option>
@@ -90,21 +90,21 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="first-name-column">First Name</label>
                                 <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
-                                    name="first_name" required />
+                                    name="first_name"  />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="middle-name-column">Middle Name</label>
                                 <input type="text" id="middle-name-column" class="form-control" placeholder="Middle Name"
-                                    name="middle_name" required />
+                                    name="middle_name"  />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-last-name">Last Name</label>
                                 <input type="text" id="vertical-last-name" class="form-control" name="last_name"
-                                    placeholder="Last Name" required />
+                                    placeholder="Last Name"  />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="gender">Gender</label>
-                                <select class="form-select" id="gender" name="gender" required>
+                                <select class="form-select" id="gender" name="gender" >
                                     <option value="male">male</option>
                                     <option value="female">female</option>
                                     <option value="other">other</option>
@@ -113,74 +113,74 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="date">Date</label>
                                 <input type="text" id="date"  class="form-control @error('registration_date') border-1 border-danger @enderror" readonly
-                                name="registration_date" placeholder="Date" value="{{ date('Y-m-d') }}" required />
+                                name="registration_date" placeholder="Date" value="{{ date('Y-m-d') }}"  />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="passport">National ID or Passport</label>
                                     <input type="text" id="passport" class="form-control"
-                                        placeholder="National ID or Passport" name="national_id" required />
+                                        placeholder="National ID or Passport" name="national_id"  />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="martial-status">Martial Status</label>
                                 <input type="text" id="martial-status" class="form-control"
-                                    placeholder="Martial Status" name="martial_status" required />
+                                    placeholder="Martial Status" name="martial_status"  />
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="phone">Phone</label>
                                     <input type="text" id="phone" class="form-control" name="phone_number"
-                                        placeholder="Phone" required />
+                                        placeholder="Phone"  />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="email-id-column">Email</label>
                                     <input type="email" id="email-id-column" class="form-control" name="email"
-                                        placeholder="Email" required />
+                                        placeholder="Email"  />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="country">Country</label>
                                     <input type="text" id="country" class="form-control" placeholder="Country "
-                                        name="country" required />
+                                        name="country"  />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="city">City</label>
                                     <input type="text" id="city" class="form-control" placeholder="City"
-                                        name="city" required />
+                                        name="city"  />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="postal-code">Postal Code</label>
                                     <input type="text" id="postal-code" class="form-control"
-                                        placeholder="Postal Code" name="postal_code" required />
+                                        placeholder="Postal Code" name="postal_code"  />
                                 </div>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="postal-address">Postal Address</label>
                                     <input type="text" id="postal-address" class="form-control"
-                                        placeholder="Postal Address" name="postal_address" required />
+                                        placeholder="Postal Address" name="postal_address"  />
                                 </div>
                             </div>
                             <div class="col-md-12 col-12">
                                 <div class="mb-1">
                                     <label class="form-label" for="physical-address">Physical Address</label>
                                     <input type="text" id="physical-address" class="form-control"
-                                        placeholder="Physical Address" name="physical_address" required />
+                                        placeholder="Physical Address" name="physical_address"  />
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="mb-1">
                                     <label class="form-label" for="password">Password</label>
                                     <input type="password" id="password" class="form-control" placeholder="Password"
-                                        name="password" required />
+                                        name="password"  />
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
