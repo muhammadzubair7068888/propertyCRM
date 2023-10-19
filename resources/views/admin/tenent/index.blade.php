@@ -26,6 +26,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Phone</th>
+                                    <th>Kin Name</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -33,7 +34,16 @@
                             <tbody>
                                 @foreach ($tenants as $tenant)
                                     @php
-                                        if ($tenant->status == 1) {
+                                    $class = '';
+                                    $name = '';
+                                    $url = '';
+                                    $message = '';
+                                    $btn = '';
+                                    $alert_icon = '';
+                                    $color = '';
+                                    $icon = '';
+                                    $icon_class = '';
+                                        if ($tenant->user->status == 1) {
                                             $class = 'badge-light-success';
                                             $icon_class = 'text-danger';
                                             $name = 'Active';
@@ -43,7 +53,7 @@
                                             $btn = 'Block';
                                             $alert_icon="error";
                                             $color="danger";
-                                        } elseif ($tenant->status == 2) {
+                                        } elseif ($tenant->user->status == 2) {
                                             $class = 'badge-light-danger';
                                             $icon_class = 'text-warning';
                                             $name = 'Blocked';
@@ -57,12 +67,11 @@
                                     @endphp
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $tenant->first_name . ' ' . $tenant->last_name }}</td>
-                                        <td>{{ $tenant->email }}</td>
-                                        <td>{{ $tenant->phone_number }}</td>
-                                        <td><span
-                                                class="badge rounded-pill {{ $class }}">{{ $name }}</span>
-                                        </td>
+                                        <td>{{ $tenant->user->first_name . ' ' . $tenant->user->last_name }}</td>
+                                        <td>{{ $tenant->user->email }}</td>
+                                        <td>{{ $tenant->user->phone_number }}</td>
+                                        <td>{{ $tenant->kin_name }}</td>
+                                        <td><span class="badge rounded-pill {{ $class }}">{{ $name }}</span></td>
                                         <td>
                                             <a href="{{ route('admin.landlord.show', $tenant->id) }}" class="item-edit pe-1">
                                                 <i data-feather="eye" class="font-medium-4"></i>
