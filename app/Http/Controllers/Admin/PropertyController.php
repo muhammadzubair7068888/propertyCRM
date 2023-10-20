@@ -60,10 +60,18 @@ class PropertyController extends Controller
         //     'agent_commission_type' => 'required'
         // ]);
 
-        $data = $request->except('_token');
-        dd($data);
-        // Use the Eloquent model to create a new record
-        Property::create($data);
+        // $property_data = $request->property;
+        // $data = $request;
+        // $payment_method = $request->payment_method;
+        // dd($data);
+        // // Use the Eloquent model to create a new record
+        // $property = Property::create($property_data);
+        // foreach($payment_method as $value)
+        // PropertyPaymentMethod::create([
+        //     'property_id'=>$property->id,
+        //     'payment_method_id'=>$value,
+        //     'payment_description'=>$request->value
+        // ]);
 
         return redirect()->route('admin.properties.index')->with('success', 'Record updated successfully');
     }
