@@ -48,7 +48,7 @@
                                             $icon_class = 'text-danger';
                                             $name = 'Active';
                                             $icon = 'slash';
-                                            $url = route('admin.tenant.block', $tenant->id);
+                                            $url = route('admin.tenant.block', $tenant->user->id);
                                             $message = 'Are you sure you want to block this tenant?';
                                             $btn = 'Block';
                                             $alert_icon="error";
@@ -58,7 +58,7 @@
                                             $icon_class = 'text-warning';
                                             $name = 'Blocked';
                                             $icon = 'unlock';
-                                            $url = route('admin.tenant.unblock', $tenant->id);
+                                            $url = route('admin.tenant.unblock', $tenant->user->id);
                                             $message = 'Are you sure you want to unblock this tenant?';
                                             $btn = 'Unblock';
                                             $alert_icon="warning";
@@ -68,7 +68,7 @@
                                             $icon_class = 'text-secondary';
                                             $name = 'Pending';
                                             $icon = 'clock';
-                                            $url = route('admin.tenant.unblock', $tenant->id);
+                                            $url = route('admin.tenant.unblock', $tenant->user->id);
                                             $message = 'Are you sure you want to Access this tenant?';
                                             $btn = 'Grant';
                                             $alert_icon="warning";
@@ -94,7 +94,7 @@
                                                 class="item-edit pe-1 text-danger">
                                                 <i data-feather="{{ $icon }}" class="{{ $icon_class }} font-medium-4"></i>
                                             </a>
-                                            <a onclick="alert(`{{ route('admin.tenant.destroy', $tenant->id) }}`,'Are you sure you want to delete this tenant?','Delete','error','danger')"
+                                            <a onclick="alert(`{{ route('admin.tenant.destroy', $tenant->user->id) }}`,'Are you sure you want to delete this tenant?','Delete','error','danger')"
                                                 class="item-edit text-danger">
                                                 <i data-feather="trash" class="font-medium-4"></i>
                                             </a>

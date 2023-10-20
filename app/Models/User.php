@@ -73,6 +73,6 @@ class User extends Authenticatable
     
     public function tenentInfo()
     {
-        return $this->hasMany(TenantInfo::class,'user_id');
+        return $this->hasMany(TenantInfo::class);
     }
 }
