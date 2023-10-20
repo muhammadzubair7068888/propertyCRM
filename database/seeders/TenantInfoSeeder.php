@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\TenantInfo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TenantSeeder extends Seeder
+class TenantInfoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +16,9 @@ class TenantSeeder extends Seeder
    
     public function run()
     {
-        DB::table('tenants')->insert([
+        TenantInfo::insert([
             'user_id'=>"2", 
+            'tenant_type_id'=>"1", 
             'kin_name'=>"sdsd",
             'kin_phone_number'=>"ere",
             'kin_relation'=>"2wewewe",

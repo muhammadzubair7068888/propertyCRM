@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Tabs')
+@section('title', 'Landlord')
 
 
 @section('vendor-style')

@@ -47,6 +47,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         // Route::get('show', [TenentController::class, 'show'])->name('show');
         Route::get('create', [TenentController::class, 'create'])->name('create');
         Route::post('store', [TenentController::class, 'store'])->name('store');
+        Route::get('destroy/{id}', [TenentController::class, 'destroy'])->name('destroy');
+        Route::get('block/{id}', [TenentController::class, 'block'])->name('block');
+        Route::get('unblock/{id}',[TenentController::class,'unblock'])->name('unblock');
+        Route::get('show/{id}',[TenentController::class,'show'])->name('show');
         // Route::post('store', [TenentController::class, 'store'])->name('store');
         // Route::get('edit/{id}', [TenentController::class, 'edit'])->name('edit');
         // Route::get('block/{id}', [TenentController::class,'view'])->name('block');

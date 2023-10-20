@@ -17,7 +17,7 @@
                             @csrf
                           <input type="hidden" name="user_type" value="landlord">
                           <input type="hidden" name="gender" value="male">
-                          <input type="hidden" name="status" value="1">
+                          <input type="hidden" name="status" value="0">
                             <div class="row">
                                 <div class="col-md-6 col-12">
                                     <div class="mb-1">

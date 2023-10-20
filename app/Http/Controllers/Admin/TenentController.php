@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\TenantInfo;
 use App\Models\TenantType;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class TenentController extends Controller
@@ -16,13 +16,15 @@ class TenentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        
-        return view("admin.tenent.index");
+    {
+        $pagedata['tenants'] = TenantInfo::whereHas('user', function ($query) {
+            $query->whereUserType('tenant');
+        })->get();
+        return view("admin.tenent.index", $pagedata);
     }
     public function view()
     {
-       
+
         return view('admin.tenent.view.index');
     }
 
@@ -33,13 +35,12 @@ class TenentController extends Controller
      */
     public function create()
     {
-        $pagedata['types']= TenantType::get();
-        return view("admin.tenent.addtenant",$pagedata);
+        $pagedata['types'] = TenantType::get();
+        return view("admin.tenent.addtenant", $pagedata);
     }
 
     public function tenantInfo(Request $request)
     {
-        
     }
 
     /**
@@ -50,56 +51,81 @@ class TenentController extends Controller
      */
     public function store(Request $req)
     {
-   
-    //    $req->validate([
-    //     'first_name' => 'required',
-    //     'middle_name' => 'required',
-    //     'last_name' => 'required',
-    //     'gender' => 'required',
-    //     'phone_number' => 'required',
-    //     'email' => 'required|email|unique:users,email',
-    //     'registration_date' => 'required|date',
-    //     'country' => 'required',
-    //     'national_id' => 'required',
-    //     'state' => 'required',
-    //     'city' => 'required',
-    //     'postal_address' => 'required',
-    //     'physical_address' => 'required',
-    //      'password' => 'required|confirmed',
-    //    ]);
-    //    $data = $req->except('_token', 'password_confirmation','tenant-type');
-    //    $data['password'] = Hash::make($req->password);
+        try {
+            $req->validate([
+                'form.tenantInfo.tenant_type_id' => 'required',
+                'form.user.status' => 'required',
+                'form.user.first_name' => 'required',
+                'form.user.middle_name' => 'required',
+                'form.user.last_name' => 'required',
+                'form.user.gender' => 'required',
+                'form.user.registration_date' => 'required|date',
+                'form.user.national_id' => 'required',
+                'form.user.martial_status' => 'required',
+                'form.user.phone_number' => 'required',
+                'form.user.email' => 'required|email|unique:users,email',
+                'form.user.country' => 'required',
+                // 'form.user.state' => 'required',
+                'form.user.city' => 'required',
+                'form.user.postal_code' => 'required',
+                'form.user.postal_address' => 'required',
+                'form.user.physical_address' => 'required',
+                'form.user.user_type' => 'required',
+                'form.user.password' => 'required|confirmed',
 
-       $user = User::create([
-        'first_name'=>$req->first_name,
-        'middle_name'=>$req->middle_name,
-        'last_name'=>$req->last_name,
-        'gender'=>$req->gender,
-        'phone_number'=>$req->phone_number,
-        'email'=>$req->email,
-        'registration_date'=>$req->registration_date,
-        'country'=>$req->country,
-        'national_id'=>$req->national_id,
-        'state'=>$req->state,
-        'city'=>$req->city,
-        'postal_address'=>$req->postal_address,
-        'physical_address'=>$req->physical_address,
-        'password'=>Hash::make($req->password),
-       ]);
+                'form.tenantInfo.kin_name' => 'required',
+                'form.tenantInfo.kin_phone_number' => 'required',
+                'form.tenantInfo.kin_relation' => 'required',
 
-       return redirect()->route('admin.tenant.index')->with('success','Landlord added successfully');
-       
+                'form.tenantInfo.kin_emergency_name' => 'required',
+                'form.tenantInfo.kin_emergency_phone_number' => 'required',
+                'form.tenantInfo.kin_emergency_emial' => 'required|email|unique:tenant_infos,kin_emergency_emial',
+                'form.tenantInfo.kin_emergency_relation' => 'required',
+
+                'form.tenantInfo.kin_emergency_postal_address' => 'required',
+                'form.tenantInfo.kin_emergency_physical_address' => 'required',
+                'form.tenantInfo.employment_status' => 'required',
+
+                'form.tenantInfo.employment_position' => 'required',
+                'form.tenantInfo.employment_contact_phone' => 'required',
+                'form.tenantInfo.employment_contact_email' => 'required|email|unique:tenant_infos,employment_contact_email',
+
+                'form.tenantInfo.employment_postal_address' => 'required',
+                'form.tenantInfo.employment_physical_address' => 'required',
+                'form.tenantInfo.business_name' => 'required',
+                'form.tenantInfo.licence_name' => 'required',
+                'form.tenantInfo.tax_id' => 'required',
+                'form.tenantInfo.bussiness_address' => 'required',
+                'form.tenantInfo.bussiness_industry' => 'required',
+                'form.tenantInfo.bussiness_description' => 'required',
+            ]);
+            $data = $req->except('_token', 'password_confirmation');
+            $userTenant = $data['form']['user'];
+            $tenantInfo = $data['form']['tenantInfo'];
+
+            $user = User::create($userTenant);
+            $tenantInfo['user_id'] = $user->id;
+
+            TenantInfo::create($tenantInfo);
+
+            return redirect()->route('admin.tenant.index')->with('success', 'Tenant added successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function show($id)
     {
-        //
+        $pagedata['tenant']=TenantInfo::find($id);
+        // = $tenant->user;
+      
+      return view('admin.tenent.view.index',$pagedata);
     }
 
     /**
@@ -131,8 +157,40 @@ class TenentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        $tenant = TenantInfo::find($id);
+        if ($tenant) {
+            $tenant->user->delete();
+            return redirect()->route('admin.tenant.index')->with('success', 'Tenant Delete Successfully');
+        } else {
+            return redirect()->route('admin.tenant.index')->with("error", "Tenant Not Found ");
+        }
     }
+
+
+
+        public function block($id)
+        {
+            $tenant=TenantInfo::find($id);
+            // dd($tenant->user->status);
+            if($tenant){
+                $tenant->user->update(['status'=>'2']);
+                return redirect()->back()->with('success','Tenant Blocked successfully.');
+            }else{
+                return redirect()->back()->with("success","Not Found!");
+            }
+        }
+
+        public function unblock($id){
+            $tenant=TenantInfo::find($id);
+            if($tenant){
+                
+                $tenant->user->update(['status'=>'1']);
+                return redirect()->back()->with('success',"Tenant Unblocked Successfully");
+            }else{
+                return redirect()->back()->with('success',"Tenant Unblocked Successfully");
+            }
+        }
 }
