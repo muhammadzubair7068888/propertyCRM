@@ -19,6 +19,10 @@
 @endsection
 
 @section('content')
+
+@if($errors->any())
+    {{ implode('', $errors->all()) }}
+@endif
     <!-- Vertical Wizard -->
     <section class="vertical-wizard">
         <div class="bs-stepper vertical vertical-wizard-example">
@@ -29,9 +33,7 @@
                         <span class="bs-stepper-box">1</span>
                         <span class="bs-stepper-label">
                             <span class="bs-stepper-title">Tenant Info</span>
-
                         </span>
-                       
                     </button>
                 </div>
                 <div class="step" data-target="#personal-info-vertical" role="tab"
@@ -161,7 +163,7 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="email-id-column">Email</label>
                                     <input type="email" id="email-id-column" class="form-control"
-                                        name="form[user][email]" placeholder="Email" value="{{@$tenant->user->email ?? old('form[user][email]')}}"/>
+                                        name="form[user][email]" @if(@$tenant->user->email !== null) readonly @endif placeholder="Email" value="{{@$tenant->user->email ?? old('form[user][email]')}}"/>
                                     @error('form[user][email]')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
