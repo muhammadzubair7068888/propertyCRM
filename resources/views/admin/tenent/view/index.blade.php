@@ -16,38 +16,25 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-4 col-sm-6">
-      <div class="card">
-        <div class="card-body d-flex align-items-center justify-content-between">
+  <div class="col-lg-5 col-sm-6">
+    <div class="card">
+      <div class="card-body d-flex align-items-center justify-content-between">
+       
+        <div>
+            <h3 class="fw-bolder mb-75">{{@$tenant->user->first_name}}</h3>
+            <h5>First Name</h5>
+          </div>
           <div>
-            <h3 class="fw-bolder mb-75">21,459</h3>
-            <span>Total Property</span>
+            <h3 class="fw-bolder mb-75">{{@$tenant->user->middle_name}}</h3>
+            <h5>Middle Name</h4>
           </div>
-          <div class="avatar bg-light-primary p-50">
-            <span class="avatar-content">
-              <i data-feather="home" class="font-medium-5"></i>
-            </span>
+          <div>
+            <h3 class="fw-bolder mb-75">{{@$tenant->user->last_name}}</h3>
+            <h5>Last Name</h5>
           </div>
-        </div>
       </div>
     </div>
-    <div class="col-lg-4 col-sm-6">
-      <div class="card">
-        <div class="card-body d-flex align-items-center justify-content-between">
-          <div>
-            <h3 class="fw-bolder mb-75">4,567</h3>
-            <span>Units</span>
-          </div>
-          <div class="avatar bg-light-danger p-50">
-            <span class="avatar-content">
-              <i data-feather="user-plus" class="font-medium-4"></i>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
+  </div>
   </div>
 <div class="col-xl-12 col-lg-12">
     <div class="card">
@@ -119,6 +106,16 @@
                       </div>
                       <div class="card-body">
                         <form class="form">
+
+                          @php
+                          $value='';
+                          
+                            if (@$tenant->tenant_type == 1) {
+                             $value="Individual";
+                            }elseif (@$tenant->tenant_type == 2) {
+                              $value="Bussiness";
+                            }
+                          @endphp
                             <div class="row">
                                 <div class="col-md-12 col-12">
                                     <div class="mb-1">
@@ -130,6 +127,7 @@
                                           class="form-control"
                                           placeholder="tenant-type"
                                           name="tenant-type"
+                                          value={{$value}}
                                         />
                                       </div>
                                 </div>
@@ -145,6 +143,7 @@
                                   class="form-control"
                                   placeholder="First Name"
                                   name="fname-column"
+                                  value="{{@$tenant->user->first_name}}"
                                 />
                               </div>
                             </div>
@@ -157,7 +156,7 @@
                                     id="middle-name-column"
                                     class="form-control"
                                     placeholder="Middle Name"
-                                    name="mname-column"
+                                    value="{{@$tenant->user->middle_name}}"
                                   />
                                 </div>
                               </div>
@@ -171,6 +170,7 @@
                                     class="form-control"
                                     placeholder="Last Name"
                                     name="lname-column"
+                                    value="{{@$tenant->user->last_name}}"
                                   />
                                 </div>
                               </div>
@@ -184,6 +184,7 @@
                                     class="form-control"
                                     placeholder="Phone"
                                     name="phone-column"
+                                    value="{{@$tenant->user->phone_number}}"
                                   />
                                 </div>
                               </div>
@@ -197,12 +198,13 @@
                                     class="form-control"
                                     placeholder="Email"
                                     name="email-column"
+                                    value="{{@$tenant->user->email}}"
                                   />
                                 </div>
                               </div>
                             <div class="col-md-6 col-12">
                               <div class="mb-1">
-                                <label class="form-label" for="dob">Date Of Birth</label>
+                                <label class="form-label" for="dob">Postal Code</label>
                                 <input
                                 readonly
                                   type="text"
@@ -210,13 +212,14 @@
                                   class="form-control"
                                   placeholder="Date Of Birth"
                                   name="dob"
+                                  value="{{@$tenant->user->postal_code}}"
                                 />
                               </div>
                             </div>
                             <div class="col-md-6 col-12">
                               <div class="mb-1">
                                 <label class="form-label" for="country-column">Country</label>
-                                <input readonly type="text" id="country-column" class="form-control" placeholder="Country" name="country-column" />
+                                <input readonly type="text" id="country-column" class="form-control" placeholder="Country" name="country-column" value="{{@$tenant->user->country}}" />
                               </div>
                             </div>
                             <div class="col-md-6 col-12">
@@ -229,6 +232,7 @@
                                   class="form-control"
                                   name="city-floating"
                                   placeholder="City"
+                                  value="{{@$tenant->user->city}}"
                                 />
                               </div>
                             </div>
@@ -242,6 +246,7 @@
                                   class="form-control"
                                   name="gender"
                                   placeholder="Gender"
+                                  value="{{@$tenant->user->gender}}"
                                 />
                               </div>
                             </div>
@@ -255,6 +260,7 @@
                                   class="form-control"
                                   name="passport-id-column"
                                   placeholder="National ID or Passport"
+                                  value="{{@$tenant->user->national_id}}"
                                 />
                               </div>
                             </div>
@@ -268,6 +274,7 @@
                                     class="form-control"
                                     name="postal-address-column"
                                     placeholder="Postal Address"
+                                    value="{{@$tenant->user->postal_address}}"
                                   />
                                 </div>
                               </div>
@@ -281,10 +288,11 @@
                                       class="form-control"
                                       name="physical-address-column"
                                       placeholder="Physical Address"
+                                      value="{{@$tenant->user->physical_address}}"
                                     />
                                 </div>
                               </div>
-                              <div class="col-md-12 col-12">
+                              {{-- <div class="col-md-12 col-12">
                                 <div class="mb-1">
                                     <label class="form-label" for="residential-address-column">Residential Address</label>
                                     <input
@@ -294,9 +302,10 @@
                                       class="form-control"
                                       name="residential-address-column"
                                       placeholder="Residential Address"
+                                      value="{{@$tenant->physical_address}}"
                                     />
                                 </div>
-                              </div>
+                              </div> --}}
 
                           </div>
                         </form>

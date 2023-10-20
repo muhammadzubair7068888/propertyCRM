@@ -53,7 +53,7 @@ class TenentController extends Controller
     {
         try {
             $req->validate([
-                'form.tenantInfo.tenant_type' => 'required',
+                'form.tenantInfo.tenant_type_id' => 'required',
                 'form.user.status' => 'required',
                 'form.user.first_name' => 'required',
                 'form.user.middle_name' => 'required',
@@ -99,10 +99,10 @@ class TenentController extends Controller
                 'form.tenantInfo.bussiness_industry' => 'required',
                 'form.tenantInfo.bussiness_description' => 'required',
             ]);
-            $data = $req->except('_token','password_confirmation');
+            $data = $req->except('_token', 'password_confirmation');
             $userTenant = $data['form']['user'];
             $tenantInfo = $data['form']['tenantInfo'];
-           
+
             $user = User::create($userTenant);
             $tenantInfo['user_id'] = $user->id;
 
@@ -118,11 +118,14 @@ class TenentController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function show($id)
     {
-        //
+        $pagedata['tenant']=TenantInfo::find($id);
+        // = $tenant->user;
+      
+      return view('admin.tenent.view.index',$pagedata);
     }
 
     /**
@@ -154,8 +157,40 @@ class TenentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        $tenant = TenantInfo::find($id);
+        if ($tenant) {
+            $tenant->user->delete();
+            return redirect()->route('admin.tenant.index')->with('success', 'Tenant Delete Successfully');
+        } else {
+            return redirect()->route('admin.tenant.index')->with("error", "Tenant Not Found ");
+        }
     }
+
+
+
+        public function block($id)
+        {
+            $tenant=TenantInfo::find($id);
+            // dd($tenant->user->status);
+            if($tenant){
+                $tenant->user->update(['status'=>'2']);
+                return redirect()->back()->with('success','Tenant Blocked successfully.');
+            }else{
+                return redirect()->back()->with("success","Not Found!");
+            }
+        }
+
+        public function unblock($id){
+            $tenant=TenantInfo::find($id);
+            if($tenant){
+                
+                $tenant->user->update(['status'=>'1']);
+                return redirect()->back()->with('success',"Tenant Unblocked Successfully");
+            }else{
+                return redirect()->back()->with('success',"Tenant Unblocked Successfully");
+            }
+        }
 }

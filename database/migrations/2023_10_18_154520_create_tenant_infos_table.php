@@ -15,8 +15,10 @@ class CreateTenantInfosTable extends Migration
     {
         Schema::create('tenant_infos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDeleteCascade()->onUpdateCascade();
-            $table->string('tenant_type')->nullable();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('tenant_type_id')->constrained('tenant_types')->cascadeOnDelete()->cascadeOnUpdate();
+            
+
             $table->string('kin_name')->nullable();
             $table->string('kin_phone_number')->nullable();
             $table->string('kin_relation')->nullable();

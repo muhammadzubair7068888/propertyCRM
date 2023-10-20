@@ -54,6 +54,16 @@
                                             $btn = 'Unblock';
                                             $alert_icon="warning";
                                             $color="warning";
+                                        }elseif ($user->status == 0) {
+                                            $class = 'badge-light-secondary';
+                                            $icon_class = 'text-secondary';
+                                            $name = 'Pending';
+                                            $icon = 'clock';
+                                            $url = route('admin.landlord.unblock', $user->id);
+                                            $message = 'Are you sure you want to Access this User?';
+                                            $btn = 'Grant';
+                                            $alert_icon="warning";
+                                            $color="warning";
                                         }
                                     @endphp
                                     <tr>

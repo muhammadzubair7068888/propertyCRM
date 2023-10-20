@@ -11,7 +11,7 @@ class TenantInfo extends Model
 
     protected $fillable = [
         'user_id',
-        'tenant_type',
+        'tenant_type_id',
         'kin_name',
         'kin_phone_number',
         'kin_relation',
@@ -43,5 +43,9 @@ class TenantInfo extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function tenantType()
+    {
+        return $this->belongsTo(TenantType      ::class);
     }
 }

@@ -18,7 +18,7 @@ class TenantInfoSeeder extends Seeder
     {
         TenantInfo::insert([
             'user_id'=>"2", 
-            'tenant_type'=>"bussiness", 
+            'tenant_type_id'=>"1", 
             'kin_name'=>"sdsd",
             'kin_phone_number'=>"ere",
             'kin_relation'=>"2wewewe",

@@ -67,7 +67,7 @@
                     @csrf
                     <input type="hidden" name="form[tenantInfo][user_id]" value="1">
                     <input type="hidden" name="form[user][user_type]" value="tenant">
-                    <input type="hidden" name="form[user][status]" value="1">
+                    <input type="hidden" name="form[user][status]" value="0">
                     <div id="account-details-vertical" class="content" role="tabpanel"
                         aria-labelledby="account-details-vertical-trigger">
                         <div class="content-header">
@@ -77,7 +77,7 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="tenant-type">Tenant Type</label>
-                                <select class="form-select" id="tenant-type" name="form[tenantInfo][tenant_type]">
+                                <select class="form-select" id="tenant-type" name="form[tenantInfo][tenant_type_id]">
 
                                     @foreach ($types as $type)
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
