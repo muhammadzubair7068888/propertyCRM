@@ -170,19 +170,60 @@
 
                     </div>
                     <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount</label>
-                            <input type="text" id="rent-deposit-amount" class="form-control"
-                                placeholder="Rent Deposit Amount" />
-                        </div>
+                        <div>
+                            <div id="payment">
+                                <div class="row d-flex align-items-end rept">
+                                    <div class="mb-1 col-md-5">
+                                        <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount</label>
+                                        <input type="text" id="rent-deposit-amount"
+                                        class="form-control"
+                                        placeholder="rent-deposit-amount" name="rent_deposit_amount" />
 
-                    </div>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-start ">
-                            <a href=""> <button type="submit" class="btn btn-primary me-2 mt-1 mb-2 "
-                                    name="submit" value="Submit">+ Add Lease</button></a>
+                                    </div>
+                                    <div class="mb-1 col-md-5">
+                                        <label class="form-label" for="utility-names">Utility Name
+                                         </label>
+                                         <select class="select2 w-100" id="utility-names" name="utility_names">
+
+                                             <option value="">Water</option>
+                                             <option value="">Gas</option>
+                                             <option value="">Electricity</option>
+
+                                     </select>
+
+                                    </div>
+                                    <div class="mb-1 col-md-5">
+                                        <label class="form-label" for="deposit-amount"> Deposit Amount</label>
+                                        <input type="text" id="deposit-amount"
+                                        class="form-control"
+                                        placeholder="deposit-amount" name="deposit_amount" />
+
+                                    </div>
+                                    <div class="col-md-2 col-12 mb-1 ">
+                                        <div>
+                                            <a class="btn btn-outline-danger text-nowrap px-1">
+                                                <i data-feather="x" class="me-25"></i>
+                                            </a>
+                                            <a class="btn btn-outline-success text-nowrap px-1"
+                                                   onclick="addNew('payment','paymentAppend')">
+                                                <i data-feather="copy" class="me-25"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="paymentAppend"></div>
+                            <div class="row">
+                                <div class="col-12 pb-2">
+                                    <a class="btn btn-icon btn-primary" onclick="addNew('payment','paymentAppend')">
+                                        <i data-feather="plus" class="me-25"></i>
+                                        <span>Add New</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-primary btn-prev">
                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -200,13 +241,20 @@
                         <h5 class="mb-0">Tenants</h5>
                     </div>
                     <div class="row">
-                        <div class="mb-1 col-md-6">
-                            <label class="form-label" for="basicSelect">Basic Select</label>
-                            <select class="form-select" id="basicSelect">
-                                <option>IT</option>
-                                <option>Blade Runner</option>
-                                <option>Thor Ragnarok</option>
+                        <div class="mb-1 col-md-12">
+                            <label class="form-label" for="tenant">Tenant</label>
+                            <select
+                                class="select2 w-100 "
+                                id="tenant" name="tenant[]">
+
+                                    <option value="1">Tenant</option>
+                                    <option value="1">Landlord</option>
+                                    <option value="1">Admin</option>
+
                             </select>
+                            @error('payment_method[]')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                     </div>
@@ -228,51 +276,92 @@
                         <h5 class="mb-0">Extra Charges</h5>
                     </div>
                     <div class="row">
-                        <div class="mb-1 col-md-3 col-sm-3">
-                            <label class="form-label" for="extra-charge-name">Extra Charge Name</label>
-                            <select class="form-select" id="extra-charge-name">
-                                <option>IT</option>
-                                <option>Blade Runner</option>
-                                <option>Thor Ragnarok</option>
-                            </select>
-                        </div>
-                        <div class="mb-1 col-md-3 col-sm-3">
-                            <label class="form-label" for="extra-charge-name">Extra Charge Value</label>
-                            <input type="text" id="extra-charge-name" class="form-control"
-                                placeholder="Extra Charge Value" />
-                        </div>
-                        <div class="mb-1 col-md-2 col-sm-2">
-                            <label class="form-label" for="extra-charge-type">Extra Charge Type</label>
-                            <select class="form-select" id="extra-charge-type">
-                                <option>IT</option>
-                                <option>Blade Runner</option>
-                                <option>Thor Ragnarok</option>
-                            </select>
-                        </div>
-                        <div class="mb-1 col-md-2 col-sm-2">
-                            <label class="form-label" for="extra-charge-frequency">Frequency</label>
-                            <select class="form-select" id="extra-charge-frequency">
-                                <option>IT</option>
-                                <option>Blade Runner</option>
-                                <option>Thor Ragnarok</option>
-                            </select>
-                        </div>
-                        <div class="mb-1 col-md-2 col-sm-2">
-                            <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="copy" class="text-dark font-medium-5" ></i>
-                            </a>
-                            <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="delete" class="text-danger font-medium-5 "></i>
-                            </a>
+                        <div>
+                            <div id="extraCharge">
+                                <div class="row d-flex align-items-end rept">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="extra-charges-name">Extra Charges
+                                                    Name</label>
+                                                <select
+                                                    class="select2 w-100 @error('extra_charge_name') border-1 border-danger @enderror"
+                                                    id="extra-charges-name" name="extra[extra_charge_name][]">
 
-                        </div>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-start ">
-                            <a href=""> <button type="submit" class="btn btn-primary me-2 mb-2 " name="submit"
-                                    value="Submit">+ Add Lease</button></a>
-                        </div>
-                        </div>
+                                                        <option value="1">Processing Fee </option>
+                                                        <option value="1">Processing Fee </option>
+                                                        <option value="1">Processing Fee </option>
 
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="extra-charges-value">Extra Charges
+                                                    Value</label>
+                                                <input type="number" class="form-control " id="extra-charges-value"
+                                                    aria-describedby="itemname" placeholder="Extra Charges Value"
+                                                    name="extra[extra_charges_value][]" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="extra-charges-type">Extra Charges
+                                                    Type</label>
+                                                <select
+                                                    class="select2 w-100 @error('extra_charges_type') border-1 border-danger @enderror"
+                                                    id="extra-charges-type" name="extra[extra_charges_type][]">
+                                                    <option label=" "></option>
+                                                    <option value="fixed">Fixed Value</option>
+                                                    <option value="total">% Of Total Rent</option>
+                                                    <option value="total_collected">% Of Total Collected Rent</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="extra_frequency">Frequency</label>
+                                                <select
+                                                    class="select2 w-100 @error('extra_frequency') border-1 border-danger @enderror"
+                                                    id="extra_frequency" name="extra[extra_frequency][]">
+                                                    <option label=" "></option>
+                                                    <option value="one_time">One Time</option>
+                                                    <option value="period">Period To Period</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-12 ">
+                                            <div>
+                                                <a class="btn btn-outline-danger text-nowrap px-1">
+                                                    <i data-feather="x" class="me-25"></i>
+                                                </a>
+                                                <a class="btn btn-outline-success text-nowrap px-1"
+                                                    onclick="addNew('extraCharge','extraChargeAppend')">
+                                                    <i data-feather="copy" class="me-25"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="extraChargeAppend"></div>
+                            <div class="row">
+                                <div class="col-12 pb-2">
+                                    <a class="btn btn-icon btn-primary"
+                                        onclick="addNew('extraCharge','extraChargeAppend')">
+                                        <i data-feather="plus" class="me-25"></i>
+                                        <span>Add New</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="d-flex justify-content-between">
@@ -292,58 +381,105 @@
                     <h5 class="mb-0">Late Fee</h5>
                 </div>
                 <div class="row">
-                    <div class="mb-1 col-md-4 ">
-                        <label class="form-label" for="late-fee">Late Fee Name</label>
-                        <select class="form-select" id="late-fee">
-                          <option>IT</option>
-                          <option>Blade Runner</option>
-                          <option>Thor Ragnarok</option>
-                        </select>
-                    </div>
-                    <div class="mb-1 col-md-4 ">
-                        <label class="form-label" for="late-fee-value">Late Fee Value</label>
-                        <input type="number" id="late-fee-value" class="form-control" placeholder="Late Fee Value" />
-                    </div>
-                    <div class="mb-1 col-md-4 ">
-                        <label class="form-label" for="late-fee-type">Late Fee Type</label>
-                        <select class="form-select" id="late-fee-type">
-                          <option>IT</option>
-                          <option>Blade Runner</option>
-                          <option>Thor Ragnarok</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div class="mb-1 col-md-4 ">
-                            <label class="form-label" for="late-fee-period">Grace Period (Days)</label>
-                            <select class="form-select" id="late-fee-period">
-                              <option>IT</option>
-                              <option>Blade Runner</option>
-                              <option>Thor Ragnarok</option>
-                            </select>
+                    <div>
+                        <div id="lateFee">
+                            <div class="row d-flex align-items-end rept">
+                                <div class="row align-items-center">
+                                    <div class="row">
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="late-fee-name">Late Fee Name</label>
+                                            <select
+                                                class="select2 w-100 @error('late_fee_name') border-1 border-danger @enderror"
+                                                id="late-fee-name" name="late[late_fee_name][]">
+                                                <option label=" "></option>
+                                                <option value="penalty">Penalty</option>
+
+                                            </select>
+                                            @error('late_fee_name')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="late-fee-value">Late Fee Value</label>
+                                            <input type="number" id="late-fee-value"
+                                                class="form-control @error('late_fee_value') border-1 border-danger @enderror"
+                                                placeholder="Late Fee Value" name="late[late_fee_value][]" />
+                                            @error('late_fee_value')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="late-fee-type">Late Fee type</label>
+                                            <select
+                                                class="select2 w-100 @error('late_fee_type') border-1 border-danger @enderror"
+                                                id="late-fee-type" name="late[late_fee_type][]">
+                                                <option label=" "></option>
+                                                <option value="fixed">Fixed Value</option>
+                                                <option value="total">% Of Total Rent</option>
+                                                <option value="total_collected">% Of Total Collected Rent</option>
+                                            </select>
+                                            @error('late_fee_type')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="grace-period">Grace
+                                                Period(Days)</label>
+                                            <input type="number" id="grace-period"
+                                                class="form-control @error('late_fee_grace_period') border-1 border-danger @enderror"
+                                                placeholder="Grace Period(Days)" name="late[late_fee_grace_period][]" />
+                                            @error('late_fee_grace_period')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="late_fee_frequency">Frequency</label>
+                                            <select
+                                                class="select2 w-100 @error('late_fee_frequency') border-1 border-danger @enderror"
+                                                id="late_fee_frequency" name="late[late_fee_frequency][]">
+                                                <option label=" "></option>
+                                                <option value="one_time">One Time</option>
+                                                <option value="daily">Daily</option>
+                                                <option value="weekly">Weekly</option>
+                                                <option value="bi_weekly">Bi Weekly</option>
+                                                <option value="monthly">Monthly</option>
+                                            </select>
+                                            @error('late_fee_frequency')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+
+
+                                        <div class="col-md-2 col-12 ">
+
+                                            <a class="btn btn-outline-danger text-nowrap px-1 mt-2">
+                                                <i data-feather="x" class="me-25"></i>
+                                            </a>
+                                            <a class="btn btn-outline-success text-nowrap px-1 mt-2"
+                                                onclick="addNew('lateFee','latefeeAppend')">
+                                                <i data-feather="copy" class="me-25"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="mb-1 col-md-4 ">
-                            <label class="form-label" for="late-fee-frequency">Frequency</label>
-                            <select class="form-select" id="late-fee-frequency">
-                              <option>IT</option>
-                              <option>Blade Runner</option>
-                              <option>Thor Ragnarok</option>
-                            </select>
-                        </div>
-                        <div class="mb-1 col-md-4 ">
-                            <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="copy" class="text-dark font-medium-5"></i>
-                            </a>
-                            <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="delete" class="text-danger font-medium-5 "></i>
-                            </a>
-                        </div>
+                        <div id="latefeeAppend"></div>
                         <div class="row">
-                            <div class="col-12 d-flex justify-content-start ">
-                                <a href=""> <button type="submit" class="btn btn-primary me-2 mb-2 " name="submit" value="Submit">+ Add Lease</button></a>
+                            <div class="col-12 pb-2">
+                                <a class="btn btn-icon btn-primary" onclick="addNew('lateFee','latefeeAppend')">
+                                    <i data-feather="plus" class="me-25"></i>
+                                    <span>Add New</span>
+                                </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -365,46 +501,62 @@
                 <div class="content-header">
                     <h5 class="mb-0">Utilities</h5>
                 </div>
-                <div class="row">
-                    <div class="row">
-                        <div class="mb-1 col-md-3 col-sm-3">
-                            <label class="form-label" for="utility-name">Utility Name</label>
-                            <select class="form-select" id="utility-name">
-                                <option>IT</option>
-                                <option>Blade Runner</option>
-                                <option>Thor Ragnarok</option>
-                            </select>
-                        </div>
-                        <div class="mb-1 col-md-3 col-sm-3">
-                            <label class="form-label" for="variable-cost">Variable Cost</label>
-                            <input type="text" id="variable-cost" class="form-control"
-                                placeholder="Extra Charge Value" />
-                        </div>
-                        <div class="mb-1 col-md-3">
-                            <label class="form-label" for="fixed-fee">Fixed Fee</label>
-                            <input type="number" id="fixed-fee" class="form-control"
-                                placeholder="Fixes Fee" />
-                        </div>
+                <div>
+                    <div id="utitiltyAdd">
+                        <div class="row d-flex align-items-end rept">
+                            <div class="row align-items-center">
 
-                        <div class="mb-1 col-md-3">
-                            <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="copy" class="text-dark font-medium-5"></i>
-                            </a>
-                            <a href="#" class="d-inline-block mt-2">
-                                <i data-feather="delete" class="text-danger font-medium-5 "></i>
-                            </a>
+                                <div class="col-md-4 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label" for="utility-name"> Utility Name</label>
+                                        <select
+                                            class="select2 w-100 @error('utility_name') border-1 border-danger @enderror"
+                                            id="utility-name" name="utility_name[]">
+                                            <option label=" "></option>
+                                            <option value="water">Water</option>
+                                            <option value="gas">Gas</option>
+                                            <option value="garbage">Garbage</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                        </div>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-start ">
-                            <a href=""> <button type="submit" class="btn btn-primary me-2 mb-2 " name="submit"
-                                    value="Submit">+ Add Utilities</button></a>
-                        </div>
-                        </div>
+                                <div class="col-md-2 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label" for="itemcost">Variable Cost</label>
+                                        <input type="number" class="form-control" id="itemcost"
+                                            aria-describedby="itemcost" placeholder="32" name="utility_cost[]" />
+                                    </div>
+                                </div>
 
+                                <div class="col-md-2 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label" for="fix-fee">Fixed Fee</label>
+                                        <input type="number" class="form-control" id="fix-fee"
+                                            aria-describedby="itemquantity" placeholder="1" name="fix_fee[]" />
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-12">
+                                    <a class="btn btn-outline-danger text-nowrap px-1">
+                                        <i data-feather="x" class="me-25"></i>
+                                    </a>
+                                    <a class="btn btn-outline-success text-nowrap px-1"
+                                        onclick="addNew('utitiltyAdd','utitiltyAppend')">
+                                        <i data-feather="copy" class="me-25"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
+                    <div id="utitiltyAppend"></div>
+                    <div class="row">
+                        <div class="col-12 pb-2">
+                            <a class="btn btn-icon btn-primary" onclick="addNew('utitiltyAdd','utitiltyAppend')">
+                                <i data-feather="plus" class="me-25"></i>
+                                <span>Add New</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -424,41 +576,52 @@
         <h5 class="mb-0">Payment Settings</h5>
     </div>
     <div class="row">
-        <div class="row">
-            <div class="mb-1 col-md-5">
-                <label class="form-label" for="payment-method-name">Payment Settings</label>
-                <select class="form-select" id="payment-method-name">
-                    <option>IT</option>
-                    <option>Blade Runner</option>
-                    <option>Thor Ragnarok</option>
-                </select>
-            </div>
-            <div class="mb-1 col-md-5">
-                <label class="form-label" for="payment-description">Payment Description</label>
-                <input type="text" id="payment-description" class="form-control"
-                    placeholder="Payment Description" />
-            </div>
+        <div>
+            <div id="method">
+                <div class="row d-flex align-items-end rept">
+                    <div class="mb-1 col-md-5">
+                        <label class="form-label" for="payment-method">Payment Method</label>
+                        <select
+                            class="select2 w-100 "
+                            id="payment-method" name="payment[payment_method][]">
 
+                                <option value="">Mpesa</option>
+                                <option value="">easypaisa</option>
 
-            <div class="mb-1 col-md-2">
-                <a href="#" class="d-inline-block mt-2">
-                    <i data-feather="copy" class="text-dark font-medium-5"></i>
-                </a>
-                <a href="#" class="d-inline-block mt-2">
-                    <i data-feather="delete" class="text-danger font-medium-5"></i>
-                </a>
+                        </select>
 
+                    </div>
+                    <div class="mb-1 col-md-5">
+                        <label class="form-label" for="payment-description">Payment
+                            Description</label>
+                        <input type="text" id="payment-description"
+                            class="form-control "
+                            placeholder="Payment Description" name="payment[payment_description][]" />
+
+                    </div>
+                    <div class="col-md-2 col-12 mb-1 ">
+                        <div>
+                            <a class="btn btn-outline-danger text-nowrap px-1">
+                                <i data-feather="x" class="me-25"></i>
+                            </a>
+                            <a class="btn btn-outline-success text-nowrap px-1"
+                                onclick="addNew('method','paymentAppend')">
+                                <i data-feather="copy" class="me-25"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div id="paymentAppendd"></div>
             <div class="row">
-                <div class="col-12 d-flex justify-content-start ">
-                <a href=""> <button type="submit" class="btn btn-primary me-2 mb-2 " name="submit"
-                        value="Submit">+ Add Payment</button></a>
+                <div class="col-12 pb-2">
+                    <a class="btn btn-icon btn-primary"  onclick="addNew('method','paymentAppendd')">
+                        <i data-feather="plus" class="me-25"></i>
+                        <span>Add New</span>
+                    </a>
+                </div>
             </div>
-            </div>
-
         </div>
-
-
     </div>
 
     <div class="d-flex justify-content-between">
