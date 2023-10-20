@@ -52,53 +52,7 @@ class TenentController extends Controller
     public function store(Request $req)
     {
         try {
-            $req->validate([
-                'form.tenantInfo.tenant_type_id' => 'required',
-                'form.user.status' => 'required',
-                'form.user.first_name' => 'required',
-                'form.user.middle_name' => 'required',
-                'form.user.last_name' => 'required',
-                'form.user.gender' => 'required',
-                'form.user.registration_date' => 'required|date',
-                'form.user.national_id' => 'required',
-                'form.user.martial_status' => 'required',
-                'form.user.phone_number' => 'required',
-                'form.user.email' => 'required|email|unique:users,email',
-                'form.user.country' => 'required',
-                // 'form.user.state' => 'required',
-                'form.user.city' => 'required',
-                'form.user.postal_code' => 'required',
-                'form.user.postal_address' => 'required',
-                'form.user.physical_address' => 'required',
-                'form.user.user_type' => 'required',
-                'form.user.password' => 'required|confirmed',
-
-                'form.tenantInfo.kin_name' => 'required',
-                'form.tenantInfo.kin_phone_number' => 'required',
-                'form.tenantInfo.kin_relation' => 'required',
-
-                'form.tenantInfo.kin_emergency_name' => 'required',
-                'form.tenantInfo.kin_emergency_phone_number' => 'required',
-                'form.tenantInfo.kin_emergency_emial' => 'required|email|unique:tenant_infos,kin_emergency_emial',
-                'form.tenantInfo.kin_emergency_relation' => 'required',
-
-                'form.tenantInfo.kin_emergency_postal_address' => 'required',
-                'form.tenantInfo.kin_emergency_physical_address' => 'required',
-                'form.tenantInfo.employment_status' => 'required',
-
-                'form.tenantInfo.employment_position' => 'required',
-                'form.tenantInfo.employment_contact_phone' => 'required',
-                'form.tenantInfo.employment_contact_email' => 'required|email|unique:tenant_infos,employment_contact_email',
-
-                'form.tenantInfo.employment_postal_address' => 'required',
-                'form.tenantInfo.employment_physical_address' => 'required',
-                'form.tenantInfo.business_name' => 'required',
-                'form.tenantInfo.licence_name' => 'required',
-                'form.tenantInfo.tax_id' => 'required',
-                'form.tenantInfo.bussiness_address' => 'required',
-                'form.tenantInfo.bussiness_industry' => 'required',
-                'form.tenantInfo.bussiness_description' => 'required',
-            ]);
+            $req->validate($this->validation());
             $data = $req->except('_token', 'password_confirmation');
             $userTenant = $data['form']['user'];
             $tenantInfo = $data['form']['tenantInfo'];
@@ -122,10 +76,13 @@ class TenentController extends Controller
      */
     public function show($id)
     {
-        $pagedata['tenant']=TenantInfo::find($id);
+        $pagedata['breadcrumbs'] = [
+            ['link' => "admin/tenants", 'name' => "Tenant"], ['name' => "View"]
+        ];
+        $pagedata['tenant'] = TenantInfo::find($id);
         // = $tenant->user;
-      
-      return view('admin.tenent.view.index',$pagedata);
+
+        return view('admin.tenent.view.index', $pagedata);
     }
 
     /**
@@ -136,7 +93,10 @@ class TenentController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $pagedata['types'] = TenantType::get();
+        $pagedata['tenant'] = TenantInfo::find($id);
+        return view('admin.tenent.addtenant', $pagedata);
     }
 
     /**
@@ -148,7 +108,20 @@ class TenentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+try{
+        $request->validate($this->validation());
+        $data = $request->except('_token');
+        $userTenant = $data['form']['user'];
+        $tenantInfo = $data['form']['tenantInfo'];
+        $tenant = TenantInfo::whereHas('user',function($query) use($userTenant){
+            $query->update($userTenant);
+        })->find($id)->update($tenantInfo);
+       return redirect()->back()->with("success",'Tenant Update Successfully');
+    }catch (\Exception $e) {
+        return redirect()->back()->with('error', $e->getMessage()); 
+    }
+       
+
     }
 
     /**
@@ -171,26 +144,78 @@ class TenentController extends Controller
 
 
 
-        public function block($id)
-        {
-            $tenant=TenantInfo::find($id);
-            // dd($tenant->user->status);
-            if($tenant){
-                $tenant->user->update(['status'=>'2']);
-                return redirect()->back()->with('success','Tenant Blocked successfully.');
-            }else{
-                return redirect()->back()->with("success","Not Found!");
-            }
+    public function block($id)
+    {
+        $tenant = TenantInfo::find($id);
+        // dd($tenant->user->status);
+        if ($tenant) {
+            $tenant->user->update(['status' => '2']);
+            return redirect()->back()->with('success', 'Tenant Blocked successfully.');
+        } else {
+            return redirect()->back()->with("success", "Not Found!");
         }
+    }
 
-        public function unblock($id){
-            $tenant=TenantInfo::find($id);
-            if($tenant){
-                
-                $tenant->user->update(['status'=>'1']);
-                return redirect()->back()->with('success',"Tenant Unblocked Successfully");
-            }else{
-                return redirect()->back()->with('success',"Tenant Unblocked Successfully");
-            }
+    public function unblock($id)
+    {
+        $tenant = TenantInfo::find($id);
+        if ($tenant) {
+
+            $tenant->user->update(['status' => '1']);
+            return redirect()->back()->with('success', "Tenant Unblocked Successfully");
+        } else {
+            return redirect()->back()->with('success', "Tenant Unblocked Successfully");
         }
+    }
+
+    public function validation()
+    {
+        return [
+            'form.tenantInfo.tenant_type_id' => 'required',
+            'form.user.status' => 'required',
+            'form.user.first_name' => 'required',
+            'form.user.middle_name' => 'required',
+            'form.user.last_name' => 'required',
+            'form.user.gender' => 'required',
+            'form.user.registration_date' => 'required|date',
+            'form.user.national_id' => 'required',
+            'form.user.martial_status' => 'required',
+            'form.user.phone_number' => 'required',
+            'form.user.email' => 'required|email|unique:users,email',
+            'form.user.country' => 'required',
+            // 'form.user.state' => 'required',
+            'form.user.city' => 'required',
+            'form.user.postal_code' => 'required',
+            'form.user.postal_address' => 'required',
+            'form.user.physical_address' => 'required',
+            'form.user.user_type' => 'required',
+            'form.user.password' => 'required|confirmed',
+
+            'form.tenantInfo.kin_name' => 'required',
+            'form.tenantInfo.kin_phone_number' => 'required',
+            'form.tenantInfo.kin_relation' => 'required',
+
+            'form.tenantInfo.kin_emergency_name' => 'required',
+            'form.tenantInfo.kin_emergency_phone_number' => 'required',
+            'form.tenantInfo.kin_emergency_emial' => 'required|email|unique:tenant_infos,kin_emergency_emial',
+            'form.tenantInfo.kin_emergency_relation' => 'required',
+
+            'form.tenantInfo.kin_emergency_postal_address' => 'required',
+            'form.tenantInfo.kin_emergency_physical_address' => 'required',
+            'form.tenantInfo.employment_status' => 'required',
+
+            'form.tenantInfo.employment_position' => 'required',
+            'form.tenantInfo.employment_contact_phone' => 'required',
+            'form.tenantInfo.employment_contact_email' => 'required|email|unique:tenant_infos,employment_contact_email',
+
+            'form.tenantInfo.employment_postal_address' => 'required',
+            'form.tenantInfo.employment_physical_address' => 'required',
+            'form.tenantInfo.business_name' => 'required',
+            'form.tenantInfo.licence_name' => 'required',
+            'form.tenantInfo.tax_id' => 'required',
+            'form.tenantInfo.bussiness_address' => 'required',
+            'form.tenantInfo.bussiness_industry' => 'required',
+            'form.tenantInfo.bussiness_description' => 'required',
+        ];
+    }
 }

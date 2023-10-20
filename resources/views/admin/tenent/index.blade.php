@@ -86,7 +86,7 @@
                                             <a href="{{ route('admin.tenant.show', $tenant->id) }}" class="item-edit pe-1">
                                                 <i data-feather="eye" class="font-medium-4"></i>
                                             </a>
-                                            <a href="{{ route('admin.landlord.edit', $tenant->id) }}"
+                                            <a href="{{ route('admin.tenant.edit', $tenant->id) }}"
                                                 class="item-edit pe-1 text-success">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </a>

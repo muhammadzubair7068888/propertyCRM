@@ -17,8 +17,6 @@ class CreateTenantInfosTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('tenant_type_id')->constrained('tenant_types')->cascadeOnDelete()->cascadeOnUpdate();
-            
-
             $table->string('kin_name')->nullable();
             $table->string('kin_phone_number')->nullable();
             $table->string('kin_relation')->nullable();

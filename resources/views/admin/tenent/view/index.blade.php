@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Tabs')
+@section('title', 'Tenant')
 
 @section('vendor-style')
   {{-- vendor css files --}}
@@ -39,7 +39,9 @@
 <div class="col-xl-12 col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Landlord</h4>
+        <h4 class="card-title">Tenant</h4>
+        
+        <div> <a href="{{ route('admin.tenant.index') }}" class="btn btn-secondary">Go Back</a></div>
       </div>
       <div class="card-body">
         <ul class="nav nav-tabs nav-justified" id="myTab2" role="tablist">
@@ -101,13 +103,13 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="card">
-                      <div class="card-header">
+                      {{-- <div class="card-header">
                         <h4 class="card-title">Multiple Column</h4>
-                      </div>
+                      </div> --}}
                       <div class="card-body">
                         <form class="form">
 
-                          @php
+                          {{-- @php
                           $value='';
                           
                             if (@$tenant->tenant_type == 1) {
@@ -115,7 +117,7 @@
                             }elseif (@$tenant->tenant_type == 2) {
                               $value="Bussiness";
                             }
-                          @endphp
+                          @endphp --}}
                             <div class="row">
                                 <div class="col-md-12 col-12">
                                     <div class="mb-1">
@@ -127,7 +129,7 @@
                                           class="form-control"
                                           placeholder="tenant-type"
                                           name="tenant-type"
-                                          value={{$value}}
+                                          value='{{@$tenant->tenantType->display_name}}'
                                         />
                                       </div>
                                 </div>

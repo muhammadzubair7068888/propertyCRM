@@ -88,6 +88,7 @@ class LandlordController extends Controller
         $pagedata['breadcrumbs'] = [
             ['link' => "admin/landlord", 'name' => "Landlords"], ['name' => "View"]
         ];
+       
         $pagedata['user'] = User::find($id);
         return view('admin.landlord.view.index', $pagedata);
     }
@@ -103,6 +104,7 @@ class LandlordController extends Controller
         $pagedata['breadcrumbs'] = [
             ['link' => "admin/landlord", 'name' => " Landlords"], ['name' => "Edit"]
         ];
+        
         $pagedata['user'] = User::find($id);
         return view('admin.landlord.create', $pagedata);
     }
