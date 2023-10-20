@@ -306,7 +306,7 @@
                                                         Name</label>
                                                     <select
                                                         class="select2 w-100 @error('extra_charge_name') border-1 border-danger @enderror"
-                                                        id="extra-charges-name" name="extra_charge_name[]">
+                                                        id="extra-charges-name" name="extra[extra_charge_name][]">
                                                         @foreach ($extracharges as $charge)
                                                             <option value="{{ $charge->id }}">{{ $charge->name }}
                                                             </option>
@@ -322,7 +322,7 @@
                                                         Value</label>
                                                     <input type="number" class="form-control " id="extra-charges-value"
                                                         aria-describedby="itemname" placeholder="Extra Charges Value"
-                                                        name="extra_charges_value[]" />
+                                                        name="extra[extra_charges_value][]" />
                                                 </div>
                                             </div>
 
@@ -332,7 +332,7 @@
                                                         Type</label>
                                                     <select
                                                         class="select2 w-100 @error('extra_charges_type') border-1 border-danger @enderror"
-                                                        id="extra-charges-type" name="extra_charges_type[]">
+                                                        id="extra-charges-type" name="extra[extra_charges_type][]">
                                                         <option label=" "></option>
                                                         <option value="fixed">Fixed Value</option>
                                                         <option value="total">% Of Total Rent</option>
@@ -346,7 +346,7 @@
                                                     <label class="form-label" for="extra_frequency">Frequency</label>
                                                     <select
                                                         class="select2 w-100 @error('extra_frequency') border-1 border-danger @enderror"
-                                                        id="extra_frequency" name="extra_frequency[]">
+                                                        id="extra_frequency" name="extra[extra_frequency][]">
                                                         <option label=" "></option>
                                                         <option value="one_time">One Time</option>
                                                         <option value="period">Period To Period</option>
@@ -413,7 +413,7 @@
                                                     <label class="form-label" for="late-fee-name">Late Fee Name</label>
                                                     <select
                                                         class="select2 w-100 @error('late_fee_name') border-1 border-danger @enderror"
-                                                        id="late-fee-name" name="late_fee_name[]">
+                                                        id="late-fee-name" name="late[late_fee_name][]">
                                                         <option label=" "></option>
                                                         <option value="penalty">Penalty</option>
 
@@ -426,7 +426,7 @@
                                                     <label class="form-label" for="late-fee-value">Late Fee Value</label>
                                                     <input type="number" id="late-fee-value"
                                                         class="form-control @error('late_fee_value') border-1 border-danger @enderror"
-                                                        placeholder="Late Fee Value" name="late_fee_value[]" />
+                                                        placeholder="Late Fee Value" name="late[late_fee_value][]" />
                                                     @error('late_fee_value')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -436,7 +436,7 @@
                                                     <label class="form-label" for="late-fee-type">Late Fee type</label>
                                                     <select
                                                         class="select2 w-100 @error('late_fee_type') border-1 border-danger @enderror"
-                                                        id="late-fee-type" name="late_fee_type[]">
+                                                        id="late-fee-type" name="late[late_fee_type][]">
                                                         <option label=" "></option>
                                                         <option value="fixed">Fixed Value</option>
                                                         <option value="total">% Of Total Rent</option>
@@ -451,7 +451,7 @@
                                                         Period(Days)</label>
                                                     <input type="number" id="grace-period"
                                                         class="form-control @error('late_fee_grace_period') border-1 border-danger @enderror"
-                                                        placeholder="Grace Period(Days)" name="late_fee_grace_period[]" />
+                                                        placeholder="Grace Period(Days)" name="late[late_fee_grace_period][]" />
                                                     @error('late_fee_grace_period')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -461,7 +461,7 @@
                                                     <label class="form-label" for="late_fee_frequency">Frequency</label>
                                                     <select
                                                         class="select2 w-100 @error('late_fee_frequency') border-1 border-danger @enderror"
-                                                        id="late_fee_frequency" name="late_fee_frequency[]">
+                                                        id="late_fee_frequency" name="late[late_fee_frequency][]">
                                                         <option label=" "></option>
                                                         <option value="one_time">One Time</option>
                                                         <option value="daily">Daily</option>
@@ -516,12 +516,6 @@
                         </div>
                     </div>
 
-
-
-
-
-
-
                     <div id="Utilities" class="content" role="tabpanel"
                         aria-labelledby="account-details-vertical-trigger">
 
@@ -535,11 +529,11 @@
                                                 <label class="form-label" for="utility-name"> Utility Name</label>
                                                 <select
                                                     class="select2 w-100 @error('utility_name') border-1 border-danger @enderror"
-                                                    id="utility-name" name="utility_name[]">
+                                                    id="utility-name" name="utility[utility_name][]">
                                                     <option label=" "></option>
-                                                    <option value="water">Water</option>
-                                                    <option value="gas">Gas</option>
-                                                    <option value="garbage">Garbage</option>
+                                                    <option value="1">Water</option>
+                                                    <option value="2">Gas</option>
+                                                    <option value="3">Garbage</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -548,7 +542,7 @@
                                             <div class="mb-1">
                                                 <label class="form-label" for="itemcost">Variable Cost</label>
                                                 <input type="number" class="form-control" id="itemcost"
-                                                    aria-describedby="itemcost" placeholder="32" name="utility_cost[]" />
+                                                    aria-describedby="itemcost" placeholder="32" name="utility[utility_cost][]" />
                                             </div>
                                         </div>
 
@@ -556,7 +550,7 @@
                                             <div class="mb-1">
                                                 <label class="form-label" for="fix-fee">Fixed Fee</label>
                                                 <input type="number" class="form-control" id="fix-fee"
-                                                    aria-describedby="itemquantity" placeholder="1" name="fix_fee[]" />
+                                                    aria-describedby="itemquantity" placeholder="1" name="utility[fix_fee][]" />
 
                                             </div>
                                         </div>

@@ -17,9 +17,9 @@ class CreatePropertyExtraChargesTable extends Migration
             $table->id();
             $table->foreignId('property_id')->constrained()->onDeleteCascade()->onUpdateCascade();
             $table->foreignId('extra_charges_id')->constrained()->onDeleteCascade()->onUpdateCascade();
-            $table->integer('extra_charges_value');
-            $table->string('extra_charges_Type');
-            $table->string('extra_charges_frequency');
+            $table->integer('extra_charges_value')->nullable();
+            $table->string('extra_charges_Type')->nullable();
+            $table->string('extra_charges_frequency')->nullable();
             $table->timestamps();
         });
     }

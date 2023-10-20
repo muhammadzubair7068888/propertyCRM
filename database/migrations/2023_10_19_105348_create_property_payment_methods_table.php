@@ -17,7 +17,7 @@ class CreatePropertyPaymentMethodsTable extends Migration
             $table->id();
             $table->foreignId('property_id')->constrained()->onDeleteCascade()->onUpdateCascade();
             $table->foreignId('payment_method_id')->constrained()->onDeleteCascade()->onUpdateCascade();
-            $table->string('payment_description');
+            $table->string('payment_description')->nullable();
             $table->timestamps();
         });
     }

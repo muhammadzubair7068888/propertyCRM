@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PropertyUtility extends Model
+class PropertyLateFee extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'property_id',
-        'utilities_id',
-        'variable_cost',
-        'fixed_fee',
-        
+'property_id',
+'late_fee_name',
+'late_fee_value',
+'late_fee_type',
+'late_fee_grace_period',
+'late_fee_frequency',
     ];
 }

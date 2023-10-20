@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class PropertyPaymentMethod extends Model
 {
     use HasFactory;
+    protected $fillable=[
+       'property_id',
+       'payment_method_id',
+       'payment_description',
+     
+
+    ];
 }

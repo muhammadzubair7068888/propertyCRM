@@ -41,7 +41,7 @@
         sourceForm.attr('id', uniqueID);
         sourceForm.find(".rept a.btn-outline-danger").attr('onclick', 'remove(this)');
         $(`#${cloned}`).append(sourceForm);
-divCounter        ++; // Increment the counter for the next unique ID
+divCounter++; // Increment the counter for the next unique ID
     }
 
     function remove(element) {
