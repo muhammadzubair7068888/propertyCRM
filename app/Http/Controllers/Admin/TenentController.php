@@ -109,13 +109,14 @@ class TenentController extends Controller
     public function update(Request $request, $id)
     {
 try{
-        $request->validate($this->validation());
-        $data = $request->except('_token');
+        // $request->validate($this->validation());
+        $data = $request->except('_token','form.tenantInfo.user_id',"form.user.user_type","form.user.status");
         $userTenant = $data['form']['user'];
         $tenantInfo = $data['form']['tenantInfo'];
-        $tenant = TenantInfo::whereHas('user',function($query) use($userTenant){
-            $query->update($userTenant);
-        })->find($id)->update($tenantInfo);
+        $tenant = TenantInfo::find($id);
+        $tenant->update($userTenant);
+        $tenant->user->update($tenantInfo);
+
        return redirect()->back()->with("success",'Tenant Update Successfully');
     }catch (\Exception $e) {
         return redirect()->back()->with('error', $e->getMessage()); 
