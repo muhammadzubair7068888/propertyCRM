@@ -162,7 +162,7 @@
                               <label class="form-label " for="property-type">Property Type</label>
                               <input type="text" id="property-typ" readonly
                                   class="form-control   "
-                                  placeholder="Property Type" name="property-typ" />
+                                  placeholder="Property Type" name="property-typ" value="{{@$property->property_type_id}}" />
                           </div>
                       </div>
                       <div class=" col-6">

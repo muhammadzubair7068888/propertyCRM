@@ -23,7 +23,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-      return view("admin.property.index");
+        $property = Property::all();
+      return view("admin.property.index",['property'=>$property]);
     }
 
     /**
@@ -43,8 +44,10 @@ class PropertyController extends Controller
     }
 
     public function view()
+
     {
-      return view('admin.property.viewproperty.index');
+
+
     }
 
     /**
@@ -56,12 +59,51 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         // $request->validate([
-        //     'user_id' => 'required',
-        //     'property_name' => 'required',
-        //     'property_code' => 'required',
-        //     'location' => 'required',
-        //     'agent_commission_value' => 'required',
-        //     'agent_commission_type' => 'required'
+        //     // 'user_id' => 'required',
+        //     'property[property_name]' => 'required',
+        //     'property[property_code]' => 'required',
+        //      'property[location]' => 'required',
+        //      'property[user_id]' => 'required',
+        //      'property[property_type_id]' => 'required',
+        //      'property[agent_commission_value]' => 'required',
+        //      'property[agent_commission_type]' => 'required',
+        //      'payment[payment_method][]' => 'required',
+        //      'payment[payment_description][]' => 'required',
+        //      'extra[extra_charge_name][]' => 'required',
+        //      'extra[extra_charges_value][]' => 'required',
+        //      'extra[extra_charges_type][]' => 'required',
+        //      'extra[extra_frequency][]' => 'required',
+        //      'late[late_fee_name][]' => 'required',
+        //      'late[late_fee_value][]' => 'required',
+        //      'late[late_fee_type][]' => 'required',
+        //      'late[late_fee_grace_period][]' => 'required',
+        //      'late[late_fee_frequency][]' => 'required',
+        //      'utility[utility_name][]' => 'required',
+        //      'utility[utility_cost][]' => 'required',
+        //      'utility[fix_fee][]' => 'required',
+        // ],
+        // [
+        //     'property[property_name].required' => 'Property Name is required!',
+        //     'property[property_code].required' => 'Property Code is required!',
+        //     'property[location].required' => 'Property Location is required!',
+        //     'property[user_id].required' => 'Landlord is required!',
+        //     'property[property_type_id].required' => 'Property type is required!',
+        //     'property[agent_commission_value].required' => 'Agent Commission Value is required!',
+        //     'property[agent_commission_type].required' => 'Agent Commission Type is required!',
+        //     'payment[payment_method][].required' => 'Payment Method is required!',
+        //     'payment[payment_description][].required' => 'Payment Description is required!',
+        //     'extra[extra_charge_name][].required' => 'Extra Charge Name is required!',
+        //     'extra[extra_charges_value][].required' => 'Required!',
+        //     'extra[extra_charges_type][].required' => 'Required',
+        //     'extra[extra_frequency][].required' => 'Required',
+        //     'late[late_fee_name][].required' => 'Late Fee Name is required!',
+        //     'late[late_fee_value][].required' => 'Late Fee Value is required!',
+        //     'late[late_fee_type][].required' => 'Late Fee Type is required!',
+        //     'late[late_fee_grace_period][].required' => 'Late Fee Grace Period is required!',
+        //     'late[late_fee_frequency][].required' => 'Late Fee Frequency is required!',
+        //     'utility[utility_name][].required' => 'Utility Name is required!',
+        //     'utility[utility_cost][].required' => ' Required!',
+        //     'utility[fix_fee][].required' => 'Required!',
         // ]);
 
         $data = $request->except('_token');
@@ -174,8 +216,11 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.property.viewproperty.index');
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
