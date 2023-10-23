@@ -59,31 +59,31 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         // $request->validate([
-        //     // 'user_id' => 'required',
-        //     'property[property_name]' => 'required',
-        //     'property[property_code]' => 'required',
-        //      'property[location]' => 'required',
-        //      'property[user_id]' => 'required',
-        //      'property[property_type_id]' => 'required',
-        //      'property[agent_commission_value]' => 'required',
-        //      'property[agent_commission_type]' => 'required',
-        //      'payment[payment_method][]' => 'required',
-        //      'payment[payment_description][]' => 'required',
-        //      'extra[extra_charge_name][]' => 'required',
-        //      'extra[extra_charges_value][]' => 'required',
-        //      'extra[extra_charges_type][]' => 'required',
-        //      'extra[extra_frequency][]' => 'required',
-        //      'late[late_fee_name][]' => 'required',
-        //      'late[late_fee_value][]' => 'required',
-        //      'late[late_fee_type][]' => 'required',
-        //      'late[late_fee_grace_period][]' => 'required',
-        //      'late[late_fee_frequency][]' => 'required',
-        //      'utility[utility_name][]' => 'required',
-        //      'utility[utility_cost][]' => 'required',
-        //      'utility[fix_fee][]' => 'required',
+            // 'user_id' => 'required',
+            // 'property.property_name' => 'required',
+            // 'property[property_code]' => 'required',
+            //  'property[location]' => 'required',
+            //  'property[user_id]' => 'required',
+            //  'property[property_type_id]' => 'required',
+            //  'property[agent_commission_value]' => 'required',
+            //  'property[agent_commission_type]' => 'required',
+            //  'payment[payment_method][]' => 'required',
+            //  'payment[payment_description][]' => 'required',
+            //  'extra[extra_charge_name][]' => 'required',
+            //  'extra[extra_charges_value][]' => 'required',
+            //  'extra[extra_charges_type][]' => 'required',
+            //  'extra[extra_frequency][]' => 'required',
+            //  'late[late_fee_name][]' => 'required',
+            //  'late[late_fee_value][]' => 'required',
+            //  'late[late_fee_type][]' => 'required',
+            //  'late[late_fee_grace_period][]' => 'required',
+            //  'late[late_fee_frequency][]' => 'required',
+            //  'utility[utility_name][]' => 'required',
+            //  'utility[utility_cost][]' => 'required',
+            //  'utility[fix_fee][]' => 'required',
         // ],
         // [
-        //     'property[property_name].required' => 'Property Name is required!',
+        //     'property.property_name.required' => 'Property Name is required!',
         //     'property[property_code].required' => 'Property Code is required!',
         //     'property[location].required' => 'Property Location is required!',
         //     'property[user_id].required' => 'Landlord is required!',
@@ -216,7 +216,8 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        return view('admin.property.viewproperty.index');
+        $property=Property::find($id);
+        return view('admin.property.viewproperty.index',['property'=>$property]);
     }
 
 
@@ -229,8 +230,15 @@ class PropertyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
-        //
+        $pagedata['landlords'] = User::whereUserType('landlord')->whereStatus('1')->get();
+      $pagedata['propertyTypes'] = PropertyType::get();
+      $pagedata['paymentMethod'] = PaymentMethod::get();
+      $pagedata['extracharges'] = ExtraCharges::get();
+      $pagedata['propertyMethodType'] = PropertyPaymentMethod::where('property_id',$id)->first();
+      $pagedata['property'] =Property::find($id);
+        return view('admin.property.editproperty.index',$pagedata);
     }
 
     /**

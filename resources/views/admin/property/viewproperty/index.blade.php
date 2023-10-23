@@ -16,7 +16,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-2 col-sm-6">
       <div class="card">
         <div class="card-body d-flex align-items-center justify-content-between">
           <div>
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-2 col-sm-6">
       <div class="card">
         <div class="card-body d-flex align-items-center justify-content-between">
           <div>
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-2 col-sm-6">
         <div class="card">
           <div class="card-body d-flex align-items-center justify-content-between">
             <div>
@@ -61,13 +61,22 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-6 col-sm-6">
         <div class="card">
           <div class="card-body d-flex align-items-center justify-content-between">
-            <div>
-              <h3 class="fw-bolder mb-75">4,567</h3>
-              <span>Info</span>
+              <div>
+                <h3 class="fw-bolder mb-75">Name</h3>
+                <span>{{@$property->property_name}}</span>
+
             </div>
+            <div>
+                <h3 class="fw-bolder mb-75">Location</h3>
+                <span>{{@$property->location}}</span>
+              </div>
+              <div>
+                <h3 class="fw-bolder mb-75">Code</h3>
+                <span>{{@$property->property_code}}</span>
+              </div>
             <div class="avatar bg-light-danger p-50">
               <span class="avatar-content">
                 <i data-feather="user" class="font-medium-4"></i>
@@ -157,12 +166,12 @@
                 <input type="hidden" name="gender" value="male">
                 <input type="hidden" name="status" value="1">
                   <div class="row">
-                      <div class=" col-12">
+                      <div class=" col-6">
                           <div class="mb-1">
                               <label class="form-label " for="property-type">Property Type</label>
                               <input type="text" id="property-typ" readonly
                                   class="form-control   "
-                                  placeholder="Property Type" name="property-typ" value="{{@$property->property_type_id}}" />
+                                  placeholder="Property Type" name="property-type" value="{{@$property->propertyType->name}}" />
                           </div>
                       </div>
                       <div class=" col-6">
@@ -170,7 +179,7 @@
                             <label class="form-label " for="property-name ">Property Name</label>
                             <input type="text" id="property-name " readonly
                                 class="form-control "
-                                placeholder="Property Name" name="property-name " />
+                                placeholder="Property Name" name="property-name " value="{{@$property->property_name}}" />
                         </div>
                     </div>
                     <div class=" col-6">
@@ -178,7 +187,7 @@
                             <label class="form-label " for="property-code">Property Code</label>
                             <input type="text" id="property-code" readonly
                                 class="form-control   "
-                                placeholder="Property Code" name="property-code" />
+                                placeholder="Property Code" name="property-code" value="{{@$property->property_code}}" />
                         </div>
                     </div>
                     <div class=" col-6">
@@ -186,17 +195,17 @@
                             <label class="form-label " for="location">Location</label>
                             <input type="text" id="location" readonly
                                 class="form-control   "
-                                placeholder="Location" name="location" />
+                                placeholder="Location" name="location" value="{{@$property->location}}" />
                         </div>
                     </div>
-                    <div class=" col-6">
+                    {{-- <div class=" col-6">
                         <div class="mb-1">
                             <label class="form-label " for="address">Address</label>
                             <input type="text" id="address"readonly
                                 class="form-control  "
                                 placeholder="Address" name="address" />
                         </div>
-                    </div>
+                    </div> --}}
 
 
 

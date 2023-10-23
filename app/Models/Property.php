@@ -16,7 +16,11 @@ class Property extends Model
         'property_type_id',
         'agent_commission_value',
         'agent_commission_type',
-     
+
     ];
+    
+    public function propertyType(){
+        return $this->belongsTo(PropertyType::class);
+    }
 
 }

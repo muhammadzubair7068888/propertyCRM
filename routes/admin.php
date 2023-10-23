@@ -62,6 +62,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('create', [PropertyController::class, 'create'])->name('create');
         Route::post('store', [PropertyController::class, 'store'])->name('store');
         Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
+        Route::get('edit/{id}', [PropertyController::class, 'edit'])->name('edit');
     });
     Route::prefix('notification')->name('notification.')->group(function(){
         Route::get('/', [NotificationController::class,'read'])->name('read');
