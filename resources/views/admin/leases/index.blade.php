@@ -68,6 +68,8 @@
   <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
 @endsection
 @section('page-script')
   {{-- Page js files --}}
@@ -252,6 +254,9 @@
         }
     });
 </script>
+
+    <!-- Page js files -->
+    <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
 
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
 @endsection
