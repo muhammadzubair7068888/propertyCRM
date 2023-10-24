@@ -15,4 +15,8 @@ class PropertyExtraCharges extends Model
           'extra_charges_Type',
           'extra_charges_frequency',
     ];
+
+    public function chargeName(){
+        return $this->belongsTo(ExtraCharges::class, "extra_charges_id", "id");
+    }
 }

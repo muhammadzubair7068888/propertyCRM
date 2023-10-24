@@ -44,6 +44,7 @@ class TenantInfo extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
     public function tenantType()
     {
         return $this->belongsTo(TenantType::class);

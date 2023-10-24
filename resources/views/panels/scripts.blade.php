@@ -34,6 +34,7 @@
 
     var divCounter = 1; // Initialize a counter for the unique ID
 
+
     function addNew(source, cloned) {
         const sourceForm = $(`#${source}`).clone();
         console.log(source, cloned);
@@ -43,6 +44,28 @@
         $(`#${cloned}`).append(sourceForm);
 divCounter++; // Increment the counter for the next unique ID
     }
+//     function addNew(source, cloned) {
+//     const sourceForm = $(`#${source}`).clone();
+//     var uniqueID = "clonedForm-" + divCounter;
+//     sourceForm.attr('id', uniqueID);
+
+//     // Find the original and cloned dropdowns
+//     const originalDropdown = sourceForm.find("select");
+//     const clonedDropdown = originalDropdown.clone();
+
+//     // Reset the selected option in the cloned dropdown
+//     clonedDropdown.val('');
+
+//     // Append the cloned dropdown to the cloned form
+//     sourceForm.find("select").remove(); // Remove the cloned form's existing dropdown
+//     sourceForm.find("label[for='utility-names']").after(clonedDropdown); // Add cloned dropdown
+
+//     // Append the cloned form to the target container
+//     $(`#${cloned}`).append(sourceForm);
+
+//     divCounter++; // Increment the counter for the next unique ID
+// }
+
 
     function remove(element) {
         $(element).closest('.rept').remove();

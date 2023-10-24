@@ -26,7 +26,7 @@
         });
     }
     
-    function alert(url, title,btn,icon,color) {
+    function Alert(url, title,btn,icon,color) {
     Swal.fire({
         title: title,
         icon: icon,

@@ -195,8 +195,8 @@
                     <div id="personal-info-vertical" class="content" role="tabpanel"
                         aria-labelledby="personal-info-vertical-trigger">
                         <div class="content-header">
-                            <h5 class="mb-0">Personal Info</h5>
-                            <small>Enter Your Personal Info.</small>
+                            <h5 class="mb-0">Payment Setting</h5>
+                            {{-- <small>Enter Your Personal Info.</small> --}}
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
@@ -232,7 +232,7 @@
                                             <label class="form-label" for="payment-method">Payment Method</label>
                                             <select
                                                 class="select2 w-100 @error('payment_method') border-1 border-danger @enderror"
-                                                id="payment-method" name="payment[payment_method][]">
+                                                name="payment[payment_method][]">
                                                 @foreach ($paymentMethod as $payment)
                                                     <option value="{{ $payment->id }}">{{ $payment->name }}</option>
                                                 @endforeach
