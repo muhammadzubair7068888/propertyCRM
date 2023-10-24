@@ -14,25 +14,19 @@
             <h4 class="card-title">New Utilities Reading</h4>
           </div>
           <div class="card-body">
-            <form class="form form-vertical">
+            <form action="{{route('admin.utilities.store')}}" method="POST" class="form form-vertical">
+                @csrf
               <div class="row">
                 <div class="col-md-6">
                     <div class="mb-1">
 
                           <label class="form-label" for="select3-basic">Property</label>
-                          <select class="select2 form-select" id="select3-basic">
-                            <option value="AK">Alaska</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="CA">California</option>
-                            <option value="NV">Nevada</option>
-                            <option value="OR">Oregon</option>
-                            <option value="WA">Washington</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="CO">Colorado</option>
-                            <option value="ID">Idaho</option>
+                          <select class="select2 form-select" id="select3-basic" name="property_id">
+                            @foreach ($property as $data )
+                            <option value="{{$data->id}}">{{$data->property_name}}</option>
+                            @endforeach
 
-                            <option value="VA">Virginia</option>
-                            <option value="WV">West Virginia</option>
+
                           </select>
 
                   </div>
@@ -41,19 +35,13 @@
                   <div class="mb-1">
 
                         <label class="form-label" for="select2-basic">Utility</label>
-                        <select class="select2 form-select" id="select2-basic">
-                          <option value="AK">Alaska</option>
-                          <option value="HI">Hawaii</option>
-                          <option value="CA">California</option>
-                          <option value="NV">Nevada</option>
-                          <option value="OR">Oregon</option>
-                          <option value="WA">Washington</option>
-                          <option value="AZ">Arizona</option>
-                          <option value="CO">Colorado</option>
-                          <option value="ID">Idaho</option>
+                        <select class="select2 form-select" id="select2-basic" name="utility_id">\
+                            @foreach ($utility as $utilities)
+                            <option value="{{$utilities->id}}">{{$utilities->name}}</option>
+                            @endforeach
 
-                          <option value="VA">Virginia</option>
-                          <option value="WV">West Virginia</option>
+
+
                         </select>
 
                 </div>
@@ -65,7 +53,7 @@
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="inlineRadioOptions"
+                        name=""
                         id="inlineRadio1"
                         value="option1"
                         checked
@@ -76,63 +64,87 @@
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="inlineRadioOptions"
+                        name=""
                         id="inlineRadio2"
                         value="option2"
                       />
-                      <label class="form-check-label" for="inlineRadio2">Auto Import(CSV or Excel)</label>
+                     <label class="form-check-label" for="inlineRadio2">Auto Import(CSV or Excel)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-1">
+                <div id="utitiltyAdd">
+                    <div class="row d-flex align-items-end rept">
+                        <div class="row align-items-center">
+
+                            <div class="col-md-4 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="unit-name"> Unit</label>
+                                    <select
+                                        class="select2 w-100"
+                                        id="unit-name" name="property_unit_id">
+                                        @foreach ($propertyUnit as $unit )
+                                        <option value="{{$unit->unit_id}}"> {{$unit->unit_floor}}</option>
+                                        @endforeach
+
+
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="reading-date">Reading Date</label>
+                                    <input type="date" class="form-control " id="reading-date"
+                                        aria-describedby="itemcost" placeholder="2023-03-21" name="reading_date" />
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="current-reading">Current Reading</label>
+                                    <input type="number" class="form-control " id="current-reading"
+                                        aria-describedby="itemquantity" placeholder="Current Reading" name="current_reading" />
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-12">
+                                <a class="btn btn-outline-danger text-nowrap px-1">
+                                    <i data-feather="x" class="me-25"></i>
+                                </a>
+                                <a class="btn btn-outline-success text-nowrap px-1"
+                                    onclick="addNew('utitiltyAdd','utitiltyAppend')">
+                                    <i data-feather="copy" class="me-25"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="utitiltyAppend"></div>
+                <div class="row">
+                    <div class="col-12 pb-2">
+                        <a class="btn btn-icon btn-primary" onclick="addNew('utitiltyAdd','utitiltyAppend')">
+                            <i data-feather="plus" class="me-25"></i>
+                            <span>Add New</span>
+                        </a>
                     </div>
                 </div>
             </div>
 
-                <div class="row mt-2">
-                    <div class="mb-1 col-md-3 col-sm-3">
-                        <label class="form-label" for="utility-name">Unit</label>
-                        <select class="form-select" id="utility-name">
-                            <option>IT</option>
-                            <option>Blade Runner</option>
-                            <option>Thor Ragnarok</option>
-                        </select>
-                    </div>
-                    <div class="mb-1 col-md-3 col-sm-3">
-                        <label class="form-label" for="variable-cost">Reading Date</label>
-                        <input type="text" id="fp-default" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
-
-                    </div>
-                    <div class="mb-1 col-md-3">
-                        <label class="form-label" for="fixed-fee">Current Reading</label>
-                        <input type="text" id="fp-default" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
-
-                    </div>
-
-                    <div class="mb-1 col-md-3">
-                        <a href="#" class="d-inline-block mt-2">
-                            <i data-feather="copy" class="text-dark"></i>
-                        </a>
-                        <a href="#" class="d-inline-block mt-2">
-                            <i data-feather="delete" class="text-danger "></i>
-                        </a>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-start ">
-                        <a href=""> <button type="submit" class="btn btn-primary me-2 mb-2 " name="submit"
-                                value="Submit">+ Add Utilities</button></a>
-                    </div>
-                    </div>
-
-                </div>
-             <div class="d-flex">
+             {{-- <div class="d-flex">
                     <form action="upload.php" method="post" enctype="multipart/form-data" >
                         <div class="custom-file justify-content-start">
                             <input type="file" class="custom-file-input" id="bootstrap-file" name="file">
-                         
+
                         </div>
                         <div class="justify-content-end">
                         <input type="submit" class="btn btn-primary" value="Upload">
                         </div>
                     </form>
-                </div>
+                </div> --}}
 
 
                 <div class="col-12 d-flex justify-content-end" >

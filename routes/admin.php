@@ -62,7 +62,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('create', [PropertyController::class, 'create'])->name('create');
         Route::post('store', [PropertyController::class, 'store'])->name('store');
         Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
-        Route::get('edit/{id}', [PropertyController::class, 'edit'])->name('edit');
     });
     Route::prefix('notification')->name('notification.')->group(function(){
         Route::get('/', [NotificationController::class,'read'])->name('read');
@@ -74,6 +73,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('leases', LeaseController::class);
     Route::get('view/leases', [LeaseController::class,'view'])->name('view.leases');
     Route::resource('utilities', UtilitiesController::class);
+    Route::get('utilities/destroy/{id}', [UtilitiesController::class,'destroy'])->name('utilities.destroy');
     Route::get('view/utilities',[UtilitiesController::class,'view'])->name('view.utilities');
     Route::resource('invoice', InvoiceController::class);
     Route::resource('payment', PaymentController::class);

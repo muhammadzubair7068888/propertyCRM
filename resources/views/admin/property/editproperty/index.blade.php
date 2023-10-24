@@ -261,7 +261,7 @@
 
                                             <input type="text" id="payment-description"
                                                 class="form-control @error('payment_description[]') border-1 border-danger @enderror"
-                                                placeholder="Payment Description" name="payment[payment_description][]" value="{{ $propertyMethodType->payment_description }}"/>
+                                                placeholder="Payment Description" name="payment[payment_description][]" value=""/>
                                             @error('payment[payment_description][]')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror

@@ -232,12 +232,12 @@ class PropertyController extends Controller
     public function edit($id)
 
     {
-        $pagedata['landlords'] = User::whereUserType('landlord')->whereStatus('1')->get();
+      $pagedata['landlords'] = User::whereUserType('landlord')->whereStatus('1')->get();
       $pagedata['propertyTypes'] = PropertyType::get();
       $pagedata['paymentMethod'] = PaymentMethod::get();
       $pagedata['extracharges'] = ExtraCharges::get();
       $pagedata['propertyMethodType'] = PropertyPaymentMethod::where('property_id',$id)->first();
-      $pagedata['property'] =Property::find($id);
+      $pagedata['property'] = Property::find($id);
         return view('admin.property.editproperty.index',$pagedata);
     }
 

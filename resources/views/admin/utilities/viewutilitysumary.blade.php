@@ -33,25 +33,90 @@
                   <h4 class="card-title">Summary</h4>
                 </div>
                 <div class="ms-1 justify-content-start row">
-                    <div class="text-black col-4">Vacating Date : <span class="text-gray">17-10-2023</span>
-
-                    </div>
-                    <div class="text-black mb-1 col-4">Property :
-                    <span class="text-gray">Sahil House (sahil123) - (gujranwala)</span>
-                    </div>
-                    <div class=" text-black mb-1 col-4">Unit :
-                    <span class="text-gray">sahil first</span>
-                    </div>
-                    <div class="col-12">
-                        <div  class="text-black"> Lease:
-                        <span  class="text-gray">LS0008</span>
+                    <div class="col-md-6 col-12">
+                        <div class="mb-1">
+                          <label class="form-label" for="phone-name-column">Property</label>
+                          <input
+                          readonly
+                          value="{{$index->property->property_name}}"
+                            type="text"
+                            id="phone-name-column"
+                            class="form-control"
+                            placeholder="Phone"
+                            name="phone-column"
+                          />
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="text-black"> Vacating Reason:
-                        <span class="text-gray">ect</span>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="mb-1">
+                          <label class="form-label" for="phone-name-column">Property Code</label>
+                          <input
+                          readonly
+                          value="{{$index->property->property_code}}"
+                            type="text"
+                            id="phone-name-column"
+                            class="form-control"
+                            placeholder="Phone"
+                            name="phone-column"
+                          />
                         </div>
-                    </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="mb-1">
+                          <label class="form-label" for="phone-name-column">Location</label>
+                          <input
+                          readonly
+                          value="{{$index->property->location}}"
+                            type="text"
+                            id="phone-name-column"
+                            class="form-control"
+                            placeholder="Phone"
+                            name="phone-column"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="mb-1">
+                          <label class="form-label" for="phone-name-column">Utility</label>
+                          <input
+                          readonly
+                          value="{{$index->utility->name}}"
+                            type="text"
+                            id="phone-name-column"
+                            class="form-control"
+                            placeholder="Phone"
+                            name="phone-column"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="mb-1">
+                          <label class="form-label" for="phone-name-column">Reading Date</label>
+                          <input
+                          readonly
+                          value="{{$index->reading_date}}"
+                            type="text"
+                            id="phone-name-column"
+                            class="form-control"
+                            placeholder="Phone"
+                            name="phone-column"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="mb-1">
+                          <label class="form-label" for="phone-name-column">Current Reading </label>
+                          <input
+                          readonly
+                          value="{{$index->current_reading}}"
+                            type="text"
+                            id="phone-name-column"
+                            class="form-control"
+                            placeholder="Phone"
+                            name="phone-column"
+                          />
+                        </div>
+                      </div>
                   </div>
                 </div>
             </div>

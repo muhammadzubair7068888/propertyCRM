@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Models\MainUtility;
+use App\Models\Property;
+use App\Models\Utility;
+use App\Models\PropertyUnit;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,9 @@ class UtilitiesController extends Controller
      */
     public function index()
     {
-        return view("admin.utilities.index");
+        $pagedata['mainUtilities']=MainUtility::get();
+
+        return view("admin.utilities.index",$pagedata);
     }
 
     /**
@@ -24,10 +29,13 @@ class UtilitiesController extends Controller
      */
     public function create()
     {
-        return view("admin.utilities.addutilities");
+        $pagedata['property']=Property::all();
+        $pagedata['utility']=Utility::all();
+        $pagedata['propertyUnit']=PropertyUnit::all();
+        return view("admin.utilities.addutilities",$pagedata);
     }
     public function view(){
-        return view('admin.utilities.viewutilitysumary');
+
     }
 
     /**
@@ -38,7 +46,11 @@ class UtilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->except('_token');
+        $result = MainUtility::create($data);
+        return redirect()->route('admin.utilities.index')->with('success', 'Utility added successfully');
+
     }
 
     /**
@@ -49,7 +61,8 @@ class UtilitiesController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['index']=MainUtility::find($id);
+        return view('admin.utilities.viewutilitysumary',$data);
     }
 
     /**
@@ -83,6 +96,9 @@ class UtilitiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $index=MainUtility::find($id);
+     
+        $index->delete();
+       return redirect()->route('admin.utilities.index')->with('danger','Record has been Deleted Successfully!');
     }
 }

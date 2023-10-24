@@ -48,9 +48,9 @@ class LandlordController extends Controller
      */
     public function store(Request $req)
     {
-       
+
         $req->validate([
-            
+
             'first_name' => 'required',
             'middle_name' => 'required',
             'last_name' => 'required',
@@ -65,7 +65,7 @@ class LandlordController extends Controller
             'physical_address' => 'required',
             'residential_address' => 'required',
             'password' => 'required|confirmed',
-           
+
         ]);
         $data = $req->except('_token');
         // $data['password'] = Hash::make($req->password);
@@ -88,7 +88,7 @@ class LandlordController extends Controller
         $pagedata['breadcrumbs'] = [
             ['link' => "admin/landlord", 'name' => "Landlords"], ['name' => "View"]
         ];
-       
+
         $pagedata['user'] = User::find($id);
         return view('admin.landlord.view.index', $pagedata);
     }
@@ -104,7 +104,7 @@ class LandlordController extends Controller
         $pagedata['breadcrumbs'] = [
             ['link' => "admin/landlord", 'name' => " Landlords"], ['name' => "Edit"]
         ];
-        
+
         $pagedata['user'] = User::find($id);
         return view('admin.landlord.create', $pagedata);
     }

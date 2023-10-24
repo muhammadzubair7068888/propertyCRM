@@ -18,9 +18,17 @@ class Property extends Model
         'agent_commission_type',
 
     ];
-    
+
     public function propertyType(){
         return $this->belongsTo(PropertyType::class);
+    }
+
+    public function propertyPaymentMethod(){
+        return $this->hasMany(PropertyPaymentMethod::class);
+    }
+
+    public function propertyExtra(){
+        return $this->hasMany(PropertyExtraCharges::class);
     }
 
 }
