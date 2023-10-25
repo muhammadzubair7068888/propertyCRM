@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
 @endsection
+@include('admin.utilities.utilityEditModel')
 @section('content')
 <!-- Multilingual -->
 <section id="multilingual-datatable">
@@ -52,7 +53,7 @@
                     <td>{{ $mainUtility->property_unit->unit_type ?? 'N/A' }}</td>
                     <td>
                         <a href="{{route('admin.utilities.show',$mainUtility->id)}}"><i data-feather="eye" class="font-medium-4"></i></a>
-                        <a href=""><i data-feather="edit" class="font-medium-4"></i></a>
+                        <a href="{{route('admin.utilities.edit',$mainUtility->id)}}" data-bs-toggle="modal" data-bs-target="#inlineForm"><i data-feather="edit" class="font-medium-4" ></i></a>
                         <a href="{{route('admin.utilities.destroy',$mainUtility->id)}}"><i data-feather="trash" class="font-medium-4"></i></a>
                     </td>
                 </tr>
