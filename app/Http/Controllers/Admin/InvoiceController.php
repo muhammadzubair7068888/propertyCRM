@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -14,7 +15,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view("admin.invoice.index");
+     $pagedata['invoice']=Invoice::get();  
+        return view("admin.invoice.index",$pagedata);
     }
 
     /**
@@ -24,6 +26,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+
       return view('admin.invoice.generateInvoice');
     }
 

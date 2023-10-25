@@ -140,7 +140,7 @@
                             </div>
                             <div class="mb-1 form-password-toggle col-md-6">
                                 <label class="form-label" for="rent-amount">Rent Amount</label>
-                                <input type="text" id="rent-amount" class="form-control" placeholder="rent_amount"
+                                <input type="number" id="rent-amount" class="form-control" placeholder="rent_amount"
                                     name="form[rent_amount]" required />
                             </div>
                         </div>
@@ -182,7 +182,7 @@
                             <div>
                                 <div class="mb-1 col-md-12">
                                     <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount</label>
-                                    <input type="text" id="rent-deposit-amount" class="form-control"
+                                    <input type="number" id="rent-deposit-amount" class="form-control"
                                         placeholder="Rent Deposit Amount" name="form[rental_deposit_amount]" />
                                 </div>
                                 <div id="payment">
@@ -202,7 +202,7 @@
                                         </div>
                                         <div class="mb-1 col-md-5">
                                             <label class="form-label" for="deposit-amount"> Deposit Amount</label>
-                                            <input type="text" id="deposit-amount" class="form-control"
+                                            <input type="number" id="deposit-amount" class="form-control"
                                                 placeholder="deposit-amount" name="deposit[deposit_amounts][]" />
 
                                         </div>
@@ -382,7 +382,7 @@
                         <div class="content-header">
                             <h5 class="mb-0">Late Fee</h5>
                         </div>
-                        <div class="row" id="fees">
+                        <div class="row" id="fees" >
                             {{-- <div>
                                 <div id="lateFee">
                                     <div class="row d-flex align-items-end rept">
@@ -657,7 +657,7 @@
                         <div class="row ms-1">
                             <div class="row mt-2">
                                 <div class="form-check form-check-primary">
-                                    {{-- <input type="hidden" name="form[next_period_bill]" value="0" /> --}}
+                                
                                     <input type="checkbox" class="form-check-input" id="colorCheck1"
                                         name="form[next_period_bill]" value="1" />
                                     <h6>Next Period Billing (When billing, invoice period is set as next month.)</h6>
@@ -665,7 +665,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-check form-check-primary">
-                                    {{-- <input type="hidden" name="form[waive_penalty]" value="0" /> --}}
+                                 
                                     <input type="checkbox" class="form-check-input" id="colorCheck2"
                                         name="form[waive_penalty]" value="1" />
                                     <h6>Waive Penalty (For this lease, do not charge penalties.)</h6>
@@ -674,7 +674,7 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="form-check form-check-primary">
-                                    {{-- <input type="hidden" name="form[skip_starting_period]" value="0" /> --}}
+                                   
                                     <input type="checkbox" class="form-check-input" id="colorCheck3"
                                         name="form[skip_starting_period]" value="1" />
                                     <h6>Skip Starting Period (For this lease, do not bill the first period.)</h6>
@@ -713,6 +713,10 @@
     <script>
         $("#lease-property").on('change', function() {
             $("#property-unit").empty();
+            $("#cha").empty();
+            $("#fees").empty();
+            $("#util").empty();
+            $("#pay").empty();
             var selected_property = $(this).find('option:selected').val();
             if (selected_property != '') {
                 $.ajax({
@@ -727,14 +731,15 @@
                             `<option value='${unit.id}'>${unit.unit_name}</option>`;
                             $("#property-unit").append(option);
                         });
-                        response.extra_charges.forEach(charge => {
+                        response.extra_charges.forEach( charge => {
+                           
                             console.log(charge);
                             var extracharge = `
                             <div class="col-md-4 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra-charges-name">Extra Charges Name</label>
                                                     <select
-                                                        class="select-2 w-100 @error('extra_charge_name') border-1 border-danger @enderror"
+                                                        class="form-select w-100 @error('extra_charge_name') border-1 border-danger @enderror"
                                                         id="extra-charges-name" name=""  disabled>
                                                         <option value="${charge.charge_name.id}">${charge.charge_name.name}</option>
                                                     </select>
@@ -753,7 +758,7 @@
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra-charges-type">Extra Charges Type</label>
                                                     <select
-                                                        class="select-2 w-100 @error('extra_charges_type') border-1 border-danger @enderror"
+                                                        class="form-select w-100 @error('extra_charges_type') border-1 border-danger @enderror"
                                                         id="extra-charges-type" name=""  disabled>
                                                         <option value="">${charge.extra_charges_Type}</option>
                                                       </select>
@@ -764,7 +769,7 @@
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra_frequency">Frequency</label>
                                                     <select
-                                                        class="select-2 w-100 @error('extra_frequency') border-1 border-danger @enderror"
+                                                        class="form-select w-100 @error('extra_frequency') border-1 border-danger @enderror"
                                                         id="extra_frequency" name=""  disabled>
                                                         <option value="">${charge.extra_charges_frequency}</option>
                                                         
@@ -772,14 +777,15 @@
                                                 </div>
                                             </div>`;
                             $("#cha").append(extracharge);
-
                         });
                         response.late_fee.forEach(fee => {
+                            
                             console.log(fee);
                             var latefee = `
+                            
                             <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-name">Late Fee Name</label>
-                                                    <select class="select-2 w-100 @error('late_fee_name') border-1 border-danger @enderror"
+                                                    <select class="form-select w-100 @error('late_fee_name') border-1 border-danger @enderror"
                                                         id="late-fee-name" name="" disabled>
                                                         <option label="">${fee.late_fee_name}</option>
                                                        </select>
@@ -795,7 +801,7 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-type">Late Fee type</label>
                                                     <select
-                                                        class="select-2 w-100 @error('late_fee_type') border-1 border-danger @enderror"
+                                                        class="form-select w-100 @error('late_fee_type') border-1 border-danger @enderror"
                                                         id="late-fee-type" name="" disabled>
                                                         <option label=" ">${fee.late_fee_type}</option>
                                                       
@@ -809,28 +815,30 @@
                                                         placeholder="Grace Period(Days)" name="" value="${fee.late_fee_grace_period}" readonly />
                                                         </div>
 
-                                                        <div class="mb-1 col-md-6">
+                                                        <div class="mb-1 col-md-12">
+                                                            <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late_fee_frequency">Frequency</label>
                                                     <select
-                                                        class="select-2 w-100 @error('late_fee_frequency') border-1 border-danger @enderror"
+                                                        class="form-select w-100 @error('late_fee_frequency') border-1 border-danger @enderror"
                                                         id="late_fee_frequency" name="" disabled>
                                                         <option label=" ">${fee.late_fee_frequency}</option>
                                                         
                                                     </select>
-                                                  
-                                                </div>`;
+                                                  </div>
+                                                </div>
+                                            `;
                             $("#fees").append(latefee);
                         });
 
                         response.utility.forEach(utility => {
                             console.log(utility);
-
+                        
                             var utilities = `
                             <div class="col-md-4 col-12">
                                             <div class="mb-1">
                                                 <label class="form-label" for="utility-name"> Utility Name</label>
                                                 <select
-                                                    class="select-2 w-100 @error('utility_name') border-1 border-danger @enderror"
+                                                    class="form-select w-100 @error('utility_name') border-1 border-danger @enderror"
                                                     id="utility-name" name="" disabled>
                                                     <option label=" ">${utility.util_name.name}</option>
                                                     </select>
@@ -857,11 +865,11 @@
                         });
                         response.payment.forEach(payment => {
                             console.log(payment);
-
+                            
                             var payment = `
                             <div class="mb-1 col-md-5">
                                             <label class="form-label" for="payment-method">Payment Method</label>
-                                            <select class="select-2 w-100 " id="payment-method"
+                                            <select class="form-select w-100 " id="payment-method"
                                                 name="" disabled>
                                                 <option value="">${payment.payment_name.name}</option>
                                               </select>
@@ -875,10 +883,11 @@
                                         </div>`;
                             $("#pay").append(payment);
                         });
-                        $(".select-2").select2();
+                        // $(".select-2").select2();
                     }
                 });
             }
         });
+       
     </script>
 @endsection
