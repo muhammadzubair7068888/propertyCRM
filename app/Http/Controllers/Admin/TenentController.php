@@ -51,6 +51,7 @@ class TenentController extends Controller
      */
     public function store(Request $req)
     {
+        
         try {
             $req->validate([
                 'form.tenantInfo.tenant_type_id' => 'required',

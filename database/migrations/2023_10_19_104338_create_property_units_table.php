@@ -15,6 +15,7 @@ class CreatePropertyUnitsTable extends Migration
     {
         Schema::create('property_units', function (Blueprint $table) {
             $table->id();
+            $table->string('unit_name');
             $table->string('unit_floor');
             $table->foreignId('property_id')->constrained()->onDeleteCascade()->onUpdateCascade();
             $table->string('rent_amount');

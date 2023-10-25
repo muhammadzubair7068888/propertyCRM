@@ -15,4 +15,8 @@ class PropertyUtility extends Model
         'fixed_fee',
         
     ];
+
+    public function util_name(){
+        return $this->belongsTo(Utility::class,'utilities_id');
+    }
 }

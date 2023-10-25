@@ -63,6 +63,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('store', [PropertyController::class, 'store'])->name('store');
         Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
     });
+
     Route::prefix('notification')->name('notification.')->group(function(){
         Route::get('/', [NotificationController::class,'read'])->name('read');
     });
@@ -70,7 +71,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Route::resource('properties', PropertyController::class);
     // Route::resource('tenants', TenentController::class);
     // Route::get('view/tenent', [TenentController::class,'view'])->name('view');
-    Route::resource('leases', LeaseController::class);
+    // Route::resource('leases', LeaseController::class);
+
+    Route::prefix('leases')->name('leases.')->group(function(){
+        Route::get('/', [LeaseController::class, 'index'])->name('index');
+        Route::get('create', [LeaseController::class, 'create'])->name('create');
+        Route::post('store', [LeaseController::class, 'store'])->name('store');
+        // Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
+    });
+
     Route::get('view/leases', [LeaseController::class,'view'])->name('view.leases');
     Route::resource('utilities', UtilitiesController::class);
     Route::get('utilities/destroy/{id}', [UtilitiesController::class,'destroy'])->name('utilities.destroy');
@@ -81,6 +90,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('setting', SettingController::class);
     Route::resource('report', ReportController::class);
     // Route::get('landlord', [LandlordController::class],'creat');
+
+    // Common Routes (Ajax)
+    Route::get('fetch-units', [DashboardController::class, "fetchUnits"])->name('fetch-units');
 });
 
 // locale Route

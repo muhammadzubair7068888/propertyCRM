@@ -82,11 +82,11 @@
                                                 class="item-edit pe-1 text-success">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </a>
-                                            <a onclick="alert(`{{ $url }}`,'{{ $message }}','{{ $btn }}','{{$alert_icon}}','{{$color}}')"
+                                            <a onclick="Alert(`{{ $url }}`,'{{ $message }}','{{ $btn }}','{{$alert_icon}}','{{$color}}')"
                                                 class="item-edit pe-1 text-danger">
                                                 <i data-feather="{{ $icon }}" class="{{ $icon_class }} font-medium-4"></i>
                                             </a>
-                                            <a onclick="alert(`{{ route('admin.landlord.destroy', $user->id) }}`,'Are you sure you want to delete this user?','Delete','error','danger')"
+                                            <a onclick="Alert(`{{ route('admin.landlord.destroy', $user->id) }}`,'Are you sure you want to delete this user?','Delete','error','danger')"
                                                 class="item-edit text-danger">
                                                 <i data-feather="trash" class="font-medium-4"></i>
                                             </a>
