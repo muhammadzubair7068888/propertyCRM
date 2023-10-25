@@ -13,26 +13,26 @@
 
 
         <!-- form -->
-        <form id="addNewCardValidation" class="row gy-1 gx-2 " onsubmit="return false">
-        
-          
+        <form action="{{route('admin.payment.store')}}" method="post"  class="row gy-1 gx-2 " >
+        @csrf
           <div class="col-md-12 mb-1">
             <label class="form-label" for="Tenant">Tenant</label>
-            <select class="select2 form-select" id="Tenant">
-              <option value="1">Tenant</option>
-              <option value="2" >Option2</option>
-              <option value="3">Option3</option>
-              <option value="4" >Option4</option>
+            <select class="select2 form-select" id="tenant" name="tenant_info_id">
+                <option value=""></option>
+                @foreach ($data as $pagedata)
+                   <option value="{{$pagedata->id}}">{{ $pagedata->first_name . ' ' . $pagedata->last_name }}
+                </option>
+                @endforeach
+
+
+
             </select>
           </div>
 
           <div class="col-md-12 mb-1">
             <label class="form-label" for="Lease">Lease</label>
-            <select class="select2 form-select" id="Lease">
-              <option value="1">Lease</option>
-              <option value="2" >Option2</option>
-              <option value="3">Option3</option>
-              <option value="4" >Option4</option>
+            <select class="select2 form-select" id="lease" name="lease_id">
+             <option value=""></option>
             </select>
           </div>
 
@@ -43,25 +43,28 @@
                 type="number"
                 class="form-control"
                 id="Amount"
+                name="amount"
                 aria-describedby="itemquantity"
                 placeholder="1"
               />
             </div>
           </div>
-          
+
           <div class="col-md-4 mb-1">
             <label class="form-label" for="paymentmethod">Payment Method</label>
-            <select class="select2 form-select" id="paymentmethod">
-              <option value="1">Payment Method</option>
-              <option value="2" >Option2</option>
-              <option value="3">Option3</option>
-              <option value="4" >Option4</option>
+            <select class="select2 form-select" id="paymentmethod" name="payment_method_id">
+
+                @foreach ($paymentmethod as $paymentdata)
+                   <option value="{{$paymentdata->id}}">{{ $paymentdata->name}}
+                </option>
+                @endforeach
+
             </select>
           </div>
 
           <div class="col-md-4 mb-1">
             <label class="form-label" for="paymentdate">Payment Date</label>
-            <input type="text" id="paymentdate" class="form-control flatpickr-basic" placeholder="Payment Date" />
+            <input type="text" id="paymentdate" name="payment_date" class="form-control flatpickr-basic" placeholder="Payment Date" />
           </div>
 
           <div class="col-md-6 col-12">
@@ -71,6 +74,7 @@
                 type="text"
                 class="form-control"
                 id="paidby"
+                name="paid_by"
                 aria-describedby="paidby"
                 placeholder="Paid By"
               />
@@ -84,31 +88,34 @@
                 type="text"
                 class="form-control"
                 id="referencenumber"
+                name="reference_number"
                 aria-describedby="itemname"
                 placeholder="Reference Number"
               />
             </div>
           </div>
-          
+
           <div class="col-md-12 ">
             <div class="mb-3">
-              <label class="form-label" for="paidby">Paid By</label>
+              <label class="form-label" for="paymentfor">Payment For</label>
               <input
                 type="text"
                 class="form-control"
-                id="paidby"
+                id="paymentfor"
+                name="payment_for"
                 aria-describedby="itemname"
-                placeholder="Paid By"
+                placeholder="Being Payment For"
               />
             </div>
           </div>
-        
+
 
           <div class="form-floating">
             <textarea
               class="form-control"
               placeholder="Leave a comment here (maximum 150 characters)"
               id="floatingTextarea2"
+              name="extra_note"
               style="height: 80px"
               maxlength="150"
             ></textarea>
@@ -117,11 +124,11 @@
           </div>
 
          <div class="col-12 text-center">
-            
+
             <button type="reset" class="btn  mt-1" data-bs-dismiss="modal" aria-label="Close">
           Cancel
             </button>
-            <button type="submit" class="btn btn-primary me-1 mt-1">Save</button>
+            <button  class="btn btn-primary me-1 mt-1">Save</button>
           </div>
         </form>
       </div>

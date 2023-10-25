@@ -23,30 +23,59 @@
         </div>
         <div class="col-12 d-flex justify-content-end " >
 
-            <button type="submit" class="btn btn-primary me-2 mt-2 " data-bs-toggle="modal" data-bs-target="#addNewCard" >+ Add Payment</button>
+            <button type="submit" class="btn btn-primary me-2 mt-2 " id="addNewCardTitle" data-bs-toggle="modal" data-bs-target="#addNewCard" >+ Add Payment</button>
 
         </div>
+
         <div class="card-datatable">
           <table class="dt-multilingual table">
             <thead>
                <tr>
                 <th></th>
-                <th>Amount
-                </th>
-                <th>
-                  Payment Method</th>
+                <th>Amount</th>
+                <th>Payment Method</th>
                 <th>Payment Date</th>
-                <th>Tenant
-                </th>
-                <th>
-                  Lease</th>
-                <th>
-                  Property</th>
+                <th>Tenant </th>
+                <th> Lease</th>
+                <th> Property</th>
                 <th>Receipt Number</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
+            <tbody>
+                @foreach ($payment as $item )
+                <tr>
+                    <td></td>
+                    <td>{{$item->amount}}</td>
+                    <td>{{$item->payment_method->name}}</td>
+                    <td>{{$item->payment_date}}</td>
+                    <td>{{$item->tenant_info->user->first_name ." ".$item->tenant_info->user->last_name}}</td>
+                    <td>{{$item->lease->lease_code}}</td>
+                    <td>property</td>
+                    <td>RS00{{$item->id}}</td>
+                    <td>pending</td>
+
+                        <td class="d-flex">
+                            <a href="" class="item-edit pe-1">
+                                <i data-feather="eye" class="font-medium-4"></i>
+                            </a>
+                            <a href=""
+                                class="item-edit pe-1 text-success">
+                                <i data-feather="edit" class="font-medium-4"></i>
+                            </a>
+
+                            <a
+                                class="item-edit text-danger">
+                                <i data-feather="trash" class="font-medium-4"></i>
+                            </a>
+
+                    </td>
+
+                </tr>
+                @endforeach
+
+            </tbody>
           </table>
         </div>
       </div>
@@ -75,7 +104,7 @@
 
 <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 
-<script>
+{{-- <script>
 
   $('.dt-multilingual').DataTable({
       ajax:'{{ asset('data/table-datatable.json') }}',
@@ -197,7 +226,36 @@
       }
     });
 
+</script> --}}
+
+
+<script>
+$('#tenant').on('change' , function () {
+    $('#lease').empty();
+var selected_tenant= $(this).find('option:selected').val();
+// console.log(selected_tenant);
+if(selected_tenant != ""){
+$.ajax({
+    type: "get",
+    url: "{{route('admin.fetch-lease')}}",
+    data: {
+        'id': selected_tenant
+    },
+    success: function (response) {
+        response.lease.forEach(lease => {
+            var option =`<option value='${lease.id}'>${lease.lease_code}</option>`;
+            $('#lease').append(option);
+        });
+
+    }
+});
+}
+
+});
+
+
 </script>
+
 
 <script>
   const textarea = document.getElementById('floatingTextarea2');
@@ -213,6 +271,7 @@
       charCount.textContent = '150 / 150 characters';
     }
   });
+
 </script>
 
 @endsection

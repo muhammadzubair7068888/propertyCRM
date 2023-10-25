@@ -85,14 +85,17 @@
 @endsection
 @section('page-script')
 
+    <script>
 
-  <script>
+          function modal(){
+            document.getElementById('inlineForm').style.display = 'block';
+          }
+
+        $('.dt-multilingual').DataTable({
+            resposive: true,
 
 
-
-
-
-  </script>
-
+        });
+    </script>
 
 @endsection

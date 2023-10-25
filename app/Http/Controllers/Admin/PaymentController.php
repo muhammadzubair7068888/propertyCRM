@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Lease;
+use App\Models\Payment;
+
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -14,7 +19,11 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('admin.payment.index');
+
+        $page['payment']=Payment::all();
+        $page['data'] = User::where('user_type', 'tenant')->get();
+        $page['paymentmethod'] = PaymentMethod::all();
+        return view('admin.payment.index',$page);
     }
 
     /**
@@ -35,7 +44,12 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+         $data=$request->except('_token');
+
+        $index=Payment::create($data);
+
+         return redirect()->route('admin.payment.index')->with('success','Record has been save Successfully');
     }
 
     /**
@@ -81,5 +95,12 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fetchLease(Request $req){
+
+        $data['lease']=Lease::where('tenant_info_id',$req->id)->get();
+        // dd($data['lease']);
+       return response($data);
     }
 }
