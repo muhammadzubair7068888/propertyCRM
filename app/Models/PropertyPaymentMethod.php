@@ -14,8 +14,8 @@ class PropertyPaymentMethod extends Model
        'payment_description',
     ];
 
-    public function paymentMethod(){
-        return $this->belongsTo(PaymentMethod::class);
+    public function payment_name(){
+        return $this->belongsTo(PaymentMethod::class,'payment_method_id');
     }
 
 }

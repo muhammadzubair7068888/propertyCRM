@@ -55,14 +55,14 @@ class LeaseController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $request->validate([
             'form.property_id'=>'required',
             'form.property_unit_id'=>'required',
             'form.lease_type_id'=>'required',
             'form.rent_amount'=>'required',
             'form.start_date'=>'required',
-            'form.due_on'=>'required',   
+            'form.due_on'=>'required',
             'form.rental_deposit_amount'=>'required',
             'form.tenant_info_id'=>'required',
             'form.generate_invoice'=>'required',
@@ -83,7 +83,9 @@ class LeaseController extends Controller
         $payment_rows[] = $row;
     };
     $lease=Lease::create($Info);
- 
+
+    // 
+
     foreach($payment_rows as $payment){
         LeaseDepositAmount::create([
             'lease_id'=>$lease->id,
@@ -91,11 +93,11 @@ class LeaseController extends Controller
             'deposit_amount'=>$payment[1],
         ]);
     }
-    
+
     return redirect()->route('admin.leases.index')->with(['success'=>'Lease Create Successfully']);
 
-   
-    
+
+
     }
 
     /**
