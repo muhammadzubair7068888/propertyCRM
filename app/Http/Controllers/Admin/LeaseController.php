@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invoice;
 use App\Models\Lease;
 use App\Models\LeaseDepositAmount;
 use App\Models\LeaseType;
@@ -70,8 +71,12 @@ class LeaseController extends Controller
 
 
        $data= $request->except('_token');
-        $RandomCode = Str::random(4);
-        $leaseCode = 'LS' . $RandomCode;
+       $RandomCode=Lease::max('id');
+       if(!$RandomCode){
+        $RandomCode=0;
+       }
+
+        $leaseCode = 'LS00' . ++$RandomCode;
        $Info=$data['form'];
        $Info['lease_code'] = $leaseCode;
        $payment_rows = [];
@@ -84,9 +89,7 @@ class LeaseController extends Controller
     };
     $lease=Lease::create($Info);
 
-    // 
-
-    foreach($payment_rows as $payment){
+     foreach($payment_rows as $payment){
         LeaseDepositAmount::create([
             'lease_id'=>$lease->id,
             'utility_name'=>$payment[0],
@@ -94,11 +97,22 @@ class LeaseController extends Controller
         ]);
     }
 
-    return redirect()->route('admin.leases.index')->with(['success'=>'Lease Create Successfully']);
 
-
-
+    $last_invoice = Invoice::max("id");
+    if(!$last_invoice) {
+        $last_invoice = 0;
     }
+    $invoiceCode = 'INV00' . ++$last_invoice;
+    $lease_id=$lease->id;
+
+    $invoice =Invoice::create([
+        'lease_id'=>$lease_id,
+        'invoice_number'=>$invoiceCode
+    ]);
+
+
+    return redirect()->route('admin.leases.index')->with(['success'=>'Lease Create Successfully']);
+  }
 
     /**
      * Display the specified resource.

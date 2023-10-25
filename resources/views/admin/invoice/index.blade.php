@@ -1,84 +1,116 @@
 @extends('layouts/contentLayoutMaster')
 @section('title', 'Invoice')
 @section('vendor-style')
-  {{-- vendor css files --}}
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+    {{-- vendor css files --}}
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
 @endsection
 @section('content')
-<!-- Multilingual -->
-<section id="multilingual-datatable">
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header border-bottom d-flex justify-content-between">
-         <div>
-            <h4 class="card-title">Invoice</h4>
-        </div>
-        <div>
-    {{-- <a class="btn btn-primary" >
-        Launch demo modal
-    </a> --}}
-       </div>
-        </div>
+    <!-- Multilingual -->
+    <section id="multilingual-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header border-bottom d-flex justify-content-between">
+                        <div>
+                            <h4 class="card-title">Invoice</h4>
+                        </div>
+                       
+                    </div>
 
-        <div class="card-datatable">
-          <table class="dt-multilingual table">
-            <thead>
-               <tr>
-                <th></th>
-                <th>Invoice Number</th>
-                <th>Invoice Date</th>
-                <th>
-                  Lease</th>
-                <th>
-                  Period</th>
-                <th>
-                  Amount</th>
-                <th>
-                  Paid</th>
-                <th>Balance</th>
-                <th>
-                  Due On</th>
-                <th>Status</th>
-                <th>Action</th>
+                    <div class="card-datatable">
+                        <table class="datatables-table table">
+                            <thead>
+                                <tr>
 
-              </tr>
-            </thead>
-          </table>
+                                    <th>Invoice Number</th>
+                                    <th>Invoice Date</th>
+                                    <th>Lease</th>
+                                    <th>Period</th>
+                                    <th>Amount</th>
+                                    <th>Paid</th>
+                                    <th>Balance</th>
+                                    <th>Due On</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                              @foreach ($invoice as $invoice )
+                              {{-- {{dd($invoice->leaseInfo)}} --}}
+                              @php
+                              $class='';
+                              $name='';
+                                if($invoice->status==0){
+                                  $class='badge-light-warning';
+                                  $name='Over Due';
+                                }elseif ($invoice->status==1) {
+                                  $class='badge-light-success';
+                                  $name='Paid';
+                                }
+                              @endphp
+                              <tr>
+                                <td>{{$invoice->invoice_number}}</td>
+                             
+                                <td>{{$invoice->leaseInfo->generate_invoice ."-". date('m-Y', strtotime($invoice->created_at)) }}</td>
+                                <td>{{$invoice->leaseInfo->lease_code}}</td>
+                                <td>{{date('F, Y', strtotime($invoice->created_at))}}</td>
+                                <td>{{ number_format($invoice->leaseInfo->rent_amount + $invoice->leaseInfo->rental_deposit_amount + $invoice->leaseInfo->deposit->deposit_amount, 2) }}</td>
+                                <td>0.00</td>
+                                <td>{{ number_format($invoice->leaseInfo->rent_amount + $invoice->leaseInfo->rental_deposit_amount + $invoice->leaseInfo->deposit->deposit_amount, 2) }}</td>
+                                <td>{{$invoice->leaseInfo->due_on ."-". date('m-Y', strtotime($invoice->created_at))}}</td>
+                                <td>
+                                  <span class="badge rounded-pill {{$class}}">{{$name}}</span>
+                                </td>
+                                <td>
+                                  <a href="{{route('admin.invoice.create')}}" class="item-edit"><i data-feather='eye' class='font-medium-4' ></i> 
+                                    </a>
+                                </td>
+                                
+                              </tr>
+                              @endforeach
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!--/ Multilingual -->
+    </section>
+    <!--/ Multilingual -->
 @endsection
 @section('vendor-script')
-  {{-- vendor files --}}
-  <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap5.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/jszip.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/pdfmake.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/vfs_fonts.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.html5.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+    {{-- vendor files --}}
+    <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap5.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/jszip.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/pdfmake.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/vfs_fonts.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.html5.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 @endsection
 @section('page-script')
-  {{-- Page js files --}}
-  {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
+
+    <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
+    {{-- Page js files --}}
+    <script>
+        $(document).ready(function() {
+            $('.datatables-table').DataTable();
+        });
+    </script>
 
 
-
-<script>
+    {{-- <script>
 
   $('.dt-multilingual').DataTable({
       ajax:'{{ asset('data/table-datatable.json') }}',
@@ -203,8 +235,5 @@
       }
     });
 
-</script>
+</script> --}}
 @endsection
-
-
-

@@ -29,5 +29,9 @@ class Lease extends Model
     public function unit(){
         return $this->belongsTo(PropertyUnit::class,'property_unit_id');
     }
+
+    public function deposit() {
+        return $this->belongsTo(LeaseDepositAmount::class, "id", "lease_id");
+    }
 }
 
