@@ -17,7 +17,6 @@
                     <div class="card-header border-bottom">
                         <h4 class="card-title">Leases</h4>
                     </div>
-               {{-- {{dd($lease)}} --}}
                     <div class="col-12 d-flex justify-content-end ">
                         <a href="{{ route('admin.leases.create') }}"> <button type="submit"
                                 class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Lease</button></a>
@@ -40,11 +39,13 @@
                             <tbody>
                               
                                 @foreach ($lease as $lease)
+                                {{-- {{dd($lease->unit)}} --}}
                                 
                                     <tr>
                                         <td>{{$lease->lease_code}}</td>
-                                        <td>ererere</td>
-                                        <td>ererere</td>
+                                        <td>{{$lease->property->property_name}}</td>
+                                        <td>{{$lease->unit->unit_name ?? "N/A"}}</td>
+                                     
                                         <td>{{$lease->rent_amount}}</td>
                                         <td>{{$lease->start_date}}</td>
                                         <td>{{$lease->start_date}}</td>
