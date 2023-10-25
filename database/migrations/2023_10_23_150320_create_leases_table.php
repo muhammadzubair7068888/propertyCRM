@@ -16,7 +16,9 @@ class CreateLeasesTable extends Migration
         Schema::create('leases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('property_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('property_unit_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->unsignedBigInteger('property_unit_id')->nullable();
+            $table->foreign('property_unit_id')->references('id')->on('property_units')->cascadeOnDelete();
+            // $table->foreignId('property_unit_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('lease_type_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('tenant_info_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('lease_code')->nullable();

@@ -58,7 +58,7 @@ class LeaseController extends Controller
        
         $request->validate([
             'form.property_id'=>'required',
-            'form.property_unit_id'=>'required',
+            // 'form.property_unit_id'=>'required',
             'form.lease_type_id'=>'required',
             'form.rent_amount'=>'required',
             'form.start_date'=>'required',
