@@ -38,7 +38,7 @@ class LeaseController extends Controller
         $pagedata['property']=Property::all();
         $pagedata['leasetype']=LeaseType::all();
         $pagedata['utility']=Utility::all();
-        $pagedata['tenant']=TenantInfo::get();
+        $pagedata['tenant']=TenantInfo::all();
         $pagedata['unit']=PropertyUnit::all();
 
         return view("admin.leases.addlease",$pagedata);

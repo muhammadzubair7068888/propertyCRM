@@ -52,6 +52,10 @@
                                   $class='badge-light-success';
                                   $name='Paid';
                                 }
+
+                                // $invoiceCreatedDate = strtotime($invoice->created_at);
+                                // $previousMonthDate = strtotime('-1 month', $invoiceCreatedDate);
+                                // $previousMonthFormattedDate = date('F, Y', $previousMonthDate);
                               @endphp
                               <tr>
                                 <td>{{$invoice->invoice_number}}</td>
@@ -60,7 +64,7 @@
                                 <td>{{$invoice->leaseInfo->lease_code}}</td>
                                 <td>{{date('F, Y', strtotime($invoice->created_at))}}</td>
                                 <td>{{ number_format($invoice->leaseInfo->rent_amount + $invoice->leaseInfo->rental_deposit_amount + $invoice->leaseInfo->deposit->deposit_amount, 2) }}</td>
-                                <td>0.00</td>
+                                <td>{{number_format(0,2)}}</td>
                                 <td>{{ number_format($invoice->leaseInfo->rent_amount + $invoice->leaseInfo->rental_deposit_amount + $invoice->leaseInfo->deposit->deposit_amount, 2) }}</td>
                                 <td>{{$invoice->leaseInfo->due_on ."-". date('m-Y', strtotime($invoice->created_at))}}</td>
                                 <td>
