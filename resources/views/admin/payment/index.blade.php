@@ -231,7 +231,7 @@
 
 <script>
 $('#tenant').on('change' , function () {
-    $('#lease').empty();
+$('#lease').empty();
 var selected_tenant= $(this).find('option:selected').val();
 // console.log(selected_tenant);
 if(selected_tenant != ""){
@@ -243,6 +243,7 @@ $.ajax({
     },
     success: function (response) {
         response.lease.forEach(lease => {
+            console.log(lease);
             var option =`<option value='${lease.id}'>${lease.lease_code}</option>`;
             $('#lease').append(option);
         });
