@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lease;
+use App\Models\TenantInfo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VacateNoticeController extends Controller
@@ -14,7 +17,8 @@ class VacateNoticeController extends Controller
      */
     public function index()
     {
-        return view('admin.vacateNotice.index');
+        $pagedata['tenant']=TenantInfo::get();
+        return view('admin.vacateNotice.index',$pagedata);
     }
 
     /**
@@ -81,5 +85,11 @@ class VacateNoticeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function vacatelease(Request $req){
+        // dd($req);
+        $datapage['lease']=Lease::where('tenant_info_id',$req->id);
+        return response($datapage);
     }
 }

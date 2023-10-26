@@ -8,6 +8,7 @@ use App\Models\Lease;
 use App\Models\Payment;
 
 use App\Models\PaymentMethod;
+use App\Models\TenantInfo;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -21,7 +22,7 @@ class PaymentController extends Controller
     {
 
         $page['payment']=Payment::all();
-        $page['data'] = User::where('user_type', 'tenant')->get();
+        $page['data'] = TenantInfo::all();
         $page['paymentmethod'] = PaymentMethod::all();
         return view('admin.payment.index',$page);
     }

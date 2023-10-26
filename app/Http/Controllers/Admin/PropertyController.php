@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\PropertyType;
 use App\Models\Property;
+use App\Models\PropertyUnit;
 use App\Models\PropertyPaymentMethod;
 use App\Models\PropertyExtraCharges;
 use App\Models\PropertyLateFee;
@@ -15,7 +16,7 @@ use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +35,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-      $pagedata['landlords'] = User::whereUserType('landlord')->whereStatus('1')->get();
+      $pagedata['landlords'] = User::where('user_type', 'landlord')->where('status', 1)->get();
       $pagedata['propertyTypes'] = PropertyType::get();
       $pagedata['paymentMethod'] = PaymentMethod::get();
       $pagedata['extracharges'] = ExtraCharges::get();
@@ -112,6 +113,7 @@ class PropertyController extends Controller
         $extras = $request->extra;
         $lates = $request->late;
         $utilities = $request->utility;
+        $units = $request->unit;
 
         $payment_rows = [];
 
@@ -139,6 +141,16 @@ class PropertyController extends Controller
         $utility_cost = $utilities["utility_cost"];
         $fix_fee = $utilities["fix_fee"];
 
+        $unit_rows = [];
+        $newaddress = $units['newAddress'];
+        $floor = $units['unit_floor'];
+        $rent_amount = $units['rent_amount'];
+        $unit_type = $units['unit_type'];
+        $bed_rooms = $units['bed_rooms'];
+        $bath_rooms = $units['bath_rooms'];
+        $total_rooms = $units['total_rooms'];
+        $square_foot = $units['square_foot'];
+
             // Payment
             for ($i = 0; $i < count($paymentMethods); $i++) {
                 // Create a new row with payment method and description
@@ -165,6 +177,13 @@ class PropertyController extends Controller
                 // Create a new row with payment method and description
                 $row = [($utility_name[$i] ?? '1'), ($utility_cost[$i] ?? "N/A"),($fix_fee[$i] ?? "N/A")];
                 $utility_rows[] = $row;
+            }
+
+            // Unit
+            for ($i = 0; $i < count($newaddress); $i++) {
+                // Create a new row with payment method and description
+                $row = [($newaddress[$i] ?? '1'), ($floor[$i] ?? "N/A"),($rent_amount[$i] ?? "N/A"),($unit_type[$i] ?? "N/A"),($bed_rooms[$i] ?? "N/A"),($bath_rooms[$i] ?? "N/A"),($total_rooms[$i] ?? "N/A"),($square_foot[$i] ?? "N/A")];
+                $unit_rows[] = $row;
             }
 
         $property = Property::create($property_data);
@@ -202,6 +221,20 @@ class PropertyController extends Controller
                 'fixed_fee'=>$utility[2],
             ]);
         }
+        foreach($unit_rows as $unit){
+            PropertyUnit::create([
+                'property_id'=>$property->id,
+                'unit_name'=>$unit[0],
+                'unit_floor'=>$unit[1],
+                'rent_amount'=>$unit[2],
+                'unit_type'=>$unit[3],
+                'bed_room'=>$unit[4],
+                'bath_room'=>$unit[5],
+                'total_room'=>$unit[6],
+                'square_foot'=>$unit[7],
+            ]);
+        }
+
 
 
         return redirect()->route('admin.properties.index')->with('success', 'Record updated successfully');
