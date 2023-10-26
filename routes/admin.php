@@ -88,6 +88,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('payment', PaymentController::class);
     Route::get('fetch-lease',[PaymentController::class,'fetchLease'])->name('fetch-lease');
     Route::resource('vacate_notice', VacateNoticeController::class);
+    Route::get('fetch-vacatelease', [VacateNoticeController::class,'vacatelease'])->name('vacatelease');
     Route::resource('setting', SettingController::class);
     Route::resource('report', ReportController::class);
     // Route::get('landlord', [LandlordController::class],'creat');

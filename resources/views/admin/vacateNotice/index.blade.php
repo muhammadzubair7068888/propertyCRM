@@ -28,7 +28,7 @@
         </div>
         {{-- {{dd($tenant)}} --}}
         <div class="card-datatable">
-          <table class="datatables-table table">
+          <table class="dt-multilingual table">
             <thead>
                <tr>
                 <th>Vacating Date</th>
@@ -71,23 +71,45 @@
 @endsection
 
 @section('page-script')
-<script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
+{{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
 
 <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 
-<script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+<script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script> --}}
 
 <script>
-$('#Tenant').on('change', function () {
-    var selected_tenant=$('#Tenant').find('option:selected').val();
+$('#tenant').on('change', function () {
+    var selected_tenant=$('#tenant').find('option:selected').val();
     console.log(selected_tenant);
+    $.ajax({
+      type: "get",
+      url: "{{route('admin.vacatelease')}}",
+      data: {
+        id: selected_tenant,
+      },
+      
+      success: function (response) {
+        response.lease.forEach(element => {
+          console.log(element);
+        });
+      }
+    });
+
   });
 </script>
 
 <script>
-  $(document).ready(function () {
-  $('.datatables-table').DataTable();
-});
+  $(document).ready(function() {
+      $('.dt-multilingual').DataTable();
+  });
+</script>
+
+<script>
+//   $(document).ready(function () {
+//   $('.datatables-table').DataTable({
+//     resposive:true
+//   });
+// });
 
 $('.select-2').select2();
 

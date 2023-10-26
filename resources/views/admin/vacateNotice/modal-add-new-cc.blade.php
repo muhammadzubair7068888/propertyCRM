@@ -18,10 +18,10 @@
 
           <div class="col-md-12 mb-1">
             <label class="form-label" for="Tenant">Tenant</label>
-            <select class="select-2 form-select" id="Tenant" name="tenant_info_id">
+            <select class="select-2 form-select" id="tenant" name="tenant_info_id">
               <option value="" ></option>
               @foreach ($tenant as $tenant )
-              <option value="{{$tenant->id}}">{{$tenant->first_name.' '.$tenant->last_name}}</option>
+              <option value="{{$tenant->id}}">{{$tenant->user->first_name.' '.$tenant->user->last_name}}</option>
               @endforeach
               
               {{-- <option value="2" >Option2</option>
@@ -32,11 +32,11 @@
 
           <div class="col-md-6 mb-1">
             <label class="form-label" for="Leases">Leases</label>
-            <select class="select-2 form-select" id="Leases" name="lease_id">
-              <option value="1">Lease</option>
-              <option value="2" >Option2</option>
+            <select class="select-2 form-select" id="leases" name="lease_id">
+              <option value=""></option>
+              {{-- <option value="2" >Option2</option>
               <option value="3">Option3</option>
-              <option value="4" >Option4</option>
+              <option value="4" >Option4</option> --}}
             </select>
           </div>
 

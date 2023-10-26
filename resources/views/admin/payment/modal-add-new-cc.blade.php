@@ -20,7 +20,7 @@
             <select class="select2 form-select" id="tenant" name="tenant_info_id">
                 <option value=""></option>
                 @foreach ($data as $pagedata)
-                   <option value="{{$pagedata->id}}">{{ $pagedata->first_name . ' ' . $pagedata->last_name }}
+                   <option value="{{$pagedata->id}}">{{ $pagedata->user->first_name . ' ' . $pagedata->user->last_name }}
                 </option>
                 @endforeach
 
