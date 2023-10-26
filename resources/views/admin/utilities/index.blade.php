@@ -26,31 +26,27 @@
           <table class="dt-multilingual table">
             <thead>
               <tr>
-                <th></th>
+                <th>ID</th>
                 <th>Reading</th>
-                <th>
-                  Utility
-                  </th>
+                <th>Utility</th>
                 <th>Reading Date</th>
                 <th>Property</th>
-                <th>
-                  Unit</th>
+                <th>Unit</th>
                 {{-- <th>Status</th> --}}
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-                @foreach ( $mainUtilities as $mainUtility )
+                @foreach ($unit as $mainUtility )
                 <tr>
-
-
-
-                    <td></td>
+                    <td>{{$loop->iteration}}</td>
                     <td>{{$mainUtility->current_reading}}</td>
-                    <td>{{$mainUtility->utility->name}}</td>
+                    <td>{{$mainUtility->main_utilities->utility->name}}</td>
                     <td>{{$mainUtility->reading_date}}</td>
-                    <td>{{$mainUtility->property->property_name}}</td>
-                    <td>{{ $mainUtility->property_unit->unit_type ?? 'N/A' }}</td>
+
+
+                    <td>{{$mainUtility->main_utilities->property->property_name}}</td>
+                    <td>{{ $mainUtility->property_unit->unit_name  }}</td>
                     <td>
                         <a href="{{route('admin.utilities.show',$mainUtility->id)}}"><i data-feather="eye" class="font-medium-4"></i></a>
                         <a href="{{route('admin.utilities.edit',$mainUtility->id)}}" data-bs-toggle="modal" data-bs-target="#inlineForm"><i data-feather="edit" class="font-medium-4" ></i></a>

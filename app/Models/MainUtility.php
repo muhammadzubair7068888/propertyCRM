@@ -11,9 +11,7 @@ class MainUtility extends Model
     protected $fillable = [
         'property_id',
         'utility_id',
-        'property_unit_id',
-        'reading_date',
-        'current_reading',
+
     ];
 
     public function utility() {
@@ -23,7 +21,6 @@ class MainUtility extends Model
     public function property(){
         return $this->belongsTo(Property::class);
     }
-    public function property_unit(){
-        return $this->belongsTo(PropertyUnit::class);
-    }
+ 
+
 }

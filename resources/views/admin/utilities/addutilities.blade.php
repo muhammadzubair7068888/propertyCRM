@@ -82,7 +82,7 @@
                                     <label class="form-label" for="unit-name"> Unit</label>
                                     <select
                                         class="select2 w-100"
-                                        id="unit-name" name="property_unit_id">
+                                        id="unit-name" name="utility[property_unit_id][]">
                                         @foreach ($propertyUnit as $unit )
                                         <option value="{{$unit->unit_id}}"> {{$unit->unit_floor}}</option>
                                         @endforeach
@@ -97,7 +97,7 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="reading-date">Reading Date</label>
                                     <input type="date" class="form-control " id="reading-date"
-                                        aria-describedby="itemcost" placeholder="2023-03-21" name="reading_date" />
+                                        aria-describedby="itemcost" placeholder="2023-03-21" name="utility[reading_date][]" />
 
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="current-reading">Current Reading</label>
                                     <input type="number" class="form-control " id="current-reading"
-                                        aria-describedby="itemquantity" placeholder="Current Reading" name="current_reading" />
+                                        aria-describedby="itemquantity" placeholder="Current Reading" name="utility[current_reading][]" />
 
 
                                 </div>

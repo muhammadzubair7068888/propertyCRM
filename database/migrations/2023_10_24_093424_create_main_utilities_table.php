@@ -17,11 +17,9 @@ class CreateMainUtilitiesTable extends Migration
             $table->id();
             $table->foreignId('property_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete()->nullable();
             $table->foreignId('utility_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete()->nullable();
-            $table->unsignedBigInteger('property_unit_id')->nullable();
-            $table->foreign('property_unit_id')->references('id')->on('property_units');
-            // $table->foreignId('property_unit_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->date('reading_date')->nullable();
-            $table->string('current_reading')->nullable();
+            // $table->unsignedBigInteger('property_unit_id')->nullable();
+            // $table->foreign('property_unit_id')->references('id')->on('property_units');
+           
             $table->timestamps();
         });
     }

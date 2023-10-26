@@ -8,6 +8,7 @@ use App\Models\PropertyLateFee;
 use App\Models\PropertyPaymentMethod;
 use App\Models\PropertyUnit;
 use App\Models\PropertyUtility;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -28,4 +29,9 @@ class DashboardController extends Controller
         $data['payment']=PropertyPaymentMethod::with('payment_name')->where('property_id',$request->id)->get();
         return response($data);
     }
+
+public function fetchPayment(Request $request){
+    $data['payment']=Payment::with(["payment_method",'tenant_info.user'])->find($request->id);
+    return response($data);
+}
 }

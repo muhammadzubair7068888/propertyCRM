@@ -31,4 +31,9 @@ class Property extends Model
         return $this->hasMany(PropertyExtraCharges::class);
     }
 
+    public function property_unit(){
+        return $this->hasMany(PropertyUnit::class);
+    }
+ 
+
 }

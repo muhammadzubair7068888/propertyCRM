@@ -95,6 +95,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Common Routes (Ajax)
     Route::get('fetch-units', [DashboardController::class, "fetchUnits"])->name('fetch-units');
+    Route::get('fetch-payment', [DashboardController::class, "fetchPayment"])->name('fetch-payment');
 });
 
 // locale Route

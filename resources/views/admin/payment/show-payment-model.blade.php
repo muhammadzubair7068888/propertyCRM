@@ -2,7 +2,7 @@
               <!-- Modal -->
               <div
                 class="modal fade text-start"
-                id="inlineForm"
+                id="showmodal"
                 tabindex="-1"
                 aria-labelledby="myModalLabel33"
                 aria-hidden="true"
@@ -24,7 +24,7 @@
                               id="modern-amount"
                               class="form-control"
                               readonly="readonly"
-                              placeholder=""
+                              value=""
                             />
                           </div>
                           <div class="mb-1 col-md-6">
@@ -50,10 +50,10 @@
                             />
                           </div>
                           <div class="mb-1 col-md-6">
-                            <label class="form-label" for="disabledInputtenant">Tenant</label>
+                            <label class="form-label" for="tenant">Tenant</label>
                             <input
                               type="text"
-                              id="disabledInputtenant"
+                              id="tenant"
                               readonly="readonly"
                               class="form-control"
                               value=""
@@ -83,11 +83,7 @@
                                 value=""
                                 ></textarea>
                             </div>
-                            <div class="alert alert-warning mt-1 alert-validation-msg" role="alert">
-                              <div class="alert-body d-flex align-items-center">
-                                <span><i data-feather='bell'></i> You do,t have permission to access this resource.</span>
-                              </div>
-                            </div>
+
                       </div>
                     </form>
                   </div>
