@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VacateNoticeController extends Controller
@@ -14,7 +15,8 @@ class VacateNoticeController extends Controller
      */
     public function index()
     {
-        return view('admin.vacateNotice.index');
+        $pagedata['tenant']=User::whereUserType('tenant')->get();
+        return view('admin.vacateNotice.index',$pagedata);
     }
 
     /**
