@@ -98,9 +98,8 @@ class PaymentController extends Controller
     }
 
     public function fetchLease(Request $req){
-
+        // dd($req);
         $data['lease']=Lease::where('tenant_info_id',$req->id)->get();
-        // dd($data['lease']);
        return response($data);
     }
 }

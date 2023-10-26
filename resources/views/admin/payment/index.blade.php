@@ -233,7 +233,7 @@
 $('#tenant').on('change' , function () {
     $('#lease').empty();
 var selected_tenant= $(this).find('option:selected').val();
-// console.log(selected_tenant);
+ console.log(selected_tenant);
 if(selected_tenant != ""){
 $.ajax({
     type: "get",
