@@ -32,24 +32,25 @@
                 <div class="card-header">
                   <h4 class="card-title">Summary</h4>
                 </div>
+                
                 <div class="ms-1 justify-content-start row">
-                    <div class="text-black col-4">Vacating Date : <span class="text-gray">17-10-2023</span>
+                    <div class="text-black col-4">Vacating Date : <span class="text-gray">{{$notice->vacate_date}}</span>
 
                     </div>
                     <div class="text-black mb-1 col-4">Property :
-                    <span class="text-gray">Sahil House (sahil123) - (gujranwala)</span>
+                    <span class="text-gray">{{$notice->leaseInfo->property->property_name}}</span>
                     </div>
                     <div class=" text-black mb-1 col-4">Unit :
-                    <span class="text-gray">sahil first</span>
+                    <span class="text-gray">{{$notice->leaseInfo->unit->unit_name}}</span>
                     </div>
                     <div class="col-12">
                         <div  class="text-black"> Lease:
-                        <span  class="text-gray">LS0008</span>
+                        <span  class="text-gray">{{$notice->leaseInfo->lease_code}}</span>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="text-black"> Vacating Reason:
-                        <span class="text-gray">ect</span>
+                        <span class="text-gray">{{$notice->vacate_reason}}</span>
                         </div>
                     </div>
                   </div>

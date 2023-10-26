@@ -13,20 +13,16 @@
 
 
         <!-- form -->
-        <form id="addNewCardValidation" class="row gy-1 gx-2 " onsubmit="return false">
-
-
+        <form  action="{{route('admin.vacate_notice.store')}}" method="post" id="addNewCardValidation" class="row gy-1 gx-2 ">
+          @csrf
           <div class="col-md-12 mb-1">
             <label class="form-label" for="Tenant">Tenant</label>
-            <select class="select-2 form-select" id="tenant" name="tenant_info_id">
+            <select class="select-2 form-select tenant" id="tenant" name="tenant_info_id">
               <option value="" ></option>
               @foreach ($tenant as $tenant )
               <option value="{{$tenant->id}}">{{$tenant->user->first_name.' '.$tenant->user->last_name}}</option>
               @endforeach
-              
-              {{-- <option value="2" >Option2</option>
-              <option value="3">Option3</option>
-              <option value="4" >Option4</option> --}}
+           
             </select>
           </div>
 
@@ -34,9 +30,7 @@
             <label class="form-label" for="Leases">Leases</label>
             <select class="select-2 form-select" id="leases" name="lease_id">
               <option value=""></option>
-              {{-- <option value="2" >Option2</option>
-              <option value="3">Option3</option>
-              <option value="4" >Option4</option> --}}
+      
             </select>
           </div>
 
@@ -63,13 +57,14 @@
             <button type="reset" class="btn  mt-1" data-bs-dismiss="modal" aria-label="Close">
             Close
             </button>
-            <button type="submit" class="btn btn-primary me-1 mt-1">Save</button>
+            <button  class="btn btn-primary me-1 mt-1">Save</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
 <!--/ add new card modal  -->
 
 {{-- <div class="modal fade" id="addNewCard2" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">

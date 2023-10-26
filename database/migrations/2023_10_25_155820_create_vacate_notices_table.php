@@ -17,8 +17,8 @@ class CreateVacateNoticesTable extends Migration
             $table->id();
             $table->foreignId('tenant_info_id')->constrained('tenant_infos')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('lease_id')->constrained('leases')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('vacate_reason')->nullable();
             $table->date('vacate_date')->nullable();
+            $table->string('vacate_reason')->nullable();
             $table->timestamps();
         });
     }
