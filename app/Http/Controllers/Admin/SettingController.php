@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\PropertyAmenities;
+use App\Models\PropertyType;
+use App\Models\PropertyUnitType;
+use App\Models\Utility;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -14,7 +18,13 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('admin.setting.index');
+        $pagedata['propertyType'] = PropertyType::get();
+        $pagedata['propertyUtility'] = Utility::get();
+        $pagedata['propertyAmenities'] = PropertyAmenities::get();
+        $pagedata['propertyUnitType'] = PropertyUnitType::get();
+
+
+        return view('admin.setting.index', $pagedata);
     }
 
     /**
@@ -39,7 +49,56 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'name' => 'required',
+            'display_name' => 'required',
+            'description' => 'required',
+        ]);
+        
+        $data = $request->except('_token');
+        PropertyType::create($data);
+        return redirect()->route('admin.setting.index')->with('success', 'Added Successfully!');
+    }
+
+    public function utilitystore(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'name' => 'required',
+            'display_name' => 'required',
+            'description' => 'required',
+        ]);
+        
+        $data = $request->except('_token');
+        Utility::create($data);
+        return redirect()->route('admin.setting.index')->with('success', 'Added Successfully!');
+    }
+    public function amenitystore(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'name' => 'required',
+            'display_name' => 'required',
+            'description' => 'required',
+        ]);
+        
+        $data = $request->except('_token');
+        PropertyAmenities::create($data);
+        return redirect()->route('admin.setting.index')->with('success', 'Added Successfully!');
+    }
+    public function unitstore(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'name' => 'required',
+            'display_name' => 'required',
+            'description' => 'required',
+        ]);
+        
+        $data = $request->except('_token');
+        PropertyUnitType::create($data);
+        return redirect()->route('admin.setting.index')->with('success', 'Added Successfully!');
     }
 
     /**

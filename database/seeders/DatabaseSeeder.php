@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            
             UserSeeder::class,
             TenantTypeSeeder::class,
             PaymentMethodSeeder::class,
@@ -22,6 +24,9 @@ class DatabaseSeeder extends Seeder
             TenantInfoSeeder::class,
             PropertyTypeSeeder::class,
             LeaseTypeSeeder::class,
+            PropertyUnitTypeSeeder::class,
+            PropertyAmenitiesSeeder::class,
+                       
         ]);
     }
 }
