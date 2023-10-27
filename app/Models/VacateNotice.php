@@ -15,6 +15,13 @@ class VacateNotice extends Model
         'vacate_reason',
         'vacate_date'
     ];
+
+    public function tenantInfo(){
+        return $this->belongsTo(TenantInfo::class,'tenant_info_id');
+    }
+    public function leaseInfo(){
+        return $this->belongsTo(Lease::class,'lease_id');
+    }
 }
 
 

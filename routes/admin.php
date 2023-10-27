@@ -88,8 +88,19 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('payment', PaymentController::class);
     Route::get('receipt/{id}',[PaymentController::class,'show'])->name('receipt');
     Route::get('fetch-lease',[PaymentController::class,'fetchLease'])->name('fetch-lease');
+   
     Route::resource('vacate_notice', VacateNoticeController::class);
-    Route::get('fetch-vacatelease', [VacateNoticeController::class,'vacatelease'])->name('vacatelease');
+
+    Route::prefix('vacate-notice')->name('vacate_notice.')->group(function(){
+        Route::get('/', [VacateNoticeController::class,'index'])->name('index');
+        Route::get('fetch-vacatelease', [VacateNoticeController::class,'vacatelease'])->name('vacatelease');
+        Route::get('edit-note', [VacateNoticeController::class,'editnote'])->name('editnote');
+        Route::post('store', [VacateNoticeController::class,'store'])->name('store');
+        Route::get('destroy/{id}', [VacateNoticeController::class,'destroy'])->name('destroy');
+        Route::get('show/{id}', [VacateNoticeController::class,'show'])->name('show');
+        Route::post('update', [VacateNoticeController::class,'update'])->name('update');
+    }); 
+    
     Route::resource('setting', SettingController::class);
     Route::resource('report', ReportController::class);
     // Route::get('landlord', [LandlordController::class],'creat');

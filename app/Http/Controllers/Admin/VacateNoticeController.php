@@ -5,7 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Lease;
 use App\Models\TenantInfo;
-use App\Models\User;
+
+use App\Models\VacateNotice;
 use Illuminate\Http\Request;
 
 class VacateNoticeController extends Controller
@@ -17,6 +18,7 @@ class VacateNoticeController extends Controller
      */
     public function index()
     {
+       $pagedata['notices']=VacateNotice::get();
         $pagedata['tenant']=TenantInfo::get();
         return view('admin.vacateNotice.index',$pagedata);
     }
@@ -39,9 +41,23 @@ class VacateNoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
+    $request->validate([
+    'tenant_info_id'=>'required',
+    'lease_id'=>'required',
+    'vacate_date'=>'required',
+    'vacate_reason'=>'required'
+   ]);
+
+   $data=$request->except('_token');
+
+   if($data){
+    VacateNotice::create($data);
+    return redirect()->route('admin.vacate_notice.index')->with('success','Notice added successfully!');
+    }else{
+        return redirect()->route('admin.vacate_notice.index')->with('error','Notice does not added !');
+    }
+    }
     /**
      * Display the specified resource.
      *
@@ -50,7 +66,9 @@ class VacateNoticeController extends Controller
      */
     public function show($id)
     {
-        //
+        $pagedata['notice']=VacateNotice::find($id);
+        
+        return view('admin.vacateNotice.viewvacantnotice',$pagedata);
     }
 
     /**
@@ -71,9 +89,21 @@ class VacateNoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+    //  dd($request);
+    try{
+        $id=$request->tenant_modal_id;
+        $notice=$request->except('_token');
+        VacateNotice::find($id)->update($notice);
+        return redirect()->back()->with('success','Notice Update Successfully!');
+    }catch(\Exception $e){
+        return redirect()->back()->with('error',$e->getMessage());
+    }
+      
+      
+
+
     }
 
     /**
@@ -84,12 +114,25 @@ class VacateNoticeController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $notice=VacateNotice::find($id);
+      if($notice){
+        $notice->delete();
+        return redirect()->back()->with('success','Notice Delete Successfully!');
+      }else{
+        return redirect()->back()->with('error','Notice does not exist!'); 
+      }
+      
     }
 
     public function vacatelease(Request $req){
         // dd($req);
-        $datapage['lease']=Lease::where('tenant_info_id',$req->id);
+        $datapage['lease']=Lease::where('tenant_info_id',$req->id)->get();
         return response($datapage);
+    }
+
+    public function editnote(Request $req){
+
+     $notice=VacateNotice::find($req->id);
+     return response($notice);
     }
 }
