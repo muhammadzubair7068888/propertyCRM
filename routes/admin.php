@@ -86,6 +86,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('view/utilities',[UtilitiesController::class,'view'])->name('view.utilities');
     Route::resource('invoice', InvoiceController::class);
     Route::resource('payment', PaymentController::class);
+    Route::get('receipt/{id}',[PaymentController::class,'show'])->name('receipt');
     Route::get('fetch-lease',[PaymentController::class,'fetchLease'])->name('fetch-lease');
     Route::resource('vacate_notice', VacateNoticeController::class);
     Route::get('fetch-vacatelease', [VacateNoticeController::class,'vacatelease'])->name('vacatelease');

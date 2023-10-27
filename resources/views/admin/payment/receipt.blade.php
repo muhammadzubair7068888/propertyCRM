@@ -244,33 +244,33 @@
               </div>
               <div class="ms-3 justify-content-start row">
                   <div class="text-gray mb-1 col-5">Amount
-                      <p class="text-black">450.00</p>
+                      <p class="text-black">{{$data->amount}}</p>
                   </div>
                   <div class="text-gray mb-1 col-5">Payment Date
-                      <p class="text-black">03-10-2023</p>
+                      <p class="text-black">{{$data->payment_date}}</p>
                   </div>
                 </div>
                 <div class=" ms-4">
                 <div class="text-gray mb-1 col-12">Payment Method
-                      <p class="text-black">Cash</p>
+                      <p class="text-black">{{$data->payment_method->name}}</p>
                   </div>
                   <div class="col-12">
                       <div class="text-gray">Property: </div>
-                      <div class="text-black  mb-1">Sahil House (sahil123) - gujranwala</div>
+                      <div class="text-black  mb-1">{{$data->lease->property->property_name}}</div>
                   </div>
                   <div class="row">
                   <div class="col-6">
                       <div class="text-gray"> Lease: </div>
-                      <div class="text-black" >sahil123</div>
+                      <div class="text-black" >{{$data->lease->lease_code}}</div>
                   </div>
                   <div class="col-6  text-gray"> Unit:
-                  <div  class="text-black mb-1">gujranwala</div>
+                  <div  class="text-black mb-1">{{$data->lease->unit->unit_name}}</div>
                 </div>
                </div>
 
               </div>
               <div class="text-gray p-0 ms-3"> Tenant:
-                <div  class="text-black mb-1">gujranwala</div>
+                <div  class="text-black mb-1">{{$data->tenant_info->user->first_name .' '.$data->tenant_info->user->last_name}}</div>
                 </div>
               </div>
               </div>

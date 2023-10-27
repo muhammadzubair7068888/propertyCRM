@@ -60,17 +60,12 @@
                     <td>pending</td>
 
                         <td class="d-flex">
-                            <button type="button" class="showmodal" payment_id="{{$item->id}}" class="item-edit text-success btn pe-1">
-                                <i data-feather="eye" class="font-medium-4"></i>
+                            <button type="button"  payment_id="{{$item->id}}" class="item-edit border-0 bg-white text-success pe-1 showmodal">
+                                <i data-feather="eye" class="font-medium-4 text-primary"></i>
                             </button>
-                            <a href=""
+                            <a href="{{route('admin.payment.show',$item->id)}}"
                                 class="item-edit pe-1 text-success">
-                                <i data-feather="edit" class="font-medium-4"></i>
-                            </a>
-
-                            <a
-                                class="item-edit text-danger">
-                                <i data-feather="trash" class="font-medium-4"></i>
+                                <i data-feather="download" class="font-medium-4"></i>
                             </a>
 
                     </td>
@@ -125,7 +120,9 @@ $('.showmodal').on('click',function(){
             $("#modern-amount").val(response.payment.amount);
             $("#modern-paid").val(response.payment.payment_date);
             $("#modern-pay").val(response.payment.payment_method.name);
-            $("#tenant").val(response.payment.tenant_info.user.first_name);
+            $("#tenant").val(response.payment.tenant_info.user.first_name + " " + response.payment.tenant_info.user.last_name);
+            $("#recordedby").val(response.payment.tenant_info.user.first_name);
+            $("#extranote").val(response.payment.extra_note);
         }
     });
 })

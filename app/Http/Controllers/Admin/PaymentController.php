@@ -61,7 +61,9 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        //
+      
+        $pagedata['data']=Payment::find($id);
+        return view('admin.payment.receipt',$pagedata);
     }
 
     /**

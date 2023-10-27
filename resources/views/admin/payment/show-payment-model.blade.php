@@ -61,11 +61,11 @@
                           </div>
                           </div>
                           <div class="col-12 mb-1">
-                              <label class="form-label" for="disabledInputRecord">Recorded By</label>
+                              <label class="form-label" for="recordedby">Recorded By</label>
                               <textarea
                                type="text"
                                 class="form-control"
-                                id="disabledInputRecord"
+                                id="recordedby"
                                 readonly="readonly"
                                 rows="2"
                                 value=""
@@ -73,11 +73,11 @@
 
                           </div>
                           <div class="col-12 mb-1 ">
-                              <label class="form-label" for="disabledInputNotes">Extra Notes</label>
+                              <label class="form-label" for="extranote">Extra Notes</label>
                               <textarea
                                 type="text"
                                 class="form-control"
-                                id="readonlyInputNotes"
+                                id="extranote"
                                 readonly="readonly"
                                 rows="2"
                                 value=""
