@@ -127,8 +127,10 @@
                     id: select_note,
                 },
                 success: function(response) {
-               
+            //    console.log(response);
                     $('#edittenant').val(response.tenant_info_id).trigger('change');
+                    $('#vacating-date').val(response.vacate_date);
+                    $('#vacating-reason').val(response.vacate_reason);
                     setTimeout(() => {
                         $('#editleases').val(response.lease_id).trigger('change');
                         $('#tenant_hidden_id').val(select_note);
@@ -152,7 +154,7 @@
         $('#tenant').on('change', function() {
             $('#leases').empty();
             var selected_tenant = $(this).find('option:selected').val();
-            console.log(selected_tenant);
+            // console.log(selected_tenant);
             if (selected_tenant != '') {
                 $.ajax({
                     type: "get",

@@ -97,6 +97,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('store', [VacateNoticeController::class,'store'])->name('store');
         Route::get('destroy/{id}', [VacateNoticeController::class,'destroy'])->name('destroy');
         Route::get('show/{id}', [VacateNoticeController::class,'show'])->name('show');
+        Route::post('update', [VacateNoticeController::class,'update'])->name('update');
     }); 
     
     Route::resource('setting', SettingController::class);

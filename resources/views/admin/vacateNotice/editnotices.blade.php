@@ -13,7 +13,7 @@
 
 
         <!-- form -->
-        <form action="" method="post" id="addNewCardValidation" class="row gy-1 gx-2 ">
+        <form action="{{route('admin.vacate_notice.update')}}" method="post" id="addNewCardValidation" class="row gy-1 gx-2 ">
           @csrf
           <div class="col-md-12 mb-1">
           <input type="hidden" name="tenant_modal_id" id="tenant_hidden_id">
@@ -37,14 +37,14 @@
 
           <div class="col-md-6 mb-1">
             <label class="form-label" for="fp-default">Vacating Date</label>
-            <input type="text" id="Vacating Date" class="form-control flatpickr-basic" placeholder="Vacating Date" name="vacate_date"/>
+            <input type="text" id="vacating-date" class="form-control flatpickr-basic" placeholder="Vacating Date" name="vacate_date"/>
           </div>
 
           <div class="form-floating">
             <textarea
               class="form-control"
               placeholder="Leave a comment here (maximum 150 characters)"
-              id="vacatingreason"
+              id="vacating-reason"
               style="height: 80px"
               maxlength="150"
               name="vacate_reason" 

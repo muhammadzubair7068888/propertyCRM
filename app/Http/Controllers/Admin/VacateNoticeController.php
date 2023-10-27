@@ -89,9 +89,21 @@ class VacateNoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+    //  dd($request);
+    try{
+        $id=$request->tenant_modal_id;
+        $notice=$request->except('_token');
+        VacateNotice::find($id)->update($notice);
+        return redirect()->back()->with('success','Notice Update Successfully!');
+    }catch(\Exception $e){
+        return redirect()->back()->with('error',$e->getMessage());
+    }
+      
+      
+
+
     }
 
     /**
