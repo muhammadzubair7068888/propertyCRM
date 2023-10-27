@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\RepairController;
 use App\Http\Controllers\Admin\VacateNoticeController;
 /*
 |--------------------------------------------------------------------------
@@ -88,7 +89,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('payment', PaymentController::class);
     Route::get('receipt/{id}',[PaymentController::class,'show'])->name('receipt');
     Route::get('fetch-lease',[PaymentController::class,'fetchLease'])->name('fetch-lease');
-   
+
     Route::resource('vacate_notice', VacateNoticeController::class);
 
     Route::prefix('vacate-notice')->name('vacate_notice.')->group(function(){
@@ -99,10 +100,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('destroy/{id}', [VacateNoticeController::class,'destroy'])->name('destroy');
         Route::get('show/{id}', [VacateNoticeController::class,'show'])->name('show');
         Route::post('update', [VacateNoticeController::class,'update'])->name('update');
-    }); 
-    
+    });
+
     Route::resource('setting', SettingController::class);
     Route::resource('report', ReportController::class);
+    Route::resource('repair', RepairController::class);
+    Route::get('repair', [RepairController::class, 'index'])->name('repair');
+
     // Route::get('landlord', [LandlordController::class],'creat');
 
     // Common Routes (Ajax)
