@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    @include('admin.setting.property.propertytypemodel', ['sahil' => 'utilitystore'])
+    @include('admin.setting.property.propertytypemodel', ['type'=>'Utility','route' => 'utilitystore'])
 </section>
 <!--/ Multilingual -->
 

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\TenantSetting;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
             LeaseTypeSeeder::class,
             PropertyUnitTypeSeeder::class,
             PropertyAmenitiesSeeder::class,
+            GeneralSettingSeeder::class,
+            TenantSettingSeeder::class,
+            LeaseSettingSeeder::class,
                        
         ]);
     }

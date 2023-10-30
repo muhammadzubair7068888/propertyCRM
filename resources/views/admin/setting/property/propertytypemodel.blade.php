@@ -1,20 +1,20 @@
 <!-- add new card modal  -->
-<div class="modal fade" id="{{$sahil}}" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+<div class="modal fade" id="{{$route}}" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="max-width: 30%;">
         <div class="modal-content">
             <div class="modal-header bg-transparent">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <h1 class="" id="addNewCardTitle">Add Property Type</h1>
-
+                <h1 class="" id="addNewCardTitle">Add {{$type}} Type</h1>
 
                 <!-- form -->
               
-                <form action="{{ route('admin.setting.'.$sahil) }}" method="post" id="addNewCardValidation"
+                <form action="{{ route('admin.setting.'.$route) }}" method="post" id="addNewCardValidation"
                     class="row gy-1 gx-2 ">
                     @csrf
                     <div class="col-md-6 mb-1">
+                       
                         <label class="form-label" for="Leases">Name</label>
                         <input type="text" class="form-control" placeholder="Vacating Date" name="name" />
                     </div>

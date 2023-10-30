@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    @include('admin.setting.property.propertytypemodel', ['sahil' => 'unitstore' ])
+    @include('admin.setting.property.propertytypemodel', ['type'=>'Unit','route' => 'unitstore' ])
 
 
  

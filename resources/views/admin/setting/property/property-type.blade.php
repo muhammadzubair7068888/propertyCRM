@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    @include('admin.setting.property.propertytypemodel', ['sahil' => 'store' ])
+    @include('admin.setting.property.propertytypemodel', ['type'=>'Property','route' => 'store' ])
 
 
  
