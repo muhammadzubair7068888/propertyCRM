@@ -46,22 +46,19 @@
                                     <td>{{ $data->property->property_name}}</td>
                                     <td>{{ $data->property_unit->unit_name}}</td>
                                     <td>{{ $data->complaint_date}}</td>
-                                    <td>Pending</td>
+                                    <td id="status-column-{{$data->id}}" data-status="{{$data->status}}">{{$data->status}}</td>
                                     <td>
-                                        <div class="btn-group">
-                                          <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            &#8942;
-                                          </button>
-                                          <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Approve</a></li>
-                                            <li><a class="dropdown-item" href="#">Pending</a></li>
-                                            <li><a class="dropdown-item" href="#">Not Possible</a></li>
-
-                                          </ul>
-                                        </div></td>
-
-
-
+                                    <div class="btn-group">
+                                    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        &#8942;
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item status-update" href="#" data-id="{{$data->id}}" data-status="Approve">Approve</a></li>
+                                        <li><a class="dropdown-item status-update" href="#" data-id="{{$data->id}}" data-status="Pending">Pending</a></li>
+                                        <li><a class="dropdown-item status-update" href="#" data-id="{{$data->id}}" data-status="Not Possible">Not Possible</a></li>
+                                    </ul>
+                                    </div>
+                                    </td>
 
                                 </tr>
                                 @endforeach
@@ -73,26 +70,7 @@
         </div>
     </section>
 
-    {{-- <div class="modal fade" id="actionModal" tabindex="-1" role="dialog" aria-labelledby="actionModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="actionModalLabel">Choose an Action</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        <li>Delete</li>
-                        <li>Update</li>
-                        <li>Block</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!--/ Multilingual -->
+
 @endsection
 @section('vendor-script')
     {{-- vendor files --}}
@@ -113,6 +91,45 @@
 @section('page-script')
 
     <script>
+    // document.querySelectorAll('.dropdown-item').forEach(function(item) {
+    //     item.addEventListener('click', function() {
+    //         // Get the text of the clicked dropdown item
+    //         var selectedAction = this.textContent;
+
+    //         // Find the closest <tr> element (row) to the clicked item
+    //         var trElement = this.closest('tr');
+
+    //         // Find the second <td> element in the row and update its text content
+    //         var tdElement = trElement.querySelectorAll('td')[4]; // Change the index as needed
+
+    //         // Update the text content of the <td> with the selected action
+    //         tdElement.textContent = selectedAction;
+    //     });
+    // });
+    $(document).ready(function () {
+        $('.status-update').on('click', function () {
+            var id = $(this).data('id');
+            var newStatus = $(this).data('status');
+
+            $.ajax({
+                url: '/admin/repair/update-status/' + id,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    status: newStatus,
+                },
+                success: function (response) {
+                    if (response.success) {
+                        // Update the status in the table cell
+                        $('#status-column-' + id).text(newStatus);
+                    } else {
+                        alert('Status update failed');
+                    }
+                },
+            });
+        });
+    });
+// ###########
         $('.repairmodel').on('click',function(){
             $('#repairmodel').modal('show');
         })

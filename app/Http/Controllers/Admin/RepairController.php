@@ -93,4 +93,14 @@ class RepairController extends Controller
     {
         //
     }
+    public function updateStatus(Request $request, $id)
+    {
+        $status = $request->input('status');
+
+        // Update the status in the database
+        // Replace 'YourModel' and 'status' with your actual model and column names
+        Repair::where('id', $id)->update(['status' => $status]);
+
+        return response()->json(['success' => true]);
+    }
 }

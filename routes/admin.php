@@ -106,6 +106,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('report', ReportController::class);
     Route::resource('repair', RepairController::class);
     Route::get('repair', [RepairController::class, 'index'])->name('repair');
+    Route::post('repair/update-status/{id}', [RepairController::class, 'updateStatus'])->name('repair.update.status');
+
 
     // Route::get('landlord', [LandlordController::class],'creat');
 

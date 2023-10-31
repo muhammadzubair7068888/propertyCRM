@@ -13,6 +13,7 @@ class Repair extends Model
         'property_unit_id',
         'complaint_date',
         'complaint_description',
+        'status',
     ];
     public function property(){
         return $this->belongsTo(Property::class);

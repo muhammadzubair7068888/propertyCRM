@@ -19,7 +19,7 @@ class CreateRepairsTable extends Migration
             $table->foreignId('property_unit_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('complaint_date');
             $table->string('complaint_description');
-
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }
