@@ -21,6 +21,7 @@ class Lease extends Model
         'tenant_info_id',
         'generate_invoice',
     ];
+    
 
     public function property(){
         return $this->belongsTo(Property::class ,'property_id');

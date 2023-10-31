@@ -4,6 +4,8 @@
 
 @section('vendor-style')
   {{-- vendor css files --}}
+
+
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
@@ -18,14 +20,14 @@
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/monokai-sublime.min.css'))}}">
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/quill.snow.css'))}}">
   @endsection
->
+
 
 
 
 
 
    @section('page-style')
-   {{-- Page Css files --}}
+
    <link rel="stylesheet" type="text/css" href="{{asset(mix('css/base/plugins/forms/form-quill-editor.css'))}}">
    <link rel="stylesheet" type="text/css" href="{{asset(mix('css/base/pages/page-blog.css'))}}">
    <style>
@@ -188,9 +190,6 @@
 
 @endsection
 @section('vendor-script')
-{{-- vendor files --}}
-{{-- <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script> --}}
-{{-- <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script> --}}
 
 <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 
@@ -208,6 +207,11 @@
 <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.rowGroup.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 
+
+<script src="{{asset(mix('vendors/js/editors/quill/katex.min.js'))}}"></script>
+<script src="{{asset(mix('vendors/js/editors/quill/highlight.min.js'))}}"></script>
+<script src="{{asset(mix('vendors/js/editors/quill/quill.min.js'))}}"></script>
+
 @endsection
 
 @push('page-script')
@@ -220,6 +224,17 @@
 
  
 @endpush
+
+@section('page-script')
+<script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
+<script>
+    $(document).ready(function() {
+        $('.dt-propertytype').DataTable();
+       
+    });
+   
+</script>
+@endsection
 
 
 

@@ -13,13 +13,30 @@ class UtilitySeeder extends Seeder
      */
     public function run()
     {
-        $utility=[
-            'Water',
-            'Electricity',
-            'Garbage'
-        ];
+        
+        $utility = [
+            [
+               'name' => 'Water',
+               'display_name' => "Water",
+               'description' => "bhi",
+               
+           ],
+           [
+               'name' => 'Electricity',
+               'display_name' => "Electricity",
+               'description' => "bhi",
+           ],
+           [
+               'name' => 'Garbage',
+               'display_name' => "Garbage",
+               'description' => "bhi",
+           ],
+         
+          
+           ]
+       ;
         foreach($utility as $utilities){
-            Utility::create(['name'=>$utilities]);
+            Utility::create($utilities);
         }
     }
 }
