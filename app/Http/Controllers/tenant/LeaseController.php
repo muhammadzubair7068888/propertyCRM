@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\tenant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lease;
 use Illuminate\Http\Request;
 
 class LeaseController extends Controller
@@ -14,7 +15,8 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        return view('tenant.leases.index');
+        $pagedate['lease']=Lease::all();
+        return view('tenant.leases.index',$pagedate);
     }
 
     /**

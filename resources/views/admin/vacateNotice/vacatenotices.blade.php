@@ -22,7 +22,7 @@
               @foreach ($tenant as $tenant )
               <option value="{{$tenant->id}}">{{$tenant->user->first_name.' '.$tenant->user->last_name}}</option>
               @endforeach
-           
+
             </select>
           </div>
 
@@ -30,7 +30,7 @@
             <label class="form-label" for="Leases">Leases</label>
             <select class="select-2 form-select" id="leases" name="lease_id">
               <option value=""></option>
-      
+
             </select>
           </div>
 
@@ -46,7 +46,7 @@
               id="vacatingreason"
               style="height: 80px"
               maxlength="150"
-              name="vacate_reason" 
+              name="vacate_reason"
             ></textarea>
             <label for="floatingTextarea2">Vacating Reason</label>
             <p id="charCount">0 / 150 characters</p>

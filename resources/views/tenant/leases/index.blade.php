@@ -24,18 +24,51 @@
           <table class="dt-multilingual table">
             <thead>
               <tr>
-               <th></th>
+
                 <th>Lease Number</th>
-                <th>Property Code</th>
+                <th>Property Name</th>
                 <th>Unit</th>
                 <th>Rent Amount</th>
                 <th>Start Date</th>
                 <th>Last Billing</th>
                 <th>Status</th>
                 <th>Statement</th>
+                <th>Action</th>
               </tr>
             </thead>
-           
+            <tbody>
+                @foreach ($lease as $lease)
+                {{-- {{dd($lease->unit)}} --}}
+
+                    <tr>
+                        <td>{{$lease->lease_code}}</td>
+                        <td>{{$lease->property->property_name}}</td>
+                        <td>{{$lease->unit->unit_name ?? "N/A"}}</td>
+
+                        <td>{{$lease->rent_amount}}</td>
+                        <td>{{$lease->start_date}}</td>
+                        <td>{{$lease->start_date}}</td>
+                        <td><span class="badge rounded-pill badge-light-success">Active</span></td>
+                        <td>
+                          <a href="#" class="item-edit pe-1">
+                            <i data-feather="file-text" class="font-medium-4"></i>
+                        </a>
+                        </td>
+                        <td>
+                           <a href="{{route('admin.view.leases')}}" class="item-edit pe-1">
+                                <i data-feather="eye" class="font-medium-4"></i>
+                            </a>
+                            {{-- <a href="{{route('admin.leases.create')}}"
+                                class="item-edit pe-1 text-success">
+                                <i data-feather="edit" class="font-medium-4"></i>
+                            </a> --}}
+
+                      </td>
+                    </tr>
+                @endforeach
+
+            </tbody>
+
           </table>
         </div>
       </div>
@@ -64,110 +97,8 @@
   {{-- Page js files --}}
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
   <script>
-     
-    $('.dt-multilingual').DataTable({
-        ajax:'{{ asset('data/table-datatable.json') }}',
-        columns: [
-          { data: 'responsive_id' },
-          { data: 'salary' },
-          { data: 'full_name' },
-          { data: 'full_name' },
-          { data: 'age' },
-          { data: 'start_date' },
-          { data: 'start_date' },
-          { data: 'status' },
-          { data: '' }
-        ],
-        columnDefs: [
-          // {
-          //   // For Responsive
-          //   className: 'control',
-          //   orderable: false,
-          //   targets: 0
-          // },
-          {
-            // Label
-            targets: -2,
-            render: function (data, type, full, meta) {
-              var $status_number = full['status'];
-              var $status = {
-                1: { title: 'Active', class: 'badge-light-success' },
-                2: { title: 'Unactive', class: ' badge-light-danger' },
-                3: { title: 'Active', class: 'badge-light-success' },
-                4: { title: 'Unactive', class: ' badge-light-danger' },
-                5: { title: 'Active', class: 'badge-light-success' }
-              };
-              if (typeof $status[$status_number] === 'undefined') {
-                return data;
-              }
-              return (
-                '<span class="badge rounded-pill ' +
-                $status[$status_number].class +
-                '">' +
-                $status[$status_number].title +
-                '</span>'
-              );
-            }
-          },
-          {
-            // Actions
-            targets: -1,
-            title: 'Actions',
-            orderable: false,
-            render: function (data, type, full, meta) {
-              return (
-              
-                '<a href="javascript:;" class="item-edit">' +
-                feather.icons['file-text'].toSvg({ class: 'font-medium-4' }) +
-                '</a>'
-              );
-            }
-          }
-        ],
-      //   language: {
-      //     url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/' + lang + '.json',
-      //     paginate: {
-      //       // remove previous & next text from pagination
-      //       previous: '&nbsp;',
-      //       next: '&nbsp;'
-      //     }
-      //   },
-        dom: '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-        displayLength: 7,
-        lengthMenu: [7, 10, 25, 50, 75, 100],
-        responsive: {
-          details: {
-            display: $.fn.dataTable.Responsive.display.modal({
-              header: function (row) {
-                var data = row.data();
-                return 'Details of ' + data['full_name'];
-              }
-            }),
-            type: 'column',
-            renderer: function (api, rowIdx, columns) {
-              var data = $.map(columns, function (col, i) {
-                return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
-                  ? '<tr data-dt-row="' +
-                      col.rowIdx +
-                      '" data-dt-column="' +
-                      col.columnIndex +
-                      '">' +
-                      '<td>' +
-                      col.title +
-                      ':' +
-                      '</td> ' +
-                      '<td>' +
-                      col.data +
-                      '</td>' +
-                      '</tr>'
-                  : '';
-              }).join('');
-  
-              return data ? $('<table class="table"/>').append('<tbody>' + data + '</tbody>') : false;
-            }
-          }
-        }
-      });
-   
+
+
+
   </script>
   @endsection

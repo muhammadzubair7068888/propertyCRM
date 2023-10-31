@@ -19,8 +19,6 @@
                                     <input type="text" class="form-control " id="property"
                                         aria-describedby="itemcost" placeholder="" name="property" readonly />
 
-
-
                                 </div>
                             </div>
                             <div class="col-md-6 col-6">
@@ -28,21 +26,13 @@
                                     <label class="form-label" for="utility">Utility</label>
                                     <input type="text" class="form-control " id="utility"
                                         aria-describedby="itemcost" placeholder="" name="utility" readonly />
-
-
-
                                 </div>
                             </div>
-
-
                             <div class="col-md-6 col-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="unit">Unit</label>
                                     <input type="text" class="form-control " id="unit"
                                         aria-describedby="itemcost" placeholder="" name="unit" readonly />
-
-
-
                                 </div>
                             </div>
                             <div class="col-md-6 col-6">
@@ -50,7 +40,6 @@
                                     <label class="form-label" for="reading-date">Reading Date</label>
                                     <input type="date" class="form-control " id="reading-date"
                                         aria-describedby="itemcost" placeholder="2023-03-21" name="reading_date" />
-
                                 </div>
                             </div>
                             <div class="col-md-6 col-6">
@@ -59,8 +48,6 @@
                                     <input type="number" class="form-control " id="current-reading"
                                         aria-describedby="itemquantity" placeholder="Current Reading"
                                         name="current_reading" />
-
-
                                 </div>
                             </div>
                         </div>

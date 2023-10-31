@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\tenant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -14,7 +15,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('tenant.payment.index');
+        $pagedata['payment']=Payment::all();
+        return view('tenant.payment.index', $pagedata);
     }
 
     /**
@@ -24,7 +26,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        
+
         return view ('tenant.payment.receipt');
     }
 

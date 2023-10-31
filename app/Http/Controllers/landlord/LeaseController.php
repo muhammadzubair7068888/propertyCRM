@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\landlord;
-
+use App\Models\Lease;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,8 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        return view('landlord.leases.index');
+        $pagedata['lease']=Lease::all();
+        return view('landlord.leases.index',$pagedata);
     }
 
     /**

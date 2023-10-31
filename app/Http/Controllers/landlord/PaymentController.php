@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\landlord;
-
+use App\Models\Payment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('landlord.payment.index');
+         $pagedata['payment']=Payment::all();
+        return view('landlord.payment.index',$pagedata);
     }
 
     /**
