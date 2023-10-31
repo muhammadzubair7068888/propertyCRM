@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RepairController;
 use App\Http\Controllers\Admin\VacateNoticeController;
+use App\Models\PropertyType;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -121,7 +123,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('tenant-prefix-update/{id}', [SettingController::class,'tenantprefixupdate'])->name('tenantprefixupdate');
         Route::post('update/{id}', [SettingController::class,'update'])->name('update');
         Route::post('update-lease/{id}', [SettingController::class,'updatelease'])->name('updatelease');
-
         // Route::get('fetch-vacatelease', [VacateNoticeController::class,'vacatelease'])->name('vacatelease');
         // Route::get('edit-note', [VacateNoticeController::class,'editnote'])->name('editnote');
         // Route::post('store', [VacateNoticeController::class,'store'])->name('store');
