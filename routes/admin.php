@@ -110,7 +110,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
       
     // }); 
     
-    // Route::resource('setting', SettingController::class);
+    // Route::resource('setting', SettingController::class); 
 
     
     Route::prefix('setting')->name('setting.')->group(function(){
