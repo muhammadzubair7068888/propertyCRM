@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\RepairController;
 use App\Http\Controllers\Admin\VacateNoticeController;
 use App\Models\PropertyType;
 
@@ -90,7 +91,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('payment', PaymentController::class);
     Route::get('receipt/{id}',[PaymentController::class,'show'])->name('receipt');
     Route::get('fetch-lease',[PaymentController::class,'fetchLease'])->name('fetch-lease');
-   
+
     Route::resource('vacate_notice', VacateNoticeController::class);
 
     Route::prefix('vacate-notice')->name('vacate_notice.')->group(function(){
@@ -107,12 +108,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     //     Route::prefix('property')->name('property.')->group(function(){
     //         Route::get('/', [PropertyType::class,'index'])->name('index');
     //     });
-      
-    // }); 
-    
+
+    // });
+
     // Route::resource('setting', SettingController::class);
 
-    
+
     Route::prefix('setting')->name('setting.')->group(function(){
         Route::get('/', [SettingController::class,'index'])->name('index');
         Route::post('store', [SettingController::class,'store'])->name('store');
@@ -122,7 +123,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('tenant-prefix-update/{id}', [SettingController::class,'tenantprefixupdate'])->name('tenantprefixupdate');
         Route::post('update/{id}', [SettingController::class,'update'])->name('update');
         Route::post('update-lease/{id}', [SettingController::class,'updatelease'])->name('updatelease');
-       
         // Route::get('fetch-vacatelease', [VacateNoticeController::class,'vacatelease'])->name('vacatelease');
         // Route::get('edit-note', [VacateNoticeController::class,'editnote'])->name('editnote');
         // Route::post('store', [VacateNoticeController::class,'store'])->name('store');
@@ -132,14 +132,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
 
     Route::resource('report', ReportController::class);
+    Route::resource('repair', RepairController::class);
+    Route::get('repair', [RepairController::class, 'index'])->name('repair');
+    Route::post('repair/update-status/{id}', [RepairController::class, 'updateStatus'])->name('repair.update.status');
+
+
     // Route::get('landlord', [LandlordController::class],'creat');
 
     // Common Routes (Ajax)
     Route::get('fetch-units', [DashboardController::class, "fetchUnits"])->name('fetch-units');
     Route::get('fetch-payment', [DashboardController::class, "fetchPayment"])->name('fetch-payment');
 });
-
-// locale Route
-Route::get('lang/{locale}', [LanguageController::class, 'swap']);
-
-

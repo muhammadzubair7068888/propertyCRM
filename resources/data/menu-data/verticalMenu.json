@@ -67,6 +67,12 @@
             "slug": "admin.report.index"
         },
         {
+            "url": "admin/repair",
+            "name": "Repair & Maintenance",
+            "icon": "tool",
+            "slug": "admin.repair.index"
+        },
+        {
             "url": "logout",
             "name": "logout",
             "icon": "log-out",

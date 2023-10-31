@@ -14,17 +14,46 @@ class PropertyTypeSeeder extends Seeder
      */
     public function run()
     {
-        $propertyTypes = [
-            'duplex',
-            'apartment',
-            'commercial',
-            'house',
-            'mixed-use',
-            'other',
-        ];
 
+
+        $propertyTypes = [
+            [
+               'name' => 'duplex',
+               'display_name' => "Duplex",
+               'description' => "bhi",
+               
+           ],
+           [
+               'name' => 'apartment',
+               'display_name' => "Apartment",
+               'description' => "bhi",
+           ],
+           [
+               'name' => 'commercial',
+               'display_name' => "Commercial",
+               'description' => "bhi",
+           ],
+           [
+               'name' => 'house',
+               'display_name' => "House",
+               'description' => "bhi",
+           ],
+           [
+               'name' => 'mixed',
+               'display_name' => "Mixed",
+               'description' => "bhi",
+           ],
+           [
+               'name' => 'other',
+               'display_name' => "Other",
+               'description' => "bhi",
+           ],
+          
+           ]
+       ;
+       
         foreach ($propertyTypes as $type) {
-            PropertyType::create(['name' => $type]);
+            PropertyType::create($type);
         }
     }
 

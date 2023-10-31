@@ -23,7 +23,7 @@
               class="nav-link"
               id="leases-tab-justified"
               data-bs-toggle="tab"
-              href="#leases-just"
+              href="#document-just"
               role="tab"
               aria-controls="profile-just"
               aria-selected="true"
@@ -47,7 +47,7 @@
               class="nav-link"
               id="messages-tab-justified"
               data-bs-toggle="tab"
-              href="#document-just"
+              href="#leases-just"
               role="tab"
               aria-controls="messages-just"
               aria-selected="false"
@@ -70,7 +70,7 @@
           <div class="tab-pane" id="payment-just" role="tabpanel" aria-labelledby="settings-tab-justified">
             @include('admin.setting.property.utility')
           </div>
-          <div class="tab-pane" id="leases-just" role="tabpanel" aria-labelledby="settings-tab-justified">
+          <div class="tab-pane" id="leases-just" role="tabpanel" aria-labelledby="we-tab-justified">
 
             @include('admin.setting.property.unit-type')
           </div>

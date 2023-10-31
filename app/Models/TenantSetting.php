@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PropertyType extends Model
+class TenantSetting extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'display_name',
-        'description',
-      
-    ];
+        'tenant_prefix',
+        ];
 }
