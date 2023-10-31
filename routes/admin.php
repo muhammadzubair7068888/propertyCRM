@@ -102,7 +102,34 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('update', [VacateNoticeController::class,'update'])->name('update');
     });
 
-    Route::resource('setting', SettingController::class);
+    // Route::prefix('setting')->name('setting.')->group(function(){
+    //     Route::prefix('property')->name('property.')->group(function(){
+    //         Route::get('/', [PropertyType::class,'index'])->name('index');
+    //     });
+
+    // });
+
+    // Route::resource('setting', SettingController::class);
+
+
+    Route::prefix('setting')->name('setting.')->group(function(){
+        Route::get('/', [SettingController::class,'index'])->name('index');
+        Route::post('store', [SettingController::class,'store'])->name('store');
+        Route::post('utility-store', [SettingController::class,'utilitystore'])->name('utilitystore');
+        Route::post('amenity-store', [SettingController::class,'amenitystore'])->name('amenitystore');
+        Route::post('unit-store', [SettingController::class,'unitstore'])->name('unitstore');
+        Route::post('tenant-prefix-update/{id}', [SettingController::class,'tenantprefixupdate'])->name('tenantprefixupdate');
+        Route::post('update/{id}', [SettingController::class,'update'])->name('update');
+        Route::post('update-lease/{id}', [SettingController::class,'updatelease'])->name('updatelease');
+
+        // Route::get('fetch-vacatelease', [VacateNoticeController::class,'vacatelease'])->name('vacatelease');
+        // Route::get('edit-note', [VacateNoticeController::class,'editnote'])->name('editnote');
+        // Route::post('store', [VacateNoticeController::class,'store'])->name('store');
+        // Route::get('destroy/{id}', [VacateNoticeController::class,'destroy'])->name('destroy');
+        // Route::get('show/{id}', [VacateNoticeController::class,'show'])->name('show');
+        // Route::post('update', [VacateNoticeController::class,'update'])->name('update');
+    });
+
     Route::resource('report', ReportController::class);
     Route::resource('repair', RepairController::class);
     Route::get('repair', [RepairController::class, 'index'])->name('repair');
