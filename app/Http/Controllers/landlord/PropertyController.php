@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\landlord;
-
+use App\Models\Property;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return view('landlord.Property.index');
+        $pagedata['property']=Property::all();
+        return view('landlord.Property.index',$pagedata);
     }
 
     /**
@@ -24,7 +25,8 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view('landlord.property.property-detail-tabs.index');
+
+
     }
 
     /**
@@ -46,7 +48,8 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        $pagedata['property']=Property::find($id);
+        return view('landlord.property.property-detail-tabs.index',$pagedata);
     }
 
     /**

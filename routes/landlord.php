@@ -30,9 +30,11 @@ Route::prefix('landlord')->name('landlord.')->middleware('auth')->group(function
     Route::resource('leases', LandlordLeaseController::class);
     Route::resource('payment', LandLoardPaymentController::class);
     Route::resource('profile', ProfileController::class);
+    Route::post('update/{id}', [ProfileController::class,'update'])->name('update');
     // Route::get('profile', [ProfileController::class,'index']);
 
     Route::resource('properties', LandloardPropertyController::class);
+    Route::get('property/show/{id}', [LandloardPropertyController::class,'show'])->name('property.show');
     Route::resource('vacate_notice', LandloardVacateNoticeController::class);
     Route::get('view/vacate_notice', [LandloardVacateNoticeController::class,'view'])->name('view');
 });

@@ -7,16 +7,20 @@ use App\Models\User;
 use App\Models\PropertyType;
 use App\Models\Property;
 use App\Models\PropertyUnit;
+use App\Models\Lease;
 use App\Models\PropertyPaymentMethod;
 use App\Models\PropertyExtraCharges;
 use App\Models\PropertyLateFee;
 use App\Models\PropertyUtility;
+use App\Models\Invoice;
+use App\Models\Payment;
+use App\Models\VacateNotice;
 use App\Models\ExtraCharges;
 use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
-{ 
+{
     /**
      * Display a listing of the resource.
      *
@@ -249,8 +253,14 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        $property=Property::find($id);
-        return view('admin.property.viewproperty.index',['property'=>$property]);
+
+        $pagedata['property']=Property::find($id);
+        $pagedata['propertyUnit']=PropertyUnit::all();
+        $pagedata['lease']=Lease::all();
+        $pagedata['invoice']=Invoice::all();
+        $pagedata['payment']=Payment::all();
+        $pagedata['vacateNotice']=VacateNotice::all();
+        return view('admin.property.viewproperty.index',$pagedata);
     }
 
 

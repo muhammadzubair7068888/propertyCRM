@@ -63,6 +63,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::prefix('properties')->name('properties.')->group(function(){
         Route::get('/', [PropertyController::class, 'index'])->name('index');
         Route::get('create', [PropertyController::class, 'create'])->name('create');
+        Route::get('edit', [PropertyController::class, 'create'])->name('edit');
         Route::post('store', [PropertyController::class, 'store'])->name('store');
         Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
     });

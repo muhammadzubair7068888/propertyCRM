@@ -8,70 +8,57 @@
         </div>
         <div class="card-body">
           <form class="form form-vertical">
-           
-              <div class="col-12">
-                <div class="mb-1">
-                  <label class="form-label" for="first-name-vertical">Property Type</label>
-                  <input
-                    type="text"
-                    id="first-name-vertical"
-                    class="form-control"
-                    name="fname"
-                    readonly="readonly"
-                    placeholder=""
-                  />
+
+            <div class="row">
+                <div class=" col-6">
+                    <div class="mb-1">
+                        <label class="form-label " for="property-type">Property Type</label>
+                        <input type="text" id="property-typ" readonly
+                            class="form-control   "
+                            placeholder="Property Type" name="property-type" value="{{$property->property_name}}" />
+                    </div>
                 </div>
+                <div class=" col-6">
+                  <div class="mb-1">
+                      <label class="form-label " for="property-name ">Property Name</label>
+                      <input type="text" id="property-name " readonly
+                          class="form-control "
+                          placeholder="Property Name" name="property-name " value="" />
+                  </div>
               </div>
-              <div class="row">
-              <div class="col-6">
-                <div class="mb-1">
-                  <label class="form-label" for="email-id-vertical">Property Name</label>
-                  <input type="email" id="email-id-vertical" class="form-control" name="email-id"  readonly="readonly" placeholder="" />
-                </div>
+              <div class=" col-6">
+                  <div class="mb-1">
+                      <label class="form-label " for="property-code">Property Code</label>
+                      <input type="text" id="property-code" readonly
+                          class="form-control   "
+                          placeholder="Property Code" name="property-code" value="" />
+                  </div>
               </div>
-              <div class="col-6">
-                <div class="mb-1">
-                  <label class="form-label" for="contact-info-vertical">Property Code</label>
-                  <input
-                    type="number"
-                    id="contact-info-vertical"
-                    class="form-control"
-                    name="contact"
-                    readonly="readonly"
-                    placeholder=""
-                  />
-                </div>
+              <div class=" col-6">
+                  <div class="mb-1">
+                      <label class="form-label " for="location">Location</label>
+                      <input type="text" id="location" readonly
+                          class="form-control   "
+                          placeholder="Location" name="location" value="" />
+                  </div>
               </div>
-              </div>
-              
-             <div class="row">
-             <div class="col-6">
-                <div class="mb-1">
-                  <label class="form-label" for="location-vertical">Location</label>
-                  <input
-                    type="password"
-                    id="location-vertical"
-                    class="form-control"
-                    name="contact"
-                    readonly="readonly"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="mb-1">
-                  <label class="form-label" for="address-vertical">Address</label>
-                  <input
-                    type="text"
-                    id="address-vertical"
-                    class="form-control"
-                    name="contact"
-                    readonly="readonly"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-             </div>
+              {{-- <div class=" col-6">
+                  <div class="mb-1">
+                      <label class="form-label " for="address">Address</label>
+                      <input type="text" id="address"readonly
+                          class="form-control  "
+                          placeholder="Address" name="address" />
+                  </div>
+              </div> --}}
+
+
+
+
+
+
+
+
+            </div>
           </form>
         </div>
       </div>

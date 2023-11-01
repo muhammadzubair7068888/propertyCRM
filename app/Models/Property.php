@@ -34,6 +34,10 @@ class Property extends Model
     public function property_unit(){
         return $this->hasMany(PropertyUnit::class);
     }
- 
+
+    public function leases(){
+        return $this->hasMany(Lease::class);
+    }
+
 
 }

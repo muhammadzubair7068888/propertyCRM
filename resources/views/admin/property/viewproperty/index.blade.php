@@ -171,7 +171,7 @@
                               <label class="form-label " for="property-type">Property Type</label>
                               <input type="text" id="property-typ" readonly
                                   class="form-control   "
-                                  placeholder="Property Type" name="property-type" value="{{@$property->propertyType->name}}" />
+                                  placeholder="Property Type" name="property-type" value="{{$property->propertyType->name}}" />
                           </div>
                       </div>
                       <div class=" col-6">
@@ -179,7 +179,7 @@
                             <label class="form-label " for="property-name ">Property Name</label>
                             <input type="text" id="property-name " readonly
                                 class="form-control "
-                                placeholder="Property Name" name="property-name " value="{{@$property->property_name}}" />
+                                placeholder="Property Name" name="property-name " value="{{$property->property_name}}" />
                         </div>
                     </div>
                     <div class=" col-6">
@@ -187,7 +187,7 @@
                             <label class="form-label " for="property-code">Property Code</label>
                             <input type="text" id="property-code" readonly
                                 class="form-control   "
-                                placeholder="Property Code" name="property-code" value="{{@$property->property_code}}" />
+                                placeholder="Property Code" name="property-code" value="{{$property->property_code}}" />
                         </div>
                     </div>
                     <div class=" col-6">
@@ -195,7 +195,7 @@
                             <label class="form-label " for="location">Location</label>
                             <input type="text" id="location" readonly
                                 class="form-control   "
-                                placeholder="Location" name="location" value="{{@$property->location}}" />
+                                placeholder="Location" name="location" value="{{$property->location}}" />
                         </div>
                     </div>
                     {{-- <div class=" col-6">
