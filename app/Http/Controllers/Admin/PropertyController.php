@@ -304,6 +304,9 @@ class PropertyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $index=Property::find($id);
+
+        $index->delete();
+       return redirect()->route('admin.properties.index')->with('danger','Record has been Deleted Successfully!');
     }
 }

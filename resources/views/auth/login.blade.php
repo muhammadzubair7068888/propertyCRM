@@ -14,8 +14,8 @@
             <!-- Login basic -->
             <div class="card mb-0">
                 <div class="card-body">
-                    <a href="#" class="brand-logo">
-                        <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    <a href="#" class="brand-logo text-center">
+                        {{-- <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
                             <defs>
                                 <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%"
@@ -49,12 +49,13 @@
                                     </g>
                                 </g>
                             </g>
-                        </svg>
-                        <h2 class="brand-text text-primary ms-1">Vuexy</h2>
+                        </svg> --}}
+                        <h3 class="brand-text text-primary ms-1">BUTTERFLY PRIME REALTORS</h3>
                     </a>
 
-                    <h4 class="card-title mb-1">Welcome to Vuexy! 👋</h4>
-                    <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
+                    {{-- <h4 class="card-title ">Welcome to   </h4>
+                    <h4 class="card-title ms-4 mb-1">BUTTERFLY PRIME REALTORS </h4>
+                    <p class="card-text mb-2">Please sign-in to your account and start the adventure</p> --}}
 
                     <form class="auth-login-form mt-2" action="{{ route('login.attempt') }}" method="get" >
                         <div class="mb-1">
@@ -71,9 +72,9 @@
                             <div class="d-flex justify-content-between">
                                 <label class="form-label "
                                     for="login-password">Password</label>
-                                <a href="{{ url('auth/forgot-password-basic') }}">
+                                {{-- <a href="{{ url('auth/forgot-password-basic') }}">
                                     <small>Forgot Password?</small>
-                                </a>
+                                </a> --}}
                             </div>
                             <div class="input-group input-group-merge form-password-toggle">
                                 <input type="password"
@@ -88,10 +89,10 @@
                             @enderror
                         </div>
                         <div class="mb-1">
-                            <div class="form-check">
+                            {{-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="remember-me" tabindex="3" />
                                 <label class="form-check-label" for="remember-me"> Remember Me </label>
-                            </div>
+                            </div> --}}
                         </div>
                         <button class="btn btn-primary w-100" tabindex="4">Sign in</button>
                     </form>

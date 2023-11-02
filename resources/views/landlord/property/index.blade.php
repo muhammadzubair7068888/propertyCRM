@@ -45,8 +45,8 @@
                     <td>{{$data->location}}</td>
                     <td>{{$data->agent_commission_type}}</td>
                     <td>
-                        <a href="{{route('admin.properties.show',$data->id)}}"><i data-feather="eye" class="font-medium-4"></i></a>
-                        <a href="{{route('admin.properties.edit',$data->id)}}"><i data-feather="edit" class="font-medium-4"></i></a>
+                        <a href="{{route('landlord.property.show',$data->id)}}"><i data-feather="eye" class="font-medium-4"></i></a>
+                        {{-- <a href="{{route('admin.properties.edit',$data->id)}}"><i data-feather="edit" class="font-medium-4"></i></a> --}}
                     </td>
                 </tr>
                 @endforeach

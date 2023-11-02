@@ -16,4 +16,6 @@ class PropertyLateFee extends Model
 'late_fee_grace_period',
 'late_fee_frequency',
     ];
+
+    
 }

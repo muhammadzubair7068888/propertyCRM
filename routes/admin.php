@@ -66,6 +66,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('edit', [PropertyController::class, 'create'])->name('edit');
         Route::post('store', [PropertyController::class, 'store'])->name('store');
         Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
+        Route::get('destroy/{id}', [PropertyController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('notification')->name('notification.')->group(function(){
@@ -84,7 +85,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         // Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
     });
 
-    Route::get('view/leases', [LeaseController::class,'view'])->name('view.leases');
+    Route::get('view/leases/{id}', [LeaseController::class,'view'])->name('view.leases');
     Route::resource('utilities', UtilitiesController::class);
     Route::get('utilities/destroy/{id}', [UtilitiesController::class,'destroy'])->name('utilities.destroy');
     Route::get('view/utilities',[UtilitiesController::class,'view'])->name('view.utilities');

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\TenantInfo;
 use App\Models\TenantType;
 use App\Models\User;
+use App\Models\Payment;
+use App\Models\Lease;
 use Illuminate\Http\Request;
 
 class TenentController extends Controller
@@ -51,7 +53,7 @@ class TenentController extends Controller
      */
     public function store(Request $req)
     {
-        
+
         try {
             $req->validate([
                 'form.tenantInfo.tenant_type_id' => 'required',
@@ -73,24 +75,24 @@ class TenentController extends Controller
                 'form.user.physical_address' => 'required',
                 'form.user.user_type' => 'required',
                 'form.user.password' => 'required|confirmed',
-    
+
                 'form.tenantInfo.kin_name' => 'required',
                 'form.tenantInfo.kin_phone_number' => 'required',
                 'form.tenantInfo.kin_relation' => 'required',
-    
+
                 'form.tenantInfo.kin_emergency_name' => 'required',
                 'form.tenantInfo.kin_emergency_phone_number' => 'required',
                 'form.tenantInfo.kin_emergency_emial' => 'required|email|unique:tenant_infos,kin_emergency_emial',
                 'form.tenantInfo.kin_emergency_relation' => 'required',
-    
+
                 'form.tenantInfo.kin_emergency_postal_address' => 'required',
                 'form.tenantInfo.kin_emergency_physical_address' => 'required',
                 'form.tenantInfo.employment_status' => 'required',
-    
+
                 'form.tenantInfo.employment_position' => 'required',
                 'form.tenantInfo.employment_contact_phone' => 'required',
                 'form.tenantInfo.employment_contact_email' => 'required|email|unique:tenant_infos,employment_contact_email',
-    
+
                 'form.tenantInfo.employment_postal_address' => 'required',
                 'form.tenantInfo.employment_physical_address' => 'required',
                 'form.tenantInfo.business_name' => 'required',
@@ -119,7 +121,7 @@ class TenentController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response 
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -127,6 +129,8 @@ class TenentController extends Controller
             ['link' => "admin/tenants", 'name' => "Tenant"], ['name' => "View"]
         ];
         $pagedata['tenant'] = TenantInfo::find($id);
+        $pagedata['lease']=Lease::all();
+        $pagedata['payment']=Payment::all();
         // = $tenant->user;
 
         return view('admin.tenent.view.index', $pagedata);
@@ -173,22 +177,22 @@ class TenentController extends Controller
                 'form.user.postal_address' => 'required',
                 'form.user.physical_address' => 'required',
                 'form.user.user_type' => 'required',
-    
+
                 'form.tenantInfo.kin_name' => 'required',
                 'form.tenantInfo.kin_phone_number' => 'required',
                 'form.tenantInfo.kin_relation' => 'required',
-    
+
                 'form.tenantInfo.kin_emergency_name' => 'required',
                 'form.tenantInfo.kin_emergency_phone_number' => 'required',
                 'form.tenantInfo.kin_emergency_relation' => 'required',
-    
+
                 'form.tenantInfo.kin_emergency_postal_address' => 'required',
                 'form.tenantInfo.kin_emergency_physical_address' => 'required',
                 'form.tenantInfo.employment_status' => 'required',
-    
+
                 'form.tenantInfo.employment_position' => 'required',
                 'form.tenantInfo.employment_contact_phone' => 'required',
-    
+
                 'form.tenantInfo.employment_postal_address' => 'required',
                 'form.tenantInfo.employment_physical_address' => 'required',
                 'form.tenantInfo.business_name' => 'required',
@@ -251,5 +255,5 @@ class TenentController extends Controller
             return redirect()->back()->with('success', "Tenant Unblocked Successfully");
         }
     }
-    
+
 }

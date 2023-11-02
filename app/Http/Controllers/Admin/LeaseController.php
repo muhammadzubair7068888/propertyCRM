@@ -43,9 +43,13 @@ class LeaseController extends Controller
 
         return view("admin.leases.addlease",$pagedata);
     }
-    public function view()
+    public function view($id)
     {
-        return view('admin.leases.view.index');
+        $pagedata['lease']=Lease::find($id);
+        $pagedata['utility']=Utility::all();
+        
+
+        return view('admin.leases.view.index',$pagedata);
     }
 
     /**

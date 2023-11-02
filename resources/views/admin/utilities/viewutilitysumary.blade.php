@@ -8,7 +8,7 @@
     <div class="col-xl-12 col-lg-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Vacate Notice Detail</h4>
+          <h4 class="card-title">Utilities</h4>
         </div>
         <div class="card-body">
           <ul class="nav nav-tabs" role="tablist">
