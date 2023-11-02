@@ -21,6 +21,6 @@ class MainUtility extends Model
     public function property(){
         return $this->belongsTo(Property::class);
     }
- 
+
 
 }

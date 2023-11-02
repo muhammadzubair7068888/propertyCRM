@@ -49,7 +49,7 @@
                     <td>{{ $mainUtility->property_unit->unit_name  }}</td>
                     <td>
                         <a href="{{route('admin.utilities.show',$mainUtility->id)}}"><i data-feather="eye" class="font-medium-4"></i></a>
-                        <button href="" utility_id={{$mainUtility->id}} class="inlineform"><i data-feather="edit" class="font-medium-4" ></i></button>
+                        <a onclick="ajaxHit(`{{route('admin.utilities.editnote',$mainUtility->id)}}`)"><i data-feather="edit" class="font-medium-4" ></i></a>
                         <a href="{{route('admin.utilities.destroy',$mainUtility->id)}}"><i data-feather="trash" class="font-medium-4"></i></a>
                     </td>
                 </tr>
@@ -82,29 +82,17 @@
 @section('page-script')
 
     <script>
-
-$('.inlineform').on('click',function(){
-    $('#inlineForm').modal('show');
-    var utility_id=$(this).attr(utility_id);
-$.ajax({
-    type: "get",
-    url: "url",
-    data: "data",
-    dataType: "dataType",
-    success: function (response) {
-
-    }
-});
-})
-// $.ajax({
-//     type: "method",
-//     url: "url",
-//     data: "data",
-//     dataType: "dataType",
-//     success: function (response) {
-
-//     }
-// });
+        function ajaxHit(url){
+            $('#inlineForm').modal('show');
+            $.ajax({
+                type: "get",
+                url: url,
+                success: function (response) {
+                    $('#property').val(response.main_utilities.property.property_name);
+                    $('#utility').val(response.main_utilities.utility.name);
+                }
+            });
+        };
 
           function modal(){
             document.getElementById('inlineForm').style.display = 'block';

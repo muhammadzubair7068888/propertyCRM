@@ -67,7 +67,7 @@ class VacateNoticeController extends Controller
     public function show($id)
     {
         $pagedata['notice']=VacateNotice::find($id);
-        
+
         return view('admin.vacateNotice.viewvacantnotice',$pagedata);
     }
 
@@ -100,8 +100,8 @@ class VacateNoticeController extends Controller
     }catch(\Exception $e){
         return redirect()->back()->with('error',$e->getMessage());
     }
-      
-      
+
+
 
 
     }
@@ -119,9 +119,9 @@ class VacateNoticeController extends Controller
         $notice->delete();
         return redirect()->back()->with('success','Notice Delete Successfully!');
       }else{
-        return redirect()->back()->with('error','Notice does not exist!'); 
+        return redirect()->back()->with('error','Notice does not exist!');
       }
-      
+
     }
 
     public function vacatelease(Request $req){

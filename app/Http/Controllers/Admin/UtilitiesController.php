@@ -136,4 +136,11 @@ class UtilitiesController extends Controller
         $index->delete();
        return redirect()->route('admin.utilities.index')->with('danger','Record has been Deleted Successfully!');
     }
+
+
+    public function editnote(Request $request,$id){
+        $utility=UtilityReading::with('main_utilities','property_unit','main_utilities.property','main_utilities.utility')->whereId($id)->first();
+       
+        return response()->json($utility,200);
+    }
 }

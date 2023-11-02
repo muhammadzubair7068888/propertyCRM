@@ -55,7 +55,7 @@
                         </a>
                         </td>
                         <td>
-                           <a href="{{route('admin.view.leases')}}" class="item-edit pe-1">
+                           <a href="{{route('admin.view.leases',$lease->id)}}" class="item-edit pe-1">
                                 <i data-feather="eye" class="font-medium-4"></i>
                             </a>
                             {{-- <a href="{{route('admin.leases.create')}}"
@@ -97,8 +97,10 @@
   {{-- Page js files --}}
   {{-- <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script> --}}
   <script>
+    $('.dt-multilingual').DataTable({
+        resposive: true,
 
 
-
-  </script>
+    });
+</script>
   @endsection
