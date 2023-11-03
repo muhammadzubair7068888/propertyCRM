@@ -3,6 +3,7 @@
 @section('content')
 <!-- Basic tabs start -->
 <section id="basic-tabs-components">
+
   <div class="row match-height">
     <!-- Basic Tabs starts -->
     <div class="col-xl-12 col-lg-12">
@@ -38,7 +39,7 @@
                           <label class="form-label" for="phone-name-column">Property</label>
                           <input
                           readonly
-                          value="{{$index->property->property_name}}"
+                          value="{{$index->main_utilities->property->property_name}}"
                             type="text"
                             id="phone-name-column"
                             class="form-control"
@@ -52,7 +53,7 @@
                           <label class="form-label" for="phone-name-column">Property Code</label>
                           <input
                           readonly
-                          value="{{$index->property->property_code}}"
+                          value="{{$index->main_utilities->property->property_code}}"
                             type="text"
                             id="phone-name-column"
                             class="form-control"
@@ -66,7 +67,7 @@
                           <label class="form-label" for="phone-name-column">Location</label>
                           <input
                           readonly
-                          value="{{$index->property->location}}"
+                          value="{{$index->main_utilities->property->location}}"
                             type="text"
                             id="phone-name-column"
                             class="form-control"
@@ -80,7 +81,7 @@
                           <label class="form-label" for="phone-name-column">Utility</label>
                           <input
                           readonly
-                          value="{{$index->utility->name}}"
+                          value="{{$index->main_utilities->utility->name}}"
                             type="text"
                             id="phone-name-column"
                             class="form-control"
@@ -98,7 +99,7 @@
                             type="text"
                             id="phone-name-column"
                             class="form-control"
-                            placeholder="Phone"
+
                             name="phone-column"
                           />
                         </div>
@@ -112,7 +113,7 @@
                             type="text"
                             id="phone-name-column"
                             class="form-control"
-                            placeholder="Phone"
+
                             name="phone-column"
                           />
                         </div>

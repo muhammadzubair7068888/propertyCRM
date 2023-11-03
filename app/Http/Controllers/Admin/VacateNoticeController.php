@@ -94,6 +94,7 @@ class VacateNoticeController extends Controller
     //  dd($request);
     try{
         $id=$request->tenant_modal_id;
+    
         $notice=$request->except('_token');
         VacateNotice::find($id)->update($notice);
         return redirect()->back()->with('success','Notice Update Successfully!');

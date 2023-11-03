@@ -39,7 +39,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-      $pagedata['landlords'] = User::where('user_type', 'landlord')->where('status', 1)->get();
+      $pagedata['landlords'] = User::whereUserType('landlord')->whereStatus('1')->get();
       $pagedata['propertyTypes'] = PropertyType::get();
       $pagedata['paymentMethod'] = PaymentMethod::get();
       $pagedata['extracharges'] = ExtraCharges::get();
@@ -304,9 +304,34 @@ class PropertyController extends Controller
      */
     public function destroy($id)
     {
-        $index=Property::find($id);
+        try {
+            $property=Property::find($id);
 
-        $index->delete();
-       return redirect()->route('admin.properties.index')->with('danger','Record has been Deleted Successfully!');
+            if($property){
+                $property->propertyPaymentMethod->each(function($paymentMethod){
+                    $paymentMethod->delete();
+                });
+                $property->propertyExtra->each(function($extra) {
+                    $extra->delete();
+                });
+                $property->property_unit->each(function($unit){
+                    $unit->delete();
+                });
+                $property->leases->each(function($lease){
+                    $lease->delete();
+                });
+                $property->propertyUtility->each(function($utility){
+                    $utility->delete();
+                });
+                $property->propertyLateFee->each(function($lateFee){
+                    $lateFee->delete();
+                });
+                $property->delete();
+
+                return redirect()->route('admin.properties.index')->with('success','Record has been Deleted Successfully!');
+            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error',$th->getMessage());
+        }
     }
 }

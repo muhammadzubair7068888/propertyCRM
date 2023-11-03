@@ -22,5 +22,9 @@ class MainUtility extends Model
         return $this->belongsTo(Property::class);
     }
 
+    public function utilityReading(){
+        return $this->hasMany(UtilityReading::class);
+    }
+
 
 }

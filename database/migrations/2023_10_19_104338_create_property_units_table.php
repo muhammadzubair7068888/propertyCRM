@@ -17,7 +17,7 @@ class CreatePropertyUnitsTable extends Migration
             $table->id();
             $table->string('unit_name');
             $table->string('unit_floor');
-            $table->foreignId('property_id')->constrained()->onDeleteCascade()->onUpdateCascade();
+            $table->foreignId('property_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('rent_amount');
             $table->string('unit_type');
             $table->string('bed_room');

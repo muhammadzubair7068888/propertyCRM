@@ -20,6 +20,9 @@ class Lease extends Model
         'rental_deposit_amount',
         'tenant_info_id',
         'generate_invoice',
+        'next_period_bill',
+        'waive_penalty',
+        'skip_starting_period',
     ];
 
 

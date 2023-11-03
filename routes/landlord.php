@@ -5,6 +5,7 @@ use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
 
 use App\Http\Controllers\landlord\DocumentController;
+use App\Http\Controllers\landlord\DashboardController;
 use App\Http\Controllers\landlord\LeaseController as LandlordLeaseController;
 use App\Http\Controllers\landlord\LogoutController;
 use App\Http\Controllers\landlord\PaymentController as LandLoardPaymentController;
@@ -24,8 +25,8 @@ use App\Http\Controllers\landlord\VacateNoticeController as LandloardVacateNotic
 */
 
 Route::prefix('landlord')->name('landlord.')->middleware('auth')->group(function () {
-    Route::get('/', [StaterkitController::class, 'home'])->name('home');
-    Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('home');
     Route::resource('document', DocumentController::class);
     Route::resource('leases', LandlordLeaseController::class);
     Route::resource('payment', LandLoardPaymentController::class);

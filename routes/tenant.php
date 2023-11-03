@@ -6,6 +6,7 @@ use App\Http\Controllers\LanguageController;
 
 use App\Http\Controllers\tenant\DocumentController as TenantDocumentController;
 use App\Http\Controllers\tenant\LeaseController as TenantLeaseController;
+use App\Http\Controllers\tenant\DashboardController;
 use App\Http\Controllers\tenant\LogoutController as TenentLogoutController;
 use App\Http\Controllers\tenant\PaymentController as TenantPaymentController;
 use App\Http\Controllers\tenant\ProfileController as TenantProfileController;
@@ -23,8 +24,8 @@ use App\Http\Controllers\tenant\VacateNoticeController as TenantVacateNoticeCont
 */
 
 Route::prefix('tenant')->name('tenant.')->middleware('auth')->group(function () {
-    Route::get('/', [StaterkitController::class, 'home'])->name('home');
-    Route::get('dashboard', [StaterkitController::class, 'home'])->name('home');
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('home');
 
     Route::resource('document', TenantDocumentController::class);
     Route::resource('invoice', TenantInvoiceController::class);

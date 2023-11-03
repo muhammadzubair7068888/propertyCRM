@@ -44,6 +44,10 @@ class Property extends Model
     public function propertyLateFee(){
         return $this->hasMany(PropertyLateFee::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 
 
 }

@@ -96,7 +96,8 @@ class UtilitiesController extends Controller
      */
     public function show($id)
     {
-        $data['index']=MainUtility::find($id);
+        $data['index']=UtilityReading::find($id);
+        // dd($data['index']);
         return view('admin.utilities.viewutilitysumary',$data);
     }
 
@@ -108,7 +109,7 @@ class UtilitiesController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -118,9 +119,13 @@ class UtilitiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+            $id=$request->utility_id;
+
+            $data=$request->except('_token');
+            UtilityReading::find($id)->update($data);
+            return redirect()->back()->with('success','Utility Update Successfully!');
     }
 
     /**
@@ -140,7 +145,7 @@ class UtilitiesController extends Controller
 
     public function editnote(Request $request,$id){
         $utility=UtilityReading::with('main_utilities','property_unit','main_utilities.property','main_utilities.utility')->whereId($id)->first();
-       
+
         return response()->json($utility,200);
     }
 }

@@ -88,8 +88,12 @@
                 type: "get",
                 url: url,
                 success: function (response) {
+                    $('#utility_id').val(response.id);
                     $('#property').val(response.main_utilities.property.property_name);
                     $('#utility').val(response.main_utilities.utility.name);
+                    $('#unit').val(response.property_unit.unit_name);
+                    $('#reading-date').val(response.reading_date);
+                    $('#current-reading').val(response.current_reading);
                 }
             });
         };
