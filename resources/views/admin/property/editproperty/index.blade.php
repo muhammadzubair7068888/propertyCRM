@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="bs-stepper-content">
-                <form action="{{ route('admin.properties.store') }}" method="post">
+                <form action="{{route('admin.properties.update.data',$property->id)}} " method="post">
                     @csrf
                     <div id="account-details-vertical" class="content" role="tabpanel"
                         aria-labelledby="account-details-vertical-trigger">
@@ -93,7 +93,7 @@
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-property-code">Property Code</label>
-                                <input type="text" id="vertical-property-code" value="{{ $property->property_name }}"
+                                <input type="text" id="vertical-property-code" value="{{ $property->property_code }}"
                                     class="form-control @error('property[property_code]')
                                 border-1 border-danger
                                 @enderror"
@@ -121,9 +121,10 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="basicSelect">Landlord</label>
                                 <select
-                                    class="select2 form-select @error('property[user_id]') border-1 border-danger @enderror"
-                                    id="basicSelect" name="property[user_id]">
-                                    @foreach ($landlords as $landlord)
+                                    class="form-control @error('property[user_id]') border-1 border-danger @enderror"
+                                    id="basicSelect" name="property[user_id]" value="{{ $property->user->id }}">
+
+                                   @foreach ($landlords as $landlord)
                                         <option value="{{ $landlord->id }}">
                                             {{ $landlord->first_name . $landlord->last_name }}
                                         </option>
@@ -135,16 +136,26 @@
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="property-type">Property Type</label>
-                                <select
-                                    class="select2 w-100 @error('property[property_type_id]') border-1 border-danger @enderror"
-                                    id="property-type" name="property[property_type_id]">
+                                <select class="form-control @error('property.property_type_id') border-1 border-danger @enderror"
+                                                            id="property-type" name="property[property_type_id]">
+                         @foreach ($propertyTypes as $propertyType)
+                         <option value="{{ $propertyType->id }}"
+                           {{ $propertyType->id == old('property.property_type_id', $property->property_type_id) ? 'selected' : '' }}>
+                                 {{ $propertyType->name }}
+                                </option>
+                             @endforeach
+                            </select>
+
+                                {{-- <select
+                                    class="form-control @error('property[property_type_id]') border-1 border-danger @enderror"
+                                    id="property-type" name="property[property_type_id]" >
                                     @foreach ($propertyTypes as $propertyType)
                                         <option value="{{ $propertyType->id }}"
                                             {{ $propertyType->id == $property->property_type_id ? 'selected' : '' }}>
                                             {{ $propertyType->name }}
                                         </option>
-                                    @endforeach
-                                </select>
+                                    </select>
+                                    @endforeach --}}
                                 @error('property[property_type_id]')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -208,7 +219,7 @@
                                 <input type="number" id="agent-commission-value"
                                     class="form-control @error('property[agent_commission_value]') border-1 border-danger @enderror"
                                     placeholder="Agent Commission Value" name="property[agent_commission_value]"
-                                    value="{{ $property->agent_commission_value }}" />
+                                    value="{{$property->agent_commission_value}}" />
                                 @error('property[agent_commission_value]')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -218,11 +229,11 @@
                                 <select
                                     class="select2 w-100 @error('property[agent_commission_type]') border-1 border-danger @enderror"
                                     id="agent-commission-type" name="property[agent_commission_type]"
-                                    value="{{ $property->agent_commission_type }}">
+                                    value="">
                                     <option label=" "></option>
-                                    <option value="fixed">Fixed Value</option>
-                                    <option value="total">% Of Total Rent</option>
-                                    <option value="total_collected">% Of Total Collected Rent</option>
+                                    <option value="fixed" {{$property->agent_commission_type=="fixed" ? 'selected' : '' }}>Fixed Value</option>
+                                    <option value="total" {{$property->agent_commission_type=="total" ? 'selected' : '' }}>% Of Total Rent</option>
+                                    <option value="total_collected" {{$property->agent_commission_type=="total_collected" ? 'selected' : '' }} >% Of Total Collected Rent</option>
 
                                 </select>
                                 @error('property[agent_commission_type]')
@@ -246,7 +257,7 @@
                                                 @endforeach --}}
                                                 @foreach ($paymentMethod as $payment)
                                                     <option value="{{ $payment->id }}"
-                                                        {{ $payment->id == $propertyMethodType->payment_method_id ? 'selected' : '' }}>
+                                                        {{ $payment->id == $propertyMethodType[0]->payment_method_id ? 'selected' : '' }}>
                                                         {{ $payment->name }}</option>
                                                 @endforeach
                                             </select>
@@ -261,7 +272,7 @@
 
                                             <input type="text" id="payment-description"
                                                 class="form-control @error('payment_description[]') border-1 border-danger @enderror"
-                                                placeholder="Payment Description" name="payment[payment_description][]" value=""/>
+                                                placeholder="Payment Description" name="payment[payment_description][]" value="{{$property->propertyPaymentMethod[0]->payment_description}}"/>
                                             @error('payment[payment_description][]')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -323,7 +334,7 @@
                                                         class="select2 w-100 @error('extra[extra_charge_name][]') border-1 border-danger @enderror"
                                                         id="extra-charges-name" name="extra[extra_charge_name][]">
                                                         @foreach ($extracharges as $charge)
-                                                            <option value="{{ $charge->id }}">{{ $charge->name }}
+                                                            <option value="{{ $charge->id }} {{$charge->id == $property->propertyExtra[0]->extra_charges_frequency ? 'selected' : ''}}">{{ $charge->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -340,7 +351,7 @@
                                                         class="form-control @error('extra[extra_charges_value][]') border-1 border-danger @enderror"
                                                         id="extra-charges-value" aria-describedby="itemname"
                                                         placeholder="Extra Charges Value"
-                                                        name="extra[extra_charges_value][]" />
+                                                        name="extra[extra_charges_value][]" value="{{$property->propertyExtra[0]->extra_charges_value}}" />
                                                     @error('extra[extra_charges_value][]')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -355,9 +366,9 @@
                                                         class="select2 w-100 @error('extra[extra_charges_type][]') border-1 border-danger @enderror"
                                                         id="extra-charges-type" name="extra[extra_charges_type][]">
                                                         <option label=" "></option>
-                                                        <option value="fixed">Fixed Value</option>
-                                                        <option value="total">% Of Total Rent</option>
-                                                        <option value="total_collected">% Of Total Collected Rent</option>
+                                                        <option value="fixed" {{$property->propertyExtra[0]->extra_charges_Type =='fixed' ? 'selected' : ''}}>Fixed Value</option>
+                                                        <option value="total" {{$property->propertyExtra[0]->extra_charges_Type =='total' ? 'selected' : ''}}>% Of Total Rent</option>
+                                                        <option value="total_collected" {{$property->propertyExtra[0]->extra_charges_Type =='total_collected' ? 'selected' : ''}}>% Of Total Collected Rent</option>
                                                     </select>
                                                     @error('extra[extra_charges_type][]')
                                                         <div class="text-danger">{{ $message }}</div>
@@ -372,8 +383,8 @@
                                                         class="select2 w-100 @error('extra[extra_frequency][]') border-1 border-danger @enderror"
                                                         id="extra_frequency" name="extra[extra_frequency][]">
                                                         <option label=" "></option>
-                                                        <option value="one_time">One Time</option>
-                                                        <option value="period">Period To Period</option>
+                                                        <option value="one_time" {{$property->propertyExtra[0]->extra_charges_frequency =='one_time' ? 'selected' : ''}}>One Time</option>
+                                                        <option value="period" {{$property->propertyExtra[0]->extra_charges_frequency =='period' ? 'selected' : ''}}>Period To Period</option>
                                                     </select>
                                                     @error('extra[extra_frequency][]')
                                                         <div class="text-danger">{{ $message }}</div>
@@ -441,8 +452,8 @@
                                                     <select
                                                         class="select2 w-100 @error('late[late_fee_name][]') border-1 border-danger @enderror"
                                                         id="late-fee-name" name="late[late_fee_name][]">
-                                                        <option label=" "></option>
-                                                        <option value="penalty">Penalty</option>
+
+                                                        <option value="penalty" {{$property->propertyLateFee[0]->late_fee_name == "penalty" ? 'selected': ''}}>Penalty</option>
 
                                                     </select>
                                                     @error('late[late_fee_name][]')
@@ -453,7 +464,7 @@
                                                     <label class="form-label" for="late-fee-value">Late Fee Value</label>
                                                     <input type="number" id="late-fee-value"
                                                         class="form-control @error('late[late_fee_value][]') border-1 border-danger @enderror"
-                                                        placeholder="Late Fee Value" name="late[late_fee_value][]" />
+                                                        placeholder="Late Fee Value" name="late[late_fee_value][]" value="{{$property->propertyLateFee[0]->late_fee_value}}" />
                                                     @error('late[late_fee_value][]')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -465,9 +476,9 @@
                                                         class="select2 w-100 @error('late[late_fee_type][]') border-1 border-danger @enderror"
                                                         id="late-fee-type" name="late[late_fee_type][]">
                                                         <option label=" "></option>
-                                                        <option value="fixed">Fixed Value</option>
-                                                        <option value="total">% Of Total Rent</option>
-                                                        <option value="total_collected">% Of Total Collected Rent</option>
+                                                        <option value="fixed" {{$property->propertyLateFee[0]->late_fee_type =='fixed' ? 'selected' : ''}}>Fixed Value</option>
+                                                        <option value="total" {{$property->propertyLateFee[0]->late_fee_type =='total' ? 'selected' : ''}}>% Of Total Rent</option>
+                                                        <option value="total_collected" {{$property->propertyLateFee[0]->late_fee_type =='total_collected' ? 'selected' : ''}}>% Of Total Collected Rent</option>
                                                     </select>
                                                     @error('late[late_fee_type][]')
                                                         <div class="text-danger">{{ $message }}</div>
@@ -479,7 +490,7 @@
                                                     <input type="number" id="grace-period"
                                                         class="form-control @error('late[late_fee_grace_period][]') border-1 border-danger @enderror"
                                                         placeholder="Grace Period(Days)"
-                                                        name="late[late_fee_grace_period][]" />
+                                                        name="late[late_fee_grace_period][]" value="{{$property->propertyLateFee[0]->late_fee_grace_period}}" />
                                                     @error('late[late_fee_grace_period][]')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -491,11 +502,11 @@
                                                         class="select2 w-100 @error('late[late_fee_frequency][]') border-1 border-danger @enderror"
                                                         id="late_fee_frequency" name="late[late_fee_frequency][]">
                                                         <option label=" "></option>
-                                                        <option value="one_time">One Time</option>
-                                                        <option value="daily">Daily</option>
-                                                        <option value="weekly">Weekly</option>
-                                                        <option value="bi_weekly">Bi Weekly</option>
-                                                        <option value="monthly">Monthly</option>
+                                                        <option value="one_time" {{$property->propertyLateFee[0]->late_fee_frequency == 'one_time' ? 'selected' : ''}}>One Time</option>
+                                                        <option value="daily" {{$property->propertyLateFee[0]->late_fee_frequency == 'daily' ? 'selected' : ''}}>Daily</option>
+                                                        <option value="weekly" {{$property->propertyLateFee[0]->late_fee_frequency == 'weekly' ? 'selected' : ''}}>Weekly</option>
+                                                        <option value="bi_weekly" {{$property->propertyLateFee[0]->late_fee_frequency == 'bi_weekly' ? 'selected' : ''}}>Bi Weekly</option>
+                                                        <option value="monthly" {{$property->propertyLateFee[0]->late_fee_frequency == 'monthly' ? 'selected' : ''}}>Monthly</option>
                                                     </select>
                                                     @error('late[late_fee_frequency][]')
                                                         <div class="text-danger">{{ $message }}</div>
@@ -558,10 +569,12 @@
                                                 <select
                                                     class="select2 w-100 @error('utility[utility_name][]') border-1 border-danger @enderror"
                                                     id="utility-name" name="utility[utility_name][]">
+                                                    @foreach ($utility as $utilities )
                                                     <option label=" "></option>
-                                                    <option value="1">Water</option>
-                                                    <option value="2">Gas</option>
-                                                    <option value="3">Garbage</option>
+                                                    <option value="{{$utilities->id}}" {{$utilities->id == $property->propertyUtility[0]->utilities_id ? 'selected' : ''}} >{{$utilities->name}}</option>
+                                                    @endforeach
+
+
                                                 </select>
                                                 @error('utility[utility_name][]')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -575,7 +588,7 @@
                                                 <input type="number"
                                                     class="form-control @error('utility[utility_cost][]') border-1 border-danger @enderror"
                                                     id="itemcost" aria-describedby="itemcost" placeholder="32"
-                                                    name="utility[utility_cost][]" />
+                                                    name="utility[utility_cost][]" value="{{$property->propertyUtility[0]->variable_cost}}" />
                                                 @error('utility[utility_cost][]')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
@@ -588,7 +601,7 @@
                                                 <input type="number"
                                                     class="form-control @error('utility[fix_fee][]') border-1 border-danger @enderror"
                                                     id="fix-fee" aria-describedby="itemquantity" placeholder="1"
-                                                    name="utility[fix_fee][]" />
+                                                    name="utility[fix_fee][]" value="{{$property->propertyUtility[0]->fixed_fee}}"/>
                                                 @error('utility[fix_fee][]')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
@@ -617,10 +630,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-outline-secondary btn-prev disable">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -634,6 +643,123 @@
         </div>
     </section>
 
+
+    <div class="modal fade" id="addNewAddressModal" tabindex="-1" aria-labelledby="addNewAddressTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-transparent">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pb-5 px-sm-4 mx-50">
+                    <div class="row gy-1 gx-2" id="unit_form">
+                        <div class="">
+                            <div class="d-flex justify-content-row custom-options-checkable">
+                                <div class="col-md-6 mb-md-0 mb-2">
+                                    <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showResidentials()">
+                                        <input class="custom-option-item-check" id="homeAddressRadio" checked type="radio"
+                                            name="unit[newAddress][]" value="residential" />
+                                        <label for="homeAddressRadio" class="custom-option-item px-2 py-1">
+                                            <span class="d-flex align-items-center mb-50">
+                                                <i data-feather="home" class="font-medium-4 me-50"></i>
+                                                Residential
+                                            </span>
+                                            <span class="d-block">Delivery time (7am – 9pm)</span>
+                                        </label>
+                                </div>
+                                </a>
+                                <div class="col-md-6 mb-md-0 mb-2">
+                                    <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showComercials()">
+                                        <input class="custom-option-item-check" id="officeAddressRadio" type="radio"
+                                            name="unit[newAddress][]" value="commercial" />
+                                        <label for="officeAddressRadio" class="custom-option-item px-2 py-1">
+                                            <span class="d-flex align-items-center mb-50">
+                                                <i data-feather="briefcase" class="font-medium-4 me-50"></i>
+                                                Commercial
+                                            </span>
+                                            <span class="d-block">Delivery time (10am – 6pm)</span>
+                                        </label>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        @php
+                            if($unitDetail->unit_name == 'commercial'){
+                                $unitName = $unitDetail->unit_name;
+                                $unitFloor = $unitDetail->unit_floor;
+                                $unitAmount = $unitDetail->rent_amount;
+                                $unitType = $unitDetail->unit_type;
+                                $totalRoom = $unitDetail->total_room;
+                                $squareFoot = $unitDetail->square_foot;
+                            }elseif($unitDetail->unit_name == 'residential'){
+                                $unitName = $unitDetail->unit_name;
+                                $unitFloor = $unitDetail->unit_floor;
+                                $unitAmount = $unitDetail->rent_amount;
+                                $unitType = $unitDetail->unit_type;
+                                $totalRoom = $unitDetail->total_room;
+                                $bathRoom = $unitDetail->bath_room;
+                                $bedRoom = $unitDetail->bed_room;
+                                $squareFoot = $unitDetail->square_foot;
+                            }
+                        @endphp
+                        <div class="col-12 ">
+                            <label class="form-label" for="unit-name">Unit Name</label>
+                            <input type="text" id="unit-name" name="unit[unit_name][]" class="form-control"
+                                placeholder="Unit Name" data-msg="Please enter your first name" value="{{ $unitName }}"/>
+                        </div>
+                        <div class="col-12 ">
+                            <label class="form-label" for="unit-floor">Unit Floor</label>
+                            <input type="text" id="unit-floor" name="unit[unit_floor][]" class="form-control"
+                                placeholder="Unit Floor" data-msg="Please enter your first name" value="{{ $unitFloor }}"/>
+                        </div>
+                        <div class="col-12 ">
+                            <label class="form-label" for="rent-amount">Rent Amount</label>
+                            <input type="text" id="rent-amount" name="unit[rent_amount][]" class="form-control"
+                                placeholder="Rent Amount" data-msg="Please enter your last name" value="{{ $unitAmount }}"/>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="unit-type">Unit Type</label>
+                            <select id="unit-type" name="unit[unit_type][]" class="select2 form-select">
+                                <option value="">Select a Unit</option>
+                                <option value="one-rooms">Single Room</option>
+                                <option value="three-rooms">Two Bed Rooms</option>
+                                <option value="three-rooms">Three Bed Rooms</option>
+                                <option value="five-rooms">Five Bed Rooms</option>
+                                <option value="comercial space">Commercial Space</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6" id="bed-rooms">
+                            <label class="form-label" for="bed-room">Bed Rooms</label>
+                            <input type="text" id="bed-room" name="unit[bed_rooms][]" class="form-control"
+                                placeholder="Bed Rooms" value="{{ @$bedRoom }}"/>
+                        </div>
+                        <div class="col-12 col-md-6" id="bath-rooms">
+                            <label class="form-label" for="bath-room">Bath Rooms</label>
+                            <input type="text" id="bath-room" name="unit[bath_rooms][]" class="form-control"
+                                placeholder="Bath Rooms" value="{{ @$bathRoom }}"/>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" for="total-rooms">Total Rooms</label>
+                            <input type="text" id="total-rooms" name="unit[total_rooms][]" class="form-control"
+                                placeholder="Total Rooms" value="{{ $totalRoom }}"/>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" for="square-foot">Square Foot</label>
+                            <input type="number" id="square-foot" name="unit[square_foot][]" class="form-control"
+                                placeholder="Square Foot" value="{{ $squareFoot }}"/>
+                        </div>
+
+
+                        <div class="col-12 text-center d-flex justify-content-between">
+                            <a class="btn btn-outline-secondary mt-2" onclick="unitModalDiscard()">
+                                Discard
+                            </a>
+                            <a class="btn btn-primary me-1 mt-2" onclick="unitModalSubmit()">Submit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 

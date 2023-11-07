@@ -14,6 +14,7 @@ use App\Models\PropertyLateFee;
 use App\Models\PropertyUtility;
 use App\Models\Invoice;
 use App\Models\Payment;
+use App\Models\Utility;
 use App\Models\VacateNotice;
 use App\Models\ExtraCharges;
 use App\Models\PaymentMethod;
@@ -192,6 +193,7 @@ class PropertyController extends Controller
 
         $property = Property::create($property_data);
         foreach($payment_rows as $payment){
+            // PropertyPaymentMethod::wherePropertyId($id)->update([
             PropertyPaymentMethod::create([
                 'property_id'=>$property->id,
                 'payment_method_id'=>$payment[0],
@@ -293,7 +295,121 @@ class PropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pagedata['property'] = Property::find($id);
+        $pagedata['paymentMethod'] = PaymentMethod::all();
+        $pagedata['propertyMethodType'] = PropertyPaymentMethod::all();
+        $pagedata['extracharges'] = ExtraCharges::all();
+        $pagedata['propertyTypes'] = PropertyType::all();
+        $pagedata['utility'] = Utility::all();
+        $pagedata['unitDetail'] = $pagedata['property']->property_unit[0];
+        $pagedata['landlords'] = User::whereUserType('landlord')->whereStatus('1')->get();
+        // $pagedata['propertyTypes'] = PropertyType::get();
+        // $pagedata['paymentMethod'] = PaymentMethod::get();
+        // $pagedata['propertyMethodType'] = PropertyPaymentMethod::where('property_id',$id)->first();
+        return view('admin.property.editproperty.index',$pagedata);
+    }
+    public function updateData(Request $request ,$id){
+        $data = $request->except('_token','property.user_id');
+        $property_data = $request->property;
+        // dd($property_data);
+        $payments = $request->payment;
+        $extras = $request->extra;
+        $lates = $request->late;
+        $utilities = $request->utility;
+        $units = $request->unit;
+        $property = Property::find($id);
+        $property->update($property_data);
+        // return redirect()->route('admin.properties.index')->with('success', 'Updated data successfully');
+        $payment_rows = [];
+
+        $paymentMethods = $payments["payment_method"];
+        $paymentDescriptions = $payments["payment_description"];
+        // Payment
+        for ($i = 0; $i < count($paymentMethods); $i++) {
+            // Create a new row with payment method and description
+            $row = [($paymentMethods[$i] ?? '1'), ($paymentDescriptions[$i] ?? "N/A")];
+            $payment_rows[] = $row;
+        }
+        foreach($payment_rows as $payment){
+            PropertyPaymentMethod::wherePropertyId($id)->update([
+                'payment_method_id'=>$payment[0],
+                'payment_description'=>$payment[1],
+            ]);
+        }
+        // return redirect()->route('admin.properties.index')->with('success','Record updated successfully');
+        $extra_rows = [];
+
+        $charge_name = $extras["extra_charge_name"];
+        $charge_value = $extras["extra_charges_value"];
+        $charge_type = $extras["extra_charges_type"];
+        $charge_frequency = $extras["extra_frequency"];
+
+        for ($i = 0; $i < count($charge_name); $i++) {
+            // Create a new row with payment method and description
+            $row = [($charge_name[$i] ?? '1'), $charge_value[$i] ?? "N/A",$charge_type[$i] ?? "N/A",$charge_frequency[$i] ?? "N/A"];
+            $extra_rows[] = $row;
+        }
+        foreach($extra_rows as $extra){
+            PropertyExtraCharges::wherePropertyId($id)->update([
+                'property_id'=>$property->id,
+                'extra_charges_id'=>$extra[0],
+                'extra_charges_value'=>$extra[1],
+                'extra_charges_Type'=>$extra[2],
+                'extra_charges_frequency'=>$extra[3],
+            ]);
+
+
+        }
+
+
+        $late_rows = [];
+
+        $fee_name = $lates["late_fee_name"];
+        $fee_value = $lates["late_fee_value"];
+        $fee_type = $lates["late_fee_type"];
+        $grace_period = $lates["late_fee_grace_period"];
+        $fee_frequency = $lates["late_fee_frequency"];
+
+        for ($i = 0; $i < count($fee_name); $i++) {
+            // Create a new row with payment method and description
+            $row = [($fee_name[$i] ?? '1'), ($fee_value[$i] ?? "N/A"),($fee_type[$i] ?? "N/A"),($grace_period[$i] ?? "N/A"),($fee_frequency[$i] ?? "N/A")];
+            $late_rows[] = $row;
+        }
+
+        foreach($late_rows as $late){
+            PropertyLateFee::wherePropertyId($id)->update([
+                'property_id'=>$property->id,
+                'late_fee_name'=>$late[0],
+                'late_fee_value'=>$late[1],
+                'late_fee_type'=>$late[2],
+                'late_fee_grace_period'=>$late[3],
+                'late_fee_frequency'=>$late[4],
+            ]);
+
+        }
+
+        $utility_rows = [];
+
+        $utility_name = $utilities["utility_name"];
+        $utility_cost = $utilities["utility_cost"];
+        $fix_fee = $utilities["fix_fee"];
+
+        for ($i = 0; $i < count($utility_name); $i++) {
+            // Create a new row with payment method and description
+            $row = [($utility_name[$i] ?? '1'), ($utility_cost[$i] ?? "N/A"),($fix_fee[$i] ?? "N/A")];
+            $utility_rows[] = $row;
+        }
+
+        foreach($utility_rows as $utility){
+            PropertyUtility::wherePropertyId($id)->update([
+                'property_id'=>$property->id,
+                'utilities_id'=>$utility[0],
+                'variable_cost'=>$utility[1],
+                'fixed_fee'=>$utility[2],
+            ]);
+            return redirect()->route('admin.properties.index')->with('success', 'Record updated  successfully');
+        }
+
     }
 
     /**
