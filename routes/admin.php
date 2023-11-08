@@ -63,8 +63,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::prefix('properties')->name('properties.')->group(function(){
         Route::get('/', [PropertyController::class, 'index'])->name('index');
         Route::get('create', [PropertyController::class, 'create'])->name('create');
+        Route::get('update/{id}', [PropertyController::class, 'update'])->name('edit');
+        Route::post('update/{id}', [PropertyController::class, 'updateData'])->name('update.data');
+
         Route::post('store', [PropertyController::class, 'store'])->name('store');
         Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
+        Route::get('destroy/{id}', [PropertyController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('notification')->name('notification.')->group(function(){
@@ -80,11 +84,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('/', [LeaseController::class, 'index'])->name('index');
         Route::get('create', [LeaseController::class, 'create'])->name('create');
         Route::post('store', [LeaseController::class, 'store'])->name('store');
+        Route::any('edit/{id}', [LeaseController::class, 'edit'])->name('edit');
+        Route::any('update/{id}', [LeaseController::class, 'update'])->name('update');
         // Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
     });
 
-    Route::get('view/leases', [LeaseController::class,'view'])->name('view.leases');
+    Route::get('view/leases/{id}', [LeaseController::class,'view'])->name('view.leases');
+    Route::get('utilities/editnote/{id}', [UtilitiesController::class, 'editnote'])->name('utilities.editnote');
     Route::resource('utilities', UtilitiesController::class);
+    Route::post('utilities.update', [UtilitiesController::class,'update'])->name('utilities.update');
     Route::get('utilities/destroy/{id}', [UtilitiesController::class,'destroy'])->name('utilities.destroy');
     Route::get('view/utilities',[UtilitiesController::class,'view'])->name('view.utilities');
     Route::resource('invoice', InvoiceController::class);

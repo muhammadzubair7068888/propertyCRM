@@ -15,8 +15,8 @@ class CreatePropertyExtraChargesTable extends Migration
     {
         Schema::create('property_extra_charges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('property_id')->constrained()->onDeleteCascade()->onUpdateCascade();
-            $table->foreignId('extra_charges_id')->constrained()->onDeleteCascade()->onUpdateCascade();
+            $table->foreignId('property_id')->constrained()->cascadeOnDelete()->onUpdateCascade();
+            $table->foreignId('extra_charges_id')->constrained()->cascadeOnDelete()->onUpdateCascade();
             $table->integer('extra_charges_value')->nullable();
             $table->string('extra_charges_Type')->nullable();
             $table->string('extra_charges_frequency')->nullable();

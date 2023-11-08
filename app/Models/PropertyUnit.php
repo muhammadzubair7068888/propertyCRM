@@ -18,6 +18,10 @@ class PropertyUnit extends Model
         'bath_room',
         'total_room',
         'square_foot',
-       
+
     ];
+    public function get_lease(){
+        return $this->hasMany(Lease::class);
+    }
+
 }

@@ -43,9 +43,13 @@ class LeaseController extends Controller
 
         return view("admin.leases.addlease",$pagedata);
     }
-    public function view()
+    public function view($id)
     {
-        return view('admin.leases.view.index');
+        $pagedata['lease']=Lease::find($id);
+        $pagedata['utility']=Utility::all();
+
+
+        return view('admin.leases.view.index',$pagedata);
     }
 
     /**
@@ -133,7 +137,15 @@ class LeaseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pagedata['leaseInfo']=Lease::find($id);
+        $pagedata['property']=Property::all();
+        $pagedata['selected_property']=Property::find($id);
+        $pagedata['leasetype']=LeaseType::all();
+        $pagedata['utility']=Utility::all();
+        $pagedata['tenant']=TenantInfo::all();
+        $pagedata['unit']=PropertyUnit::all();
+    // dd($pagedata['property']);
+      return view('admin.leases.edit',$pagedata);
     }
 
     /**
@@ -145,7 +157,20 @@ class LeaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=$request->except('_token');
+     
+        Lease::find($id)->update($data);
+
+        $leaseDeposit = LeaseDepositAmount::find($id);
+        $utilityName = $request->deposit['utility_names'];
+        $depositAmount = $request->deposit['deposit_amounts'];
+
+        $leaseDeposit->update([
+            'lease_id'=>$id,
+            'utility_name'=>$utilityName[0],
+            'deposit_amount'=>$depositAmount[0],
+        ]);
+        return redirect()->back()->with('success','Utility Update Successfully!');
     }
 
     /**

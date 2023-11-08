@@ -56,10 +56,10 @@
                                         </a>
                                         </td>
                                         <td>
-                                           <a href="{{route('admin.view.leases')}}" class="item-edit pe-1">
+                                           <a href="{{route('admin.view.leases',$lease->id)}}" class="item-edit pe-1">
                                                 <i data-feather="eye" class="font-medium-4"></i>
                                             </a>
-                                            <a href="{{route('admin.leases.create')}}"
+                                            <a href="{{route('admin.leases.edit',$lease->id)}}"
                                                 class="item-edit pe-1 text-success">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </a>

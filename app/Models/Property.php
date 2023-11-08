@@ -34,6 +34,20 @@ class Property extends Model
     public function property_unit(){
         return $this->hasMany(PropertyUnit::class);
     }
- 
+
+    public function leases(){
+        return $this->hasMany(Lease::class);
+    }
+    public function propertyUtility(){
+        return $this->hasMany(PropertyUtility::class);
+    }
+    public function propertyLateFee(){
+        return $this->hasMany(PropertyLateFee::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
 
 }

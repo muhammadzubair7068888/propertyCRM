@@ -4,6 +4,8 @@ namespace App\Http\Controllers\tenant;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\VacateNotice;
+use App\Models\TenantInfo;
 use Illuminate\Http\Request;
 
 class VacateNoticeController extends Controller
@@ -15,8 +17,9 @@ class VacateNoticeController extends Controller
      */
     public function index()
     {
-        
-        return view('tenant.vacateNotice.index');
+     $pagedata['notices']=VacateNotice::all();
+     $pagedata['tenant']=TenantInfo::all();
+        return view('tenant.vacateNotice.index',$pagedata);
     }
 
     /**
@@ -28,7 +31,7 @@ class VacateNoticeController extends Controller
     {
         //
     }
-   
+
 
     public function view()
     {

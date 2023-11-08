@@ -20,4 +20,5 @@ class UtilityReading extends Model
     public function property_unit(){
         return $this->belongsTo(PropertyUnit::class);
     }
+    
 }

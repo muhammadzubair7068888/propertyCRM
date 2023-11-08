@@ -46,7 +46,7 @@
                                     <td>{{ $data->property->property_name}}</td>
                                     <td>{{ $data->property_unit->unit_name}}</td>
                                     <td>{{ $data->complaint_date}}</td>
-                                    <td id="status-column-{{$data->id}}" data-status="{{$data->status}}">{{$data->status}}</td>
+                                    <td id="status-column-{{$data->id}}" class="text-success" data-status="{{$data->status}}">{{$data->status}}</td>
                                     <td>
                                     <div class="btn-group">
                                     <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

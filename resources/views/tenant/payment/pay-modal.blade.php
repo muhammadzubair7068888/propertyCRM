@@ -1,5 +1,6 @@
+
+
 <!-- PENDING MODAL -->
-<section id="form-and-scrolling-components">
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -10,7 +11,7 @@
           <div class="demo-inline-spacing">
             <div class="form-modal-ex">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#inlineForm0">
+              <button type="button" class="btn btn-outline-primary" >
               <i data-feather='clock'>Pending</i>
               </button>
               <!-- Modal -->
@@ -84,7 +85,7 @@
                                 rows="2"
                                 value=""
                               ></textarea>
-                           
+
                           </div>
                           <div class="col-12 mb-1 ">
                               <label class="form-label" for="disabledInputNotes">Extra Notes</label>
@@ -102,7 +103,7 @@
                                 <span><i data-feather='bell'></i> You do,t have permission to access this resource.</span>
                               </div>
                             </div>
-                      </div> 
+                      </div>
                     </form>
                   </div>
                 </div>
@@ -203,8 +204,7 @@
                                 class="form-control"
                                 id="disabledInputRecord"
                                 readonly="readonly"
-                                rows="2"
-                                value=""
+                                  value=""
                               ></textarea>
                           </div>
                             <div class="col-12 mb-1 ">
@@ -222,7 +222,7 @@
                                 <span><i data-feather='bell'></i> You do,t have permission to access this resource.</span>
                               </div>
                             </div>
-                      </div> 
+                      </div>
                     </form>
                   </div>
                 </div>

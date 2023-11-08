@@ -24,7 +24,7 @@
                   role="tab"
                   aria-controls="home-fill"
                   aria-selected="true"
-                  >Home</a
+                  >Info</a
                 >
               </li>
               <li class="nav-item">
@@ -36,7 +36,7 @@
                   role="tab"
                   aria-controls="profile-fill"
                   aria-selected="false"
-                  >Profile</a
+                  >Invoice</a
                 >
               </li>
 

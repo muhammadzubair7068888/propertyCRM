@@ -20,11 +20,14 @@ class Lease extends Model
         'rental_deposit_amount',
         'tenant_info_id',
         'generate_invoice',
+        'next_period_bill',
+        'waive_penalty',
+        'skip_starting_period',
     ];
-    
+
 
     public function property(){
-        return $this->belongsTo(Property::class ,'property_id');
+        return $this->belongsTo(Property::class);
     }
 
     public function unit(){
@@ -33,6 +36,13 @@ class Lease extends Model
 
     public function deposit() {
         return $this->belongsTo(LeaseDepositAmount::class, "id", "lease_id");
+    }
+
+    public function lease_type() {
+        return $this->belongsTo(LeaseType::class);
+    }
+    public function tenant_info() {
+        return $this->belongsTo(TenantInfo::class);
     }
 }
 

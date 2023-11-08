@@ -230,7 +230,7 @@
                                                             <td>grw</td>
                                                             <td>LS8000</td>
                                                             <td>90</td>
-                                                           
+
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -247,7 +247,7 @@
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">Summary</h4>
-                </div> 
+                </div>
                 <div class="ms-3 justify-content-start row">
                     <div class="mb-1 col-3">Total Units:
                         <p>3</p>
@@ -262,19 +262,19 @@
                   <div class="row ms-3">
                     <div class="col-6">
                         <div  class="card-category text-gray"> Name: </div>
-                        <div  class="text-black  mb-1">Sahil House</div>
+                        <div  class="text-black  mb-1">{{$property->property_name}}</div>
                     </div>
                     <div _ngcontent-diy-c215="" class="col-6">
                         <div class="card-category text-gray"> Code: </div>
-                        <div class="text-black" >sahil123</div>
+                        <div class="text-black" >{{$property->property_code}}</div>
                     </div>
                 </div>
                   <div class="card-category text-gray p-1 ms-3 "> Location:
-                  <div  class="text-black">gujranwala</div>
+                  <div  class="text-black">{{$property->location}}</div>
                   </div>
                 </div>
             </div>
-                
+
             <!-- Filled Tabs ends -->
         </div>
     </section>
@@ -301,6 +301,6 @@
 @endsection
 @push('page-script')
     {{-- Page js files --}}
-    
+
     <script src="{{ asset('js/scripts/components/components-navs.js') }}"></script>
 @endpush

@@ -1,7 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\landlord;
-
+use App\Models\Property;
+use App\Models\PropertyUnit;
+use App\Models\Lease;
+use App\Models\Invoice;
+use App\Models\Payment;
+use App\Models\VacateNotice;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +19,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return view('landlord.Property.index');
+        $pagedata['property']=Property::all();
+        return view('landlord.Property.index',$pagedata);
     }
 
     /**
@@ -24,7 +30,8 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view('landlord.property.property-detail-tabs.index');
+
+
     }
 
     /**
@@ -46,7 +53,13 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        $pagedata['property']=Property::find($id);
+        $pagedata['propertyUnit']=PropertyUnit::all();
+        $pagedata['lease']=Lease::all();
+        $pagedata['invoice']=Invoice::all();
+        $pagedata['payment']=Payment::all();
+        $pagedata['vacateNotice']=VacateNotice::all();
+        return view('landlord.property.property-detail-tabs.index',$pagedata);
     }
 
     /**

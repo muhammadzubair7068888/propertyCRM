@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\landlord;
-use App\Models\Lease;
+use App\Models\User;
+use App\Models\Property;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LeaseController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,10 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        $pagedata['lease']=Lease::all();
-        return view('landlord.leases.index',$pagedata);
+        $pagedata['user']=User::all();
+        $pagedata['totalUser']=User::get()->count();
+        $pagedata['property']=Property::get()->count();
+        return view('landlord.dashboard.index',$pagedata);
     }
 
     /**

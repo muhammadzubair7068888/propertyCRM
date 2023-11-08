@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\tenant;
-
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -14,7 +16,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('tenant.profile.index');
+        $pagedata['user']=User::where('id',auth()->user()->id)->first();
+        return view('tenant.profile.index', $pagedata);
     }
 
     /**
@@ -69,7 +72,24 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->except('_token');
+
+        $currentPassword = Auth::user()->password;
+
+        if (!Hash::check($request->Cpassword, $currentPassword)) {
+            return redirect()->back()->with('error', 'Current password does not match');
+        }
+
+        // Update the user's password
+        $user = Auth::user();
+        $user->password = $request->new_password;
+        $user->save(); // Save the updated password
+
+        // Update the user's other data
+        $user = User::find($id);
+        $user->update($data);
+
+        return redirect()->route('login')->with('success', 'Updated successfully');
     }
 
     /**
