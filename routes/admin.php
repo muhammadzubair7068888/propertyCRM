@@ -16,7 +16,9 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RepairController;
 use App\Http\Controllers\Admin\VacateNoticeController;
+use App\Http\Controllers\SMSController;
 use App\Models\PropertyType;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,16 @@ use App\Models\PropertyType;
 |
 */
 
+
+
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('/sms',function(){
+        return view('admin.sms');
+    })->name('show-sms');
+    
+    // Route::post('sms',[SMSController::class,'sendSMS'])->name('sms');
+    Route::post('sms',[SMSController::class,'sendSMS'])->name('sms');
+
     Route::get('/', [DashboardController::class, 'home'])->name('home');
     Route::get('dashboard', [DashboardController::class, 'home'])->name('home');
 

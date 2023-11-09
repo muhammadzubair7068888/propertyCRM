@@ -23,7 +23,7 @@ require_once __DIR__.'/landlord.php';
 require_once __DIR__.'/tenant.php';
 
 Route::get('/', [AuthController::class, 'login_page'])->name('login');
-Route::get('login', [AuthController::class, 'login_page'])->name('login');
+Route::get('login', [AuthController::class, 'login_page']);
 Route::get('attempt_login', [AuthController::class, 'login'])->name('login.attempt');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
