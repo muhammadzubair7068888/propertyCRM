@@ -53,7 +53,6 @@ class TenentController extends Controller
      */
     public function store(Request $req)
     {
-
         try {
             $req->validate([
                 'form.tenantInfo.tenant_type_id' => 'required',
@@ -110,7 +109,8 @@ class TenentController extends Controller
             $tenantInfo['user_id'] = $user->id;
 
             TenantInfo::create($tenantInfo);
-
+            $message = 'Your Tenant account has been created successfully!';
+            sendTwilioMessage($req->form['user']['phone_number'], $message);
             return redirect()->route('admin.tenant.index')->with('success', 'Tenant added successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());

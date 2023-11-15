@@ -60,7 +60,6 @@ class LeaseController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'form.property_id'=>'required',
             // 'form.property_unit_id'=>'required',
@@ -92,7 +91,6 @@ class LeaseController extends Controller
         $payment_rows[] = $row;
     };
     $lease=Lease::create($Info);
-
      foreach($payment_rows as $payment){
         LeaseDepositAmount::create([
             'lease_id'=>$lease->id,
@@ -113,7 +111,8 @@ class LeaseController extends Controller
         'lease_id'=>$lease_id,
         'invoice_number'=>$invoiceCode
     ]);
-
+    $message = 'Your Lease Invoice has been created successfully!';
+    sendTwilioMessage($lease->tenant_info->user->phone_number, $message);
 
     return redirect()->route('admin.leases.index')->with(['success'=>'Lease Create Successfully']);
   }
@@ -158,7 +157,7 @@ class LeaseController extends Controller
     public function update(Request $request, $id)
     {
         $data=$request->except('_token');
-     
+
         Lease::find($id)->update($data);
 
         $leaseDeposit = LeaseDepositAmount::find($id);

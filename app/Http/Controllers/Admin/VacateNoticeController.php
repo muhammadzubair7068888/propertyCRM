@@ -48,11 +48,14 @@ class VacateNoticeController extends Controller
     'vacate_date'=>'required',
     'vacate_reason'=>'required'
    ]);
+//    dd($request);
 
    $data=$request->except('_token');
 
    if($data){
-    VacateNotice::create($data);
+    $vacate = VacateNotice::create($data);
+    $message = 'Your VacatNotice has been created successfully!';
+    sendTwilioMessage($vacate->tenantInfo->user->phone_number, $message);
     return redirect()->route('admin.vacate_notice.index')->with('success','Notice added successfully!');
     }else{
         return redirect()->route('admin.vacate_notice.index')->with('error','Notice does not added !');
@@ -94,7 +97,7 @@ class VacateNoticeController extends Controller
     //  dd($request);
     try{
         $id=$request->tenant_modal_id;
-    
+
         $notice=$request->except('_token');
         VacateNotice::find($id)->update($notice);
         return redirect()->back()->with('success','Notice Update Successfully!');

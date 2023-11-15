@@ -1,6 +1,10 @@
 <?php
 
 use App\Models\Notification;
+use Twilio\Rest\Client;
+
+
+
 
 if (!function_exists('user_id')) {
     function user_id()
@@ -39,5 +43,23 @@ if (!function_exists('notification')) {
             'updated_at'=>now(),
         ]);
         return $notification;
+    }
+}
+if (!function_exists('sendTwilioMessage')) {
+    /**
+     * Send Twilio message to the specified phone number.
+     *
+     * @param string $to
+     * @param string $message
+     * @return void
+     */
+    function sendTwilioMessage($to, $message)
+    {
+        $twilio = new Client(config('services.twilio.sid'), config('services.twilio.token'));
+
+        $twilio->messages->create($to, [
+            'from' => config('services.twilio.from'),
+            'body' => $message,
+        ]);
     }
 }

@@ -48,9 +48,7 @@ class LandlordController extends Controller
      */
     public function store(Request $req)
     {
-
         $req->validate([
-
             'first_name' => 'required',
             'middle_name' => 'required',
             'last_name' => 'required',
@@ -68,10 +66,9 @@ class LandlordController extends Controller
 
         ]);
         $data = $req->except('_token');
-       
-
         User::create($data);
-
+        $message = 'Your Landlord account has been created successfully!';
+        sendTwilioMessage($req->phone_number, $message);
         return redirect()->route('admin.landlord.index')->with('success', 'Landlord added successfully');
     }
 
