@@ -30,6 +30,9 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     {{-- Include core + vendor Styles --}}
     @include('panels/styles')
+    <style>
+        
+    </style>
 
 </head>
 <!-- END: Head-->
