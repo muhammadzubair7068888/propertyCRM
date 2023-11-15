@@ -1,94 +1,53 @@
-
-              <!-- Modal -->
-              <div
-                class="modal fade text-start"
-                id="showmodal"
-                tabindex="-1"
-                aria-labelledby="myModalLabel33"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title" id="myModalLabel33"><i data-feather='clock'></i>Pending</h4>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                      </button>
-                    </div>
-                    <form action="#">
-                      <div class="modal-body">
-                        <div class="row">
+<!-- Modal -->
+<div class="modal fade text-start" id="showmodal" tabindex="-1" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33"><i data-feather='clock'></i>Pending</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <form action="#">
+                <div class="modal-body">
+                    <div class="row">
                         <div class="mb-1 col-md-6">
                             <label class="form-label" for="modern-amount">Amount</label>
-                            <input
-                              type="text"
-                              id="modern-amount"
-                              class="form-control"
-                              readonly="readonly"
-                              value=""
-                            />
-                          </div>
-                          <div class="mb-1 col-md-6">
+                            <input type="text" id="modern-amount" class="form-control" readonly="readonly"
+                                value="" />
+                        </div>
+                        <div class="mb-1 col-md-6">
                             <label class="form-label" for="modern-paid">Paid On</label>
-                            <input
-                              type="text"
-                              id="modern-paid"
-                              class="form-control"
-                              readonly="readonly"
-                              placeholder=""
-                            />
-                          </div>
-                          </div>
-                          <div class="row">
-                          <div class="mb-1  col-md-6">
+                            <input type="text" id="modern-paid" class="form-control" readonly="readonly"
+                                placeholder="" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-1  col-md-6">
                             <label class="form-label" for="modern-pay">Payment Method</label>
-                            <input
-                              type="text"
-                              id="modern-pay"
-                              class="form-control"
-                              readonly="readonly"
-                              placeholder=""
-                            />
-                          </div>
-                          <div class="mb-1 col-md-6">
+                            <input type="text" id="modern-pay" class="form-control" readonly="readonly"
+                                placeholder="" />
+                        </div>
+                        <div class="mb-1 col-md-6">
                             <label class="form-label" for="tenant">Tenant</label>
-                            <input
-                              type="text"
-                              id="tenant"
-                              readonly="readonly"
-                              class="form-control"
-                              value=""
-                            />
-                          </div>
-                          </div>
-                          <div class="col-12 mb-1">
-                              <label class="form-label" for="recordedby">Recorded By</label>
-                              <textarea
-                               type="text"
-                                class="form-control"
-                                id="recordedby"
-                                readonly="readonly"
-                                rows="2"
-                                value=""
-                              ></textarea>
+                            <input type="text" id="tenant" readonly="readonly" class="form-control"
+                                value="" />
+                        </div>
+                    </div>
+                    <div class="col-12 mb-1">
+                        <label class="form-label" for="recordedby">Recorded By</label>
+                        <textarea type="text" class="form-control" id="recordedby" readonly="readonly" rows="2" value=""></textarea>
 
-                          </div>
-                          <div class="col-12 mb-1 ">
-                              <label class="form-label" for="extranote">Extra Notes</label>
-                              <textarea
-                                type="text"
-                                class="form-control"
-                                id="extranote"
-                                readonly="readonly"
-                                rows="2"
-                                value=""
-                                ></textarea>
-                            </div>
+                    </div>
+                    <div class="col-12 mb-1 ">
+                        <label class="form-label" for="extranote">Extra Notes</label>
+                        <textarea type="text" class="form-control" id="extranote" readonly="readonly" rows="2" value=""></textarea>
+                    </div>
 
-                      </div>
-                    </form>
-                  </div>
                 </div>
-              </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 

@@ -34,4 +34,9 @@ return [
         'token' => env('TWILIO_AUTH_TOKEN'),
         'from' => env('TWILIO_PHONE_NUMBER'),
     ],
+    'mpesa' => [
+        'url' => env('MPESA_URL'),
+        'key' => env('MPESA_KEY'),
+        'secret' => env('MPESA_CONSUMER_SECRET'),
+    ],
 ];
