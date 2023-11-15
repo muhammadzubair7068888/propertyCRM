@@ -86,6 +86,7 @@
             <div class="card">
   <div class="card-datatable">
     <table class="datatables-table table">
+      <a href="{{route('admin.show-sms')}}">click</a>
         <thead>
             <tr>
                 <th>ID</th>
