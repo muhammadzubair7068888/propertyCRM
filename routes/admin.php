@@ -104,7 +104,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('view/utilities',[UtilitiesController::class,'view'])->name('view.utilities');
     Route::resource('invoice', InvoiceController::class);
     Route::resource('payment', PaymentController::class);
-    Route::get('payments/paid', [PaymentController::class,'paid'])->name('payment.paid');
+    Route::get('payments/confirmation', [PaymentController::class,'paid'])->name('payment.paid');
     Route::get('receipt/{id}',[PaymentController::class,'show'])->name('receipt');
     Route::post('fetch-lease',[PaymentController::class,'fetchLease'])->name('fetch-lease');
 

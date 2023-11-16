@@ -47,22 +47,21 @@ class PaymentController extends Controller
     {
         // try{
             $data = $request->except('_token');
-    
+
             // sendPayment($payment->tenant_info->user->phone_number, $payment->amount);
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer gOKAAKxpOj73pA22t22d4WE5ImZA',
-                'Content-Type' => 'application/json',
-            ])
-            ->post(config('services.mpesa.url'), [
-                "ShortCode" => 600988,
-                "CommandID" => "CustomerPayBillOnline",
-                "amount" => $data['amount'],
-                "MSISDN" => "254705912645",
-                "BillRefNumber" => "12331454",
-                ])
-                ->body();
+            // $response = Http::withHeaders([
+            //     'Authorization' => 'Bearer twYpipCboe3pjpiN2nwDCcs7HUwe',
+            //     'Content-Type' => 'application/json',
+            // ])
+            // ->post(config('services.mpesa.url'), [
+            //     "ShortCode" => 600986,
+            //     "CommandID" => "CustomerPayBillOnline",
+            //     "amount" => 1,
+            //     "MSISDN" => "254705912645",
+            //     "BillRefNumber"=> "1234566",
+            //   ]);
+            // dd($response->body());
                 $payment = Payment::create($data);
-            dd($response);
             return redirect()->route('admin.payment.index')->with('success', 'Record has been save Successfully');
         // } catch (\Throwable $th) {
         //     return redirect()->back()->with('error', $th->getMessage());
