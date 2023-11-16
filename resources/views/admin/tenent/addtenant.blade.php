@@ -74,7 +74,7 @@
                     <div id="account-details-vertical" class="content" role="tabpanel"
                         aria-labelledby="account-details-vertical-trigger">
                         <div class="content-header d-flex justify-content-between">
-                           <div><h5 class="mb-0">Tenant Info</h5></div> 
+                           <div><h5 class="mb-0">Tenant Info</h5></div>
                            <div> <a href="{{ route('admin.tenant.index') }}" class="btn btn-secondary">Go Back</a></div>
                         </div>
                         <div class="row">

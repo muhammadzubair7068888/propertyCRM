@@ -28,8 +28,8 @@ class TenantInfo extends Model
         'employment_position',
         'employment_contact_phone',
         'employment_contact_email',
-        
-        
+
+
         'employment_postal_address',
         'employment_physical_address',
         'business_name',
@@ -39,14 +39,19 @@ class TenantInfo extends Model
         'bussiness_industry',
         'bussiness_description',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function tenantType()
     {
         return $this->belongsTo(TenantType::class);
+    }
+
+    public function leases()
+    {
+        return $this->hasMany(Lease::class);
     }
 }
