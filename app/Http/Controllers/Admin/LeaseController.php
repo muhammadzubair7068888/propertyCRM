@@ -113,7 +113,6 @@ class LeaseController extends Controller
     ]);
     $message = 'Your Lease Invoice has been created successfully!';
     sendTwilioMessage($lease->tenant_info->user->phone_number, $message);
-
     return redirect()->route('admin.leases.index')->with(['success'=>'Lease Create Successfully']);
   }
 

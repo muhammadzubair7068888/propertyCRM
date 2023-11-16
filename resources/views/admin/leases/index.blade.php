@@ -16,11 +16,12 @@
                 <div class="card">
                     <div class="card-header border-bottom">
                         <h4 class="card-title">Leases</h4>
+                        <div class="col-6 d-flex justify-content-end ">
+                            <a href="{{ route('admin.leases.create') }}"> <button type="submit"
+                                    class="btn btn-primary me-2 mt-1 " name="submit" value="Submit">+ Add Lease</button></a>
+                        </div>
                     </div>
-                    <div class="col-12 d-flex justify-content-end ">
-                        <a href="{{ route('admin.leases.create') }}"> <button type="submit"
-                                class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Lease</button></a>
-                    </div>
+
                     <div class="card-datatable">
                         <table class="datatables-table table" id="datatables-table">
                             <thead>

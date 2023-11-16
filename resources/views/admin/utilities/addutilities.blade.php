@@ -25,10 +25,7 @@
                             @foreach ($property as $data )
                             <option value="{{$data->id}}">{{$data->property_name}}</option>
                             @endforeach
-
-
                           </select>
-
                   </div>
                   </div>
                 <div class="col-md-6">
@@ -39,11 +36,7 @@
                             @foreach ($utility as $utilities)
                             <option value="{{$utilities->id}}">{{$utilities->name}}</option>
                             @endforeach
-
-
-
                         </select>
-
                 </div>
                 </div>
             </div>
@@ -86,29 +79,21 @@
                                         @foreach ($propertyUnit as $unit )
                                         <option value="{{$unit->unit_id}}"> {{$unit->unit_floor}}</option>
                                         @endforeach
-
-
                                     </select>
-
                                 </div>
                             </div>
-
                             <div class="col-md-2 col-12">
                                 <div class="mb-1">
                                     <label class="form-label" for="reading-date">Reading Date</label>
                                     <input type="date" class="form-control " id="reading-date"
                                         aria-describedby="itemcost" placeholder="2023-03-21" name="utility[reading_date][]" />
-
                                 </div>
                             </div>
-
                             <div class="col-md-2 col-12">
                                 <div class="mb-1">
                                     <label class="form-label" for="current-reading">Current Reading</label>
                                     <input type="number" class="form-control " id="current-reading"
                                         aria-describedby="itemquantity" placeholder="Current Reading" name="utility[current_reading][]" />
-
-
                                 </div>
                             </div>
                             <div class="col-md-2 col-12">
@@ -133,7 +118,6 @@
                     </div>
                 </div>
             </div>
-
              {{-- <div class="d-flex">
                     <form action="upload.php" method="post" enctype="multipart/form-data" >
                         <div class="custom-file justify-content-start">
@@ -145,17 +129,13 @@
                         </div>
                     </form>
                 </div> --}}
-
-
                 <div class="col-12 d-flex justify-content-end" >
                     <button type="submit" class="btn btn-primary me-1">Submit</button>
-
                     </div>
             </form>
           </div>
         </div>
       </div>
-
       </div>
     </div>
   </section>
