@@ -180,25 +180,27 @@
                                             </div>
                                             <div class="modal-body pb-5 px-sm-4 mx-50">
                                                 <div class="row gy-1 gx-2" id="unit_form">
+
                                                     <div class="">
                                                         <div class="d-flex justify-content-row custom-options-checkable">
+
                                                             <div class="col-md-6 mb-md-0 mb-2">
-                                                                <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showResidentials()">
+                                                                <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showResidentials(this)">
                                                                     <input class="custom-option-item-check" id="homeAddressRadio" checked type="radio"
-                                                                        name="unit[newAddress][]" value="residential" />
-                                                                    <label for="homeAddressRadio" class="custom-option-item px-2 py-1">
-                                                                        <span class="d-flex align-items-center mb-50">
-                                                                            <i data-feather="home" class="font-medium-4 me-50"></i>
-                                                                            Residential
-                                                                        </span>
-                                                                        <span class="d-block">Delivery time (7am – 9pm)</span>
-                                                                    </label>
+                                                                        name="unit[status][]" value="residential" />
+                                                                        <label for="homeAddressRadio" class="custom-option-item px-2 py-1">
+                                                                            <span class="d-flex align-items-center mb-50">
+                                                                                <i data-feather="home" class="font-medium-4 me-50"></i>
+                                                                                Residential
+                                                                            </span>
+                                                                            <span class="d-block">Delivery time (7am – 9pm)</span>
+                                                                        </label>
+                                                                </a>
                                                             </div>
-                                                            </a>
                                                             <div class="col-md-6 mb-md-0 mb-2">
-                                                                <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showComercials()">
+                                                                <a class="custom-option-item-title h4 fw-bolder mb-0" onclick="showComercials(this)">
                                                                     <input class="custom-option-item-check" id="officeAddressRadio" type="radio"
-                                                                        name="unit[newAddress][]" value="commercial" />
+                                                                        name="unit[status][]" value="commercial"   />
                                                                     <label for="officeAddressRadio" class="custom-option-item px-2 py-1">
                                                                         <span class="d-flex align-items-center mb-50">
                                                                             <i data-feather="briefcase" class="font-medium-4 me-50"></i>
@@ -206,8 +208,11 @@
                                                                         </span>
                                                                         <span class="d-block">Delivery time (10am – 6pm)</span>
                                                                     </label>
+                                                                </a>
                                                             </div>
-                                                            </a>
+                                                            <input type="hidden" name="unit[unit_status][]" id="unit_status">
+
+
                                                         </div>
                                                     </div>
                                                     <div class="col-12 ">
@@ -229,13 +234,14 @@
                                                         <label class="form-label" for="unit-type">Unit Type</label>
                                                         <select id="unit-type" name="unit[unit_type][]" class="select2 form-select">
                                                             <option value="">Select a Unit</option>
-                                                            <option value="one-rooms">Single Room</option>
-                                                            <option value="three-rooms">Two Bed Rooms</option>
+                                                            <option value="one-room">Single Room</option>
+                                                            <option value="two-rooms">Two Bed Rooms</option>
                                                             <option value="three-rooms">Three Bed Rooms</option>
                                                             <option value="five-rooms">Five Bed Rooms</option>
-                                                            <option value="comercial space">Commercial Space</option>
+                                                            <option value="commercial-space">Commercial Space</option>
                                                         </select>
                                                     </div>
+
                                                     <div class="col-12 col-md-6" id="bed-rooms">
                                                         <label class="form-label" for="bed-room">Bed Rooms</label>
                                                         <input type="text" id="bed-room" name="unit[bed_rooms][]" class="form-control"
@@ -732,14 +738,18 @@
 @endsection
 @section('page-script')
     <script>
-        function showResidentials() {
+        function showResidentials(element) {
+            var unit_status = $(element).closest('.d-flex').find('#unit_status');
+            unit_status.val('residential');
             $('#bed-rooms').removeClass('d-none');
             $('#bath-rooms').removeClass('d-none');
             $('#bed-rooms').addClass('d-block');
             $('#bath-rooms').addClass('d-block');
         }
 
-        function showComercials() {
+        function showComercials(element) {
+            var unit_status = $(element).closest('.d-flex').find('#unit_status');
+            unit_status.val('commercial');
             $('#bed-rooms').removeClass('d-block');
             $('#bath-rooms').removeClass('d-block');
             $('#bed-rooms').addClass('d-none');

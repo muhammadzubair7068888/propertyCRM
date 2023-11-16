@@ -119,6 +119,8 @@ class PropertyController extends Controller
         $lates = $request->late;
         $utilities = $request->utility;
         $units = $request->unit;
+        // dd($units);
+
 
         $payment_rows = [];
 
@@ -146,8 +148,11 @@ class PropertyController extends Controller
         $utility_cost = $utilities["utility_cost"];
         $fix_fee = $utilities["fix_fee"];
 
+
+        $units = $request->unit;
         $unit_rows = [];
-        $newaddress = $units['newAddress'];
+        $unit_name = $units['unit_name'];
+        $status = $units['unit_status'];
         $floor = $units['unit_floor'];
         $rent_amount = $units['rent_amount'];
         $unit_type = $units['unit_type'];
@@ -185,9 +190,9 @@ class PropertyController extends Controller
             }
 
             // Unit
-            for ($i = 0; $i < count($newaddress); $i++) {
+            for ($i = 0; $i < count($status); $i++) {
                 // Create a new row with payment method and description
-                $row = [($newaddress[$i] ?? '1'), ($floor[$i] ?? "N/A"),($rent_amount[$i] ?? "N/A"),($unit_type[$i] ?? "N/A"),($bed_rooms[$i] ?? "N/A"),($bath_rooms[$i] ?? "N/A"),($total_rooms[$i] ?? "N/A"),($square_foot[$i] ?? "N/A")];
+                $row = [($status[$i] ?? '1'),($unit_name[$i] ?? 'N/A'), ($floor[$i] ?? "N/A"),($rent_amount[$i] ?? "N/A"),($unit_type[$i] ?? "N/A"),($bed_rooms[$i] ?? "N/A"),($bath_rooms[$i] ?? "N/A"),($total_rooms[$i] ?? "N/A"),($square_foot[$i] ?? "N/A")];
                 $unit_rows[] = $row;
             }
 
@@ -209,6 +214,7 @@ class PropertyController extends Controller
                 'extra_charges_frequency'=>$extra[3],
             ]);
         }
+
         foreach($late_rows as $late){
             PropertyLateFee::create([
                 'property_id'=>$property->id,
@@ -227,22 +233,22 @@ class PropertyController extends Controller
                 'fixed_fee'=>$utility[2],
             ]);
         }
-        foreach($unit_rows as $unit){
+
+        $unit_rows = [];
+        foreach ($units['unit_name'] as $key => $unit_name) {
             PropertyUnit::create([
-                'property_id'=>$property->id,
-                'unit_name'=>$unit[0],
-                'unit_floor'=>$unit[1],
-                'rent_amount'=>$unit[2],
-                'unit_type'=>$unit[3],
-                'bed_room'=>$unit[4],
-                'bath_room'=>$unit[5],
-                'total_room'=>$unit[6],
-                'square_foot'=>$unit[7],
+                'property_id' => $property->id,
+                'unit_status' => $units['unit_status'][$key] ?? '1',
+                'unit_name' => $unit_name,
+                'unit_floor' => $units['unit_floor'][$key] ?? 'N/A',
+                'rent_amount' => $units['rent_amount'][$key] ?? 'N/A',
+                'unit_type' => $units['unit_type'][$key] ?? 'N/A',
+                'bed_room' => $units['bed_rooms'][$key] ?? 'N/A',
+                'bath_room' => $units['bath_rooms'][$key] ?? 'N/A',
+                'total_room' => $units['total_rooms'][$key] ?? 'N/A',
+                'square_foot' => $units['square_foot'][$key] ?? 'N/A',
             ]);
         }
-
-
-
         return redirect()->route('admin.properties.index')->with('success', 'Record updated successfully');
     }
 
@@ -317,6 +323,7 @@ class PropertyController extends Controller
         $lates = $request->late;
         $utilities = $request->utility;
         $units = $request->unit;
+
         $property = Property::find($id);
         $property->update($property_data);
         // return redirect()->route('admin.properties.index')->with('success', 'Updated data successfully');
@@ -388,6 +395,7 @@ class PropertyController extends Controller
 
         }
 
+
         $utility_rows = [];
 
         $utility_name = $utilities["utility_name"];
@@ -399,7 +407,6 @@ class PropertyController extends Controller
             $row = [($utility_name[$i] ?? '1'), ($utility_cost[$i] ?? "N/A"),($fix_fee[$i] ?? "N/A")];
             $utility_rows[] = $row;
         }
-
         foreach($utility_rows as $utility){
             PropertyUtility::wherePropertyId($id)->update([
                 'property_id'=>$property->id,
@@ -407,8 +414,46 @@ class PropertyController extends Controller
                 'variable_cost'=>$utility[1],
                 'fixed_fee'=>$utility[2],
             ]);
-            return redirect()->route('admin.properties.index')->with('success', 'Record updated  successfully');
+
         }
+
+        $unit_rows = [];
+
+        $unit_name = $units['unit_name'];
+        $status = $units['status'];
+        $floor = $units['unit_floor'];
+        $rent_amount = $units['rent_amount'];
+        $unit_type = $units['unit_type'];
+        $bed_rooms = $units['bed_rooms'];
+        $bath_rooms = $units['bath_rooms'];
+        $total_rooms = $units['total_rooms'];
+        $square_foot = $units['square_foot'];
+           // Unit
+           for ($i = 0; $i < count($status); $i++) {
+            // Create a new row with payment method and description
+            $row = [($status[$i] ?? '1'),($unit_name[$i] ?? 'N/A'), ($floor[$i] ?? "N/A"),($rent_amount[$i] ?? "N/A"),($unit_type[$i] ?? "N/A"),($bed_rooms[$i] ?? "N/A"),($bath_rooms[$i] ?? "N/A"),($total_rooms[$i] ?? "N/A"),($square_foot[$i] ?? "N/A")];
+            $unit_rows[] = $row;
+        }
+
+        foreach ($unit_rows as $unit) {
+            PropertyUnit::wherePropertyId($id)->update([
+                'property_id' => $property->id,
+                'unit_name' => $unit[1],  // Corrected index for unit_name
+                'unit_status' => $unit[0],  // Corrected index for status
+                'unit_floor' => $unit[2],
+                'rent_amount' => $unit[3],
+                'unit_type' => $unit[4],
+                'bed_room' => $unit[5],
+                'bath_room' => $unit[6],
+                'total_room' => $unit[7],
+                'square_foot' => $unit[8],
+            ]);
+        }
+
+        return redirect()->route('admin.properties.index')->with('success', 'Records updated successfully');
+
+
+
 
     }
 

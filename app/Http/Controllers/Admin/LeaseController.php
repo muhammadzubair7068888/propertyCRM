@@ -158,7 +158,7 @@ class LeaseController extends Controller
     public function update(Request $request, $id)
     {
         $data=$request->except('_token');
-     
+
         Lease::find($id)->update($data);
 
         $leaseDeposit = LeaseDepositAmount::find($id);

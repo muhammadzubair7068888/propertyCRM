@@ -11,6 +11,7 @@ class PropertyUnit extends Model
     protected $fillable=[
         'property_id',
         'unit_name',
+        'unit_status',
         'unit_floor',
         'rent_amount',
         'unit_type',
