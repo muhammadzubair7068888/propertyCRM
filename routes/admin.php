@@ -37,7 +37,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/sms',function(){
         return view('admin.sms');
     })->name('show-sms');
-    
+
     // Route::post('sms',[SMSController::class,'sendSMS'])->name('sms');
     Route::post('sms',[SMSController::class,'sendSMS'])->name('sms');
 
@@ -97,6 +97,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('store', [LeaseController::class, 'store'])->name('store');
         Route::any('edit/{id}', [LeaseController::class, 'edit'])->name('edit');
         Route::any('update/{id}', [LeaseController::class, 'update'])->name('update');
+        Route::get('destroy/{id}', [LeaseController::class, 'destroy'])->name('destroy');
         // Route::get('show/{id}', [PropertyController::class, 'show'])->name('show');
     });
 

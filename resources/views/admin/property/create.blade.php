@@ -83,9 +83,7 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-property">Property Name</label>
                                 <input type="text" id="vertical-property"
-                                    class="form-control @error('property[property_name]')
-                                border-1 border-danger
-                                @enderror"
+                                    class="form-control "
                                     placeholder="Property Name" name="property[property_name]" />
                                 @error('property.property_name')
                                     <div class="text-danger">{{ $message }}</div>
@@ -94,11 +92,9 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-property-code">Property Code</label>
                                 <input type="text" id="vertical-property-code"
-                                    class="form-control @error('property[property_code]')
-                                border-1 border-danger
-                                @enderror"
+                                    class="form-control"
                                     placeholder="Property Code" name="property[property_code]" aria-label="" />
-                                @error('property[property_code]')
+                                @error('property.property_code')
                                     <div class="text-danger">{{ $message }} </div>
                                 @enderror
                             </div>
@@ -107,11 +103,9 @@
                             <div class="mb-1 form-password-toggle col-md-12">
                                 <label class="form-label" for="vertical-location">Location</label>
                                 <input type="text" id="vertical-location" name="property[location]"
-                                    class="form-control @error('property[location]')
-                                   border-1 border-danger
-                                @enderror"
+                                    class="form-control "
                                     placeholder="Location" />
-                                @error('property[location]')
+                                @error('property.location')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -120,7 +114,7 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="basicSelect">Landlord</label>
                                 <select
-                                    class="select2 form-select @error('property[user_id]') border-1 border-danger @enderror"
+                                    class="select2 form-select "
                                     id="basicSelect" name="property[user_id]">
                                     @foreach ($landlords as $landlord)
                                         <option value="{{ $landlord->id }}">
@@ -128,20 +122,20 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('property[user_id]')
+                                @error('property.user_id')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="property-type">Property Type</label>
                                 <select
-                                    class="select2 w-100 @error('property[property_type_id]') border-1 border-danger @enderror"
+                                    class="select2 w-100 "
                                     id="property-type" name="property[property_type_id]">
                                     @foreach ($propertyTypes as $propertyType)
                                         <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('property[property_type_id]')
+                                @error('property.property_type_id')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -309,16 +303,16 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="agent-commission-value">Agent Commission Value</label>
                                 <input type="number" id="agent-commission-value"
-                                    class="form-control @error('property[agent_commission_value]') border-1 border-danger @enderror"
+                                    class="form-control "
                                     placeholder="Agent Commission Value" name="property[agent_commission_value]" />
-                                @error('property[agent_commission_value]')
+                                @error('property.agent_commission_value')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="agent-commission-type">Agent Commission Type</label>
                                 <select
-                                    class="select2 w-100 @error('property[agent_commission_type]') border-1 border-danger @enderror"
+                                    class="select2 w-100 "
                                     id="agent-commission-type" name="property[agent_commission_type]">
                                     <option label=" "></option>
                                     <option value="fixed">Fixed Value</option>
@@ -326,7 +320,7 @@
                                     <option value="total_collected">% Of Total Collected Rent</option>
 
                                 </select>
-                                @error('property[agent_commission_type]')
+                                @error('property.agent_commission_type')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -338,7 +332,7 @@
                                         <div class="mb-1 col-md-5">
                                             <label class="form-label" for="payment-method">Payment Method</label>
                                             <select
-                                                class="select2 w-100 @error('payment_method') border-1 border-danger @enderror"
+                                                class="select2 w-100 "
                                                 name="payment[payment_method][]">
                                                 @foreach ($paymentMethod as $payment)
                                                     <option value="{{ $payment->id }}">{{ $payment->name }}</option>
@@ -352,7 +346,7 @@
                                             <label class="form-label" for="payment-description">Payment
                                                 Description</label>
                                             <input type="text" id="payment-description"
-                                                class="form-control @error('payment_description[]') border-1 border-danger @enderror"
+                                                class="form-control"
                                                 placeholder="Payment Description" name="payment[payment_description][]" />
                                             @error('payment[payment_description][]')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -412,26 +406,26 @@
                                                     <label class="form-label" for="extra-charges-name">Extra Charges
                                                         Name</label>
                                                     <select
-                                                        class="select2 w-100 @error('extra[extra_charge_name][]') border-1 border-danger @enderror"
+                                                        class="select2 w-100 "
                                                         id="extra-charges-name" name="extra[extra_charge_name][]">
                                                         @foreach ($extracharges as $charge)
                                                             <option value="{{ $charge->id }}">{{ $charge->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    @error('extra[extra_charge_name][]')
+                                                    @error('extra.extra_charge_name.*')
                                                     <div class="text-danger">{{ $message }}</div>
-                                                @enderror
+                                                     @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-2 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra-charges-value">Extra Charges
                                                         Value</label>
-                                                    <input type="number" class="form-control @error('extra[extra_charges_value][]') border-1 border-danger @enderror" id="extra-charges-value"
+                                                    <input type="number" class="form-control " id="extra-charges-value"
                                                         aria-describedby="itemname" placeholder="Extra Charges Value"
                                                         name="extra[extra_charges_value][]" />
-                                                        @error('extra[extra_charges_value][]')
+                                                        @error('extra.extra_charges_value.*')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -442,14 +436,14 @@
                                                     <label class="form-label" for="extra-charges-type">Extra Charges
                                                         Type</label>
                                                     <select
-                                                        class="select2 w-100 @error('extra[extra_charges_type][]') border-1 border-danger @enderror"
+                                                        class="select2 w-100 "
                                                         id="extra-charges-type" name="extra[extra_charges_type][]">
                                                         <option label=" "></option>
                                                         <option value="fixed">Fixed Value</option>
                                                         <option value="total">% Of Total Rent</option>
                                                         <option value="total_collected">% Of Total Collected Rent</option>
                                                     </select>
-                                                    @error('extra[extra_charges_type][]')
+                                                    @error('extra.extra_charges_type.*')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                                 </div>
@@ -459,13 +453,13 @@
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 @error('extra[extra_frequency][]') border-1 border-danger @enderror"
+                                                        class="select2 w-100 "
                                                         id="extra_frequency" name="extra[extra_frequency][]">
                                                         <option label=" "></option>
                                                         <option value="one_time">One Time</option>
                                                         <option value="period">Period To Period</option>
                                                     </select>
-                                                    @error('extra[extra_frequency][]')
+                                                    @error('extra.extra_frequency.*')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                                 </div>
@@ -529,22 +523,22 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-name">Late Fee Name</label>
                                                     <select
-                                                        class="select2 w-100 @error('late[late_fee_name][]') border-1 border-danger @enderror"
+                                                        class="select2 w-100 "
                                                         id="late-fee-name" name="late[late_fee_name][]">
                                                         <option label=" "></option>
                                                         <option value="penalty">Penalty</option>
 
                                                     </select>
-                                                    @error('late[late_fee_name][]')
+                                                    @error('late.late_fee_name.*')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-value">Late Fee Value</label>
                                                     <input type="number" id="late-fee-value"
-                                                        class="form-control @error('late[late_fee_value][]') border-1 border-danger @enderror"
+                                                        class="form-control "
                                                         placeholder="Late Fee Value" name="late[late_fee_value][]" />
-                                                    @error('late[late_fee_value][]')
+                                                    @error('late.late_fee_value.*')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -552,14 +546,14 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-type">Late Fee type</label>
                                                     <select
-                                                        class="select2 w-100 @error('late[late_fee_type][]') border-1 border-danger @enderror"
+                                                        class="select2 w-100 "
                                                         id="late-fee-type" name="late[late_fee_type][]">
                                                         <option label=" "></option>
                                                         <option value="fixed">Fixed Value</option>
                                                         <option value="total">% Of Total Rent</option>
                                                         <option value="total_collected">% Of Total Collected Rent</option>
                                                     </select>
-                                                    @error('late[late_fee_type][]')
+                                                    @error('late.late_fee_type.*')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -567,9 +561,9 @@
                                                     <label class="form-label" for="grace-period">Grace
                                                         Period(Days)</label>
                                                     <input type="number" id="grace-period"
-                                                        class="form-control @error('late[late_fee_grace_period][]') border-1 border-danger @enderror"
+                                                        class="form-control "
                                                         placeholder="Grace Period(Days)" name="late[late_fee_grace_period][]" />
-                                                    @error('late[late_fee_grace_period][]')
+                                                    @error('late.late_fee_grace_period.*')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -577,7 +571,7 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late_fee_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 @error('late[late_fee_frequency][]') border-1 border-danger @enderror"
+                                                        class="select2 w-100 "
                                                         id="late_fee_frequency" name="late[late_fee_frequency][]">
                                                         <option label=" "></option>
                                                         <option value="one_time">One Time</option>
@@ -586,7 +580,7 @@
                                                         <option value="bi_weekly">Bi Weekly</option>
                                                         <option value="monthly">Monthly</option>
                                                     </select>
-                                                    @error('late[late_fee_frequency][]')
+                                                    @error('late.late_fee_frequency.*')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -645,14 +639,14 @@
                                             <div class="mb-1">
                                                 <label class="form-label" for="utility-name"> Utility Name</label>
                                                 <select
-                                                    class="select2 w-100 @error('utility[utility_name][]') border-1 border-danger @enderror"
+                                                    class="select2 w-100"
                                                     id="utility-name" name="utility[utility_name][]">
                                                     <option label=" "></option>
                                                     <option value="1">Water</option>
                                                     <option value="2">Gas</option>
                                                     <option value="3">Garbage</option>
                                                 </select>
-                                                @error('utility[utility_name][]')
+                                                @error('utility.utility_name.*')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                             </div>
@@ -661,9 +655,9 @@
                                         <div class="col-md-2 col-12">
                                             <div class="mb-1">
                                                 <label class="form-label" for="itemcost">Variable Cost</label>
-                                                <input type="number" class="form-control @error('utility[utility_cost][]') border-1 border-danger @enderror" id="itemcost"
+                                                <input type="number" class="form-control " id="itemcost"
                                                     aria-describedby="itemcost" placeholder="32" name="utility[utility_cost][]" />
-                                                    @error('utility[utility_cost][]')
+                                                    @error('utility.utility_cost.*')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -672,9 +666,9 @@
                                         <div class="col-md-2 col-12">
                                             <div class="mb-1">
                                                 <label class="form-label" for="fix-fee">Fixed Fee</label>
-                                                <input type="number" class="form-control @error('utility[fix_fee][]') border-1 border-danger @enderror" id="fix-fee"
+                                                <input type="number" class="form-control" id="fix-fee"
                                                     aria-describedby="itemquantity" placeholder="1" name="utility[fix_fee][]" />
-                                                    @error('utility[fix_fee][]')
+                                                    @error('utility.fix_fee.*')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
 

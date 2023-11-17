@@ -99,7 +99,7 @@
                 </div>
             </div>
             <div class="bs-stepper-content">
-                <form action="{{ route('admin.leases.store') }}" method="post">
+                <form action="{{ route('admin.leases.store') }}" method="post" id="multiStepForm" >
                     @csrf
 
                     <div id="account-details-vertical" class="content" role="tabpanel"
@@ -111,53 +111,73 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="property">Property</label>
-                                <select class="select2 form-select" id="lease-property" name="form[property_id]">
+                                <select class="select2 form-select" id="lease-property" name="form[property_id]"
+
+                                >
                                     <option value=""></option>
                                     @foreach ($property as $property)
                                         <option value="{{ $property->id }}">{{ $property->property_name }}</option>
                                     @endforeach
 
                                 </select>
+                                @error('form.property_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="unit">Unit</label>
-                                <select class="select2 form-select" id="property-unit" name="form[property_unit_id]">
+                                <select class="select2 form-select" id="property-unit" name="form[property_unit_id]"
+                                >
                                     <option value=""></option>
                                 </select>
+                                @error('form.property_unit_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="lease-type">Lease Type</label>
-                                <select class="select2 form-select" id="lease-type" name="form[lease_type_id]" required>
+                                <select class="select2 form-select" id="lease-type" name="form[lease_type_id]"  >
                                     <option value=""></option>
                                     @foreach ($leasetype as $lease)
                                         <option value="{{ $lease->id }}">{{ $lease->name }}</option>
                                     @endforeach
-
                                 </select>
+                                @error('form.lease_type_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
 
                             </div>
                             <div class="mb-1 form-password-toggle col-md-6">
                                 <label class="form-label" for="rent-amount">Rent Amount</label>
                                 <input type="number" id="rent-amount" class="form-control" placeholder="rent_amount"
-                                    name="form[rent_amount]" required />
+                                name="form[rent_amount]"  />
+                            @error('form.rent_amount')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="lease-date">Starts Date</label>
                                 <input type="date" id="lease-date" class="form-control flatpickr-basic"
-                                    placeholder="YYYY-MM-DD" name="form[start_date]" required />
+                                    placeholder="YYYY-MM-DD" name="form[start_date]"  />
+                                @error('form.start_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="lease-date">Due On(Day of Month)</label>
-                                <select class="select2 form-select" id="lease-date" name="form[due_on]" required>
+                                <select class="select2 form-select" id="lease-date" name="form[due_on]" >
                                     <option value=""></option>
                                     @for ($i = 1; $i <= 28; $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
                                 </select>
+                                @error('form.due_on')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -184,6 +204,9 @@
                                     <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount</label>
                                     <input type="number" id="rent-deposit-amount" class="form-control"
                                         placeholder="Rent Deposit Amount" name="form[rental_deposit_amount]" />
+                                        @error('form.rental_deposit_amount')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div id="payment">
                                     <div class="row d-flex align-items-end rept">
@@ -198,6 +221,9 @@
                                                 @endforeach
 
                                             </select>
+                                        @error('deposit.utility_names')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
 
                                         </div>
                                         <div class="mb-1 col-md-5">
@@ -258,7 +284,7 @@
                                             {{ $tenant->user->last_name }}</option>
                                     @endforeach
                                 </select>
-                                @error('payment_method[]')
+                                @error('form.tenant_info_id')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -283,87 +309,7 @@
                             <h5 class="mb-0">Extra Charges</h5>
                         </div>
                         <div class="row" id="cha"></div>
-                        {{-- <div>
-                                <div id="extraCharge">
-                                    <div class="row d-flex align-items-end rept">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-4 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="extra-charges-name">Extra Charges Name</label>
-                                                    <select
-                                                        class="select2 w-100 @error('extra_charge_name') border-1 border-danger @enderror"
-                                                        id="extra-charges-name" name="extra[extra_charge_name][]">
 
-                                                        <option value="1">Processing Fee </option>
-                                                        <option value="1">Processing Fee </option>
-                                                        <option value="1">Processing Fee </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="extra-charges-value">Extra Charges Value</label>
-                                                    <input type="number" class="form-control " id="extra-charges-value"
-                                                        aria-describedby="itemname" placeholder="Extra Charges Value"
-                                                        name="" />
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="extra-charges-type">Extra Charges Type</label>
-                                                    <select
-                                                        class="select2 w-100 @error('extra_charges_type') border-1 border-danger @enderror"
-                                                        id="extra-charges-type" name="">
-                                                        <option label=" "></option>
-                                                        <option value="fixed">Fixed Value</option>
-                                                        <option value="total">% Of Total Rent</option>
-                                                        <option value="total_collected">% Of Total Collected Rent</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="extra_frequency">Frequency</label>
-                                                    <select
-                                                        class="select2 w-100 @error('extra_frequency') border-1 border-danger @enderror"
-                                                        id="extra_frequency" name="extra[extra_frequency][]">
-                                                        <option label=" "></option>
-                                                        <option value="one_time">One Time</option>
-                                                        <option value="period">Period To Period</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            {{-- <div class="col-md-2 col-12 ">
-                                            <div>
-                                                <a class="btn btn-outline-danger text-nowrap px-1">
-                                                    <i data-feather="x" class="me-25"></i>
-                                                </a>
-                                                <a class="btn btn-outline-success text-nowrap px-1"
-                                                    onclick="addNew('extraCharge','extraChargeAppend')">
-                                                    <i data-feather="copy" class="me-25"></i>
-                                                </a>
-                                            </div>
-                                        </div> --}}
-
-
-                        {{-- </div>
-
-                                    </div>
-                                </div> --}}
-                        {{-- <div id="extraChargeAppend"></div>
-                            <div class="row">
-                                <div class="col-12 pb-2">
-                                    <a class="btn btn-icon btn-primary"
-                                        onclick="addNew('extraCharge','extraChargeAppend')">
-                                        <i data-feather="plus" class="me-25"></i>
-                                        <span>Add New</span>
-                                    </a>
-                                </div>
-                            </div> --}}
-                        {{-- </div>
-                        </div> --}}
 
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-primary btn-prev">
@@ -383,106 +329,7 @@
                             <h5 class="mb-0">Late Fee</h5>
                         </div>
                         <div class="row" id="fees" >
-                            {{-- <div>
-                                <div id="lateFee">
-                                    <div class="row d-flex align-items-end rept">
-                                        <div class="row align-items-center">
-                                            <div class="row">
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label" for="late-fee-name">Late Fee Name</label>
-                                                    <select
-                                                        class="select2 w-100 @error('late_fee_name') border-1 border-danger @enderror"
-                                                        id="late-fee-name" name="late[late_fee_name][]">
-                                                        <option label=" "></option>
-                                                        <option value="penalty">Penalty</option>
 
-                                                    </select>
-                                                    @error('late_fee_name')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label" for="late-fee-value">Late Fee Value</label>
-                                                    <input type="number" id="late-fee-value"
-                                                        class="form-control @error('late_fee_value') border-1 border-danger @enderror"
-                                                        placeholder="Late Fee Value" name="late[late_fee_value][]" />
-                                                    @error('late_fee_value')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label" for="late-fee-type">Late Fee type</label>
-                                                    <select
-                                                        class="select2 w-100 @error('late_fee_type') border-1 border-danger @enderror"
-                                                        id="late-fee-type" name="late[late_fee_type][]">
-                                                        <option label=" "></option>
-                                                        <option value="fixed">Fixed Value</option>
-                                                        <option value="total">% Of Total Rent</option>
-                                                        <option value="total_collected">% Of Total Collected Rent</option>
-                                                    </select>
-                                                    @error('late_fee_type')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label" for="grace-period">Grace
-                                                        Period(Days)</label>
-                                                    <input type="number" id="grace-period"
-                                                        class="form-control @error('late_fee_grace_period') border-1 border-danger @enderror"
-                                                        placeholder="Grace Period(Days)"
-                                                        name="late[late_fee_grace_period][]" />
-                                                    @error('late_fee_grace_period')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="mb-1 col-md-6">
-                                                    <label class="form-label" for="late_fee_frequency">Frequency</label>
-                                                    <select
-                                                        class="select2 w-100 @error('late_fee_frequency') border-1 border-danger @enderror"
-                                                        id="late_fee_frequency" name="late[late_fee_frequency][]">
-                                                        <option label=" "></option>
-                                                        <option value="one_time">One Time</option>
-                                                        <option value="daily">Daily</option>
-                                                        <option value="weekly">Weekly</option>
-                                                        <option value="bi_weekly">Bi Weekly</option>
-                                                        <option value="monthly">Monthly</option>
-                                                    </select>
-                                                    @error('late_fee_frequency')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-
-
-                                                {{-- 
-                                            <div class="col-md-2 col-12 ">
-
-                                                <a class="btn btn-outline-danger text-nowrap px-1 mt-2">
-                                                    <i data-feather="x" class="me-25"></i>
-                                                </a>
-                                                <a class="btn btn-outline-success text-nowrap px-1 mt-2"
-                                                    onclick="addNew('lateFee','latefeeAppend')">
-                                                    <i data-feather="copy" class="me-25"></i>
-                                                </a>
-
-                                            </div> --}}
-                            {{-- </div>
-
-                                        </div>
-
-                                    </div>
-                                </div> --}}
-                            {{-- <div id="latefeeAppend"></div>
-                            <div class="row">
-                                <div class="col-12 pb-2">
-                                    <a class="btn btn-icon btn-primary" onclick="addNew('lateFee','latefeeAppend')">
-                                        <i data-feather="plus" class="me-25"></i>
-                                        <span>Add New</span>
-                                    </a>
-                                </div>
-                            </div> 
-                            </div> --}}
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -503,61 +350,7 @@
                             <h5 class="mb-0">Utilities</h5>
                         </div>
                         <div class="row" id="util">
-                            {{-- <div id="utitiltyAdd">
-                                <div class="row d-flex align-items-end rept">
-                                    <div class="row align-items-center">
 
-                                        <div class="col-md-4 col-12">
-                                            <div class="mb-1">
-                                                <label class="form-label" for="utility-name"> Utility Name</label>
-                                                <select
-                                                    class="select2 w-100 @error('utility_name') border-1 border-danger @enderror"
-                                                    id="utility-name" name="utility_name[]">
-                                                    <option label=" "></option>
-                                                    <option value="water">Water</option>
-                                                    <option value="gas">Gas</option>
-                                                    <option value="garbage">Garbage</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2 col-12">
-                                            <div class="mb-1">
-                                                <label class="form-label" for="itemcost">Variable Cost</label>
-                                                <input type="number" class="form-control" id="itemcost"
-                                                    aria-describedby="itemcost" placeholder="32" name="utility_cost[]" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2 col-12">
-                                            <div class="mb-1">
-                                                <label class="form-label" for="fix-fee">Fixed Fee</label>
-                                                <input type="number" class="form-control" id="fix-fee"
-                                                    aria-describedby="itemquantity" placeholder="1" name="fix_fee[]" />
-
-                                            </div>
-                                        </div>
-                                        {{-- <div class="col-md-2 col-12">
-                                        <a class="btn btn-outline-danger text-nowrap px-1">
-                                            <i data-feather="x" class="me-25"></i>
-                                        </a>
-                                        <a class="btn btn-outline-success text-nowrap px-1"
-                                            onclick="addNew('utitiltyAdd','utitiltyAppend')">
-                                            <i data-feather="copy" class="me-25"></i>
-                                        </a>
-                                    </div> 
-                                    </div>
-                                </div>
-                            </div> --}}
-                            {{-- <div id="utitiltyAppend"></div>
-                        <div class="row">
-                            <div class="col-12 pb-2">
-                                <a class="btn btn-icon btn-primary" onclick="addNew('utitiltyAdd','utitiltyAppend')">
-                                    <i data-feather="plus" class="me-25"></i>
-                                    <span>Add New</span>
-                                </a>
-                            </div>
-                        </div> --}}
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -578,50 +371,7 @@
                             <h5 class="mb-0">Payment Settings</h5>
                         </div>
                         <div class="row" id="pay">
-                            {{-- <div>
-                                <div id="method">
-                                    <div class="row d-flex align-items-end rept">
-                                        <div class="mb-1 col-md-5">
-                                            <label class="form-label" for="payment-method">Payment Method</label>
-                                            <select class="select2 w-100 " id="payment-method"
-                                                name="payment[payment_method][]">
 
-                                                <option value="">Mpesa</option>
-                                                <option value="">easypaisa</option>
-
-                                            </select>
-
-                                        </div>
-                                        <div class="mb-1 col-md-5">
-                                            <label class="form-label" for="payment-description">Payment
-                                                Description</label>
-                                            <input type="text" id="payment-description" class="form-control "
-                                                placeholder="Payment Description" name="payment[payment_description][]" />
-
-                                        </div>
-                                        {{-- <div class="col-md-2 col-12 mb-1 ">
-                                        <div>
-                                            <a class="btn btn-outline-danger text-nowrap px-1">
-                                                <i data-feather="x" class="me-25"></i>
-                                            </a>
-                                            <a class="btn btn-outline-success text-nowrap px-1"
-                                                onclick="addNew('method','paymentAppend')">
-                                                <i data-feather="copy" class="me-25"></i>
-                                            </a>
-                                        </div>
-                                    </div> --}}
-                            {{-- </div>
-                                </div> --}}
-                            {{-- <div id="paymentAppendd"></div>
-                            <div class="row">
-                                <div class="col-12 pb-2">
-                                    <a class="btn btn-icon btn-primary" onclick="addNew('method','paymentAppendd')">
-                                        <i data-feather="plus" class="me-25"></i>
-                                        <span>Add New</span>
-                                    </a>
-                                </div>
-                            </div> 
-                            </div> --}}
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -645,19 +395,22 @@
                                     <label class="form-label" for="generate-invoice">Generate Invoice On (Day of
                                         Month)</label>
                                     <select class="select2 form-select" id="generate-invoice"
-                                        name="form[generate_invoice]" required>
+                                        name="form[generate_invoice]" >
                                         <option value=""></option>
                                         @for ($i = 1; $i <= 28; $i++)
                                             <option value="{{ $i }}">{{ $i }}</option>
                                         @endfor
                                     </select>
+                                    @error('form.generate_invoice')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="row ms-1">
                             <div class="row mt-2">
                                 <div class="form-check form-check-primary">
-                                
+
                                     <input type="checkbox" class="form-check-input" id="colorCheck1"
                                         name="form[next_period_bill]" value="1" />
                                     <h6>Next Period Billing (When billing, invoice period is set as next month.)</h6>
@@ -665,7 +418,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-check form-check-primary">
-                                 
+
                                     <input type="checkbox" class="form-check-input" id="colorCheck2"
                                         name="form[waive_penalty]" value="1" />
                                     <h6>Waive Penalty (For this lease, do not charge penalties.)</h6>
@@ -674,7 +427,7 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="form-check form-check-primary">
-                                   
+
                                     <input type="checkbox" class="form-check-input" id="colorCheck3"
                                         name="form[skip_starting_period]" value="1" />
                                     <h6>Skip Starting Period (For this lease, do not bill the first period.)</h6>
@@ -703,6 +456,8 @@
 
 @section('vendor-script')
     <!-- vendor files -->
+
+
     <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
@@ -710,6 +465,8 @@
 @section('page-script')
     <!-- Page js files -->
     <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+
     <script>
         $("#lease-property").on('change', function() {
             $("#property-unit").empty();
@@ -732,7 +489,7 @@
                             $("#property-unit").append(option);
                         });
                         response.extra_charges.forEach( charge => {
-                           
+
                             console.log(charge);
                             var extracharge = `
                             <div class="col-md-4 col-12">
@@ -772,31 +529,31 @@
                                                         class="form-select w-100 @error('extra_frequency') border-1 border-danger @enderror"
                                                         id="extra_frequency" name=""  disabled>
                                                         <option value="">${charge.extra_charges_frequency}</option>
-                                                        
+
                                                     </select>
                                                 </div>
                                             </div>`;
                             $("#cha").append(extracharge);
                         });
                         response.late_fee.forEach(fee => {
-                            
+
                             console.log(fee);
                             var latefee = `
-                            
+
                             <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-name">Late Fee Name</label>
                                                     <select class="form-select w-100 @error('late_fee_name') border-1 border-danger @enderror"
                                                         id="late-fee-name" name="" disabled>
                                                         <option label="">${fee.late_fee_name}</option>
                                                        </select>
-                                                   
+
                                                 </div>
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-value">Late Fee Value</label>
                                                     <input type="number" id="late-fee-value"
                                                         class="form-control @error('late_fee_value') border-1 border-danger @enderror"
                                                         placeholder="Late Fee Value" name="" value="${fee.late_fee_value}" readonly />
-                                                  
+
                                                 </div>
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-type">Late Fee type</label>
@@ -804,7 +561,7 @@
                                                         class="form-select w-100 @error('late_fee_type') border-1 border-danger @enderror"
                                                         id="late-fee-type" name="" disabled>
                                                         <option label=" ">${fee.late_fee_type}</option>
-                                                      
+
                                                     </select>
                                                 </div>
 
@@ -822,7 +579,7 @@
                                                         class="form-select w-100 @error('late_fee_frequency') border-1 border-danger @enderror"
                                                         id="late_fee_frequency" name="" disabled>
                                                         <option label=" ">${fee.late_fee_frequency}</option>
-                                                        
+
                                                     </select>
                                                   </div>
                                                 </div>
@@ -832,7 +589,7 @@
 
                         response.utility.forEach(utility => {
                             console.log(utility);
-                        
+
                             var utilities = `
                             <div class="col-md-4 col-12">
                                             <div class="mb-1">
@@ -865,7 +622,7 @@
                         });
                         response.payment.forEach(payment => {
                             console.log(payment);
-                            
+
                             var payment = `
                             <div class="mb-1 col-md-5">
                                             <label class="form-label" for="payment-method">Payment Method</label>
@@ -888,6 +645,6 @@
                 });
             }
         });
-       
+
     </script>
 @endsection

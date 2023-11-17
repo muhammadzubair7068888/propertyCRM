@@ -42,15 +42,15 @@ class VacateNoticeController extends Controller
     public function store(Request $request)
     {
 
-    $request->validate([
-    'tenant_info_id'=>'required',
-    'lease_id'=>'required',
-    'vacate_date'=>'required',
-    'vacate_reason'=>'required'
-   ]);
+//     $request->validate([
+//     'tenant_info_id'=>'required',
+//     'lease_id'=>'required',
+//     'vacate_date'=>'required',
+//     'vacate_reason'=>'required'
+//    ]);
 
    $data=$request->except('_token');
-
+    // dd($data);
    if($data){
     VacateNotice::create($data);
     return redirect()->route('admin.vacate_notice.index')->with('success','Notice added successfully!');
@@ -94,7 +94,7 @@ class VacateNoticeController extends Controller
     //  dd($request);
     try{
         $id=$request->tenant_modal_id;
-    
+
         $notice=$request->except('_token');
         VacateNotice::find($id)->update($notice);
         return redirect()->back()->with('success','Notice Update Successfully!');

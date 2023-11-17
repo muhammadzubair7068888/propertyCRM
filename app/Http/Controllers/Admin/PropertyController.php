@@ -64,53 +64,64 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-            // 'user_id' => 'required',
-            // 'property.property_name' => 'required',
-            // 'property[property_code]' => 'required',
-            //  'property[location]' => 'required',
-            //  'property[user_id]' => 'required',
-            //  'property[property_type_id]' => 'required',
-            //  'property[agent_commission_value]' => 'required',
-            //  'property[agent_commission_type]' => 'required',
+        $request->validate([
+
+            'property.property_name' => 'required',
+            'property.property_code' => 'required',
+             'property.location' => 'required',
+            //  'property.user_id' => 'required',
+            //  'property.property_type_id' => 'required',
+             'property.agent_commission_value' => 'required',
+             'property.agent_commission_type' => 'required',
+
             //  'payment[payment_method][]' => 'required',
-            //  'payment[payment_description][]' => 'required',
-            //  'extra[extra_charge_name][]' => 'required',
-            //  'extra[extra_charges_value][]' => 'required',
-            //  'extra[extra_charges_type][]' => 'required',
-            //  'extra[extra_frequency][]' => 'required',
-            //  'late[late_fee_name][]' => 'required',
-            //  'late[late_fee_value][]' => 'required',
-            //  'late[late_fee_type][]' => 'required',
-            //  'late[late_fee_grace_period][]' => 'required',
-            //  'late[late_fee_frequency][]' => 'required',
-            //  'utility[utility_name][]' => 'required',
-            //  'utility[utility_cost][]' => 'required',
-            //  'utility[fix_fee][]' => 'required',
-        // ],
-        // [
-        //     'property.property_name.required' => 'Property Name is required!',
-        //     'property[property_code].required' => 'Property Code is required!',
-        //     'property[location].required' => 'Property Location is required!',
-        //     'property[user_id].required' => 'Landlord is required!',
-        //     'property[property_type_id].required' => 'Property type is required!',
-        //     'property[agent_commission_value].required' => 'Agent Commission Value is required!',
-        //     'property[agent_commission_type].required' => 'Agent Commission Type is required!',
-        //     'payment[payment_method][].required' => 'Payment Method is required!',
-        //     'payment[payment_description][].required' => 'Payment Description is required!',
-        //     'extra[extra_charge_name][].required' => 'Extra Charge Name is required!',
-        //     'extra[extra_charges_value][].required' => 'Required!',
-        //     'extra[extra_charges_type][].required' => 'Required',
-        //     'extra[extra_frequency][].required' => 'Required',
-        //     'late[late_fee_name][].required' => 'Late Fee Name is required!',
-        //     'late[late_fee_value][].required' => 'Late Fee Value is required!',
-        //     'late[late_fee_type][].required' => 'Late Fee Type is required!',
-        //     'late[late_fee_grace_period][].required' => 'Late Fee Grace Period is required!',
-        //     'late[late_fee_frequency][].required' => 'Late Fee Frequency is required!',
-        //     'utility[utility_name][].required' => 'Utility Name is required!',
-        //     'utility[utility_cost][].required' => ' Required!',
-        //     'utility[fix_fee][].required' => 'Required!',
-        // ]);
+            'extra.extra_charge_name.*' => 'required',
+            'extra.extra_charges_value.*' => 'required|numeric',
+            'extra.extra_charges_type.*' => 'required',
+            'extra.extra_frequency.*' => 'required',
+
+
+            'late.late_fee_name.*' => 'required',
+            'late.late_fee_value.*' => 'required|numeric',
+            'late.late_fee_type.*' => 'required',
+            'late.late_fee_grace_period.*' => 'required|numeric',
+            'late.late_fee_frequency.*' => 'required',
+
+            'utility.utility_name.*' => 'required',
+            'utility.utility_cost.*' => 'required|numeric',
+            'utility.fix_fee.*' => 'required|numeric',
+        ],
+        [
+            'property.property_name.required' => 'Property Name is required!',
+            'property.property_code.required' => 'Property Code is required!',
+            'property.location.required' => 'Property Location is required!',
+
+            'property.agent_commission_value.required' => 'Agent Commission Value is required!',
+            'property.agent_commission_type.required' => 'Agent Commission Type is required!',
+
+            'extra.extra_charge_name.*.required' => 'Required.',
+            // 'extra.extra_charge_name.*.exists' => 'The selected Extra Charges Name is invalid.',
+
+            'extra.extra_charges_value.*.required' => ' Required.',
+            'extra.extra_charges_value.*.numeric' => 'This field must be a number.',
+            'extra.extra_charges_type.*.required' => ' Required.',
+           'extra.extra_frequency.*.required' => ' Required.',
+
+
+           'late.late_fee_name.*.required' => ' Required',
+           'late.late_fee_value.*.required' => ' Required',
+           'late.late_fee_value.*.numeric' => ' Late Fee Value field must be a number.',
+           'late.late_fee_type.*.required' => ' Required',
+           'late.late_fee_grace_period.*.required' => ' Required',
+           'late.late_fee_grace_period.*.numeric' => 'The Grace Period (Days) field must be a number.',
+           'late.late_fee_frequency.*.required' => 'Required',
+
+           'utility.utility_name.*.required' => 'Required.',
+           'utility.utility_cost.*.required' => 'Required.',
+           'utility.utility_cost.*.numeric' => 'The Variable Cost field must be a number.',
+           'utility.fix_fee.*.required' => 'Required.',
+           'utility.fix_fee.*.numeric' => 'The Fixed Fee field must be a number.',
+        ]);
 
         $data = $request->except('_token');
         $property_data = $request->property;

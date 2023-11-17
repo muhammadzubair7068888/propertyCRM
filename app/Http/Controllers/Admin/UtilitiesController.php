@@ -53,6 +53,7 @@ class UtilitiesController extends Controller
 
 
             $data=$request->except('_token');
+
             $data=$request->only('property_id','utility_id');
           $index=MainUtility::create($data);
 
