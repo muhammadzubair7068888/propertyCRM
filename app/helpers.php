@@ -1,6 +1,11 @@
 <?php
 
 use App\Models\Notification;
+use Illuminate\Support\Facades\Http;
+use Twilio\Rest\Client;
+
+
+
 
 if (!function_exists('user_id')) {
     function user_id()
@@ -39,5 +44,47 @@ if (!function_exists('notification')) {
             'updated_at'=>now(),
         ]);
         return $notification;
+    }
+}
+if (!function_exists('sendTwilioMessage')) {
+    /**
+     * Send Twilio message to the specified phone number.
+     *
+     * @param string $to
+     * @param string $message
+     * @return void
+     */
+    function sendTwilioMessage($to, $message)
+    {
+        $twilio = new Client(config('services.twilio.sid'), config('services.twilio.token'));
+
+        $twilio->messages->create($to, [
+            'from' => config('services.twilio.from'),
+            'body' => $message,
+        ]);
+    }
+}
+if (!function_exists('sendPayment')) {
+    function sendPayment($phone,$amount)
+    {
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer gOKAAKxpOj73pA22t22d4WE5ImZA',
+            'Content-Type' => 'application/json',
+        ])
+        ->post(config('services.mpesa.url'), [
+            "BusinessShortCode" => 174379,
+            "Password" => "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjMxMTE1MjEwMzQ4",
+            "Timestamp" => "20231115210348",
+            "TransactionType" => "CustomerPayBillOnline",
+            "Amount" => $amount,
+            "PartyA" => now(),
+            "PartyB" => 174379,
+            "PhoneNumber" => $phone,
+            "CallBackURL" => route('admin.payment.paid'),
+            "AccountReference" => "CompanyXLTD",
+            "TransactionDesc" => "Payment of X",
+        ])
+        ->body();
+        return $response;
     }
 }

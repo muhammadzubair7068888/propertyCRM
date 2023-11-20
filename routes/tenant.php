@@ -39,7 +39,6 @@ Route::prefix('tenant')->name('tenant.')->middleware('auth')->group(function () 
     Route::get('view/vacate_notice', [TenantVacateNoticeController::class,'view'])->name('view');
 });
 
-
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 

@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 
 
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\smsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,6 @@ Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('l
 Route::get('layouts/without-menu', [StaterkitController::class, 'without_menu'])->name('without-menu');
 Route::get('layouts/empty', [StaterkitController::class, 'layout_empty'])->name('layout-empty');
 Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name('layout-blank');
-
 
 
 

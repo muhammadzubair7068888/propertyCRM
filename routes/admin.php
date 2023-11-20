@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LanguageController;
-
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LandlordController;
 use App\Http\Controllers\Admin\LeaseController;
@@ -16,9 +14,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RepairController;
 use App\Http\Controllers\Admin\VacateNoticeController;
-use App\Http\Controllers\SMSController;
-use App\Models\PropertyType;
-use Illuminate\Http\Request;
+use App\Http\Controllers\smsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +35,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     })->name('show-sms');
 
     // Route::post('sms',[SMSController::class,'sendSMS'])->name('sms');
-    Route::post('sms',[SMSController::class,'sendSMS'])->name('sms');
+    Route::post('sms',[smsController::class,'sendSMS'])->name('sms');
 
     Route::get('/', [DashboardController::class, 'home'])->name('home');
     Route::get('dashboard', [DashboardController::class, 'home'])->name('home');
@@ -109,8 +105,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('view/utilities',[UtilitiesController::class,'view'])->name('view.utilities');
     Route::resource('invoice', InvoiceController::class);
     Route::resource('payment', PaymentController::class);
+    Route::get('payments/confirmation', [PaymentController::class,'paid'])->name('payment.paid');
     Route::get('receipt/{id}',[PaymentController::class,'show'])->name('receipt');
-    Route::get('fetch-lease',[PaymentController::class,'fetchLease'])->name('fetch-lease');
+    Route::post('fetch-lease',[PaymentController::class,'fetchLease'])->name('fetch-lease');
 
     Route::resource('vacate_notice', VacateNoticeController::class);
 

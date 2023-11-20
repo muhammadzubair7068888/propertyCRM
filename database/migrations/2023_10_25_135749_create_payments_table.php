@@ -18,13 +18,13 @@ class CreatePaymentsTable extends Migration
             $table->foreignId('tenant_info_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('lease_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('payment_method_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-
             $table->string('amount');
             $table->date('payment_date')->nullable();
             $table->string('paid_by')->nullable();;
             $table->string('reference_number')->nullable();;
             $table->string('payment_for')->nullable();;
             $table->string('extra_note')->nullable();;
+            $table->enum('status',[0,1,2])->default(0)->comment('0=>Pending,1=>Active,2=>Cancelled');
             $table->timestamps();
         });
 

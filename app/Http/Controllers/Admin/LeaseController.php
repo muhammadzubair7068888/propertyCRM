@@ -25,8 +25,8 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        $pagedata['lease']=Lease::all();
-        return view("admin.leases.index",$pagedata);
+        $pagedata['lease'] = Lease::all();
+        return view("admin.leases.index", $pagedata);
     }
 
     /**
@@ -36,21 +36,21 @@ class LeaseController extends Controller
      */
     public function create()
     {
-        $pagedata['property']=Property::all();
-        $pagedata['leasetype']=LeaseType::all();
-        $pagedata['utility']=Utility::all();
-        $pagedata['tenant']=TenantInfo::all();
-        $pagedata['unit']=PropertyUnit::all();
+        $pagedata['property'] = Property::all();
+        $pagedata['leasetype'] = LeaseType::all();
+        $pagedata['utility'] = Utility::all();
+        $pagedata['tenant'] = TenantInfo::all();
+        $pagedata['unit'] = PropertyUnit::all();
 
-        return view("admin.leases.addlease",$pagedata);
+        return view("admin.leases.addlease", $pagedata);
     }
     public function view($id)
     {
-        $pagedata['lease']=Lease::find($id);
-        $pagedata['utility']=Utility::all();
+        $pagedata['lease'] = Lease::find($id);
+        $pagedata['utility'] = Utility::all();
 
 
-        return view('admin.leases.view.index',$pagedata);
+        return view('admin.leases.view.index', $pagedata);
     }
 
     /**
@@ -183,6 +183,10 @@ public function store(Request $request)
             'utility_name' => $payment[0],
             'deposit_amount' => $payment[1],
         ]);
+        $message = 'Your Lease Invoice has been created successfully!';
+        sendTwilioMessage($lease->tenant_info->user->phone_number, $message);
+
+        return redirect()->route('admin.leases.index')->with(['success' => 'Lease Create Successfully']);
     }
 
     $last_invoice = Invoice::max("id");
@@ -232,7 +236,6 @@ public function store(Request $request)
         $pagedata['utility'] = Utility::all();
         $pagedata['tenant'] = TenantInfo::all();
         $pagedata['unit'] = PropertyUnit::all();
-
         return view('admin.leases.edit', $pagedata);
     }
 
@@ -257,9 +260,9 @@ public function store(Request $request)
         $depositAmount = $request->deposit['deposit_amounts'];
 
         $leaseDeposit->update([
-            'lease_id'=>$id,
-            'utility_name'=>$utilityName[0],
-            'deposit_amount'=>$depositAmount[0],
+            'lease_id' => $id,
+            'utility_name' => $utilityName[0],
+            'deposit_amount' => $depositAmount[0],
         ]);
         return redirect()->route('admin.leases.index')->with(['success'=>'Lease Update Successfully']);
 
