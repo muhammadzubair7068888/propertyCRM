@@ -615,6 +615,8 @@
                                                 <label class="form-label" for="fix-fee">Fixed Fee</label>
                                                 <input type="number" class="form-control" id="fix-fee"
                                                     aria-describedby="itemquantity" placeholder="1" name="" value="${utility.fixed_fee}" readonly />
+                                                    <br>
+
 
                                             </div>
                                         </div>`;

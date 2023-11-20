@@ -300,6 +300,7 @@ class PropertyController extends Controller
       $pagedata['extracharges'] = ExtraCharges::get();
       $pagedata['propertyMethodType'] = PropertyPaymentMethod::where('property_id',$id)->first();
       $pagedata['property'] = Property::find($id);
+     
         return view('admin.property.editproperty.index',$pagedata);
     }
 

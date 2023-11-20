@@ -365,37 +365,34 @@
                         </div>
                         <div class="row">
                             <div>
+                                @foreach ($property->propertyPaymentMethod as $index => $payment )
+
                                 <div id="payment">
                                     <div class="row d-flex align-items-end rept">
                                         <div class="mb-1 col-md-5">
                                             <label class="form-label" for="payment-method">Payment Method</label>
                                             <select
-                                                class="select2 w-100 @error('payment_method') border-1 border-danger @enderror"
+                                                class="select2 w-100 @error('payment[payment_method]['.$index.']') border-1 border-danger @enderror"
                                                 id="payment-method" name="payment[payment_method][]">
-                                                {{-- @foreach ($paymentMethod as $payment)
-                                                    <option value="{{ $payment->id }}"
-                                                        {{ $payment->id == $propertyMethodType[$loop->iteration]->payment_method_id ? 'selected' : '' }}>
-                                                        {{ $payment->name }}</option>
-                                                @endforeach --}}
-                                                @foreach ($paymentMethod as $payment)
-                                                    <option value="{{ $payment->id }}"
-                                                        {{ $payment->id == $propertyMethodType[0]->payment_method_id ? 'selected' : '' }}>
-                                                        {{ $payment->name }}</option>
+
+                                                @foreach ($paymentMethod as $paymentMethodOption)
+                                                    <option value="{{ $paymentMethodOption->id }}"
+                                                        {{ $paymentMethodOption->id == $payment->payment_method_id ? 'selected' : '' }}>
+                                                        {{ $paymentMethodOption->name }}</option>
                                                 @endforeach
                                             </select>
 
-                                            @error('payment[payment_method][]')
+                                            @error('payment[payment_method]['.$index.']')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-1 col-md-5">
-                                            <label class="form-label" for="payment-description">Payment
-                                                Description</label>
+                                            <label class="form-label" for="payment-description">Payment Description</label>
 
                                             <input type="text" id="payment-description"
-                                                class="form-control @error('payment_description[]') border-1 border-danger @enderror"
-                                                placeholder="Payment Description" name="payment[payment_description][]" value="{{$property->propertyPaymentMethod[0]->payment_description}}"/>
-                                            @error('payment[payment_description][]')
+                                                class="form-control @error('payment[payment_description]['.$index.']') border-1 border-danger @enderror"
+                                                placeholder="Payment Description" name="payment[payment_description][]" value="{{$payment->payment_description}}"/>
+                                            @error('payment[payment_description]['.$index.']')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -412,6 +409,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            @endforeach
+
                                 <div id="paymentAppend"></div>
                                 <div class="row">
                                     <div class="col-12 pb-2">
@@ -445,6 +444,7 @@
 
                         <div class="row">
                             <div>
+                                @foreach ($property->propertyExtra as $index => $extraCharge)
                                 <div id="extraCharge">
                                     <div class="row d-flex align-items-end rept">
                                         <div class="row align-items-center">
@@ -453,14 +453,13 @@
                                                     <label class="form-label" for="extra-charges-name">Extra Charges
                                                         Name</label>
                                                     <select
-                                                        class="select2 w-100 @error('extra[extra_charge_name][]') border-1 border-danger @enderror"
-                                                        id="extra-charges-name" name="extra[extra_charge_name][]">
+                                                        class="select2 w-100 @error('extra[extra_charge_name]['.$index.']') border-1 border-danger @enderror"
+                                                        id="extra-charges-name" name="extra[extra_charge_name][{{$index}}]">
                                                         @foreach ($extracharges as $charge)
-                                                            <option value="{{ $charge->id }} {{$charge->id == $property->propertyExtra[0]->extra_charges_frequency ? 'selected' : ''}}">{{ $charge->name }}
-                                                            </option>
+                                                            <option value="{{ $charge->id }}" {{$charge->id == $extraCharge->extra_charges_frequency ? 'selected' : ''}}>{{ $charge->name }}</option>
                                                         @endforeach
                                                     </select>
-                                                    @error('extra[extra_charge_name][]')
+                                                    @error('extra[extra_charge_name]['.$index.']')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -470,11 +469,11 @@
                                                     <label class="form-label" for="extra-charges-value">Extra Charges
                                                         Value</label>
                                                     <input type="number"
-                                                        class="form-control @error('extra[extra_charges_value][]') border-1 border-danger @enderror"
+                                                        class="form-control @error('extra[extra_charges_value]['.$index.']') border-1 border-danger @enderror"
                                                         id="extra-charges-value" aria-describedby="itemname"
                                                         placeholder="Extra Charges Value"
-                                                        name="extra[extra_charges_value][]" value="{{$property->propertyExtra[0]->extra_charges_value}}" />
-                                                    @error('extra[extra_charges_value][]')
+                                                        name="extra[extra_charges_value][{{$index}}]" value="{{$extraCharge->extra_charges_value}}" />
+                                                    @error('extra[extra_charges_value]['.$index.']')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -485,14 +484,14 @@
                                                     <label class="form-label" for="extra-charges-type">Extra Charges
                                                         Type</label>
                                                     <select
-                                                        class="select2 w-100 @error('extra[extra_charges_type][]') border-1 border-danger @enderror"
-                                                        id="extra-charges-type" name="extra[extra_charges_type][]">
+                                                        class="select2 w-100 @error('extra[extra_charges_type]['.$index.']') border-1 border-danger @enderror"
+                                                        id="extra-charges-type" name="extra[extra_charges_type][{{$index}}]">
                                                         <option label=" "></option>
-                                                        <option value="fixed" {{$property->propertyExtra[0]->extra_charges_Type =='fixed' ? 'selected' : ''}}>Fixed Value</option>
-                                                        <option value="total" {{$property->propertyExtra[0]->extra_charges_Type =='total' ? 'selected' : ''}}>% Of Total Rent</option>
-                                                        <option value="total_collected" {{$property->propertyExtra[0]->extra_charges_Type =='total_collected' ? 'selected' : ''}}>% Of Total Collected Rent</option>
+                                                        <option value="fixed" {{$extraCharge->extra_charges_Type =='fixed' ? 'selected' : ''}}>Fixed Value</option>
+                                                        <option value="total" {{$extraCharge->extra_charges_Type =='total' ? 'selected' : ''}}>% Of Total Rent</option>
+                                                        <option value="total_collected" {{$extraCharge->extra_charges_Type =='total_collected' ? 'selected' : ''}}>% Of Total Collected Rent</option>
                                                     </select>
-                                                    @error('extra[extra_charges_type][]')
+                                                    @error('extra[extra_charges_type]['.$index.']')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -502,13 +501,13 @@
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 @error('extra[extra_frequency][]') border-1 border-danger @enderror"
-                                                        id="extra_frequency" name="extra[extra_frequency][]">
+                                                        class="select2 w-100 @error('extra[extra_frequency]['.$index.']') border-1 border-danger @enderror"
+                                                        id="extra_frequency" name="extra[extra_frequency][{{$index}}]">
                                                         <option label=" "></option>
-                                                        <option value="one_time" {{$property->propertyExtra[0]->extra_charges_frequency =='one_time' ? 'selected' : ''}}>One Time</option>
-                                                        <option value="period" {{$property->propertyExtra[0]->extra_charges_frequency =='period' ? 'selected' : ''}}>Period To Period</option>
+                                                        <option value="one_time" {{$extraCharge->extra_charges_frequency =='one_time' ? 'selected' : ''}}>One Time</option>
+                                                        <option value="period" {{$extraCharge->extra_charges_frequency =='period' ? 'selected' : ''}}>Period To Period</option>
                                                     </select>
-                                                    @error('extra[extra_frequency][]')
+                                                    @error('extra[extra_frequency]['.$index.']')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -524,12 +523,12 @@
                                                     </a>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
                                     </div>
                                 </div>
+                            @endforeach
+
+
                                 <div id="extraChargeAppend"></div>
                                 <div class="row">
                                     <div class="col-12 pb-2">
@@ -565,6 +564,7 @@
 
                         <div class="row">
                             <div>
+                                @foreach ($property->propertyLateFee as $index => $lateFee)
                                 <div id="lateFee">
                                     <div class="row d-flex align-items-end rept">
                                         <div class="row align-items-center">
@@ -572,22 +572,20 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-name">Late Fee Name</label>
                                                     <select
-                                                        class="select2 w-100 @error('late[late_fee_name][]') border-1 border-danger @enderror"
-                                                        id="late-fee-name" name="late[late_fee_name][]">
-
-                                                        <option value="penalty" {{$property->propertyLateFee[0]->late_fee_name == "penalty" ? 'selected': ''}}>Penalty</option>
-
+                                                        class="select2 w-100 @error('late[late_fee_name]['.$index.']') border-1 border-danger @enderror"
+                                                        id="late-fee-name" name="late[late_fee_name][{{$index}}]">
+                                                        <option value="penalty" {{$lateFee->late_fee_name == "penalty" ? 'selected': ''}}>Penalty</option>
                                                     </select>
-                                                    @error('late[late_fee_name][]')
+                                                    @error('late[late_fee_name]['.$index.']')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-value">Late Fee Value</label>
                                                     <input type="number" id="late-fee-value"
-                                                        class="form-control @error('late[late_fee_value][]') border-1 border-danger @enderror"
-                                                        placeholder="Late Fee Value" name="late[late_fee_value][]" value="{{$property->propertyLateFee[0]->late_fee_value}}" />
-                                                    @error('late[late_fee_value][]')
+                                                        class="form-control @error('late[late_fee_value]['.$index.']') border-1 border-danger @enderror"
+                                                        placeholder="Late Fee Value" name="late[late_fee_value][{{$index}}]" value="{{$lateFee->late_fee_value}}" />
+                                                    @error('late[late_fee_value]['.$index.']')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -595,14 +593,14 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-type">Late Fee type</label>
                                                     <select
-                                                        class="select2 w-100 @error('late[late_fee_type][]') border-1 border-danger @enderror"
-                                                        id="late-fee-type" name="late[late_fee_type][]">
+                                                        class="select2 w-100 @error('late[late_fee_type]['.$index.']') border-1 border-danger @enderror"
+                                                        id="late-fee-type" name="late[late_fee_type][{{$index}}]">
                                                         <option label=" "></option>
-                                                        <option value="fixed" {{$property->propertyLateFee[0]->late_fee_type =='fixed' ? 'selected' : ''}}>Fixed Value</option>
-                                                        <option value="total" {{$property->propertyLateFee[0]->late_fee_type =='total' ? 'selected' : ''}}>% Of Total Rent</option>
-                                                        <option value="total_collected" {{$property->propertyLateFee[0]->late_fee_type =='total_collected' ? 'selected' : ''}}>% Of Total Collected Rent</option>
+                                                        <option value="fixed" {{$lateFee->late_fee_type =='fixed' ? 'selected' : ''}}>Fixed Value</option>
+                                                        <option value="total" {{$lateFee->late_fee_type =='total' ? 'selected' : ''}}>% Of Total Rent</option>
+                                                        <option value="total_collected" {{$lateFee->late_fee_type =='total_collected' ? 'selected' : ''}}>% Of Total Collected Rent</option>
                                                     </select>
-                                                    @error('late[late_fee_type][]')
+                                                    @error('late[late_fee_type]['.$index.']')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -610,10 +608,9 @@
                                                     <label class="form-label" for="grace-period">Grace
                                                         Period(Days)</label>
                                                     <input type="number" id="grace-period"
-                                                        class="form-control @error('late[late_fee_grace_period][]') border-1 border-danger @enderror"
-                                                        placeholder="Grace Period(Days)"
-                                                        name="late[late_fee_grace_period][]" value="{{$property->propertyLateFee[0]->late_fee_grace_period}}" />
-                                                    @error('late[late_fee_grace_period][]')
+                                                        class="form-control @error('late[late_fee_grace_period]['.$index.']') border-1 border-danger @enderror"
+                                                        placeholder="Grace Period(Days)" name="late[late_fee_grace_period][{{$index}}]" value="{{$lateFee->late_fee_grace_period}}" />
+                                                    @error('late[late_fee_grace_period]['.$index.']')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -621,39 +618,35 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late_fee_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 @error('late[late_fee_frequency][]') border-1 border-danger @enderror"
-                                                        id="late_fee_frequency" name="late[late_fee_frequency][]">
+                                                        class="select2 w-100 @error('late[late_fee_frequency]['.$index.']') border-1 border-danger @enderror"
+                                                        id="late_fee_frequency" name="late[late_fee_frequency][{{$index}}]">
                                                         <option label=" "></option>
-                                                        <option value="one_time" {{$property->propertyLateFee[0]->late_fee_frequency == 'one_time' ? 'selected' : ''}}>One Time</option>
-                                                        <option value="daily" {{$property->propertyLateFee[0]->late_fee_frequency == 'daily' ? 'selected' : ''}}>Daily</option>
-                                                        <option value="weekly" {{$property->propertyLateFee[0]->late_fee_frequency == 'weekly' ? 'selected' : ''}}>Weekly</option>
-                                                        <option value="bi_weekly" {{$property->propertyLateFee[0]->late_fee_frequency == 'bi_weekly' ? 'selected' : ''}}>Bi Weekly</option>
-                                                        <option value="monthly" {{$property->propertyLateFee[0]->late_fee_frequency == 'monthly' ? 'selected' : ''}}>Monthly</option>
+                                                        <option value="one_time" {{$lateFee->late_fee_frequency == 'one_time' ? 'selected' : ''}}>One Time</option>
+                                                        <option value="daily" {{$lateFee->late_fee_frequency == 'daily' ? 'selected' : ''}}>Daily</option>
+                                                        <option value="weekly" {{$lateFee->late_fee_frequency == 'weekly' ? 'selected' : ''}}>Weekly</option>
+                                                        <option value="bi_weekly" {{$lateFee->late_fee_frequency == 'bi_weekly' ? 'selected' : ''}}>Bi Weekly</option>
+                                                        <option value="monthly" {{$lateFee->late_fee_frequency == 'monthly' ? 'selected' : ''}}>Monthly</option>
                                                     </select>
-                                                    @error('late[late_fee_frequency][]')
+                                                    @error('late[late_fee_frequency]['.$index.']')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
 
-
-
                                                 <div class="col-md-2 col-12 ">
-
                                                     <a class="btn btn-outline-danger text-nowrap px-1 mt-2">
                                                         <i data-feather="x" class="me-25"></i>
                                                     </a>
-                                                    <a class="btn btn-outline-success text-nowrap px-1 mt-2"
-                                                        onclick="addNew('lateFee','latefeeAppend')">
+                                                    <a class="btn btn-outline-success text-nowrap px-1 mt-2" onclick="addNew('lateFee','latefeeAppend')">
                                                         <i data-feather="copy" class="me-25"></i>
                                                     </a>
-
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
+                            @endforeach
+
+
                                 <div id="latefeeAppend"></div>
                                 <div class="row">
                                     <div class="col-12 pb-2">
@@ -681,24 +674,24 @@
                         aria-labelledby="account-details-vertical-trigger">
 
                         <div>
-                            <div id="utitiltyAdd">
-                                <div class="row d-flex align-items-end rept">
-                                    <div class="row align-items-center">
 
+                            <div id="utitiltyAdd">
+
+                                <div class="row d-flex align-items-end rept">
+                                    @foreach ($property->propertyUtility as $index => $utilityData)
+                                    <div class="row align-items-center">
                                         <div class="col-md-4 col-12">
                                             <div class="mb-1">
                                                 <label class="form-label" for="utility-name"> Utility Name</label>
                                                 <select
-                                                    class="select2 w-100 @error('utility[utility_name][]') border-1 border-danger @enderror"
-                                                    id="utility-name" name="utility[utility_name][]">
+                                                    class="select2 w-100 @error('utility[utility_name]['.$index.']') border-1 border-danger @enderror"
+                                                    id="utility-name" name="utility[utility_name][{{$index}}]">
                                                     @foreach ($utility as $utilities )
-                                                    <option label=" "></option>
-                                                    <option value="{{$utilities->id}}" {{$utilities->id == $property->propertyUtility[0]->utilities_id ? 'selected' : ''}} >{{$utilities->name}}</option>
+                                                        <option label=" "></option>
+                                                        <option value="{{$utilities->id}}" {{$utilities->id == $utilityData->utilities_id ? 'selected' : ''}} >{{$utilities->name}}</option>
                                                     @endforeach
-
-
                                                 </select>
-                                                @error('utility[utility_name][]')
+                                                @error('utility[utility_name]['.$index.']')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -708,10 +701,10 @@
                                             <div class="mb-1">
                                                 <label class="form-label" for="itemcost">Variable Cost</label>
                                                 <input type="number"
-                                                    class="form-control @error('utility[utility_cost][]') border-1 border-danger @enderror"
+                                                    class="form-control @error('utility[utility_cost]['.$index.']') border-1 border-danger @enderror"
                                                     id="itemcost" aria-describedby="itemcost" placeholder="32"
-                                                    name="utility[utility_cost][]" value="{{$property->propertyUtility[0]->variable_cost}}" />
-                                                @error('utility[utility_cost][]')
+                                                    name="utility[utility_cost][{{$index}}]" value="{{$utilityData->variable_cost}}" />
+                                                @error('utility[utility_cost]['.$index.']')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -721,25 +714,26 @@
                                             <div class="mb-1">
                                                 <label class="form-label" for="fix-fee">Fixed Fee</label>
                                                 <input type="number"
-                                                    class="form-control @error('utility[fix_fee][]') border-1 border-danger @enderror"
+                                                    class="form-control @error('utility[fix_fee]['.$index.']') border-1 border-danger @enderror"
                                                     id="fix-fee" aria-describedby="itemquantity" placeholder="1"
-                                                    name="utility[fix_fee][]" value="{{$property->propertyUtility[0]->fixed_fee}}"/>
-                                                @error('utility[fix_fee][]')
+                                                    name="utility[fix_fee][{{$index}}]" value="{{$utilityData->fixed_fee}}"/>
+                                                @error('utility[fix_fee]['.$index.']')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
-
                                             </div>
                                         </div>
+
                                         <div class="col-md-2 col-12">
                                             <a class="btn btn-outline-danger text-nowrap px-1">
                                                 <i data-feather="x" class="me-25"></i>
                                             </a>
-                                            <a class="btn btn-outline-success text-nowrap px-1"
-                                                onclick="addNew('utitiltyAdd','utitiltyAppend')">
+                                            <a class="btn btn-outline-success text-nowrap px-1" onclick="addNew('utitiltyAdd','utitiltyAppend')">
                                                 <i data-feather="copy" class="me-25"></i>
                                             </a>
                                         </div>
                                     </div>
+                                @endforeach
+
                                 </div>
                             </div>
                             <div id="utitiltyAppend"></div>
