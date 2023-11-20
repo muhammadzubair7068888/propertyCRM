@@ -71,6 +71,9 @@
                     <option value="{{ $data->id }}">{{ $data->property_name }}</option>
                     @endforeach
                 </select>
+                @error('property_id')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -86,6 +89,9 @@
                     <option value="{{ $unitdata->id }}">{{ $unitdata->unit_name }}</option>
                     @endforeach
                 </select>
+                @error('property_unit_id')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -98,6 +104,9 @@
                 <label class="form-label" for="fp-default">Date</label>
                 <input type="date" id="date" class="form-control flatpickr-basic" placeholder="Date" name="complaint_date"
                     required>
+                    @error('complaint_date')
+                    <div class="text-danger">{{ $message }}</div>
+                     @enderror
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -111,6 +120,9 @@
                     style="height: 80px" maxlength="150" name="complaint_description" required></textarea>
                 <label for="floatingTextarea2">Vacating Reason</label>
                 <p id="charCount">0 / 150 characters</p>
+                @error('complaint_date')
+                    <div class="text-danger">{{ $message }}</div>
+                     @enderror
                 <div class="valid-feedback">
                     Looks good!
                 </div>

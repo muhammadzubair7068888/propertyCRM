@@ -36,35 +36,28 @@
 
 
     function addNew(source, cloned) {
-        const sourceForm = $(`#${source}`).clone();
-        console.log(source, cloned);
-        var uniqueID = "clonedForm-" + divCounter;
-        sourceForm.attr('id', uniqueID);
-        sourceForm.find(".rept a.btn-outline-danger").attr('onclick', 'remove(this)');
-        $(`#${cloned}`).append(sourceForm);
-divCounter++; // Increment the counter for the next unique ID
-    }
-//     function addNew(source, cloned) {
-//     const sourceForm = $(`#${source}`).clone();
-//     var uniqueID = "clonedForm-" + divCounter;
-//     sourceForm.attr('id', uniqueID);
+    const sourceForm = $(`#${source}`).clone();
+    var uniqueID = "clonedForm-" + divCounter;
+    sourceForm.attr('id', uniqueID);
+    sourceForm.find(".rept a.btn-outline-danger").attr('onclick', 'remove(this)');
 
-//     // Find the original and cloned dropdowns
-//     const originalDropdown = sourceForm.find("select");
-//     const clonedDropdown = originalDropdown.clone();
+    // Remove select2 classes and attributes to prevent styling issues
+    sourceForm.find('.select2').removeClass('select2-hidden-accessible').removeAttr('aria-hidden');
 
-//     // Reset the selected option in the cloned dropdown
-//     clonedDropdown.val('');
+    $(`#${cloned}`).append(sourceForm);
 
-//     // Append the cloned dropdown to the cloned form
-//     sourceForm.find("select").remove(); // Remove the cloned form's existing dropdown
-//     sourceForm.find("label[for='utility-names']").after(clonedDropdown); // Add cloned dropdown
+    // Destroy existing select2 instances
+    $('#' + uniqueID + ' .select2').each(function() {
+        $(this).select2('destroy');
+    });
 
-//     // Append the cloned form to the target container
-//     $(`#${cloned}`).append(sourceForm);
+    // Reinitialize select2 after appending a new form
+    $('#' + uniqueID + ' .select2').select2();
 
-//     divCounter++; // Increment the counter for the next unique ID
-// }
+    divCounter++;
+}
+
+
 
 
     function remove(element) {

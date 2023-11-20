@@ -41,7 +41,14 @@ class RepairController extends Controller
      */
     public function store(Request $request)
     {
-          $data=$request->except('_token');
+
+           $request->validate([
+            'property_id' => 'required',
+            'property_unit_id' => 'required',
+            'complaint_date' => 'required',
+            'complaint_description' => 'required',
+        ]);
+        $data=$request->except('_token');
 
           Repair::create($data);
 

@@ -49,7 +49,25 @@ class UtilitiesController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'property_id' => 'required',
+            'utility_id' => 'required',
+            'entry_type' => 'required',
+            'utility' => 'required|array',
+            // 'utility.*.property_unit_id' => 'required',
+            // 'utility.*.reading_date' => 'required|date',
+            // 'utility.*.current_reading' => 'required|numeric',
+        ], [
+            'property_id.required' => 'The property field is required.',
+            'utility_id.required' => 'The utility field is required.',
+            'entry_type.required' => 'The entry type field is required.',
+            'utility.required' => 'At least one utility entry is required.',
+            // 'utility.*.property_unit_id.required' => 'The property unit field is required for all entries.',
+            // 'utility.*.reading_date.required' => 'The reading date field is required for all entries.',
+            // 'utility.*.reading_date.date' => 'The reading date must be a valid date for all entries.',
+            // 'utility.*.current_reading.required' => 'The current reading field is required for all entries.',
+            // 'utility.*.current_reading.numeric' => 'The current reading must be a numeric value for all entries.',
+        ]);
 
 
             $data=$request->except('_token');

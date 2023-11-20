@@ -61,7 +61,7 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-      
+
         $pagedata['data']=Payment::find($id);
         return view('admin.payment.receipt',$pagedata);
     }
@@ -100,9 +100,17 @@ class PaymentController extends Controller
         //
     }
 
-    public function fetchLease(Request $req){
-        // dd($req);
-        $data['lease']=Lease::where('tenant_info_id',$req->id)->get();
-       return response($data);
+    // public function fetchLease(Request $req){
+    //     // dd($req);
+    //     $data['lease']=Lease::where('tenant_info_id',$req->id)->get();
+    //    return response($data);
+    // }
+    public function fetchLease(Request $req)
+    {
+        $tenant = TenantInfo::whereId($req->id)->first();
+        $data['leases'] = $tenant->leases;
+        return response()->json(['data' => $data]);
     }
+
+
 }

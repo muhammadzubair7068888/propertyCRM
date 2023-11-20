@@ -20,6 +20,9 @@
                     <option value="{{ $tenant->id }}">{{ $tenant->user->first_name.' '.$tenant->user->last_name }}</option>
                     @endforeach
                 </select>
+                @error('tenant_info_id')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -32,8 +35,11 @@
                 <label class="form-label" for="Leases">Leases</label>
                 <select class="select-2 form-select" id="leases" name="lease_id" required>
                     <option value=""></option>
-                    <!-- Add options based on your logic -->
+                   
                 </select>
+                @error('lease_id')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -45,6 +51,9 @@
             <div class="col-md-6 mb-1">
                 <label class="form-label" for="fp-default">Vacating Date</label>
                 <input type="date" id="Vacating Date" class="form-control flatpickr-basic" placeholder="Vacating Date" name="vacate_date" required>
+                @error('vacate_date')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -57,6 +66,9 @@
                 <textarea class="form-control" placeholder="Leave a comment here (maximum 150 characters)" id="vacatingreason" style="height: 80px" maxlength="150" name="vacate_reason" required></textarea>
                 <label for="floatingTextarea2">Vacating Reason</label>
                 <p id="charCount">0 / 150 characters</p>
+                @error('vacate_reason')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
                 <div class="valid-feedback">
                     Looks good!
                 </div>

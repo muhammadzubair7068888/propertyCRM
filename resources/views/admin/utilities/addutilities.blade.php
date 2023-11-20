@@ -14,35 +14,37 @@
             <h4 class="card-title">New Utilities Reading</h4>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.utilities.store') }}" method="POST" class="form form-vertical needs-validation" novalidate>
+            <form action="{{ route('admin.utilities.store') }}" method="POST" class="form form-vertical " >
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-1">
                             <label class="form-label" for="select3-basic">Property</label>
-                            <select class="select2 form-select" id="select3-basic" name="property_id" required>
+                            <select class="select2 form-select" id="select3-basic" name="property_id" >
                                 <option value=""></option>
                                 @foreach ($property as $data)
                                     <option value="{{ $data->id }}">{{ $data->property_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="invalid-feedback">
-                                Please select a property.
-                            </div>
+                            @error('property_id')
+                            <div class="text-danger">{{ $message }}</div>
+                             @enderror
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-1">
                             <label class="form-label" for="select2-basic">Utility</label>
-                            <select class="select2 form-select" id="select2-basic" name="utility_id" required>
-                                <option value=""></option>
+                            <select class="select2 form-select" id="select2-basic" name="utility_id" >
+                                
                                 @foreach ($utility as $utilities)
                                     <option value="{{ $utilities->id }}">{{ $utilities->name }}</option>
                                 @endforeach
                             </select>
-                            <div class="invalid-feedback">
-                                Please select a utility.
-                            </div>
+                            @error('utility_id')
+                            <div class="text-danger">{{ $message }}</div>
+                             @enderror
+
                         </div>
                     </div>
                 </div>
@@ -91,6 +93,10 @@
 
 
                                         </select>
+                                        @error('utility.property_unit_id')
+                                        <div class="text-danger">{{ $message }}</div>
+                                         @enderror
+
 
                                     </div>
                                 </div>
@@ -99,8 +105,10 @@
                                     <div class="mb-1">
                                         <label class="form-label" for="reading-date">Reading Date</label>
                                         <input type="date" class="form-control " id="reading-date"
-                                            aria-describedby="itemcost" placeholder="2023-03-21" name="utility[reading_date][]" />
-
+                                            aria-describedby="itemcost" placeholder="2023-03-21" name="utility[reading_date][]" required/>
+                                            @error('utility.*.reading_date')
+                                            <div class="text-danger">{{ $message }}</div>
+                                             @enderror
                                     </div>
                                 </div>
 
@@ -108,8 +116,10 @@
                                     <div class="mb-1">
                                         <label class="form-label" for="current-reading">Current Reading</label>
                                         <input type="number" class="form-control " id="current-reading"
-                                            aria-describedby="itemquantity" placeholder="Current Reading" name="utility[current_reading][]" />
-
+                                            aria-describedby="itemquantity" placeholder="Current Reading" name="utility[current_reading][]" required />
+                                            @error('utility.*.current_reading')
+                                            <div class="text-danger">{{ $message }}</div>
+                                             @enderror
 
                                     </div>
                                 </div>
@@ -293,6 +303,19 @@
 @endsection
 @section('page-script')
 <script>
+//     function addNew(sourceId, targetId) {
+//     var source = document.getElementById(sourceId);
+//     var target = document.getElementById(targetId);
+
+//     // Clone the source element
+//     var clone = source.cloneNode(true);
+
+//     // Append the cloned element to the target
+//     target.appendChild(clone);
+
+//     // Reinitialize select2 for the newly added element
+//     $('.select2').select2();
+// }
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
         'use strict';

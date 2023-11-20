@@ -164,8 +164,32 @@ class TenentController extends Controller
             'form.user.postal_address.required' => 'Required',
             'form.user.user_type.required' => 'Required',
             'form.user.password.required' => 'Required',
-            'form.tenantInfo.kin_name' => 'required',
-            // ... (add similar custom messages for other fields)
+            'form.tenantInfo.kin_name.required' => 'required',
+
+            'form.tenantInfo.kin_phone_number.required' => 'required',
+            'form.tenantInfo.kin_relation.required' => 'required',
+
+            'form.tenantInfo.kin_emergency_name.required' => 'required',
+            'form.tenantInfo.kin_emergency_phone_number.required' => 'required',
+            'form.tenantInfo.kin_emergency_emial.required' => 'required',
+            'form.tenantInfo.kin_emergency_relation.required' => 'required',
+
+            'form.tenantInfo.kin_emergency_postal_address.required' => 'required',
+            'form.tenantInfo.kin_emergency_physical_address.required' => 'required',
+            'form.tenantInfo.employment_status.required' => 'required',
+
+            'form.tenantInfo.employment_position.required' => 'required',
+            'form.tenantInfo.employment_contact_phone.required' => 'required',
+            'form.tenantInfo.employment_contact_email.required' => 'required',
+
+            'form.tenantInfo.employment_postal_address.required' => 'required',
+            'form.tenantInfo.employment_physical_address.required' => 'required',
+            'form.tenantInfo.business_name.required' => 'required',
+            'form.tenantInfo.licence_name.required' => 'required',
+            'form.tenantInfo.tax_id.required' => 'required',
+            'form.tenantInfo.bussiness_address.required' => 'required',
+            'form.tenantInfo.bussiness_industry.required' => 'required',
+            'form.tenantInfo.bussiness_description.required' => 'required',
         ]);
 
 

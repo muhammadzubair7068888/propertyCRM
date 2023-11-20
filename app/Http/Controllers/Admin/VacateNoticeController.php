@@ -42,12 +42,12 @@ class VacateNoticeController extends Controller
     public function store(Request $request)
     {
 
-//     $request->validate([
-//     'tenant_info_id'=>'required',
-//     'lease_id'=>'required',
-//     'vacate_date'=>'required',
-//     'vacate_reason'=>'required'
-//    ]);
+    $request->validate([
+    'tenant_info_id'=>'required',
+    'lease_id'=>'required',
+    'vacate_date'=>'required',
+    'vacate_reason'=>'required'
+   ]);
 
    $data=$request->except('_token');
     // dd($data);
