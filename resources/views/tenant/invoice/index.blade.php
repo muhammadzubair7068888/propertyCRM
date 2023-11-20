@@ -70,7 +70,8 @@
                     <td>
                       {{-- <a href="{{route('admin.invoice.create')}}" class="item-edit"><i data-feather='eye' class='font-medium-4' ></i>
                         </a> --}}
-                        <a href="javascript:;" class="item-edit border border-1 rounded" style="padding:6px;"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#inlineForm">
+                        <a href="javascript:;" class="item-edit border border-1 rounded" style="padding:6px;">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#inlineForm">
                              + Pay</button></a>
                     </td>
                 </tr>

@@ -174,6 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        \Safaricom\Mpesa\MpesaServiceProvider::class,
         App\Providers\MenuServiceProvider::class,
     ],
 
@@ -227,6 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Helper::class,
+        'Mpesa'=> \Safaricom\Mpesa\MpesaServiceProvider::class,
     ],
 
 ];

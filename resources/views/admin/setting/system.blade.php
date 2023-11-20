@@ -64,7 +64,6 @@
             <div class="d-flex flex-column align-items-center">
                 <img src="{{ asset($generalSetting->logo) }}" id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0"
                     width="170" height="110" alt="Blog Featured Image" />
-
                 <div class="d-inline-block pt-1">
                     <input class="form-control" type="file" id="blogCustomFile" accept="image/*" name="logo" />
                 </div>
@@ -95,7 +94,7 @@
     <div class="row">
         <div class="mb-1 col-12">
             <label class="form-label" for="zip-code">Zip Code</label>
-            <input type="text" class="form-control " name="zip_code" id="zip-code" 
+            <input type="text" class="form-control " name="zip_code" id="zip-code"
                 value="{{$generalSetting->zip_code}}" required />
         </div>
         {{-- <div class="mb-1 col-6">
@@ -139,7 +138,7 @@
                 <option value="VT">Vermont</option>
                 <option value="VA">Virginia</option>
                 <option value="WV">West Virginia</option>
-            </select>   
+            </select>
         </div>
     </div> --}}
     <div class="col-12 d-flex justify-content-end">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\tenant\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
@@ -29,7 +30,7 @@ Route::prefix('tenant')->name('tenant.')->middleware('auth')->group(function () 
 
     Route::resource('document', TenantDocumentController::class);
     Route::resource('invoice', TenantInvoiceController::class);
-    Route::post('invoice/payment', [TenantInvoiceController::class,'paymentMethod'])->name('invoice.payment');
+    Route::post('invoice/payment', [PaymentController::class,'paymentMethod'])->name('invoice.payment');
     Route::resource('leases', TenantLeaseController::class);
     Route::resource('payment', TenantPaymentController::class);
     Route::resource('profile', TenantProfileController::class);

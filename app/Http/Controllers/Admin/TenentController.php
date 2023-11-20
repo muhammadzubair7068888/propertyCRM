@@ -201,7 +201,8 @@ class TenentController extends Controller
         $tenantInfo['user_id'] = $user->id;
 
         TenantInfo::create($tenantInfo);
-
+        $message = 'Your Tenant account has been created successfully!';
+        sendOnfonMessage($req->form['user']['phone_number'], $message);
         return redirect()->route('admin.tenant.index')->with('success', 'Tenant added successfully');
     }
 

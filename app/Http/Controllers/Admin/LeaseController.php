@@ -184,8 +184,9 @@ public function store(Request $request)
             'deposit_amount' => $payment[1],
         ]);
         $message = 'Your Lease Invoice has been created successfully!';
-        sendTwilioMessage($lease->tenant_info->user->phone_number, $message);
-
+        if ($lease->tenant_info->user->phone_number) {
+            sendOnfonMessage($lease->tenant_info->user->phone_number, $message);
+        }
         return redirect()->route('admin.leases.index')->with(['success' => 'Lease Create Successfully']);
     }
 

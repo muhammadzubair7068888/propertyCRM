@@ -10,6 +10,7 @@ use App\Models\Payment;
 use App\Models\PaymentMethod;
 use App\Models\TenantInfo;
 use Illuminate\Http\Request;
+use Mpesa;
 
 class PaymentController extends Controller
 {

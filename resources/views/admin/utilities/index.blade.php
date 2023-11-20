@@ -17,10 +17,10 @@
       <div class="card">
         <div class="card-header border-bottom">
           <h4 class="card-title">Utilities</h4>
-
-        </div>
-        <div class="col-12 d-flex justify-content-end ">
-               <a href="{{route('admin.utilities.create')}}"> <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Utility Bill</button></a>
+          <div class="col-6 d-flex justify-content-end ">
+            <a href="{{route('admin.utilities.create')}}">
+                 <button type="submit" class="btn btn-primary me-2 mt-2 " name="submit" value="Submit">+ Add Utility Bill</button></a>
+     </div>
         </div>
         <div class="card-datatable">
           <table class="dt-multilingual table">

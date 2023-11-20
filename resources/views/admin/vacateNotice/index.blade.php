@@ -28,15 +28,14 @@
                 <div class="card">
                     <div class="card-header border-bottom">
                         <h4 class="card-title">Vacate Notices</h4>
+                        <div class="col-6 d-flex justify-content-end ">
+                            <button type="submit" class="btn btn-primary me-2 mt-2 " data-bs-toggle="modal"
+                                data-bs-target="#addNewCard">+ Add Vacate Notice</button>
+                        </div>
                         <div id="loader" class="loader"><h1>Loading...</h1></div>
                     </div>
                     {{-- {{dd($notices)}} --}}
-                    <div class="col-12 d-flex justify-content-end ">
 
-                        <button type="submit" class="btn btn-primary me-2 mt-2 " data-bs-toggle="modal"
-                            data-bs-target="#addNewCard">+ Add Vacate Notice</button>
-
-                    </div>
                     {{-- {{dd($tenant)}} --}}
                     <div class="card-datatable">
                         <table class="dt-multilingual table">
