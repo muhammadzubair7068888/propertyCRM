@@ -20,7 +20,7 @@
                                     <label class="form-label" for="property">Property</label>
                                     <input type="text" class="form-control " id="property"
                                         aria-describedby="itemcost"  readonly />
-
+                                     
                                 </div>
                             </div>
                             <div class="col-md-6 col-6">

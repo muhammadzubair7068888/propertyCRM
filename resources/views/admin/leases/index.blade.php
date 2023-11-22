@@ -64,6 +64,7 @@
                                                 class="item-edit pe-1 text-success">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </a>
+                                            <a href="{{route('admin.leases.destroy',$lease->id)}}"><i data-feather="trash" class="font-medium-4 text-danger"></i></a>
 
                                       </td>
                                     </tr>
@@ -100,7 +101,16 @@
     <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
     {{-- Page js files --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/parsleyjs/2.9.2/parsley.min.js"></script>
     <script>
+        $(document).ready(function () {
+            $('#multiStepForm').parsley();
+        });
+    </script> --}}
+
+    <script>
+
         $(document).ready(function() {
             $('.datatables-table').DataTable();
         });

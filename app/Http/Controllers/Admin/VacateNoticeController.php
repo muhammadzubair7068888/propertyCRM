@@ -51,7 +51,7 @@ class VacateNoticeController extends Controller
 //    dd($request);
 
    $data=$request->except('_token');
-
+    // dd($data);
    if($data){
     $vacate = VacateNotice::create($data);
     $message = 'Your VacatNotice has been created successfully!';

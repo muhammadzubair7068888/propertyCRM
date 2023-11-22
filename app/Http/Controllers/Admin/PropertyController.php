@@ -64,53 +64,64 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-            // 'user_id' => 'required',
-            // 'property.property_name' => 'required',
-            // 'property[property_code]' => 'required',
-            //  'property[location]' => 'required',
-            //  'property[user_id]' => 'required',
-            //  'property[property_type_id]' => 'required',
-            //  'property[agent_commission_value]' => 'required',
-            //  'property[agent_commission_type]' => 'required',
+        $request->validate([
+
+            'property.property_name' => 'required',
+            'property.property_code' => 'required',
+             'property.location' => 'required',
+            //  'property.user_id' => 'required',
+            //  'property.property_type_id' => 'required',
+             'property.agent_commission_value' => 'required',
+             'property.agent_commission_type' => 'required',
+
             //  'payment[payment_method][]' => 'required',
-            //  'payment[payment_description][]' => 'required',
-            //  'extra[extra_charge_name][]' => 'required',
-            //  'extra[extra_charges_value][]' => 'required',
-            //  'extra[extra_charges_type][]' => 'required',
-            //  'extra[extra_frequency][]' => 'required',
-            //  'late[late_fee_name][]' => 'required',
-            //  'late[late_fee_value][]' => 'required',
-            //  'late[late_fee_type][]' => 'required',
-            //  'late[late_fee_grace_period][]' => 'required',
-            //  'late[late_fee_frequency][]' => 'required',
-            //  'utility[utility_name][]' => 'required',
-            //  'utility[utility_cost][]' => 'required',
-            //  'utility[fix_fee][]' => 'required',
-        // ],
-        // [
-        //     'property.property_name.required' => 'Property Name is required!',
-        //     'property[property_code].required' => 'Property Code is required!',
-        //     'property[location].required' => 'Property Location is required!',
-        //     'property[user_id].required' => 'Landlord is required!',
-        //     'property[property_type_id].required' => 'Property type is required!',
-        //     'property[agent_commission_value].required' => 'Agent Commission Value is required!',
-        //     'property[agent_commission_type].required' => 'Agent Commission Type is required!',
-        //     'payment[payment_method][].required' => 'Payment Method is required!',
-        //     'payment[payment_description][].required' => 'Payment Description is required!',
-        //     'extra[extra_charge_name][].required' => 'Extra Charge Name is required!',
-        //     'extra[extra_charges_value][].required' => 'Required!',
-        //     'extra[extra_charges_type][].required' => 'Required',
-        //     'extra[extra_frequency][].required' => 'Required',
-        //     'late[late_fee_name][].required' => 'Late Fee Name is required!',
-        //     'late[late_fee_value][].required' => 'Late Fee Value is required!',
-        //     'late[late_fee_type][].required' => 'Late Fee Type is required!',
-        //     'late[late_fee_grace_period][].required' => 'Late Fee Grace Period is required!',
-        //     'late[late_fee_frequency][].required' => 'Late Fee Frequency is required!',
-        //     'utility[utility_name][].required' => 'Utility Name is required!',
-        //     'utility[utility_cost][].required' => ' Required!',
-        //     'utility[fix_fee][].required' => 'Required!',
-        // ]);
+            'extra.extra_charge_name.*' => 'required',
+            'extra.extra_charges_value.*' => 'required|numeric',
+            'extra.extra_charges_type.*' => 'required',
+            'extra.extra_frequency.*' => 'required',
+
+
+            'late.late_fee_name.*' => 'required',
+            'late.late_fee_value.*' => 'required|numeric',
+            'late.late_fee_type.*' => 'required',
+            'late.late_fee_grace_period.*' => 'required|numeric',
+            'late.late_fee_frequency.*' => 'required',
+
+            'utility.utility_name.*' => 'required',
+            'utility.utility_cost.*' => 'required|numeric',
+            'utility.fix_fee.*' => 'required|numeric',
+        ],
+        [
+            'property.property_name.required' => 'Property Name is required!',
+            'property.property_code.required' => 'Property Code is required!',
+            'property.location.required' => 'Property Location is required!',
+
+            'property.agent_commission_value.required' => 'Agent Commission Value is required!',
+            'property.agent_commission_type.required' => 'Agent Commission Type is required!',
+
+            'extra.extra_charge_name.*.required' => 'Required.',
+            // 'extra.extra_charge_name.*.exists' => 'The selected Extra Charges Name is invalid.',
+
+            'extra.extra_charges_value.*.required' => ' Required.',
+            'extra.extra_charges_value.*.numeric' => 'This field must be a number.',
+            'extra.extra_charges_type.*.required' => ' Required.',
+           'extra.extra_frequency.*.required' => ' Required.',
+
+
+           'late.late_fee_name.*.required' => ' Required',
+           'late.late_fee_value.*.required' => ' Required',
+           'late.late_fee_value.*.numeric' => ' Late Fee Value field must be a number.',
+           'late.late_fee_type.*.required' => ' Required',
+           'late.late_fee_grace_period.*.required' => ' Required',
+           'late.late_fee_grace_period.*.numeric' => 'The Grace Period (Days) field must be a number.',
+           'late.late_fee_frequency.*.required' => 'Required',
+
+           'utility.utility_name.*.required' => 'Required.',
+           'utility.utility_cost.*.required' => 'Required.',
+           'utility.utility_cost.*.numeric' => 'The Variable Cost field must be a number.',
+           'utility.fix_fee.*.required' => 'Required.',
+           'utility.fix_fee.*.numeric' => 'The Fixed Fee field must be a number.',
+        ]);
 
         $data = $request->except('_token');
         $property_data = $request->property;
@@ -119,6 +130,8 @@ class PropertyController extends Controller
         $lates = $request->late;
         $utilities = $request->utility;
         $units = $request->unit;
+        // dd($units);
+
 
         $payment_rows = [];
 
@@ -146,8 +159,11 @@ class PropertyController extends Controller
         $utility_cost = $utilities["utility_cost"];
         $fix_fee = $utilities["fix_fee"];
 
+
+        $units = $request->unit;
         $unit_rows = [];
-        $newaddress = $units['newAddress'];
+        $unit_name = $units['unit_name'];
+        $status = $units['unit_status'];
         $floor = $units['unit_floor'];
         $rent_amount = $units['rent_amount'];
         $unit_type = $units['unit_type'];
@@ -185,9 +201,9 @@ class PropertyController extends Controller
             }
 
             // Unit
-            for ($i = 0; $i < count($newaddress); $i++) {
+            for ($i = 0; $i < count($status); $i++) {
                 // Create a new row with payment method and description
-                $row = [($newaddress[$i] ?? '1'), ($floor[$i] ?? "N/A"),($rent_amount[$i] ?? "N/A"),($unit_type[$i] ?? "N/A"),($bed_rooms[$i] ?? "N/A"),($bath_rooms[$i] ?? "N/A"),($total_rooms[$i] ?? "N/A"),($square_foot[$i] ?? "N/A")];
+                $row = [($status[$i] ?? '1'),($unit_name[$i] ?? 'N/A'), ($floor[$i] ?? "N/A"),($rent_amount[$i] ?? "N/A"),($unit_type[$i] ?? "N/A"),($bed_rooms[$i] ?? "N/A"),($bath_rooms[$i] ?? "N/A"),($total_rooms[$i] ?? "N/A"),($square_foot[$i] ?? "N/A")];
                 $unit_rows[] = $row;
             }
 
@@ -209,6 +225,7 @@ class PropertyController extends Controller
                 'extra_charges_frequency'=>$extra[3],
             ]);
         }
+
         foreach($late_rows as $late){
             PropertyLateFee::create([
                 'property_id'=>$property->id,
@@ -227,22 +244,22 @@ class PropertyController extends Controller
                 'fixed_fee'=>$utility[2],
             ]);
         }
-        foreach($unit_rows as $unit){
+
+        $unit_rows = [];
+        foreach ($units['unit_name'] as $key => $unit_name) {
             PropertyUnit::create([
-                'property_id'=>$property->id,
-                'unit_name'=>$unit[0],
-                'unit_floor'=>$unit[1],
-                'rent_amount'=>$unit[2],
-                'unit_type'=>$unit[3],
-                'bed_room'=>$unit[4],
-                'bath_room'=>$unit[5],
-                'total_room'=>$unit[6],
-                'square_foot'=>$unit[7],
+                'property_id' => $property->id,
+                'unit_status' => $units['unit_status'][$key] ?? '1',
+                'unit_name' => $unit_name,
+                'unit_floor' => $units['unit_floor'][$key] ?? 'N/A',
+                'rent_amount' => $units['rent_amount'][$key] ?? 'N/A',
+                'unit_type' => $units['unit_type'][$key] ?? 'N/A',
+                'bed_room' => $units['bed_rooms'][$key] ?? 'N/A',
+                'bath_room' => $units['bath_rooms'][$key] ?? 'N/A',
+                'total_room' => $units['total_rooms'][$key] ?? 'N/A',
+                'square_foot' => $units['square_foot'][$key] ?? 'N/A',
             ]);
         }
-
-
-
         return redirect()->route('admin.properties.index')->with('success', 'Record updated successfully');
     }
 
@@ -283,6 +300,7 @@ class PropertyController extends Controller
       $pagedata['extracharges'] = ExtraCharges::get();
       $pagedata['propertyMethodType'] = PropertyPaymentMethod::where('property_id',$id)->first();
       $pagedata['property'] = Property::find($id);
+     
         return view('admin.property.editproperty.index',$pagedata);
     }
 
@@ -317,6 +335,7 @@ class PropertyController extends Controller
         $lates = $request->late;
         $utilities = $request->utility;
         $units = $request->unit;
+
         $property = Property::find($id);
         $property->update($property_data);
         // return redirect()->route('admin.properties.index')->with('success', 'Updated data successfully');
@@ -388,6 +407,7 @@ class PropertyController extends Controller
 
         }
 
+
         $utility_rows = [];
 
         $utility_name = $utilities["utility_name"];
@@ -399,7 +419,6 @@ class PropertyController extends Controller
             $row = [($utility_name[$i] ?? '1'), ($utility_cost[$i] ?? "N/A"),($fix_fee[$i] ?? "N/A")];
             $utility_rows[] = $row;
         }
-
         foreach($utility_rows as $utility){
             PropertyUtility::wherePropertyId($id)->update([
                 'property_id'=>$property->id,
@@ -407,8 +426,46 @@ class PropertyController extends Controller
                 'variable_cost'=>$utility[1],
                 'fixed_fee'=>$utility[2],
             ]);
-            return redirect()->route('admin.properties.index')->with('success', 'Record updated  successfully');
+
         }
+
+        $unit_rows = [];
+
+        $unit_name = $units['unit_name'];
+        $status = $units['status'];
+        $floor = $units['unit_floor'];
+        $rent_amount = $units['rent_amount'];
+        $unit_type = $units['unit_type'];
+        $bed_rooms = $units['bed_rooms'];
+        $bath_rooms = $units['bath_rooms'];
+        $total_rooms = $units['total_rooms'];
+        $square_foot = $units['square_foot'];
+           // Unit
+           for ($i = 0; $i < count($status); $i++) {
+            // Create a new row with payment method and description
+            $row = [($status[$i] ?? '1'),($unit_name[$i] ?? 'N/A'), ($floor[$i] ?? "N/A"),($rent_amount[$i] ?? "N/A"),($unit_type[$i] ?? "N/A"),($bed_rooms[$i] ?? "N/A"),($bath_rooms[$i] ?? "N/A"),($total_rooms[$i] ?? "N/A"),($square_foot[$i] ?? "N/A")];
+            $unit_rows[] = $row;
+        }
+
+        foreach ($unit_rows as $unit) {
+            PropertyUnit::wherePropertyId($id)->update([
+                'property_id' => $property->id,
+                'unit_name' => $unit[1],  // Corrected index for unit_name
+                'unit_status' => $unit[0],  // Corrected index for status
+                'unit_floor' => $unit[2],
+                'rent_amount' => $unit[3],
+                'unit_type' => $unit[4],
+                'bed_room' => $unit[5],
+                'bath_room' => $unit[6],
+                'total_room' => $unit[7],
+                'square_foot' => $unit[8],
+            ]);
+        }
+
+        return redirect()->route('admin.properties.index')->with('success', 'Records updated successfully');
+
+
+
 
     }
 

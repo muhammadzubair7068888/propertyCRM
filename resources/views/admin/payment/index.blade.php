@@ -175,7 +175,57 @@
 
         }
     </script>
+   <script>
+    // Add
+    $('#tenant').on('change', function() {
+        $('#leases').empty();
+        var selected_tenant = $(this).find('option:selected').val();
+        // console.log(selected_tenant);
+        if (selected_tenant != '') {
+            $.ajax({
+                type: "get",
+                url: "{{ route('admin.fetch-lease') }}",
+                data: {
+                    id: selected_tenant,
+                },
+                success: function(response) {
+                    response.lease.forEach(lease => {
+                        console.log(lease);
+                        var option = `
+        <option value="${lease.id}">${lease.lease_code}</option>
+        `;
+                        $('#leases').append(option)
+                    });
+                }
+            });
+        }
+    });
 
+    // Edit
+    $('#edittenant').on('change', function() {
+        $('#editleases').empty();
+        var selected_tenant = $(this).find('option:selected').val();
+        console.log(selected_tenant);
+        if (selected_tenant != '') {
+            $.ajax({
+                type: "get",
+                url: "{{ route('admin.fetch-lease') }}",
+                data: {
+                    id: selected_tenant,
+                },
+                success: function(response) {
+                    response.lease.forEach(lease => {
+                        console.log(lease);
+                        var option = `
+        <option value="${lease.id}">${lease.lease_code}</option>
+        `;
+                        $('#editleases').append(option)
+                    });
+                }
+            });
+        }
+    });
+</script>
 
     <script>
         const textarea = document.getElementById('floatingTextarea2');

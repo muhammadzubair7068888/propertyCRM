@@ -10,61 +10,105 @@
       </div>
       <div class="modal-body ">
         <h1 class="" id="addNewCardTitle">New Vacation Notice</h1>
+        <form action="{{ route('admin.vacate_notice.store') }}" method="post" id="addNewCardValidation" class="row gy-1 gx-2 needs-validation" novalidate>
+            @csrf
+            <div class="col-md-12 mb-1">
+                <label class="form-label" for="Tenant">Tenant</label>
+                <select class="select-2 form-select tenant" id="tenant" name="tenant_info_id" required>
+                    <option value=""></option>
+                    @foreach ($tenant as $tenant)
+                    <option value="{{ $tenant->id }}">{{ $tenant->user->first_name.' '.$tenant->user->last_name }}</option>
+                    @endforeach
+                </select>
+                @error('tenant_info_id')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please select a tenant.
+                </div>
+            </div>
 
+            <div class="col-md-6 mb-1">
+                <label class="form-label" for="Leases">Leases</label>
+                <select class="select-2 form-select" id="leases" name="lease_id" required>
+                    <option value=""></option>
+                   
+                </select>
+                @error('lease_id')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please select a lease.
+                </div>
+            </div>
 
-        <!-- form -->
-        <form  action="{{route('admin.vacate_notice.store')}}" method="post" id="addNewCardValidation" class="row gy-1 gx-2 ">
-          @csrf
-          <div class="col-md-12 mb-1">
-            <label class="form-label" for="Tenant">Tenant</label>
-            <select class="select-2 form-select tenant" id="tenant" name="tenant_info_id">
-              <option value="" ></option>
-              @foreach ($tenant as $tenant )
-              <option value="{{$tenant->id}}">{{$tenant->user->first_name.' '.$tenant->user->last_name}}</option>
-              @endforeach
+            <div class="col-md-6 mb-1">
+                <label class="form-label" for="fp-default">Vacating Date</label>
+                <input type="date" id="Vacating Date" class="form-control flatpickr-basic" placeholder="Vacating Date" name="vacate_date" required>
+                @error('vacate_date')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please provide a valid vacating date.
+                </div>
+            </div>
 
-            </select>
-          </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here (maximum 150 characters)" id="vacatingreason" style="height: 80px" maxlength="150" name="vacate_reason" required></textarea>
+                <label for="floatingTextarea2">Vacating Reason</label>
+                <p id="charCount">0 / 150 characters</p>
+                @error('vacate_reason')
+                <div class="text-danger">{{ $message }}</div>
+                 @enderror
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please provide a valid vacating reason.
+                </div>
+            </div>
 
-          <div class="col-md-6 mb-1">
-            <label class="form-label" for="Leases">Leases</label>
-            <select class="select-2 form-select" id="leases" name="lease_id">
-              <option value=""></option>
-
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-1">
-            <label class="form-label" for="fp-default">Vacating Date</label>
-            <input type="text" id="Vacating Date" class="form-control flatpickr-basic" placeholder="Vacating Date" name="vacate_date"/>
-          </div>
-
-          <div class="form-floating">
-            <textarea
-              class="form-control"
-              placeholder="Leave a comment here (maximum 150 characters)"
-              id="vacatingreason"
-              style="height: 80px"
-              maxlength="150"
-              name="vacate_reason"
-            ></textarea>
-            <label for="floatingTextarea2">Vacating Reason</label>
-            <p id="charCount">0 / 150 characters</p>
-          </div>
-
-          <div class="col-12 text-center">
-
-            <button type="reset" class="btn  mt-1" data-bs-dismiss="modal" aria-label="Close">
-            Close
-            </button>
-            <button  class="btn btn-primary me-1 mt-1">Save</button>
-          </div>
+            <div class="col-12 text-center">
+                <button type="reset" class="btn mt-1" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                <button class="btn btn-primary me-1 mt-1" type="submit">Save</button>
+            </div>
         </form>
       </div>
     </div>
   </div>
 </div>
 
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation');
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                }, false);
+            });
+    })();
+</script>
 <!--/ add new card modal  -->
 
 {{-- <div class="modal fade" id="addNewCard2" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
