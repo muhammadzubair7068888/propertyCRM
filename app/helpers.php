@@ -46,7 +46,7 @@ if (!function_exists('notification')) {
         return $notification;
     }
 }
-if (!function_exists('sendTwilioMessage')) {
+if (!function_exists('sendOnfonMessage')) {
     /**
      * Send Twilio message to the specified phone number.
      *
@@ -54,12 +54,12 @@ if (!function_exists('sendTwilioMessage')) {
      * @param string $message
      * @return void
      */
-    function sendTwilioMessage($to, $message)
+    function sendOnfonMessage($to, $message)
     {
-        $twilio = new Client(config('services.twilio.sid'), config('services.twilio.token'));
+        $Onfon = new Client(config('services.onfon.senderid'), config('services.onfon.apikey'), config('services.onfon.clientid'));
 
-        $twilio->messages->create($to, [
-            'from' => config('services.twilio.from'),
+        $Onfon->messages->create($to, [
+            'senderid' => config('services.onfon.senderid'),
             'body' => $message,
         ]);
     }

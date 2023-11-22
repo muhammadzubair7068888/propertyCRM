@@ -70,7 +70,7 @@ class LandlordController extends Controller
             User::create($data);
             $message = 'Your Landlord account has been created successfully!';
             if ($req->has('phone_number')) {
-                sendTwilioMessage($req->phone_number, $message);
+                sendOnfonMessage($req->phone_number, $message);
             }
             return redirect()->route('admin.landlord.index')->with('success', 'Landlord added successfully');
         } catch (\Throwable $th) {

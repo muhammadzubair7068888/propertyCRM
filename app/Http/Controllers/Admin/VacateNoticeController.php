@@ -55,7 +55,7 @@ class VacateNoticeController extends Controller
    if($data){
     $vacate = VacateNotice::create($data);
     $message = 'Your VacatNotice has been created successfully!';
-    sendTwilioMessage($vacate->tenantInfo->user->phone_number, $message);
+    sendOnfonMessage($vacate->tenantInfo->user->phone_number, $message);
     return redirect()->route('admin.vacate_notice.index')->with('success','Notice added successfully!');
     }else{
         return redirect()->route('admin.vacate_notice.index')->with('error','Notice does not added !');

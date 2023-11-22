@@ -7,6 +7,7 @@ use App\Http\Controllers\StaterkitController;
 
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\smsController;
+use App\Http\Controller\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,9 @@ Route::get('layouts/empty', [StaterkitController::class, 'layout_empty'])->name(
 Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name('layout-blank');
 
 
+
+//payment method
+// Route::get('/pay',[PaymentController::class,'stk']);
 
 
 // locale Route

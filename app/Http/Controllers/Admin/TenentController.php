@@ -110,7 +110,7 @@ class TenentController extends Controller
 
             TenantInfo::create($tenantInfo);
             $message = 'Your Tenant account has been created successfully!';
-            sendTwilioMessage($req->form['user']['phone_number'], $message);
+            sendOnfonMessage($req->form['user']['phone_number'], $message);
             return redirect()->route('admin.tenant.index')->with('success', 'Tenant added successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());

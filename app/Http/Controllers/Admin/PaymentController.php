@@ -10,6 +10,7 @@ use App\Models\Payment;
 use App\Models\PaymentMethod;
 use App\Models\TenantInfo;
 use Illuminate\Http\Request;
+use Mpesa;
 
 class PaymentController extends Controller
 {
@@ -125,4 +126,36 @@ class PaymentController extends Controller
         $data['leases'] = $tenant->leases;
         return response()->json(['data' => $data]);
     }
-}
+
+
+    // public function stK()
+    // {
+    //     $mpesa = new \Safaricom\Mpesa\Mpesa();
+
+    //     $BusinessShortCode = "174379";
+    //     $LipaNaMpesaPasskey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+    //     $TransactionType = "CustomerPayBillOnline";
+    //     $Amount = "1";
+    //     $PartyA = "254708374149";
+    //     $PartyB = "174379";
+    //     $PhoneNumber = "254708374149";
+    //     $CallBackURL = 'http://yourdomain.com/mpesa/confirmacion';
+    //     $AccountReference = "AccountReference";
+    //     $TransactionDesc = "TransactionDesc";
+    //     $Remarks = "Remarks ";
+
+    //     $stkPushSimulation = $mpesa->STKPushSimulation(
+    //         $BusinessShortCode,
+    //         $LipaNaMpesaPasskey,
+    //         $TransactionType,
+    //         $Amount,
+    //         $PartyA,
+    //         $PartyB,
+    //         $PhoneNumber,
+    //         $CallBackURL,
+    //         $AccountReference,
+    //         $TransactionDesc,
+    //         $Remarks
+    //     );
+    }
+
