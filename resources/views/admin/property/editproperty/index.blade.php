@@ -163,7 +163,7 @@
                         </div>
 
                         <div>
-                            <div action="#" id="sourceForm">
+                                 <div action="#" id="sourceForm">
                                 <div class="row d-flex align-items-end rept">
                                     <div class="col-md-10 col-12">
                                         <div class="mb-1">
@@ -183,7 +183,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <div id="targetForm"></div>
                             <div class="row">
                                 <div class="col-12">
@@ -812,6 +811,37 @@
                 'hide'
             ); // Assuming it's a modal, you can use 'modal' or replace it with the appropriate method for closing your form.
         }
+
+//         function addNew(sourceFormId, targetFormId) {
+//     // Clear previous data from the source form fields
+//     var sourceForm = document.getElementById(sourceFormId);
+//     var inputFields = sourceForm.querySelectorAll('input[type="text"]');
+//     inputFields.forEach(function (input) {
+//         input.value = '';
+//     });
+
+//     // Clear previous data from the modal fields
+//     clearModal();
+
+//     // Show the modal
+//     $('#unitModal').modal('show');
+
+//     // Add additional logic as needed
+//     // ...
+// }
+
+// function clearModal() {
+//     // Clear data in the modal fields
+//     var modalInputs = document.querySelectorAll('#unitModal input[type="text"]');
+//     modalInputs.forEach(function (input) {
+//         input.value = '';
+//     });
+
+//     // Add additional logic to clear other modal fields if needed
+//     // ...
+// }
+
+
     </script>
 
 
