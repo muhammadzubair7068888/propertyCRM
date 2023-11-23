@@ -183,10 +183,10 @@ public function store(Request $request)
             'utility_name' => $payment[0],
             'deposit_amount' => $payment[1],
         ]);
-        $message = 'Your Lease Invoice has been created successfully!';
-        if ($lease->tenant_info->user->phone_number) {
-            sendOnfonMessage($lease->tenant_info->user->phone_number, $message);
-        }
+        // $message = 'Your Lease Invoice has been created successfully!';
+        // if ($lease->tenant_info->user->phone_number) {
+        //     sendOnfonMessage($lease->tenant_info->user->phone_number, $message);
+        // }
         return redirect()->route('admin.leases.index')->with(['success' => 'Lease Create Successfully']);
     }
 

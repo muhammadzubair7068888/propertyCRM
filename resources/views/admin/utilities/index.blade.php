@@ -1,6 +1,12 @@
 @extends('layouts/contentLayoutMaster')
 @section('title', 'Utility')
 @section('vendor-style')
+<style>
+    .select2-container {
+    width: 100% !important; /* Set the width as needed */
+    border-color: red;
+}
+</style>
   {{-- vendor css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">

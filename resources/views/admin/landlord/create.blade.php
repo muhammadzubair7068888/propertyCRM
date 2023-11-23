@@ -24,7 +24,7 @@
                                         <label class="form-label" for="first-name-column">First Name</label>
                                         <input type="text" id="first-name-column"
                                             class="form-control @error('first_name') border-1 border-danger @enderror"
-                                            placeholder="First Name" required name="first_name" value="{{ @$user->first_name ?? old('first_name') }}"/>
+                                            placeholder="First Name"  name="first_name" value="{{ @$user->first_name ?? old('first_name') }}"/>
                                         @error('first_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror

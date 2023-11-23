@@ -170,7 +170,7 @@
                                     <div class="col-md-10 col-12">
                                         <div class="mb-1">
                                             <input type="text" readonly value="{{$unit->unit_name}}" class="form-control"
-                                                onclick="unitModal()" id="unitName" placeholder="Units" />
+                                                onclick="unitModal({{$loop->iteration}})" id="unitName" placeholder="Units" />
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-12 ">
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="addNewAddressModal" tabindex="-1" aria-labelledby="addNewAddressTitle" aria-hidden="true">
+                                <div class="modal fade" id="addNewAddressModal{{$loop->iteration}}" tabindex="-1" aria-labelledby="addNewAddressTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header bg-transparent">
@@ -258,7 +258,7 @@
                                                     <div class="col-12 ">
                                                         <label class="form-label" for="rent-amount">Rent Amount</label>
                                                         <input type="text" id="rent-amount" name="unit[rent_amount][]" class="form-control"
-                                                            placeholder="Rent Amount" data-msg="Please enter your last name" value="{{ $unitAmount }}"/>
+                                                            placeholder="Rent Amount" data-msg="Please enter your last name" value="{{ $unit->rent_amount }}"/>
                                                     </div>
                                                     <div class="col-12">
                                                         <label class="form-label" for="unit-type">Unit Type</label>
@@ -274,22 +274,22 @@
                                                     <div class="col-12 col-md-6" id="bed-rooms">
                                                         <label class="form-label" for="bed-room">Bed Rooms</label>
                                                         <input type="text" id="bed-room" name="unit[bed_rooms][]" class="form-control"
-                                                            placeholder="Bed Rooms" value="{{ @$bedRoom }}"/>
+                                                            placeholder="Bed Rooms" value="{{ $unit->bed_room }}"/>
                                                     </div>
                                                     <div class="col-12 col-md-6" id="bath-rooms">
                                                         <label class="form-label" for="bath-room">Bath Rooms</label>
                                                         <input type="text" id="bath-room" name="unit[bath_rooms][]" class="form-control"
-                                                            placeholder="Bath Rooms" value="{{ @$bathRoom }}"/>
+                                                            placeholder="Bath Rooms" value="{{ $unit->bath_room }}"/>
                                                     </div>
                                                     <div class="col-12 col-md-6">
                                                         <label class="form-label" for="total-rooms">Total Rooms</label>
                                                         <input type="text" id="total-rooms" name="unit[total_rooms][]" class="form-control"
-                                                            placeholder="Total Rooms" value="{{ $totalRoom }}"/>
+                                                            placeholder="Total Rooms" value="{{ $unit->total_room }}"/>
                                                     </div>
                                                     <div class="col-12 col-md-6">
                                                         <label class="form-label" for="square-foot">Square Foot</label>
                                                         <input type="number" id="square-foot" name="unit[square_foot][]" class="form-control"
-                                                            placeholder="Square Foot" value="{{ $squareFoot }}"/>
+                                                            placeholder="Square Foot" value="{{ $unit->square_foot }}"/>
                                                     </div>
 
 
@@ -795,8 +795,8 @@
             $('#bath-rooms').addClass('d-none');
         }
 
-        function unitModal() {
-            $('#addNewAddressModal').modal('show')
+        function unitModal(id) {
+            $('#addNewAddressModal'+ id).modal('show')
         }
 
         function unitModalSubmit() {

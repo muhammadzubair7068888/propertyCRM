@@ -54,8 +54,8 @@ class VacateNoticeController extends Controller
     // dd($data);
    if($data){
     $vacate = VacateNotice::create($data);
-    $message = 'Your VacatNotice has been created successfully!';
-    sendOnfonMessage($vacate->tenantInfo->user->phone_number, $message);
+    // $message = 'Your VacatNotice has been created successfully!';
+    // sendOnfonMessage($vacate->tenantInfo->user->phone_number, $message);
     return redirect()->route('admin.vacate_notice.index')->with('success','Notice added successfully!');
     }else{
         return redirect()->route('admin.vacate_notice.index')->with('error','Notice does not added !');

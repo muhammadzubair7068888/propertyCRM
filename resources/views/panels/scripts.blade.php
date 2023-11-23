@@ -30,7 +30,7 @@
 
 
 {{-- Units Increament --}}
-<script>
+{{-- <script>
 
     var divCounter = 1; // Initialize a counter for the unique ID
 
@@ -60,7 +60,50 @@
 
 
 
+
+
+
+    function remove(element) {
+        $(element).closest('.rept').remove();
+    }
+</script> --}}
+<script>
+    var divCounter = 1; // Unique ID counter
+
+    function addNew(source, cloned) {
+        const sourceForm = $('#' + source).clone();
+        console.log(source, cloned, sourceForm);
+        var uniqueID = "clonedForm-" + divCounter;
+        sourceForm.attr('id', uniqueID);
+        sourceForm.find(".rept a.btn-outline-danger").attr('onclick', 'remove(this)');
+
+        // Remove select2 classes and attributes to prevent styling issues
+        // sourceForm.find('.select2').removeClass('select2-hidden-accessible').removeAttr('aria-hidden');
+
+        $('#' + cloned).append(sourceForm);
+
+        // Destroy existing select2 instances
+        // $('#' + uniqueID + ' .select2').each(function () {
+        //     $(this).select2('destroy');
+        // });
+
+        // Reinitialize select2 after appending a new form
+        // $('#' + uniqueID + ' .select2').each(function(){
+        //     $(this).select2();
+        // });
+
+        divCounter++;
+    }
+
     function remove(element) {
         $(element).closest('.rept').remove();
     }
 </script>
+
+
+{{-- <style>
+    .select2-container {
+    width: 100% !important; /* Set the width as needed */
+    border-color: red;
+}
+</style> --}}
