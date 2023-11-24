@@ -2,7 +2,8 @@
 
 use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
-use Twilio\Rest\Client;
+use GuzzleHttp\Client;
+
 
 
 
@@ -47,21 +48,27 @@ if (!function_exists('notification')) {
     }
 }
 if (!function_exists('sendOnfonMessage')) {
-    /**
-     * Send Twilio message to the specified phone number.
-     *
-     * @param string $to
-     * @param string $message
-     * @return void
-     */
     function sendOnfonMessage($to, $message)
     {
-        $Onfon = new Client(config('services.onfon.senderid'), config('services.onfon.apikey'), config('services.onfon.clientid'));
-
-        $Onfon->messages->create($to, [
-            'senderid' => config('services.onfon.senderid'),
-            'body' => $message,
-        ]);
+        $senderId = config('services.onfon.senderid');
+        $apiKey = config('services.onfon.apikey');
+        $clientId = config('services.onfon.clientid');
+        $client = new Client();
+        $requestParams = [
+            'json' => [
+                'to' => $to,
+                'senderid' => $senderId,
+                'body' => $message,
+            ],
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $apiKey,
+                'X-HTTP-Method-Override' => 'POST',
+            ],
+        ];
+        $response = $client->get('https://api.onfonmedia.co.ke/v1/messages', $requestParams);
+        $result = $response->getStatusCode();
+        return $result;
     }
 }
 if (!function_exists('sendPayment')) {

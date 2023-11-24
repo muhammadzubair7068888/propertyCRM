@@ -183,11 +183,6 @@ public function store(Request $request)
             'utility_name' => $payment[0],
             'deposit_amount' => $payment[1],
         ]);
-        // $message = 'Your Lease Invoice has been created successfully!';
-        // if ($lease->tenant_info->user->phone_number) {
-        //     sendOnfonMessage($lease->tenant_info->user->phone_number, $message);
-        // }
-        return redirect()->route('admin.leases.index')->with(['success' => 'Lease Create Successfully']);
     }
 
     $last_invoice = Invoice::max("id");
@@ -203,8 +198,13 @@ public function store(Request $request)
         'lease_id' => $lease_id,
         'invoice_number' => $invoiceCode
     ]);
-
-    return redirect()->route('admin.leases.index')->with(['success' => 'Lease Created Successfully']);
+    $message = 'Your Lease Invoice has been created successfully!';
+    if ($lease->tenant_info->user->phone_number) {
+        $result = sendOnfonMessage($lease->tenant_info->user->phone_number, $message);
+        if($result == 200){
+            return redirect()->route('admin.leases.index')->with(['success' => 'Lease Created Successfully']);
+        }
+    }
 }
 
 
