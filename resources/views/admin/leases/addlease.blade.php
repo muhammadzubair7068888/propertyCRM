@@ -111,48 +111,48 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="property">Property</label>
-                                <select class="select2 form-select" id="lease-property" name="form[property_id]"
-
-                                >
+                                <select class="select2 form-select" id="lease-property" name="form[property_id]">
                                     <option value=""></option>
                                     @foreach ($property as $property)
-                                        <option value="{{ $property->id }}">{{ $property->property_name }}</option>
+                                        <option value="{{ $property->id }}" {{ old('form.property_id') == $property->id ? 'selected' : '' }}>
+                                            {{ $property->property_name }}
+                                        </option>
                                     @endforeach
-
                                 </select>
                                 @error('form.property_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="unit">Unit</label>
-                                <select class="select2 form-select" id="property-unit" name="form[property_unit_id]"
-                                >
+                                <select class="select2 form-select" id="property-unit" name="form[property_unit_id]">
                                     <option value=""></option>
                                 </select>
                                 @error('form.property_unit_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="lease-type">Lease Type</label>
-                                <select class="select2 form-select" id="lease-type" name="form[lease_type_id]"  >
+                                <select class="select2 form-select" id="lease-type" name="form[lease_type_id]">
                                     <option value=""></option>
                                     @foreach ($leasetype as $lease)
-                                        <option value="{{ $lease->id }}">{{ $lease->name }}</option>
+                                        <option value="{{ $lease->id }}" {{ old('form.lease_type_id') == $lease->id ? 'selected' : '' }}>
+                                            {{ $lease->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('form.lease_type_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
 
                             </div>
                             <div class="mb-1 form-password-toggle col-md-6">
                                 <label class="form-label" for="rent-amount">Rent Amount</label>
                                 <input type="number" id="rent-amount" class="form-control" placeholder="rent_amount"
-                                name="form[rent_amount]"  />
+                                name="form[rent_amount]" value="{{ old('form.rent_amount') }}" />
                             @error('form.rent_amount')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -161,23 +161,25 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="lease-date">Starts Date</label>
-                                <input type="date" id="lease-date" class="form-control flatpickr-basic"
-                                    placeholder="YYYY-MM-DD" name="form[start_date]"  />
+                                <input type="date" id="lease-date" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD"
+                                name="form[start_date]" value="{{ old('form.start_date') }}" />
                                 @error('form.start_date')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="lease-date">Due On(Day of Month)</label>
-                                <select class="select2 form-select" id="lease-date" name="form[due_on]" >
+                                <select class="select2 form-select" id="lease-date" name="form[due_on]">
                                     <option value=""></option>
                                     @for ($i = 1; $i <= 28; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
+                                        <option value="{{ $i }}" {{ old('form.due_on') == $i ? 'selected' : '' }}>
+                                            {{ $i }}
+                                        </option>
                                     @endfor
                                 </select>
                                 @error('form.due_on')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -203,7 +205,8 @@
                                 <div class="mb-1 col-md-12">
                                     <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount</label>
                                     <input type="number" id="rent-deposit-amount" class="form-control"
-                                        placeholder="Rent Deposit Amount" name="form[rental_deposit_amount]" />
+                                    placeholder="Rent Deposit Amount" name="form[rental_deposit_amount]"
+                                    value="{{ old('form.rental_deposit_amount') }}" />
                                         @error('form.rental_deposit_amount')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -213,14 +216,15 @@
 
                                         <div class="mb-1 col-md-5">
                                             <label class="form-label" for="utility-names">Utility Name</label>
-                                            <select class="select2 w-100" id="utility-names"
-                                                name="deposit[utility_names][]">
-                                                <option value=""></option>
-                                                @foreach ($utility as $utility)
-                                                    <option value="{{ $utility->id }}">{{ $utility->name }}</option>
-                                                @endforeach
-
-                                            </select>
+                                            <select class="form-control w-100" id="utility-names"
+                                            name="deposit[utility_names][]">
+                                            {{-- <option value=""></option> --}}
+                                            @foreach ($utility as $utility)
+                                                <option value="{{ $utility->id }}" {{ old('deposit.utility_names.0') == $utility->id ? 'selected' : '' }}>
+                                                    {{ $utility->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                         @error('deposit.utility_names')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -229,7 +233,8 @@
                                         <div class="mb-1 col-md-5">
                                             <label class="form-label" for="deposit-amount"> Deposit Amount</label>
                                             <input type="number" id="deposit-amount" class="form-control"
-                                                placeholder="deposit-amount" name="deposit[deposit_amounts][]" />
+                placeholder="deposit-amount" name="deposit[deposit_amounts][]"
+                value="{{ old('deposit.deposit_amounts.0') }}" />
 
                                         </div>
                                         <div class="col-md-2 col-12 mb-1 ">
@@ -280,8 +285,9 @@
                                 <select class="select2 w-100 " id="tenant" name="form[tenant_info_id]">
                                     <option value=""></option>
                                     @foreach ($tenant as $tenant)
-                                        <option value="{{ $tenant->id }}">{{ $tenant->user->first_name }}
-                                            {{ $tenant->user->last_name }}</option>
+                                        <option value="{{ $tenant->id }}" {{ old('form.tenant_info_id') == $tenant->id ? 'selected' : '' }}>
+                                            {{ $tenant->user->first_name }} {{ $tenant->user->last_name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('form.tenant_info_id')
@@ -394,45 +400,47 @@
                                 <div class="mb-1 col-md-12">
                                     <label class="form-label" for="generate-invoice">Generate Invoice On (Day of
                                         Month)</label>
-                                    <select class="select2 form-select" id="generate-invoice"
-                                        name="form[generate_invoice]" >
-                                        <option value=""></option>
-                                        @for ($i = 1; $i <= 28; $i++)
-                                            <option value="{{ $i }}">{{ $i }}</option>
-                                        @endfor
-                                    </select>
-                                    @error('form.generate_invoice')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                        <select class="select2 form-select" id="generate-invoice" name="form[generate_invoice]">
+                                            <option value=""></option>
+                                            @for ($i = 1; $i <= 28; $i++)
+                                                <option value="{{ $i }}" {{ old('form.generate_invoice') == $i ? 'selected' : '' }}>
+                                                    {{ $i }}
+                                                </option>
+                                            @endfor
+                                        </select>
+                                        @error('form.generate_invoice')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="row ms-1">
                             <div class="row mt-2">
                                 <div class="form-check form-check-primary">
-
                                     <input type="checkbox" class="form-check-input" id="colorCheck1"
-                                        name="form[next_period_bill]" value="1" />
+                                        name="form[next_period_bill]" value="1"
+                                        {{ old('form.next_period_bill') == 1 ? 'checked' : '' }} />
                                     <h6>Next Period Billing (When billing, invoice period is set as next month.)</h6>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="form-check form-check-primary">
-
                                     <input type="checkbox" class="form-check-input" id="colorCheck2"
-                                        name="form[waive_penalty]" value="1" />
+                                        name="form[waive_penalty]" value="1"
+                                        {{ old('form.waive_penalty') == 1 ? 'checked' : '' }} />
                                     <h6>Waive Penalty (For this lease, do not charge penalties.)</h6>
-
                                 </div>
                             </div>
+
                             <div class="row mb-2">
                                 <div class="form-check form-check-primary">
-
                                     <input type="checkbox" class="form-check-input" id="colorCheck3"
-                                        name="form[skip_starting_period]" value="1" />
+                                        name="form[skip_starting_period]" value="1" {{ old('form.skip_starting_period') == 1 ? 'checked' : '' }} />
                                     <h6>Skip Starting Period (For this lease, do not bill the first period.)</h6>
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="d-flex justify-content-between">

@@ -48,35 +48,33 @@ class LandlordController extends Controller
      */
     public function store(Request $req)
     {
-        try {
-            $req->validate([
-                'first_name' => 'required',
-                'middle_name' => 'required',
-                'last_name' => 'required',
-                'phone_number' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'registration_date' => 'required|date',
-                'country' => 'required',
-                'national_id' => 'required',
-                'state' => 'required',
-                'city' => 'required',
-                'postal_address' => 'required',
-                'physical_address' => 'required',
-                'residential_address' => 'required',
-                'password' => 'required|confirmed',
+        $req->validate([
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+            'phone_number' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'registration_date' => 'required|date',
+            'country' => 'required',
+            'national_id' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'postal_address' => 'required',
+            'physical_address' => 'required',
+            'residential_address' => 'required',
+            'password' => 'required',
+            // 'password' => 'required|confirmed',
+        ]);
 
-            ]);
-            $data = $req->except('_token');
-            User::create($data);
-            $message = 'Your Landlord account has been created successfully!';
-            if ($req->has('phone_number')) {
-                sendOnfonMessage($req->phone_number, $message);
-            }
-            return redirect()->route('admin.landlord.index')->with('success', 'Landlord added successfully');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', $th->getMessage());
-        }
+        $data = $req->except('_token');
+        User::create($data);
+
+        $message = 'Your Landlord account has been created successfully!';
+
+
+        return redirect()->route('admin.landlord.index')->with('success', 'Landlord added successfully');
     }
+
 
     /**
      * Display the specified resource.

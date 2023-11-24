@@ -146,12 +146,12 @@
 
                             {{-- ####### close modal ######### --}}
                             <div>
-                            <div id="sourceForm">
+                            <div id="sourceFormPage1">
                                 <div class="row d-flex align-items-end rept">
                                     <div class="col-md-10 col-12">
                                         <div class="mb-1">
-                                            <input type="text" class="form-control" name="units"
-                                                onclick="unitModal()" id="unitName" placeholder="Units" />
+                                            <input type="text" class="form-control modal-button" name="units"
+                                                onclick="unitModal(this)" id="unitName" placeholder="Units" modal_number='0' />
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-12 ">
@@ -160,13 +160,13 @@
                                                 <i data-feather="x" class="me-25"></i>
                                             </a>
                                             <a class="btn btn-outline-success text-nowrap px-1"
-                                                onclick="addNew('sourceForm','targetForm')">
+                                                onclick="addNewModel('sourceFormPage1','targetFormPage1')">
                                                 <i data-feather="copy" class="me-25"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="addNewAddressModal" tabindex="-1" aria-labelledby="addNewAddressTitle" aria-hidden="true">
+                                <div class="modal fade" id="addNewAddressModal-0" tabindex="-1" aria-labelledby="addNewAddressTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header bg-transparent">
@@ -258,22 +258,22 @@
                                                     </div>
 
 
-                                                    <div class="col-12 text-center d-flex justify-content-between">
+                                                    {{-- <div class="col-12 text-center d-flex justify-content-between">
                                                         <a class="btn btn-outline-secondary mt-2" onclick="unitModalDiscard()">
                                                             Discard
                                                         </a>
                                                         <a class="btn btn-primary me-1 mt-2" onclick="unitModalSubmit()">Submit</a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="targetForm"></div>
+                            <div id="targetFormPage1"></div>
                             <div class="row">
                                 <div class="col-12">
-                                    <a class="btn btn-icon btn-primary" onclick="addNew('sourceForm','targetForm')">
+                                    <a class="btn btn-icon btn-primary" onclick="addNewModel('sourceFormPage1', 'targetFormPage1');">
                                         <i data-feather="plus" class="me-25"></i>
                                         <span>Add New</span>
                                     </a>
@@ -332,7 +332,7 @@
                                         <div class="mb-1 col-md-5">
                                             <label class="form-label" for="payment-method">Payment Method</label>
                                             <select
-                                                class="select2 w-100 "
+                                                class="form-control w-100 "
                                                 name="payment[payment_method][]">
                                                 @foreach ($paymentMethod as $payment)
                                                     <option value="{{ $payment->id }}">{{ $payment->name }}</option>
@@ -406,7 +406,7 @@
                                                     <label class="form-label" for="extra-charges-name">Extra Charges
                                                         Name</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="extra-charges-name" name="extra[extra_charge_name][]">
                                                         @foreach ($extracharges as $charge)
                                                             <option value="{{ $charge->id }}">{{ $charge->name }}
@@ -436,9 +436,9 @@
                                                     <label class="form-label" for="extra-charges-type">Extra Charges
                                                         Type</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="extra-charges-type" name="extra[extra_charges_type][]">
-                                                        <option label=" "></option>
+                                                        <option label=" " >Select Extra Charges</option>
                                                         <option value="fixed">Fixed Value</option>
                                                         <option value="total">% Of Total Rent</option>
                                                         <option value="total_collected">% Of Total Collected Rent</option>
@@ -453,9 +453,9 @@
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="extra_frequency" name="extra[extra_frequency][]">
-                                                        <option label=" "></option>
+                                                        <option label=" ">Select Frequency</option>
                                                         <option value="one_time">One Time</option>
                                                         <option value="period">Period To Period</option>
                                                     </select>
@@ -523,7 +523,7 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-name">Late Fee Name</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="late-fee-name" name="late[late_fee_name][]">
                                                         <option label=" "></option>
                                                         <option value="penalty">Penalty</option>
@@ -546,9 +546,9 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-type">Late Fee type</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="late-fee-type" name="late[late_fee_type][]">
-                                                        <option label=" "></option>
+                                                        <option label=" "> Select Late Fee</option>
                                                         <option value="fixed">Fixed Value</option>
                                                         <option value="total">% Of Total Rent</option>
                                                         <option value="total_collected">% Of Total Collected Rent</option>
@@ -571,9 +571,9 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late_fee_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="late_fee_frequency" name="late[late_fee_frequency][]">
-                                                        <option label=" "></option>
+                                                        <option label=" "> Select Frequency</option>
                                                         <option value="one_time">One Time</option>
                                                         <option value="daily">Daily</option>
                                                         <option value="weekly">Weekly</option>
@@ -639,9 +639,9 @@
                                             <div class="mb-1">
                                                 <label class="form-label" for="utility-name"> Utility Name</label>
                                                 <select
-                                                    class="select2 w-100"
+                                                    class="form-control w-100"
                                                     id="utility-name" name="utility[utility_name][]">
-                                                    <option label=" "></option>
+                                                    <option label=" ">Select Utility Name</option>
                                                     <option value="1">Water</option>
                                                     <option value="2">Gas</option>
                                                     <option value="3">Garbage</option>
@@ -731,6 +731,44 @@
 
 @endsection
 @section('page-script')
+<script>
+
+    var divCounter = 1; // Initialize a counter for the unique ID
+
+    var modalCounter = 1;
+    function addNewModel(source, cloned) {
+        const sourceForm = $('#' + source).clone();
+        var uniqueID = "clonedForm-" + divCounter;
+        sourceForm.attr('id', uniqueID);
+        sourceForm.find(".rept a.btn-outline-danger").attr('onclick', 'remove(this)');
+
+        // Remove select2 classes and attributes to prevent styling issues
+        sourceForm.find('.select2').removeClass('select2-hidden-accessible').removeAttr('aria-hidden');
+
+        $('#' + cloned).append(sourceForm);
+        sourceForm.find(".modal-button").attr('modal_number', modalCounter);
+        sourceForm.find(".modal").attr('id', 'addNewAddressModal-'+modalCounter)
+        // console.log("cloned element", );
+        // var unit_name_button = $('#' + cloned).closest('.modal-button-wrapper').find('#unitName');
+        // unit_name_button.attr('modal_number', modalCounter);
+        modalCounter++;
+
+        // Destroy existing select2 instances
+        $('#' + uniqueID + ' .select2').each(function () {
+            $(this).select2('destroy');
+        });
+
+        // Reinitialize select2 after appending a new form
+        $('#' + uniqueID + ' .select2').select2();
+
+        divCounter++;
+    }
+
+    function remove(element) {
+        $(element).closest('.rept').remove();
+    }
+</script>
+
     <script>
         function showResidentials(element) {
             var unit_status = $(element).closest('.d-flex').find('#unit_status');
@@ -750,8 +788,9 @@
             $('#bath-rooms').addClass('d-none');
         }
 
-        function unitModal() {
-            $('#addNewAddressModal').modal('show')
+        function unitModal(element) {
+            var modal_number = $(element).attr('modal_number');
+            $('#addNewAddressModal-'+modal_number).modal('show');
         }
 
         function unitModalSubmit() {

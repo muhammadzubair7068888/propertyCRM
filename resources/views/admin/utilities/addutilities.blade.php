@@ -3,6 +3,7 @@
 @section('title', 'Form Layouts')
 @section('vendor-style')
     <!-- vendor css files -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
 @endsection
 @section('content')
@@ -23,7 +24,9 @@
                                         <select class="select2 form-select" id="select3-basic" name="property_id">
                                             <option value=""></option>
                                             @foreach ($property as $data)
-                                                <option value="{{ $data->id }}">{{ $data->property_name }}</option>
+                                                <option value="{{ $data->id }}" {{ old('property_id') == $data->id ? 'selected' : '' }}>
+                                                    {{ $data->property_name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         @error('property_id')
@@ -35,7 +38,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-1">
                                         <label class="form-label" for="select2-basic">Utility</label>
-                                        <select class="select2 form-select" id="select2-basic" name="utility_id">
+                                        <select class="select2  form-select" id="select2-basic" name="utility_id">
 
                                             @foreach ($utility as $utilities)
                                                 <option value="{{ $utilities->id }}">{{ $utilities->name }}</option>
@@ -71,7 +74,7 @@
                                                 <div class="mb-1">
                                                     <label class="form-label" for="unit-name"> Unit</label>
 
-                                                    <select class="select2 w-100" id="unit-name"
+                                                    <select class=" select2 select2-container w-100" id="unit-name"
                                                         name="utility[property_unit_id][]">
                                                         @foreach ($propertyUnit as $unit)
                                                             <option value="{{ $unit->id }}"> {{ $unit->unit_name }}

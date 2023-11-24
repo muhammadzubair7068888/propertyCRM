@@ -53,52 +53,7 @@ class TenentController extends Controller
      */
     public function store(Request $req)
     {
-        // $req->validate([
-        //     'form.tenantInfo.tenant_type_id' => 'required',
-        //     'form.user.status' => 'required',
-        //     'form.user.first_name' => 'required',
-        //     'form.user.middle_name' => 'required',
-        //     'form.user.last_name' => 'required',
-        //     'form.user.gender' => 'required',
-        //     'form.user.registration_date' => 'required|date',
-        //     'form.user.national_id' => 'required',
-        //     'form.user.martial_status' => 'required',
-        //     'form.user.phone_number' => 'required',
-        //     'form.user.email' => 'required|email|unique:users,email',
-        //     'form.user.country' => 'required',
-        //     'form.user.city' => 'required',
-        //     'form.user.postal_code' => 'required',
-        //     'form.user.postal_address' => 'required',
-        //     'form.user.physical_address' => 'required',
-        //     'form.user.user_type' => 'required',
-        //     'form.user.password' => 'required|confirmed',
 
-        //     'form.tenantInfo.kin_name' => 'required',
-        //     'form.tenantInfo.kin_phone_number' => 'required',
-        //     'form.tenantInfo.kin_relation' => 'required',
-
-        //     'form.tenantInfo.kin_emergency_name' => 'required',
-        //     'form.tenantInfo.kin_emergency_phone_number' => 'required',
-        //     'form.tenantInfo.kin_emergency_emial' => 'required|email|unique:tenant_infos,kin_emergency_emial',
-        //     'form.tenantInfo.kin_emergency_relation' => 'required',
-
-        //     'form.tenantInfo.kin_emergency_postal_address' => 'required',
-        //     'form.tenantInfo.kin_emergency_physical_address' => 'required',
-        //     'form.tenantInfo.employment_status' => 'required',
-
-        //     'form.tenantInfo.employment_position' => 'required',
-        //     'form.tenantInfo.employment_contact_phone' => 'required',
-        //     'form.tenantInfo.employment_contact_email' => 'required|email|unique:tenant_infos,employment_contact_email',
-
-        //     'form.tenantInfo.employment_postal_address' => 'required',
-        //     'form.tenantInfo.employment_physical_address' => 'required',
-        //     'form.tenantInfo.business_name' => 'required',
-        //     'form.tenantInfo.licence_name' => 'required',
-        //     'form.tenantInfo.tax_id' => 'required',
-        //     'form.tenantInfo.bussiness_address' => 'required',
-        //     'form.tenantInfo.bussiness_industry' => 'required',
-        //     'form.tenantInfo.bussiness_description' => 'required',
-        // ]);
         $req->validate([
             'form.tenantInfo.tenant_type_id' => 'required',
             'form.user.status' => 'required',
@@ -117,7 +72,8 @@ class TenentController extends Controller
             'form.user.postal_address' => 'required',
             'form.user.physical_address' => 'required',
             'form.user.user_type' => 'required',
-            'form.user.password' => 'required|confirmed',
+            'form.user.password' => 'required',
+
 
             'form.tenantInfo.kin_name' => 'required',
             'form.tenantInfo.kin_phone_number' => 'required',
@@ -146,6 +102,7 @@ class TenentController extends Controller
             'form.tenantInfo.bussiness_description' => 'required',
         ], [
             // Custom error messages for each validation rule
+            // 'form.user.password.confirmed' => 'The password confirmation does not match.',
             'form.tenantInfo.tenant_type_id.required' => 'Required',
             'form.user.status.required' => 'Required',
             'form.user.first_name.required' => 'Required',
@@ -201,8 +158,8 @@ class TenentController extends Controller
         $tenantInfo['user_id'] = $user->id;
 
         TenantInfo::create($tenantInfo);
-        $message = 'Your Tenant account has been created successfully!';
-        sendOnfonMessage($req->form['user']['phone_number'], $message);
+        // $message = 'Your Tenant account has been created successfully!';
+        // sendOnfonMessage($req->form['user']['phone_number'], $message);
         return redirect()->route('admin.tenant.index')->with('success', 'Tenant added successfully');
     }
 
