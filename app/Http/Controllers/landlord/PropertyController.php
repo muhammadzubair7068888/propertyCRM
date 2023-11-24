@@ -19,9 +19,23 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $pagedata['property']=Property::all();
-        return view('landlord.Property.index',$pagedata);
+        $property = Property::all();
+      return view("admin.property.index",['property'=>$property]);
     }
+    // public function index()
+    // {
+    //     // Authentication check
+    //     if (auth()->check()) {
+    //         // Logged in user ke properties retrieve karein
+    //         $properties = auth()->user()->properties;
+
+    //         // View ko properties ke sath bhejein
+    //         return view('landlord.property.index', compact('properties'));
+    //     } else {
+    //         // User login nahi hai, aap kisi default view ko bhi return kar sakte hain
+    //         return view('auth.login');
+    //     }
+    // }
 
     /**
      * Show the form for creating a new resource.

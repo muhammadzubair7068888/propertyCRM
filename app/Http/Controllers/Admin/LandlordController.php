@@ -62,16 +62,15 @@ class LandlordController extends Controller
             'postal_address' => 'required',
             'physical_address' => 'required',
             'residential_address' => 'required',
-            'password' => 'required|confirmed',
+            'password' => 'required',
+            // 'password' => 'required|confirmed',
         ]);
 
         $data = $req->except('_token');
         User::create($data);
 
         $message = 'Your Landlord account has been created successfully!';
-        // if ($req->has('phone_number')) {
-        //     sendOnfonMessage($req->phone_number, $message);
-        // }
+
 
         return redirect()->route('admin.landlord.index')->with('success', 'Landlord added successfully');
     }

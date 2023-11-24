@@ -258,12 +258,12 @@
                                                     </div>
 
 
-                                                    <div class="col-12 text-center d-flex justify-content-between">
+                                                    {{-- <div class="col-12 text-center d-flex justify-content-between">
                                                         <a class="btn btn-outline-secondary mt-2" onclick="unitModalDiscard()">
                                                             Discard
                                                         </a>
                                                         <a class="btn btn-primary me-1 mt-2" onclick="unitModalSubmit()">Submit</a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -332,7 +332,7 @@
                                         <div class="mb-1 col-md-5">
                                             <label class="form-label" for="payment-method">Payment Method</label>
                                             <select
-                                                class="select2 w-100 "
+                                                class="form-control w-100 "
                                                 name="payment[payment_method][]">
                                                 @foreach ($paymentMethod as $payment)
                                                     <option value="{{ $payment->id }}">{{ $payment->name }}</option>
@@ -406,7 +406,7 @@
                                                     <label class="form-label" for="extra-charges-name">Extra Charges
                                                         Name</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="extra-charges-name" name="extra[extra_charge_name][]">
                                                         @foreach ($extracharges as $charge)
                                                             <option value="{{ $charge->id }}">{{ $charge->name }}
@@ -436,9 +436,9 @@
                                                     <label class="form-label" for="extra-charges-type">Extra Charges
                                                         Type</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="extra-charges-type" name="extra[extra_charges_type][]">
-                                                        <option label=" "></option>
+                                                        <option label=" " >Select Extra Charges</option>
                                                         <option value="fixed">Fixed Value</option>
                                                         <option value="total">% Of Total Rent</option>
                                                         <option value="total_collected">% Of Total Collected Rent</option>
@@ -453,9 +453,9 @@
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="extra_frequency" name="extra[extra_frequency][]">
-                                                        <option label=" "></option>
+                                                        <option label=" ">Select Frequency</option>
                                                         <option value="one_time">One Time</option>
                                                         <option value="period">Period To Period</option>
                                                     </select>
@@ -523,7 +523,7 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-name">Late Fee Name</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="late-fee-name" name="late[late_fee_name][]">
                                                         <option label=" "></option>
                                                         <option value="penalty">Penalty</option>
@@ -546,9 +546,9 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-type">Late Fee type</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="late-fee-type" name="late[late_fee_type][]">
-                                                        <option label=" "></option>
+                                                        <option label=" "> Select Late Fee</option>
                                                         <option value="fixed">Fixed Value</option>
                                                         <option value="total">% Of Total Rent</option>
                                                         <option value="total_collected">% Of Total Collected Rent</option>
@@ -571,9 +571,9 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late_fee_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 "
+                                                        class="form-control w-100 "
                                                         id="late_fee_frequency" name="late[late_fee_frequency][]">
-                                                        <option label=" "></option>
+                                                        <option label=" "> Select Frequency</option>
                                                         <option value="one_time">One Time</option>
                                                         <option value="daily">Daily</option>
                                                         <option value="weekly">Weekly</option>

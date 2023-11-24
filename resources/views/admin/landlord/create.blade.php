@@ -178,7 +178,7 @@
                                         <label class="form-label" for="confirm-password">Confirm Password</label>
                                         <input type="password" id="confirm-password"
                                             class="form-control @error('password') border-1 border-danger @enderror"
-                                            placeholder="Confirm Password" name="password_confirmation" />
+                                            placeholder="Confirm Password" name="confirmed" />
                                         @error('password')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror

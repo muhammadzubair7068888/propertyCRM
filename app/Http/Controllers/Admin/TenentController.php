@@ -72,7 +72,8 @@ class TenentController extends Controller
             'form.user.postal_address' => 'required',
             'form.user.physical_address' => 'required',
             'form.user.user_type' => 'required',
-            'form.user.password' => 'required|confirmed',
+            'form.user.password' => 'required',
+
 
             'form.tenantInfo.kin_name' => 'required',
             'form.tenantInfo.kin_phone_number' => 'required',
@@ -101,6 +102,7 @@ class TenentController extends Controller
             'form.tenantInfo.bussiness_description' => 'required',
         ], [
             // Custom error messages for each validation rule
+            // 'form.user.password.confirmed' => 'The password confirmation does not match.',
             'form.tenantInfo.tenant_type_id.required' => 'Required',
             'form.user.status.required' => 'Required',
             'form.user.first_name.required' => 'Required',

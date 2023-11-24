@@ -216,9 +216,9 @@
 
                                         <div class="mb-1 col-md-5">
                                             <label class="form-label" for="utility-names">Utility Name</label>
-                                            <select class="select2 w-100" id="utility-names"
+                                            <select class="form-control w-100" id="utility-names"
                                             name="deposit[utility_names][]">
-                                            <option value=""></option>
+                                            {{-- <option value=""></option> --}}
                                             @foreach ($utility as $utility)
                                                 <option value="{{ $utility->id }}" {{ old('deposit.utility_names.0') == $utility->id ? 'selected' : '' }}>
                                                     {{ $utility->name }}

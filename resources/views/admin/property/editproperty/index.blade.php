@@ -262,7 +262,7 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <label class="form-label" for="unit-type">Unit Type</label>
-                                                        <select id="unit-type" name="unit[unit_type][]" class="select2 form-select">
+                                                        <select id="unit-type" name="unit[unit_type][]" class="form-control form-select">
                                                             <option value="">Select a Unit</option>
                                                             <option value="one-rooms" {{$unitType=="one-rooms" ? 'selected' : '' }}>Single Room</option>
                                                             <option value="three-rooms" {{$unitType=="three-rooms" ? 'selected' : '' }}>Two Bed Rooms</option>
@@ -349,7 +349,7 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="agent-commission-type">Agent Commission Type</label>
                                 <select
-                                    class="select2 w-100 @error('property[agent_commission_type]') border-1 border-danger @enderror"
+                                    class="form-control w-100 @error('property[agent_commission_type]') border-1 border-danger @enderror"
                                     id="agent-commission-type" name="property[agent_commission_type]"
                                     value="">
                                     <option label=" "></option>
@@ -372,7 +372,7 @@
                                         <div class="mb-1 col-md-5">
                                             <label class="form-label" for="payment-method">Payment Method</label>
                                             <select
-                                                class="select2 w-100 @error('payment[payment_method]['.$index.']') border-1 border-danger @enderror"
+                                                class="form-control w-100 @error('payment[payment_method]['.$index.']') border-1 border-danger @enderror"
                                                 id="payment-method" name="payment[payment_method][]">
 
                                                 @foreach ($paymentMethod as $paymentMethodOption)
@@ -453,7 +453,7 @@
                                                     <label class="form-label" for="extra-charges-name">Extra Charges
                                                         Name</label>
                                                     <select
-                                                        class="select2 w-100 @error('extra[extra_charge_name]['.$index.']') border-1 border-danger @enderror"
+                                                        class="form-control w-100 @error('extra[extra_charge_name]['.$index.']') border-1 border-danger @enderror"
                                                         id="extra-charges-name" name="extra[extra_charge_name][{{$index}}]">
                                                         @foreach ($extracharges as $charge)
                                                             <option value="{{ $charge->id }}" {{$charge->id == $extraCharge->extra_charges_frequency ? 'selected' : ''}}>{{ $charge->name }}</option>
@@ -484,7 +484,7 @@
                                                     <label class="form-label" for="extra-charges-type">Extra Charges
                                                         Type</label>
                                                     <select
-                                                        class="select2 w-100 @error('extra[extra_charges_type]['.$index.']') border-1 border-danger @enderror"
+                                                        class="form-control w-100 @error('extra[extra_charges_type]['.$index.']') border-1 border-danger @enderror"
                                                         id="extra-charges-type" name="extra[extra_charges_type][{{$index}}]">
                                                         <option label=" "></option>
                                                         <option value="fixed" {{$extraCharge->extra_charges_Type =='fixed' ? 'selected' : ''}}>Fixed Value</option>
@@ -501,7 +501,7 @@
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 @error('extra[extra_frequency]['.$index.']') border-1 border-danger @enderror"
+                                                        class="form-control w-100 @error('extra[extra_frequency]['.$index.']') border-1 border-danger @enderror"
                                                         id="extra_frequency" name="extra[extra_frequency][{{$index}}]">
                                                         <option label=" "></option>
                                                         <option value="one_time" {{$extraCharge->extra_charges_frequency =='one_time' ? 'selected' : ''}}>One Time</option>
@@ -572,7 +572,7 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-name">Late Fee Name</label>
                                                     <select
-                                                        class="select2 w-100 @error('late[late_fee_name]['.$index.']') border-1 border-danger @enderror"
+                                                        class="form-control w-100 @error('late[late_fee_name]['.$index.']') border-1 border-danger @enderror"
                                                         id="late-fee-name" name="late[late_fee_name][{{$index}}]">
                                                         <option value="penalty" {{$lateFee->late_fee_name == "penalty" ? 'selected': ''}}>Penalty</option>
                                                     </select>
@@ -593,7 +593,7 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-type">Late Fee type</label>
                                                     <select
-                                                        class="select2 w-100 @error('late[late_fee_type]['.$index.']') border-1 border-danger @enderror"
+                                                        class="form-control w-100 @error('late[late_fee_type]['.$index.']') border-1 border-danger @enderror"
                                                         id="late-fee-type" name="late[late_fee_type][{{$index}}]">
                                                         <option label=" "></option>
                                                         <option value="fixed" {{$lateFee->late_fee_type =='fixed' ? 'selected' : ''}}>Fixed Value</option>
@@ -618,7 +618,7 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late_fee_frequency">Frequency</label>
                                                     <select
-                                                        class="select2 w-100 @error('late[late_fee_frequency]['.$index.']') border-1 border-danger @enderror"
+                                                        class="form-control w-100 @error('late[late_fee_frequency]['.$index.']') border-1 border-danger @enderror"
                                                         id="late_fee_frequency" name="late[late_fee_frequency][{{$index}}]">
                                                         <option label=" "></option>
                                                         <option value="one_time" {{$lateFee->late_fee_frequency == 'one_time' ? 'selected' : ''}}>One Time</option>
@@ -684,7 +684,7 @@
                                             <div class="mb-1">
                                                 <label class="form-label" for="utility-name"> Utility Name</label>
                                                 <select
-                                                    class="select2 w-100 @error('utility[utility_name]['.$index.']') border-1 border-danger @enderror"
+                                                    class="form-control w-100 @error('utility[utility_name]['.$index.']') border-1 border-danger @enderror"
                                                     id="utility-name" name="utility[utility_name][{{$index}}]">
                                                     @foreach ($utility as $utilities )
                                                         <option label=" "></option>
