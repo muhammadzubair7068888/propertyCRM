@@ -79,7 +79,7 @@
     </div>
     <div class="row">
         <div class="mb-1 col-12">
-            <label class="form-label" for="postal-address">Postal Adress</label>
+            <label class="form-label" for="postal-address">Postal Address</label>
             <input type="text" class="form-control " id="postal-address"
                 name="postal_address" value="{{$generalSetting->postal_address}}" required />
         </div>
@@ -116,7 +116,7 @@
                 <option value="WV">West Virginia</option>
             </select>
         </div>
-        <div class="mb-1 col-4">
+        <div class="mb-1 col-4">`
             <label class="form-label" for="amount-decimal-separator">Amount Decimal Separator</label>
             <select class="select2 form-select" id="amount-decimal-separator" name="decimal_seprator">
                 <option value="AK">Alaska</option>
