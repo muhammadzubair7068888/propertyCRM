@@ -19,8 +19,12 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $property = Property::all();
-      return view("admin.property.index",['property'=>$property]);
+        $landlord = auth()->user(); // Assuming the logged-in user is a landlord
+
+        $pagedata['properties'] = $landlord->properties;
+
+
+        return view("landlord.property.index",  $pagedata);
     }
     // public function index()
     // {
