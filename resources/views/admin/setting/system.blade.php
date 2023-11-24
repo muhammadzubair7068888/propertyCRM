@@ -72,7 +72,7 @@
     </div>
     <div class="row">
         <div class="mb-1 col-12">
-            <label class="form-label" for="physical-address">Physical Adress</label>
+            <label class="form-label" for="physical-address">Physical Address</label>
             <input type="text" class="form-control " id="physical-address"
                 name="phy_address" value="{{$generalSetting->phy_address}}" required />
         </div>

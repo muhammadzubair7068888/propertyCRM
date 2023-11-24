@@ -29,6 +29,11 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'onfon' => [
+        'senderid' => env('ONFON_SMS_SENDER_ID'),
+        'apikey' => env('ONFON_SMS_API_KEY'),
+        'clientid' => env('ONFON_SMS_CLIENT_ID'),
+    ],
     'twilio' => [
         'sid' => env('TWILIO_SID'),
         'token' => env('TWILIO_AUTH_TOKEN'),
@@ -38,10 +43,5 @@ return [
         'url' => env('MPESA_URL'),
         'key' => env('MPESA_KEY'),
         'secret' => env('MPESA_CONSUMER_SECRET'),
-    ],
-    'onfon' => [
-        'senderid' => env('ONFON_SMS_SENDER_ID'),
-        'apikey' => env('ONFON_SMS_API_KEY'),
-        'clientid' => env('ONFON_SMS_CLIENT_ID'),
     ],
 ];

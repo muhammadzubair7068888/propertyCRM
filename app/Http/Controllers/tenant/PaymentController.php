@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Safaricom\Mpesa\Mpesa;
 use GuzzleHttp\Client;
 use App\Http\Controllers\ClientException;
-use App\Http\Controllers\tenant\Carbon; 
+use App\Http\Controllers\tenant\Carbon;
 class PaymentController extends Controller
 {
     /**
@@ -89,7 +89,7 @@ class PaymentController extends Controller
         //
     }
 
-    
+
     public function paymentMethod(Request $request)
     {
         // Replace 'YourBusinessShortCode' and 'YourPasskey' with your actual values
@@ -139,7 +139,7 @@ class PaymentController extends Controller
         $consumerSecret = env('MPESA_CONSUMER_SECRET');
         $credentials = base64_encode($consumerKey . ':' . $consumerSecret);
         $client = new Client();
-        $response = $client->get('https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials', [
+        $response = $client->GET('https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials', [
             'headers' => [
                 'Authorization' => 'Basic ' . $credentials,
             ],
