@@ -1,5 +1,5 @@
  <!-- Modal -->
- <div
+ {{-- <div
  class="modal fade text-start"
  id="inlineForm"
  tabindex="-1"
@@ -41,7 +41,8 @@
          </div>
          <div class="col-md-12 mb-2">
              <label class="form-label" for="number1">Amount</label>
-             <input type="number" id="number1" class="form-control" value="" name="amount"/>
+             <input type="number" id="number1" class="form-control" value="{{ number_format($invoice->leaseInfo->rent_amount + $invoice->leaseInfo->rental_deposit_amount + $invoice->leaseInfo->deposit->deposit_amount, 2) }}
+             " name="amount"/>
            </div>
            <div class="col-md-12 mb-2">
              <label class="form-label" for="number2">Phone Number</label>
@@ -59,4 +60,4 @@
      </form>
    </div>
  </div>
-</div>
+</div> --}}

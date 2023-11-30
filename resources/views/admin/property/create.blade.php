@@ -211,8 +211,8 @@
                                                     </div>
                                                     <div class="col-12 ">
                                                         <label class="form-label" for="unit-name">Unit Name</label>
-                                                        <input type="text" id="unit-name" name="unit[unit_name][]" class="form-control"
-                                                            placeholder="Unit Name" data-msg="Please enter your first name" />
+                                                        <input type="text" id="unit-name" name="unit[unit_name][]" class="unit-name form-control"
+                                                            placeholder="Unit Name" data-msg="Please enter your first name" modalNumber="0" />
                                                     </div>
                                                     <div class="col-12 ">
                                                         <label class="form-label" for="unit-floor">Unit Floor</label>
@@ -258,12 +258,12 @@
                                                     </div>
 
 
-                                                    {{-- <div class="col-12 text-center d-flex justify-content-between">
-                                                        <a class="btn btn-outline-secondary mt-2" onclick="unitModalDiscard()">
+                                                    <div class="col-12 text-center d-flex justify-content-between">
+                                                        {{-- <a class="btn btn-outline-secondary mt-2" onclick="unitModalDiscard()">
                                                             Discard
-                                                        </a>
-                                                        <a class="btn btn-primary me-1 mt-2" onclick="unitModalSubmit()">Submit</a>
-                                                    </div> --}}
+                                                        </a> --}}
+                                                        <a class="btn btn-primary me-1 mt-2" id="submit_modal" onclick="unitModalSubmit(0);">Submit</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -742,12 +742,15 @@
         sourceForm.attr('id', uniqueID);
         sourceForm.find(".rept a.btn-outline-danger").attr('onclick', 'remove(this)');
 
+        sourceForm.find('a#submit_modal').attr('onclick', `unitModalSubmit(${modalCounter})`);
+
         // Remove select2 classes and attributes to prevent styling issues
         sourceForm.find('.select2').removeClass('select2-hidden-accessible').removeAttr('aria-hidden');
 
         $('#' + cloned).append(sourceForm);
         sourceForm.find(".modal-button").attr('modal_number', modalCounter);
-        sourceForm.find(".modal").attr('id', 'addNewAddressModal-'+modalCounter)
+        sourceForm.find(".modal").attr('id', 'addNewAddressModal-'+modalCounter);
+        sourceForm.find("#unit-name").attr('modalNumber', modalCounter);
         // console.log("cloned element", );
         // var unit_name_button = $('#' + cloned).closest('.modal-button-wrapper').find('#unitName');
         // unit_name_button.attr('modal_number', modalCounter);
@@ -793,10 +796,13 @@
             $('#addNewAddressModal-'+modal_number).modal('show');
         }
 
-        function unitModalSubmit() {
-            $('#addNewAddressModal').modal('hide');
-            unitName = $('input[name="unit_floor"]').val();
-            $('#unitName').val(unitName);
+        function unitModalSubmit(count) {
+            var model = $('#addNewAddressModal-'+count);
+            model.modal('hide');
+            // unitName = $('input[name="unit_name"]').val();
+            var unitName = model.find('#unit-name').val();
+            var data = $('#unitName').attr('modal_number');
+            console.log(data);
         }
 
         function unitModalDiscard() {
@@ -808,6 +814,13 @@
                 'hide'
             ); // Assuming it's a modal, you can use 'modal' or replace it with the appropriate method for closing your form.
         }
+
+        $(document).on("keyup", ".unit-name", function(e) {
+            let modal_number = $(this).attr('modalNumber');
+            var specific_input = $("input[modal_number='" + modal_number + "']");
+            specific_input.val(e.target.value);
+        });
+
     </script>
 
 
