@@ -71,7 +71,7 @@
                                   <span class="badge rounded-pill {{$class}}">{{$name}}</span>
                                 </td>
                                 <td>
-                                  <a href="{{route('admin.invoice.create')}}" class="item-edit" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-feather='eye' class='font-medium-4' ></i>
+                                  <a href="{{route('admin.invoice.generateInvoice',$invoice->id)}}" class="item-edit" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-feather='eye' class='font-medium-4' ></i>
                                     </a>
                                 </td>
 

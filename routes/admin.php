@@ -104,6 +104,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('utilities/destroy/{id}', [UtilitiesController::class,'destroy'])->name('utilities.destroy');
     Route::get('view/utilities',[UtilitiesController::class,'view'])->name('view.utilities');
     Route::resource('invoice', InvoiceController::class);
+    Route::get('invoice/create/{id}', [InvoiceController::class,'generateInvoice'])->name('invoice.generateInvoice');
     Route::resource('payment', PaymentController::class);
     Route::get('payments/confirmation', [PaymentController::class,'paid'])->name('payment.paid');
     Route::get('receipt/{id}',[PaymentController::class,'show'])->name('receipt');

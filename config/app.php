@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         \Safaricom\Mpesa\MpesaServiceProvider::class,
         App\Providers\MenuServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Helper::class,
         'Mpesa'=> \Safaricom\Mpesa\MpesaServiceProvider::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

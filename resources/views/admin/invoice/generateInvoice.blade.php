@@ -1,6 +1,6 @@
- @extends('layouts/contentLayoutMaster')
+  @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Invoice Preview')
+ @section('title', 'Invoice Preview')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('vendors/css/pickers/flatpickr/flatpickr.min.css')}}">
@@ -23,7 +23,7 @@
 
 
 
- <div class="row">
+ {{-- <div class="row">
     <div class="col-lg-3 col-sm-6">
       <div class="card">
         <div class="card-body d-flex align-items-center justify-content-between">
@@ -79,7 +79,7 @@
       </div>
 
 
-  </div>
+  </div> --}}
 <section class="invoice-preview-wrapper">
   <div class="row invoice-preview">
     <!-- Invoice -->
@@ -145,16 +145,18 @@
                     </g>
                   </g>
                 </svg>
-                <h3 class="text-primary invoice-logo">Vuexy</h3>
+                <h3 class="text-primary invoice-logo">Butterfly Prime Realtors</h3>
               </div>
-              <p class="card-text mb-25">Office 149, 450 South Brand Brooklyn</p>
-              <p class="card-text mb-25">San Diego County, CA 91905, USA</p>
-              <p class="card-text mb-0">+1 (123) 456 7891, +44 (876) 543 2198</p>
+              <p class="card-text mb-25">Kingsway Avenue</p>
+              <p class="card-text mb-25">P.O Box 1234 . 568 Nairobi,Kenya</p>
+              <p class="card-text mb-0">+254705828000</p>
+              <p class="card-text mb-0">info@butterflyprime.com</p>
+              <p class="card-text mb-0">www.butterflyprime.com</p>
             </div>
             <div class="mt-md-0 mt-2">
               <h4 class="invoice-title">
                 Invoice
-                <span class="invoice-number">#3492</span>
+                <span class="invoice-number">{{$invoice->invoice_number}}</span>
               </h4>
               <div class="invoice-date-wrapper">
                 <p class="invoice-date-title">Date Issued:</p>
@@ -313,7 +315,7 @@
     <!-- /Invoice -->
 
     <!-- Invoice Actions -->
-    <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
+    {{-- <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
       <div class="card">
         <div class="card-body">
           <button class="btn btn-primary w-100 mb-75" data-bs-toggle="modal" data-bs-target="#send-invoice-sidebar">
@@ -327,7 +329,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> --}}
     <!-- /Invoice Actions -->
   </div>
 </section>
