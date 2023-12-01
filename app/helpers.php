@@ -75,7 +75,7 @@ if (!function_exists('sendPayment')) {
     function sendPayment($phone,$amount)
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer gOKAAKxpOj73pA22t22d4WE5ImZA',
+            'Authorization' => 'Bearer 7V1uHUSw8A67blv7w9Oi4PbpAuPK',
             'Content-Type' => 'application/json',
         ])
         ->post(config('services.mpesa.url'), [

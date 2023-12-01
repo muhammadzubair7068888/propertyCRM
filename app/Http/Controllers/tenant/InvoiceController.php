@@ -164,7 +164,8 @@ public function paymentMethod(Request $request)
      */
     public function show($id)
     {
-        //
+        $pagedata['invoice'] = Invoice::with('leaseInfo','leaseinfo.deposit')->find($id);
+        return response()->json([$pagedata]);
     }
 
     /**

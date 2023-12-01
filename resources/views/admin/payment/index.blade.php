@@ -8,15 +8,11 @@
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
-
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
-
 @endsection
 @include('admin.payment.show-payment-model')
 @section('content')
     <!-- Multilingual -->
-
-
     <section id="multilingual-datatable">
         <div class="row">
             <div class="col-12">
@@ -26,7 +22,6 @@
                         <button type="submit" class="btn btn-primary" id="addNewCardTitle"
                             data-bs-toggle="modal" data-bs-target="#addNewCard">+ Add Payment</button>
                     </div>
-
                     <div class="card-datatable">
                         <table class="datatables-table table">
                             <thead>
@@ -79,12 +74,9 @@
                                                 class="item-edit pe-1 text-success">
                                                 <i data-feather="download" class="font-medium-4"></i>
                                             </a>
-
                                         </td>
-
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>
@@ -124,9 +116,6 @@
     </script>
 
     <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
-
-
-
     <script>
         $('.showmodal').on('click', function() {
             $('#showmodal').modal('show');
@@ -149,7 +138,6 @@
                 }
             });
         })
-
         function getLease(val, name) {
             $('#lease').empty();
             $('#paidby').val(name);
@@ -200,7 +188,6 @@
             });
         }
     });
-
     // Edit
     $('#edittenant').on('change', function() {
         $('#editleases').empty();
@@ -226,7 +213,6 @@
         }
     });
 </script>
-
     <script>
         const textarea = document.getElementById('floatingTextarea2');
         const charCount = document.getElementById('charCount');
@@ -242,5 +228,4 @@
             }
         });
     </script>
-
 @endsection
