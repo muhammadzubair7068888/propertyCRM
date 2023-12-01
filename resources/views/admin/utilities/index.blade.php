@@ -54,9 +54,9 @@
                     <td>{{$mainUtility->main_utilities->property->property_name}}</td>
                     <td>{{ $mainUtility->property_unit->unit_name  }}</td>
                     <td>
-                        <a href="{{route('admin.utilities.show',$mainUtility->id)}}"><i data-feather="eye" class="font-medium-4"></i></a>
-                        <a onclick="ajaxHit(`{{route('admin.utilities.editnote',$mainUtility->id)}}`)"><i data-feather="edit" class="font-medium-4" ></i></a>
-                        <a href="{{route('admin.utilities.destroy',$mainUtility->id)}}"><i data-feather="trash" class="font-medium-4"></i></a>
+                        <a href="{{route('admin.utilities.show',$mainUtility->id)}}" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-feather="eye" class="font-medium-4"></i></a>
+                        <a onclick="ajaxHit(`{{route('admin.utilities.editnote',$mainUtility->id)}}`)" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i data-feather="edit" class="text-success font-medium-4" ></i></a>
+                        <a href="{{route('admin.utilities.destroy',$mainUtility->id)}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i data-feather="trash" class="text-danger font-medium-4"></i></a>
                     </td>
                 </tr>
                 @endforeach

@@ -41,18 +41,29 @@ class RepairController extends Controller
      */
     public function store(Request $request)
     {
+try{
 
-           $request->validate([
-            'property_id' => 'required',
-            'property_unit_id' => 'required',
-            'complaint_date' => 'required',
-            'complaint_description' => 'required',
-        ]);
-        $data=$request->except('_token');
+    $request->validate([
+        'property_id' => 'required',
+        'property_unit_id' => 'required',
+        'complaint_date' => 'required',
+        'complaint_description' => 'required',
+    ]);
+    $data=$request->except('_token');
 
-          Repair::create($data);
+      Repair::create($data);
 
-        return  redirect()->route('admin.repair')->with('success', 'Complaint has been lodged');
+    return  redirect()->route('admin.repair')->with('success', 'Complaint has been lodged');
+}catch (\Illuminate\Validation\ValidationException $e) {
+    // ValidationException will contain the validation errors
+    return redirect()->back()->withInput()->withErrors($e->errors())->with('error', 'Please correct the following errors and try again.');
+} catch (\Exception $e) {
+    // Log the error or handle it in a way that makes sense for your application
+    // For example, you can log the error using Laravel's logging facilities
+    \Log::error('Error creating property record: ' . $e->getMessage());
+    // Redirect back with an error message and input data
+    return redirect()->back()->withInput()->with('error', 'An error occurred while adding the Lease. Please try again.');
+}
 
     }
 

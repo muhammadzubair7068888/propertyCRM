@@ -60,16 +60,16 @@
                                         <td>{{ $notice->leaseInfo->unit->unit_name }}</td>
                                         <td>
                                             <a href="{{ route('admin.vacate_notice.show', $notice->id) }}"
-                                                class="item-edit pe-1">
+                                                class="item-edit pe-1" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
                                                 <i data-feather="eye" class="font-medium-4"></i>
                                             </a>
                                             <button type="button" class="item-edit text-success openModalLink border-0 bg-white "
-                                                tenant_id="{{ $notice->id }}" data-bs-target="#addNewCard">
+                                                tenant_id="{{ $notice->id }}" data-bs-target="#addNewCard" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </button>
 
                                             <a href="{{ route('admin.vacate_notice.destroy', $notice->id) }}"
-                                                class="item-edit pe-1 text-danger">
+                                                class="item-edit pe-1 text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                                 <i data-feather="trash" class="font-medium-4"></i>
                                             </a>
 

@@ -42,23 +42,34 @@ class VacateNoticeController extends Controller
     public function store(Request $request)
     {
 
-    $request->validate([
-    'tenant_info_id'=>'required',
-    'lease_id'=>'required',
-    'vacate_date'=>'required',
-    'vacate_reason'=>'required'
-   ]);
-//    dd($request);
+    try{
+        $request->validate([
+            'tenant_info_id'=>'required',
+            'lease_id'=>'required',
+            'vacate_date'=>'required',
+            'vacate_reason'=>'required'
+           ]);
+        //    dd($request);
 
-   $data=$request->except('_token');
-    // dd($data);
-   if($data){
-    $vacate = VacateNotice::create($data);
-    // $message = 'Your VacatNotice has been created successfully!';
-    // sendOnfonMessage($vacate->tenantInfo->user->phone_number, $message);
-    return redirect()->route('admin.vacate_notice.index')->with('success','Notice added successfully!');
-    }else{
-        return redirect()->route('admin.vacate_notice.index')->with('error','Notice does not added !');
+           $data=$request->except('_token');
+            // dd($data);
+           if($data){
+            $vacate = VacateNotice::create($data);
+            // $message = 'Your VacatNotice has been created successfully!';
+            // sendOnfonMessage($vacate->tenantInfo->user->phone_number, $message);
+            return redirect()->route('admin.vacate_notice.index')->with('success','Notice added successfully!');
+            }else{
+                return redirect()->route('admin.vacate_notice.index')->with('error','Notice does not added !');
+            }
+    }catch (\Illuminate\Validation\ValidationException $e) {
+        // ValidationException will contain the validation errors
+        return redirect()->back()->withInput()->withErrors($e->errors())->with('error', 'Please correct the following errors and try again.');
+    } catch (\Exception $e) {
+        // Log the error or handle it in a way that makes sense for your application
+        // For example, you can log the error using Laravel's logging facilities
+        \Log::error('Error creating property record: ' . $e->getMessage());
+        // Redirect back with an error message and input data
+        return redirect()->back()->withInput()->with('error', 'An error occurred while adding the Lease. Please try again.');
     }
     }
     /**

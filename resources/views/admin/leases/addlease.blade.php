@@ -110,7 +110,7 @@
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="property">Property</label>
+                                <label class="form-label" for="property">Property<span class="text-danger fs-5">*</span></label>
                                 <select class="select2 form-select" id="lease-property" name="form[property_id]">
                                     <option value=""></option>
                                     @foreach ($property as $property)
@@ -124,7 +124,7 @@
                                 @enderror
                             </div>
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="unit">Unit</label>
+                                <label class="form-label" for="unit">Unit<span class="text-danger fs-5">*</span></label>
                                 <select class="select2 form-select" id="property-unit" name="form[property_unit_id]">
                                     <option value=""></option>
                                 </select>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="lease-type">Lease Type</label>
+                                <label class="form-label" for="lease-type">Lease Type<span class="text-danger fs-5">*</span></label>
                                 <select class="select2 form-select" id="lease-type" name="form[lease_type_id]">
                                     <option value=""></option>
                                     @foreach ($leasetype as $lease)
@@ -150,7 +150,7 @@
 
                             </div>
                             <div class="mb-1 form-password-toggle col-md-6">
-                                <label class="form-label" for="rent-amount">Rent Amount</label>
+                                <label class="form-label" for="rent-amount">Rent Amount<span class="text-danger fs-5">*</span></label>
                                 <input type="number" id="rent-amount" class="form-control" placeholder="rent_amount"
                                 name="form[rent_amount]" value="{{ old('form.rent_amount') }}" />
                             @error('form.rent_amount')
@@ -160,7 +160,7 @@
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="lease-date">Starts Date</label>
+                                <label class="form-label" for="lease-date">Starts Date<span class="text-danger fs-5">*</span></label>
                                 <input type="date" id="lease-date" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD"
                                 name="form[start_date]" value="{{ old('form.start_date') }}" />
                                 @error('form.start_date')
@@ -168,7 +168,7 @@
                                 @enderror
                             </div>
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="lease-date">Due On(Day of Month)</label>
+                                <label class="form-label" for="lease-date">Due On(Day of Month)<span class="text-danger fs-5">*</span></label>
                                 <select class="select2 form-select" id="lease-date" name="form[due_on]">
                                     <option value=""></option>
                                     @for ($i = 1; $i <= 28; $i++)
@@ -203,7 +203,7 @@
                         <div class="row">
                             <div>
                                 <div class="mb-1 col-md-12">
-                                    <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount</label>
+                                    <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount<span class="text-danger fs-5">*</span></label>
                                     <input type="number" id="rent-deposit-amount" class="form-control"
                                     placeholder="Rent Deposit Amount" name="form[rental_deposit_amount]"
                                     value="{{ old('form.rental_deposit_amount') }}" />
@@ -281,7 +281,7 @@
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-12">
-                                <label class="form-label" for="tenant">Tenant</label>
+                                <label class="form-label" for="tenant">Tenant<span class="text-danger fs-5">*</span></label>
                                 <select class="select2 w-100 " id="tenant" name="form[tenant_info_id]">
                                     <option value=""></option>
                                     @foreach ($tenant as $tenant)
@@ -399,7 +399,7 @@
                             <div class="row">
                                 <div class="mb-1 col-md-12">
                                     <label class="form-label" for="generate-invoice">Generate Invoice On (Day of
-                                        Month)</label>
+                                        Month)<span class="text-danger fs-5">*</span></label>
                                         <select class="select2 form-select" id="generate-invoice" name="form[generate_invoice]">
                                             <option value=""></option>
                                             @for ($i = 1; $i <= 28; $i++)

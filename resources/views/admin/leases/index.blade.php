@@ -57,14 +57,14 @@
                                         </a>
                                         </td>
                                         <td>
-                                           <a href="{{route('admin.view.leases',$lease->id)}}" class="item-edit pe-1">
+                                           <a href="{{route('admin.view.leases',$lease->id)}}" class="item-edit pe-1" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
                                                 <i data-feather="eye" class="font-medium-4"></i>
                                             </a>
                                             <a href="{{route('admin.leases.edit',$lease->id)}}"
-                                                class="item-edit pe-1 text-success">
+                                                class="item-edit pe-1 text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </a>
-                                            <a href="{{route('admin.leases.destroy',$lease->id)}}"><i data-feather="trash" class="font-medium-4 text-danger"></i></a>
+                                            <a href="{{route('admin.leases.destroy',$lease->id)}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i data-feather="trash" class="font-medium-4 text-danger"></i></a>
 
                                       </td>
                                     </tr>

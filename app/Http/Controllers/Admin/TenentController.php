@@ -51,116 +51,236 @@ class TenentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $req)
+    // {
+
+    //     $req->validate([
+    //         'form.tenantInfo.tenant_type_id' => 'required',
+    //         'form.user.status' => 'required',
+    //         'form.user.first_name' => 'required',
+    //         'form.user.middle_name' => 'required',
+    //         'form.user.last_name' => 'required',
+    //         'form.user.gender' => 'required',
+    //         'form.user.registration_date' => 'required|date',
+    //         'form.user.national_id' => 'required',
+    //         'form.user.martial_status' => 'required',
+    //         'form.user.phone_number' => 'required',
+    //         'form.user.email' => 'required|email|unique:users,email',
+    //         'form.user.country' => 'required',
+    //         'form.user.city' => 'required',
+    //         'form.user.postal_code' => 'required',
+    //         'form.user.postal_address' => 'required',
+    //         'form.user.physical_address' => 'required',
+    //         'form.user.user_type' => 'required',
+    //         'form.user.password' => 'required',
+
+
+    //         'form.tenantInfo.kin_name' => 'required',
+    //         'form.tenantInfo.kin_phone_number' => 'required',
+    //         'form.tenantInfo.kin_relation' => 'required',
+
+    //         'form.tenantInfo.kin_emergency_name' => 'required',
+    //         'form.tenantInfo.kin_emergency_phone_number' => 'required',
+    //         'form.tenantInfo.kin_emergency_emial' => 'required|email|unique:tenant_infos,kin_emergency_emial',
+    //         'form.tenantInfo.kin_emergency_relation' => 'required',
+
+    //         'form.tenantInfo.kin_emergency_postal_address' => 'required',
+    //         'form.tenantInfo.kin_emergency_physical_address' => 'required',
+    //         'form.tenantInfo.employment_status' => 'required',
+
+    //         'form.tenantInfo.employment_position' => 'required',
+    //         'form.tenantInfo.employment_contact_phone' => 'required',
+    //         'form.tenantInfo.employment_contact_email' => 'required|email|unique:tenant_infos,employment_contact_email',
+
+    //         'form.tenantInfo.employment_postal_address' => 'required',
+    //         'form.tenantInfo.employment_physical_address' => 'required',
+    //         'form.tenantInfo.business_name' => 'required',
+    //         'form.tenantInfo.licence_name' => 'required',
+    //         'form.tenantInfo.tax_id' => 'required',
+    //         'form.tenantInfo.bussiness_address' => 'required',
+    //         'form.tenantInfo.bussiness_industry' => 'required',
+    //         'form.tenantInfo.bussiness_description' => 'required',
+    //     ], [
+    //         // Custom error messages for each validation rule
+    //         // 'form.user.password.confirmed' => 'The password confirmation does not match.',
+    //         'form.tenantInfo.tenant_type_id.required' => 'Required',
+    //         'form.user.status.required' => 'Required',
+    //         'form.user.first_name.required' => 'Required',
+    //         'form.user.middle_name.required' => 'Required',
+    //         'form.user.last_name.required' => 'Required',
+    //         'form.user.gender.required' => 'Required',
+    //         'form.user.registration_date.required' => 'Required',
+    //         'form.user.national_id.required' => 'Required',
+    //         'form.user.martial_status.required' => 'Required',
+    //         'form.user.phone_number.required' => 'Required',
+    //         'form.user.email.required' => 'Required',
+    //         'form.user.country.required' => 'Required',
+    //         'form.user.city.required' => 'Required',
+    //         'form.user.postal_code.required' => 'Required',
+    //         'form.user.physical_address.required' => 'Required',
+    //         'form.user.postal_address.required' => 'Required',
+    //         'form.user.user_type.required' => 'Required',
+    //         'form.user.password.required' => 'Required',
+    //         'form.tenantInfo.kin_name.required' => 'required',
+
+    //         'form.tenantInfo.kin_phone_number.required' => 'required',
+    //         'form.tenantInfo.kin_relation.required' => 'required',
+
+    //         'form.tenantInfo.kin_emergency_name.required' => 'required',
+    //         'form.tenantInfo.kin_emergency_phone_number.required' => 'required',
+    //         'form.tenantInfo.kin_emergency_emial.required' => 'required',
+    //         'form.tenantInfo.kin_emergency_relation.required' => 'required',
+
+    //         'form.tenantInfo.kin_emergency_postal_address.required' => 'required',
+    //         'form.tenantInfo.kin_emergency_physical_address.required' => 'required',
+    //         'form.tenantInfo.employment_status.required' => 'required',
+
+    //         'form.tenantInfo.employment_position.required' => 'required',
+    //         'form.tenantInfo.employment_contact_phone.required' => 'required',
+    //         'form.tenantInfo.employment_contact_email.required' => 'required',
+
+    //         'form.tenantInfo.employment_postal_address.required' => 'required',
+    //         'form.tenantInfo.employment_physical_address.required' => 'required',
+    //         'form.tenantInfo.business_name.required' => 'required',
+    //         'form.tenantInfo.licence_name.required' => 'required',
+    //         'form.tenantInfo.tax_id.required' => 'required',
+    //         'form.tenantInfo.bussiness_address.required' => 'required',
+    //         'form.tenantInfo.bussiness_industry.required' => 'required',
+    //         'form.tenantInfo.bussiness_description.required' => 'required',
+    //     ]);
+
+
+    //     $data = $req->except('_token', 'password_confirmation');
+    //     $userTenant = $data['form']['user'];
+    //     $tenantInfo = $data['form']['tenantInfo'];
+
+    //     $user = User::create($userTenant);
+    //     $tenantInfo['user_id'] = $user->id;
+
+    //     TenantInfo::create($tenantInfo);
+    //     // $message = 'Your Tenant account has been created successfully!';
+    //     // sendOnfonMessage($req->form['user']['phone_number'], $message);
+    //     return redirect()->route('admin.tenant.index')->with('success', 'Tenant added successfully');
+    // }
     public function store(Request $req)
     {
-
-        $req->validate([
-            'form.tenantInfo.tenant_type_id' => 'required',
-            'form.user.status' => 'required',
-            'form.user.first_name' => 'required',
-            'form.user.middle_name' => 'required',
-            'form.user.last_name' => 'required',
-            'form.user.gender' => 'required',
-            'form.user.registration_date' => 'required|date',
-            'form.user.national_id' => 'required',
-            'form.user.martial_status' => 'required',
-            'form.user.phone_number' => 'required',
-            'form.user.email' => 'required|email|unique:users,email',
-            'form.user.country' => 'required',
-            'form.user.city' => 'required',
-            'form.user.postal_code' => 'required',
-            'form.user.postal_address' => 'required',
-            'form.user.physical_address' => 'required',
-            'form.user.user_type' => 'required',
-            'form.user.password' => 'required',
-
-
-            'form.tenantInfo.kin_name' => 'required',
-            'form.tenantInfo.kin_phone_number' => 'required',
-            'form.tenantInfo.kin_relation' => 'required',
-
-            'form.tenantInfo.kin_emergency_name' => 'required',
-            'form.tenantInfo.kin_emergency_phone_number' => 'required',
-            'form.tenantInfo.kin_emergency_emial' => 'required|email|unique:tenant_infos,kin_emergency_emial',
-            'form.tenantInfo.kin_emergency_relation' => 'required',
-
-            'form.tenantInfo.kin_emergency_postal_address' => 'required',
-            'form.tenantInfo.kin_emergency_physical_address' => 'required',
-            'form.tenantInfo.employment_status' => 'required',
-
-            'form.tenantInfo.employment_position' => 'required',
-            'form.tenantInfo.employment_contact_phone' => 'required',
-            'form.tenantInfo.employment_contact_email' => 'required|email|unique:tenant_infos,employment_contact_email',
-
-            'form.tenantInfo.employment_postal_address' => 'required',
-            'form.tenantInfo.employment_physical_address' => 'required',
-            'form.tenantInfo.business_name' => 'required',
-            'form.tenantInfo.licence_name' => 'required',
-            'form.tenantInfo.tax_id' => 'required',
-            'form.tenantInfo.bussiness_address' => 'required',
-            'form.tenantInfo.bussiness_industry' => 'required',
-            'form.tenantInfo.bussiness_description' => 'required',
-        ], [
-            // Custom error messages for each validation rule
-            // 'form.user.password.confirmed' => 'The password confirmation does not match.',
-            'form.tenantInfo.tenant_type_id.required' => 'Required',
-            'form.user.status.required' => 'Required',
-            'form.user.first_name.required' => 'Required',
-            'form.user.middle_name.required' => 'Required',
-            'form.user.last_name.required' => 'Required',
-            'form.user.gender.required' => 'Required',
-            'form.user.registration_date.required' => 'Required',
-            'form.user.national_id.required' => 'Required',
-            'form.user.martial_status.required' => 'Required',
-            'form.user.phone_number.required' => 'Required',
-            'form.user.email.required' => 'Required',
-            'form.user.country.required' => 'Required',
-            'form.user.city.required' => 'Required',
-            'form.user.postal_code.required' => 'Required',
-            'form.user.physical_address.required' => 'Required',
-            'form.user.postal_address.required' => 'Required',
-            'form.user.user_type.required' => 'Required',
-            'form.user.password.required' => 'Required',
-            'form.tenantInfo.kin_name.required' => 'required',
-
-            'form.tenantInfo.kin_phone_number.required' => 'required',
-            'form.tenantInfo.kin_relation.required' => 'required',
-
-            'form.tenantInfo.kin_emergency_name.required' => 'required',
-            'form.tenantInfo.kin_emergency_phone_number.required' => 'required',
-            'form.tenantInfo.kin_emergency_emial.required' => 'required',
-            'form.tenantInfo.kin_emergency_relation.required' => 'required',
-
-            'form.tenantInfo.kin_emergency_postal_address.required' => 'required',
-            'form.tenantInfo.kin_emergency_physical_address.required' => 'required',
-            'form.tenantInfo.employment_status.required' => 'required',
-
-            'form.tenantInfo.employment_position.required' => 'required',
-            'form.tenantInfo.employment_contact_phone.required' => 'required',
-            'form.tenantInfo.employment_contact_email.required' => 'required',
-
-            'form.tenantInfo.employment_postal_address.required' => 'required',
-            'form.tenantInfo.employment_physical_address.required' => 'required',
-            'form.tenantInfo.business_name.required' => 'required',
-            'form.tenantInfo.licence_name.required' => 'required',
-            'form.tenantInfo.tax_id.required' => 'required',
-            'form.tenantInfo.bussiness_address.required' => 'required',
-            'form.tenantInfo.bussiness_industry.required' => 'required',
-            'form.tenantInfo.bussiness_description.required' => 'required',
-        ]);
+        try {
+            $req->validate([
+                        'form.tenantInfo.tenant_type_id' => 'required',
+                        'form.user.status' => 'required',
+                        'form.user.first_name' => 'required',
+                        'form.user.middle_name' => 'required',
+                        'form.user.last_name' => 'required',
+                        'form.user.gender' => 'required',
+                        'form.user.registration_date' => 'required|date',
+                        'form.user.national_id' => 'required',
+                        'form.user.martial_status' => 'required',
+                        'form.user.phone_number' => 'required',
+                        'form.user.email' => 'required|email|unique:users,email',
+                        'form.user.country' => 'required',
+                        'form.user.city' => 'required',
+                        'form.user.postal_code' => 'required',
+                        'form.user.postal_address' => 'required',
+                        'form.user.physical_address' => 'required',
+                        'form.user.user_type' => 'required',
+                        'form.user.password' => 'required',
 
 
-        $data = $req->except('_token', 'password_confirmation');
-        $userTenant = $data['form']['user'];
-        $tenantInfo = $data['form']['tenantInfo'];
+                        'form.tenantInfo.kin_name' => 'required',
+                        'form.tenantInfo.kin_phone_number' => 'required',
+                        'form.tenantInfo.kin_relation' => 'required',
 
-        $user = User::create($userTenant);
-        $tenantInfo['user_id'] = $user->id;
+                        'form.tenantInfo.kin_emergency_name' => 'required',
+                        'form.tenantInfo.kin_emergency_phone_number' => 'required',
+                        'form.tenantInfo.kin_emergency_emial' => 'required|email|unique:tenant_infos,kin_emergency_emial',
+                        'form.tenantInfo.kin_emergency_relation' => 'required',
 
-        TenantInfo::create($tenantInfo);
-        // $message = 'Your Tenant account has been created successfully!';
-        // sendOnfonMessage($req->form['user']['phone_number'], $message);
-        return redirect()->route('admin.tenant.index')->with('success', 'Tenant added successfully');
+                        'form.tenantInfo.kin_emergency_postal_address' => 'required',
+                        'form.tenantInfo.kin_emergency_physical_address' => 'required',
+                        'form.tenantInfo.employment_status' => 'required',
+
+                        'form.tenantInfo.employment_position' => 'required',
+                        'form.tenantInfo.employment_contact_phone' => 'required',
+                        'form.tenantInfo.employment_contact_email' => 'required|email|unique:tenant_infos,employment_contact_email',
+
+                        'form.tenantInfo.employment_postal_address' => 'required',
+                        'form.tenantInfo.employment_physical_address' => 'required',
+                        'form.tenantInfo.business_name' => 'required',
+                        'form.tenantInfo.licence_name' => 'required',
+                        'form.tenantInfo.tax_id' => 'required',
+                        'form.tenantInfo.bussiness_address' => 'required',
+                        'form.tenantInfo.bussiness_industry' => 'required',
+                        'form.tenantInfo.bussiness_description' => 'required',
+                    ], [
+                        // Custom error messages for each validation rule
+                        // 'form.user.password.confirmed' => 'The password confirmation does not match.',
+                        'form.tenantInfo.tenant_type_id.required' => 'Required',
+                        'form.user.status.required' => 'Required',
+                        'form.user.first_name.required' => 'Required',
+                        'form.user.middle_name.required' => 'Required',
+                        'form.user.last_name.required' => 'Required',
+                        'form.user.gender.required' => 'Required',
+                        'form.user.registration_date.required' => 'Required',
+                        'form.user.national_id.required' => 'Required',
+                        'form.user.martial_status.required' => 'Required',
+                        'form.user.phone_number.required' => 'Required',
+                        'form.user.email.required' => 'Required',
+                        'form.user.country.required' => 'Required',
+                        'form.user.city.required' => 'Required',
+                        'form.user.postal_code.required' => 'Required',
+                        'form.user.physical_address.required' => 'Required',
+                        'form.user.postal_address.required' => 'Required',
+                        'form.user.user_type.required' => 'Required',
+                        'form.user.password.required' => 'Required',
+                        'form.tenantInfo.kin_name.required' => 'required',
+
+                        'form.tenantInfo.kin_phone_number.required' => 'required',
+                        'form.tenantInfo.kin_relation.required' => 'required',
+
+                        'form.tenantInfo.kin_emergency_name.required' => 'required',
+                        'form.tenantInfo.kin_emergency_phone_number.required' => 'required',
+                        'form.tenantInfo.kin_emergency_emial.required' => 'required',
+                        'form.tenantInfo.kin_emergency_relation.required' => 'required',
+
+                        'form.tenantInfo.kin_emergency_postal_address.required' => 'required',
+                        'form.tenantInfo.kin_emergency_physical_address.required' => 'required',
+                        'form.tenantInfo.employment_status.required' => 'required',
+
+                        'form.tenantInfo.employment_position.required' => 'required',
+                        'form.tenantInfo.employment_contact_phone.required' => 'required',
+                        'form.tenantInfo.employment_contact_email.required' => 'required',
+
+                        'form.tenantInfo.employment_postal_address.required' => 'required',
+                        'form.tenantInfo.employment_physical_address.required' => 'required',
+                        'form.tenantInfo.business_name.required' => 'required',
+                        'form.tenantInfo.licence_name.required' => 'required',
+                        'form.tenantInfo.tax_id.required' => 'required',
+                        'form.tenantInfo.bussiness_address.required' => 'required',
+                        'form.tenantInfo.bussiness_industry.required' => 'required',
+                        'form.tenantInfo.bussiness_description.required' => 'required',
+                    ]);
+
+            $data = $req->except('_token', 'password_confirmation');
+            $userTenant = $data['form']['user'];
+            $tenantInfo = $data['form']['tenantInfo'];
+
+            $user = User::create($userTenant);
+            $tenantInfo['user_id'] = $user->id;
+
+            TenantInfo::create($tenantInfo);
+
+            return redirect()->route('admin.tenant.index')->with('success', 'Tenant added successfully');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // ValidationException will contain the validation errors
+            return redirect()->back()->withInput()->withErrors($e->errors())->with('error', 'Please correct the following errors and try again.');
+        } catch (\Exception $e) {
+            // Log the error or handle it in a way that makes sense for your application
+            // For example, you can log the error using Laravel's logging facilities
+            \Log::error('Error creating tenant account: ' . $e->getMessage());
+
+            // Redirect back with an error message and input data
+            return redirect()->back()->withInput()->with('error', 'An error occurred while adding the tenant. Please try again.');
+        }
     }
 
 
