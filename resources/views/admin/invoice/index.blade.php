@@ -73,6 +73,8 @@
                                 <td>
                                   <a href="{{route('admin.invoice.generateInvoice',$invoice->id)}}" class="item-edit" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-feather='eye' class='font-medium-4' ></i>
                                     </a>
+                                  <a href="{{route('admin.invoice.downloadInvoice',$invoice->id)}}" class="item-edit text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-feather='download' class='font-medium-4' ></i>
+                                    </a>
                                 </td>
 
                               </tr>

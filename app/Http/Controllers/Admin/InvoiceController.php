@@ -20,12 +20,32 @@ class InvoiceController extends Controller
     }
 
     public function generateInvoice($id){
+
         $pagedata['invoice']=Invoice::find($id);
         return view('admin.invoice.generateInvoice',$pagedata);
-        // $pdf = PDF::loadView('admin.invoice.generateInvoice');
+        // $pdf = PDF::loadView('admin.invoice.generateInvoice',$pagedata);
+        // dd($pdf);
+
         // return $pdf->download('genInvoice.pdf');
-        // return view('admin.invoice.generateInvoice');
+
     }
+    public function downloadInvoice($id) {
+        $pagedata['invoice'] = Invoice::find($id);
+
+        if (!$pagedata['invoice']) {
+            // Handle the case where the invoice with the given $id is not found.
+            // You might want to return a response or redirect to an error page.
+            abort(404, 'Invoice not found');
+        }
+
+        $pdf = PDF::loadView('admin.invoice.downloadInvoice', $pagedata);
+
+        return $pdf->download('genInvoice.pdf');
+    }
+
+
+
+
 
 
     /**
