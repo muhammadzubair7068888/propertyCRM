@@ -143,7 +143,7 @@
               >Invoices</a
             >
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a
               class="nav-link"
               id="vacate-notices"
@@ -154,7 +154,7 @@
               aria-selected="false"
               >Vacate Notice</a
             >
-          </li>
+          </li> --}}
         </ul>
 
         <!-- Tab panes -->

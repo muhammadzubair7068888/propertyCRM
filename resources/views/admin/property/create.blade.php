@@ -16,7 +16,15 @@
 
 @section('content')
 
-
+<style>
+    ul.parsley-errors-list{
+        padding-left: 0px !important;
+    }
+    .parsley-errors-list li{
+        list-style: none !important;
+        color: red !important;
+    }
+</style>
     <!-- Vertical Wizard -->
     <section class="vertical-wizard">
         <div class="bs-stepper vertical vertical-wizard-example">
@@ -71,7 +79,7 @@
                 </div>
             </div>
             <div class="bs-stepper-content">
-                <form action="{{ route('admin.properties.store') }}" method="post">
+                <form action="{{ route('admin.properties.store') }}" method="post" data-parsley-validate>
                     @csrf
                     <div id="account-details-vertical" class="content" role="tabpanel"
                         aria-labelledby="account-details-vertical-trigger">
@@ -83,7 +91,9 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-property">Property Name<span class="text-danger fs-5">*</span></label>
                                 <input type="text" id="vertical-property"
-                                    class="form-control"
+                                    class="form-control" data-parsley-pattern="^[a-zA-Z\s]+$"
+                                    data-parsley-pattern-message="Only letters and spaces are allowed."
+                                    required
                                     placeholder="Property Name" name="property[property_name]"
                                     value="{{ old('property.property_name') }}" />
                                 @error('property.property_name')
@@ -92,7 +102,9 @@
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-property-code">Property Code<span class="text-danger fs-5">*</span></label>
-                                <input type="text" id="vertical-property-code"
+                                <input type="text" id="vertical-property-code" data-parsley-pattern="^\d+$"
+                                data-parsley-pattern-message="Only numbers are allowed."
+                                required
                                     class="form-control"
                                     placeholder="Property Code" name="property[property_code]"
                                     value="{{ old('property.property_code') }}" />
@@ -105,7 +117,9 @@
                             <div class="mb-1 form-password-toggle col-md-12">
                                 <label class="form-label" for="vertical-location">Location<span class="text-danger fs-5">*</span></label>
                                 <input type="text" id="vertical-location" name="property[location]"
-                                    class="form-control"
+                                    class="form-control" data-parsley-pattern="^[a-zA-Z\s]+$"
+                                    data-parsley-pattern-message="Only letters and spaces are allowed."
+                                    required
                                     placeholder="Location" value="{{ old('property.location') }}" />
                                 @error('property.location')
                                     <div class="text-danger">{{ $message }}</div>
@@ -311,7 +325,11 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="agent-commission-value">Agent Commission Value<span class="text-danger fs-5">*</span></label>
                                 <input type="number" id="agent-commission-value"
+
                                     class="form-control"
+                                    data-parsley-pattern="^\d+$"
+                                data-parsley-pattern-message="Only numbers are allowed."
+                                required
                                     placeholder="Agent Commission Value" name="property[agent_commission_value]"
                                     value="{{ old('property.agent_commission_value') }}" />
                                 @error('property.agent_commission_value')
@@ -321,6 +339,8 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="agent-commission-type">Agent Commission Type<span class="text-danger fs-5">*</span></label>
                                 <select
+                                    required
+                                    data-parsley-errors-container="#property_error"
                                     class="select2 w-100"
                                     id="agent-commission-type" name="property[agent_commission_type]">
                                     <option label=" "></option>
@@ -328,6 +348,7 @@
                                     <option value="total" {{ old('property.agent_commission_type') == 'total' ? 'selected' : '' }}>% Of Total Rent</option>
                                     <option value="total_collected" {{ old('property.agent_commission_type') == 'total_collected' ? 'selected' : '' }}>% Of Total Collected Rent</option>
                                 </select>
+                                <span id="property_error" class="text-danger"></span>
                                 @error('property.agent_commission_type')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -429,7 +450,9 @@
                                             <div class="col-md-2 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra-charges-value">Extra Charges Value<span class="text-danger fs-5">*</span></label>
-                                                    <input type="number" class="form-control" id="extra-charges-value"
+                                                    <input type="number" class="form-control" id="extra-charges-value" data-parsley-pattern="^\d+$"
+                                                    data-parsley-pattern-message="Only numbers are allowed."
+                                                    required
                                                         aria-describedby="itemname" placeholder="Extra Charges Value"
                                                         name="extra[extra_charges_value][]"
                                                         value="{{ old('extra.extra_charges_value.0') }}" />
@@ -442,7 +465,7 @@
                                             <div class="col-md-2 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="extra-charges-type">Extra Charges Type</label>
-                                                    <select class="form-control w-100" id="extra-charges-type" name="extra[extra_charges_type][]">
+                                                    <select class="form-control w-100" id="extra-charges-type" name="extra[extra_charges_type][]" >
                                                         <option label=" ">Select Extra Charges</option>
                                                         <option value="fixed" {{ old('extra.extra_charges_type.0') == 'fixed' ? 'selected' : '' }}>Fixed Value</option>
                                                         <option value="total" {{ old('extra.extra_charges_type.0') == 'total' ? 'selected' : '' }}>% Of Total Rent</option>
@@ -522,7 +545,7 @@
                                             <div class="row">
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="late-fee-name">Late Fee Name<span class="text-danger fs-5">*</span></label>
-                                                    <select class="form-control w-100" id="late-fee-name" name="late[late_fee_name][]">
+                                                    <select class="form-control w-100" id="late-fee-name" name="late[late_fee_name][]" required>
                                                         <option label=" "></option>
                                                         <option value="penalty" {{ old('late.late_fee_name.0') == 'penalty' ? 'selected' : '' }}>Penalty</option>
                                                     </select>
@@ -534,6 +557,9 @@
                                                     <label class="form-label" for="late-fee-value">Late Fee Value<span class="text-danger fs-5">*</span></label>
                                                     <input type="number" id="late-fee-value"
                                                         class="form-control"
+                                                        data-parsley-pattern="^\d+$"
+data-parsley-pattern-message="Only numbers are allowed."
+required
                                                         placeholder="Late Fee Value" name="late[late_fee_value][]"
                                                         value="{{ old('late.late_fee_value.0') }}" />
                                                     @error('late.late_fee_value.*')
@@ -556,7 +582,9 @@
                                                 <div class="mb-1 col-md-6">
                                                     <label class="form-label" for="grace-period">Grace Period(Days)<span class="text-danger fs-5">*</span></label>
                                                     <input type="number" id="grace-period"
-                                                        class="form-control"
+                                                        class="form-control" data-parsley-pattern="^\d+$"
+                                                        data-parsley-pattern-message="Only numbers are allowed."
+                                                        required
                                                         placeholder="Grace Period(Days)" name="late[late_fee_grace_period][]"
                                                         value="{{ old('late.late_fee_grace_period.0') }}" />
                                                     @error('late.late_fee_grace_period.*')
@@ -641,7 +669,9 @@
                                         <div class="col-md-2 col-12">
                                             <div class="mb-1">
                                                 <label class="form-label" for="itemcost">Variable Cost<span class="text-danger fs-5">*</span></label>
-                                                <input type="number" class="form-control" id="itemcost"
+                                                <input type="number" class="form-control" id="itemcost" data-parsley-pattern="^\d+$"
+                                                data-parsley-pattern-message="Only numbers are allowed."
+                                                required
                                                     aria-describedby="itemcost" placeholder="32" name="utility[utility_cost][]"
                                                     value="{{ old('utility.utility_cost.0') }}" />
                                                 @error('utility.utility_cost.*')
@@ -653,7 +683,9 @@
                                         <div class="col-md-2 col-12">
                                             <div class="mb-1">
                                                 <label class="form-label" for="fix-fee">Fixed Fee<span class="text-danger fs-5">*</span></label>
-                                                <input type="number" class="form-control" id="fix-fee"
+                                                <input type="number" class="form-control" id="fix-fee" data-parsley-pattern="^\d+$"
+                                                data-parsley-pattern-message="Only numbers are allowed."
+                                                required
                                                     aria-describedby="itemquantity" placeholder="1" name="utility[fix_fee][]"
                                                     value="{{ old('utility.fix_fee.0') }}" />
                                                 @error('utility.fix_fee.*')

@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
- 
+
 
   <link rel="stylesheet" href="{{asset(mix('vendors/css/forms/select/select2.min.css'))}}">
   <link rel="stylesheet" href="{{asset(mix('vendors/css/editors/quill/katex.min.css'))}}">
@@ -72,7 +72,7 @@
                   > System </a
                 >
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a
                   class="nav-link fs-4"
                   id="baseVerticalLeft-tab2"
@@ -83,8 +83,8 @@
                   aria-selected="false"
                   > Property</a
                 >
-              </li>
-              <li class="nav-item">
+              </li> --}}
+              {{-- <li class="nav-item">
                 <a
                   class="nav-link fs-4"
                   id="baseVerticalLeft-tab3"
@@ -95,8 +95,8 @@
                   aria-selected="false"
                   > Lease</a
                 >
-              </li>
-              <li class="nav-item">
+              </li> --}}
+              {{-- <li class="nav-item">
                 <a
                   class="nav-link fs-4"
                   id="baseVerticalLeft-tab4"
@@ -107,8 +107,8 @@
                   aria-selected="false"
                   > Tenant</a
                 >
-              </li>
-              <li class="nav-item">
+              </li> --}}
+              {{-- <li class="nav-item">
                 <a
                   class="nav-link fs-4"
                   id="baseVerticalLeft-tab5"
@@ -119,8 +119,8 @@
                   aria-selected="false"
                   > Notifications</a
                 >
-              </li>
-              <li class="nav-item">
+              </li> --}}
+              {{-- <li class="nav-item">
                 <a
                   class="nav-link fs-4"
                   id="baseVerticalLeft-tab6"
@@ -144,16 +144,16 @@
                   >
                  User & Roles
                 </a>
-              </li>
+              </li> --}}
             </ul>
             <div class="tab-content">
               <div class="tab-pane active " id="tabVerticalLeft1" role="tabpanel" aria-labelledby="baseVerticalLeft-tab1">
                @include('admin.setting.system')
               </div>
               <div class="tab-pane" id="tabVerticalLeft2" role="tabpanel" aria-labelledby="baseVerticalLeft-tab2">
-              
+
                     @include('admin.setting.property.index')
-                
+
               </div>
               <div class="tab-pane" id="tabVerticalLeft3" role="tabpanel" aria-labelledby="baseVerticalLeft-tab3">
                 <p>
@@ -222,7 +222,7 @@
 
  <script src="{{asset(mix('js/scripts/pages/page-blog-edit.js'))}}"></script>
 
- 
+
 @endpush
 
 @section('page-script')
@@ -230,9 +230,9 @@
 <script>
     $(document).ready(function() {
         $('.dt-propertytype').DataTable();
-       
+
     });
-   
+
 </script>
 @endsection
 
