@@ -32,6 +32,7 @@ Route::prefix('tenant')->name('tenant.')->middleware('auth')->group(function () 
     Route::resource('invoice', TenantInvoiceController::class);
     Route::post('invoice/payment', [PaymentController::class,'paymentMethod'])->name('invoice.payment');
     Route::resource('leases', TenantLeaseController::class);
+    Route::resource('paymentdone', TenantLeaseController::class);
     Route::resource('payment', TenantPaymentController::class);
     Route::resource('profile', TenantProfileController::class);
     Route::post('update/{id}', [TenantProfileController::class , 'update'])->name('update');

@@ -15,14 +15,9 @@
 <script src="{{asset('vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
 <script src="{{asset('vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
 @endsection
-
 @section('page-script')
 <script src="{{asset('js/scripts/pages/app-invoice.js')}}"></script>
 @endsection
-
-
-
-
  <div class="row">
     <div class="col-lg-3 col-sm-6">
       <div class="card">

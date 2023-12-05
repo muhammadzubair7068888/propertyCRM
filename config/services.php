@@ -34,13 +34,13 @@ return [
         'apikey' => env('ONFON_SMS_API_KEY'),
         'clientid' => env('ONFON_SMS_CLIENT_ID'),
     ],
-    'twilio' => [
-        'sid' => env('TWILIO_SID'),
-        'token' => env('TWILIO_AUTH_TOKEN'),
-        'from' => env('TWILIO_PHONE_NUMBER'),
-    ],
+    // 'twilio' => [
+    //     'sid' => env('TWILIO_SID'),
+    //     'token' => env('TWILIO_AUTH_TOKEN'),
+    //     'from' => env('TWILIO_PHONE_NUMBER'),
+    // ],
     'mpesa' => [
-        'url' => env('MPESA_URL'),
+        'url' => env('MPESA_URL'), 
         'key' => env('MPESA_KEY'),
         'secret' => env('MPESA_CONSUMER_SECRET'),
     ],

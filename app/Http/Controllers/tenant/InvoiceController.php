@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 
+
 class InvoiceController extends Controller
 {
     /**
@@ -143,7 +144,6 @@ public function paymentMethod(Request $request)
     $response = $client->post($url, [
         'json' => $payload,
     ]);
-    dd($response);
     if ($response->successful()) {
         $responseData = $response->json();
         // Process the API response data as needed
@@ -164,7 +164,8 @@ public function paymentMethod(Request $request)
      */
     public function show($id)
     {
-        //
+        $pagedata['invoice'] = Invoice::with('leaseInfo','leaseinfo.deposit')->find($id);
+        return response()->json([$pagedata]);
     }
 
     /**
@@ -200,4 +201,19 @@ public function paymentMethod(Request $request)
     {
         //
     }
+    public function storePayment(Request $request)
+{
+    // Validate the request data as needed
+
+    // Assuming you have a 'payments' table to store payment information
+    $payment = Payment::create([
+        'invoice_id' => $request->input('invoice_id'),
+        'amount' => $request->input('amount'),
+        // Add other payment-related fields here
+    ]);
+
+    // You can perform additional actions here if needed
+
+    return response()->json(['message' => 'Payment information stored successfully']);
+}
 }

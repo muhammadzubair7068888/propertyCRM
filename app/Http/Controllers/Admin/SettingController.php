@@ -233,5 +233,4 @@ class SettingController extends Controller
     {
         //
     }
-
 }
