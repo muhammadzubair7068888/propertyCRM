@@ -5,9 +5,6 @@ use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 
 
-
-
-
 if (!function_exists('user_id')) {
     function user_id()
     {

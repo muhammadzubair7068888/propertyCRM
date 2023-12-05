@@ -17,7 +17,7 @@
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">Summary</h4>
-                </div> 
+                </div>
                 <div class="ms-3 justify-content-start row">
                     <div class="text-gray mb-1 col-5">Amount
                         <p class="text-black">450.00</p>
@@ -43,19 +43,17 @@
                     <div  class="text-black mb-1">gujranwala</div>
                   </div>
                  </div>
-                
+
                 </div>
                 <div class="text-gray p-0 ms-3"> Tenant:
                   <div  class="text-black mb-1">gujranwala</div>
                   </div>
                 </div>
                 </div>
-
             </div>
-                
             <!-- Filled Tabs ends -->
         </div>
   </div>
-  
+
 </section>
 @endsection

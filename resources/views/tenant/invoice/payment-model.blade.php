@@ -10,16 +10,13 @@
                 <h4 class="modal-title" id="myModalLabel33">Make Payment</h4>
             </div>
             <div class="row m-2">
-                <div class="text-black col-5">Invoice#: INV0008</div>
-                <div class="text-warning col-5">Amount Due : 446.00</div>
+                <div class="text-black col-5" value="{{ $invoice->id }}">Invoice#:</div>
             </div>
             <form action="{{ route('tenant.invoice.payment') }}" method="post">
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" id="invoice_id" name="invoice_id" value="{{ $invoice->id }}">
-
                     <!-- Other hidden fields for payment details -->
-
                     <div class="row">
                         <div class="col-md-12 mb-1">
                             <label class="form-label" for="basicSelectpay-method">Payment Method</label>
@@ -51,6 +48,44 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+{{-- payment invoice model --}}
+<div class="modal" tabindex="-1" id="viewInvoiceModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Payment Receipt</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="form-label">Invoice Number</label>
+                        <input class="form-control" type="text" id="inv_number" disabled>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Invoice Date</label>
+                        <input class="form-control" type="text" id="inv_date" disabled>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Lease</label>
+                        <input class="form-control" type="text" id="lease" disabled>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Amount</label>
+                        <input class="form-control" type="text" id="amount" disabled>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Status</label>
+                        <input class="form-control" type="text" id="status" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>

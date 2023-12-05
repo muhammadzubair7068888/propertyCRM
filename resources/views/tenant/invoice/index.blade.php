@@ -38,45 +38,60 @@
                         </thead>
                         <tbody>
                             @foreach ($invoice as $invoice)
-                            @php
-                            $class='';
-                            $name='';
-                            if($invoice->status==0){
-                            $class='badge-light-warning';
-                            $name='Over Due';
-                            }elseif ($invoice->status==1) {
-                            $class='badge-light-success';
-                            $name='Paid';
-                            }
-                            $amount = number_format($invoice->leaseInfo->rent_amount +
-                            $invoice->leaseInfo->rental_deposit_amount +
-                            $invoice->leaseInfo->deposit->deposit_amount, 2) ;
-                            @endphp
+                                @php
+                                    $class = '';
+                                    $name = '';
+                                    $amount = number_format(0, 2);
+                                    $paid = number_format(0, 2);
+                                    if ($invoice->status == 0) {
+                                        $class = 'badge-light-warning';
+                                        $name = 'Over Due';
+                                        $amount = number_format(
+                                            $invoice->leaseInfo->rent_amount +
+                                            $invoice->leaseInfo->rental_deposit_amount +
+                                            $invoice->leaseInfo->deposit->deposit_amount,
+                                            2
+                                        );
+                                        // Set $paid to 0 for Over Due invoices
+                                        $paid = number_format(0, 2);
+                                    } elseif ($invoice->status == 1) {
+                                        $class = 'badge-light-success';
+                                        $name = 'Paid';
+                                        $paid = number_format(
+                                            $invoice->leaseInfo->rent_amount +
+                                            $invoice->leaseInfo->rental_deposit_amount +
+                                            $invoice->leaseInfo->deposit->deposit_amount,
+                                            2
+                                        );
+                                    }
+                                @endphp
                             <tr>
                                 <td>{{$invoice->invoice_number}}</td>
                                 <td>{{$invoice->leaseInfo->generate_invoice ."-". date('m-Y',strtotime($invoice->created_at)) }}</td>
                                 <td>{{$invoice->leaseInfo->lease_code}}</td>
                                 <td>{{date('F, Y', strtotime($invoice->created_at))}}</td>
-                                <td>{{ $amount }}</td>
+                                <td>{{ @$amount }}</td>
                                 <td>{{number_format(0,2)}}</td>
-                                <td>{{ number_format($invoice->leaseInfo->rent_amount +
-                                    $invoice->leaseInfo->rental_deposit_amount +
-                                    $invoice->leaseInfo->deposit->deposit_amount, 2) }}</td>
+                                <td>{{ @$paid }}</td>
                                 <td>{{$invoice->leaseInfo->due_on ."-". date('m-Y', strtotime($invoice->created_at))}}
                                 </td>
                                 <td>
                                     <span class="badge rounded-pill {{$class}}">{{$name}}</span>
                                 </td>
                                 <td>
-                                    {{-- <a href="{{route('admin.invoice.create')}}" class="item-edit"><i data-feather='eye' class='font-medium-4'></i>
-                                    </a> --}}
-                                    <a href="javascript:;" class="item-edit border border-1 rounded" style="padding:6px;">
-                                        <button type="button" class="btn" {{$invoice->status == '1' ? 'disabled' : ''}} onclick="fetchInvoiceData({{$invoice->id}},{{$invoice->leaseInfo->tenant_info->user->phone_number}},{{ $amount }})">
-                                            + Pay</button></a>
+                                    @if ($invoice->status == '1')
+                                    <button type="button" class="btn btn-success" id="viewInvoiceButton" onclick="viewInvoice({{$invoice->id}})">
+                                        View
+                                    </button>
+                                    
+                                    @else
+                                        <button type="button" class="btn btn-primary" onclick="fetchInvoiceData({{$invoice->id}},{{$invoice->leaseInfo->tenant_info->user->phone_number}},{{ $amount }})">
+                                            Pay
+                                        </button>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>
@@ -124,26 +139,35 @@
         $('#inlineForm').modal('show');
     }
 
-    $('.showmodal').on('click', function() {
-        $('#showmodal').modal('show');
-        var payment_id = $(this).attr('payment_id');
-        $.ajax({
-            type: "get"
-            , url: "{{ route('admin.fetch-payment') }}"
-            , data: {
-                id: payment_id
-            }
-            , success: function(response) {
-                $("#modern-amount").val(response.payment.amount);
-                $("#modern-paid").val(response.payment.payment_date);
-                $("#modern-pay").val(response.payment.payment_method.name);
-                $("#tenant").val(response.payment.tenant_info.user.first_name + " " + response
-                    .payment.tenant_info.user.last_name);
-                $("#recordedby").val(response.payment.tenant_info.user.first_name);
-                $("#extranote").val(response.payment.extra_note);
-            }
-        });
-    });
+    function viewInvoice(invoice) {
+        console.log(invoice);
+        $('#viewInvoiceModal').modal('show');
+    }
 
+
+
+    $('.showmodal').on('click', function() {
+    $('#showmodal').modal('show');
+    var payment_id = $(this).attr('payment_id');
+    $.ajax({
+        type: "get",
+        url: "{{ route('admin.fetch-payment') }}",
+        data: {
+            id: payment_id
+        },
+        success: function(response) {
+            $("#modern-amount").val(response.payment.amount);
+            $("#modern-paid").val(response.payment.payment_date);
+            $("#modern-pay").val(response.payment.payment_method.name);
+            $("#tenant").val(response.payment.tenant_info.user.first_name + " " + response.payment.tenant_info.user.last_name);
+            $("#recordedby").val(response.payment.tenant_info.user.first_name);
+            $("#extranote").val(response.payment.extra_note);
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX request failed:", status, error);
+            // Handle the error (e.g., display an error message to the user)
+        }
+    });
+});
 </script>
 @endsection
