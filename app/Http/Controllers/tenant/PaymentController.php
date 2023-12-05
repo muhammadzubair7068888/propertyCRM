@@ -9,6 +9,8 @@ use Safaricom\Mpesa\Mpesa;
 use GuzzleHttp\Client;
 use App\Http\Controllers\ClientException;
 use App\Http\Controllers\tenant\Carbon;
+use App\Models\Invoice;
+
 class PaymentController extends Controller
 {
     /**
@@ -92,37 +94,42 @@ class PaymentController extends Controller
 
     public function paymentMethod(Request $request)
     {
-        $businessShortCode = '174379';
-        $passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
-        $password = base64_encode($businessShortCode . $passkey);
-        $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
-        $payload = [
-            'ShortCode' => $businessShortCode,
-            'CommandID' => 'CustomerPayBillOnline',
-            'Amount' => $request->amount,
-            'Msisdn' => $request->phonenumber,
-            'BillRefNumber' => 'CompanyXLTD',
-        ];
-        $client = new Client();
-       
-        try {
-            $response = $client->post($url, [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->generateAccessToken(),
-                    'Content-Type' => 'application/json',
-                    
-                ],
-                'json' => $payload,
-            ]);
-            
-            if ($response->getStatusCode() == 200) {
-                $responseData = json_decode($response->getBody(), true);
-                return response()->json($responseData);
-            } else {
-                return redirect()->back()->with('error',$response->getStatusCode());
+        $invoice = Invoice::where('id',$request->invoice_id)->first();
+        if($invoice->status == '1' ){
+            return redirect()->back()->with('error','Invoice not found!');
+        }elseif($invoice->status != 1){
+            $businessShortCode = '174379';
+            $passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
+            $password = base64_encode($businessShortCode . $passkey);
+            $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+            $payload = [
+                'ShortCode' => $businessShortCode,
+                'CommandID' => 'CustomerPayBillOnline',
+                'Amount' => $request->amount,
+                'Msisdn' => $request->phonenumber,
+                'BillRefNumber' => 'CompanyXLTD',
+            ];
+            $client = new Client();
+
+            try {
+                $response = $client->post($url, [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->generateAccessToken(),
+                        'Content-Type' => 'application/json',
+                    ],
+                    'json' => $payload,
+                ]);
+
+                if ($response->getStatusCode() == 200) {
+                    $invoice = Invoice::where('id',$request->invoice_id)->first()->update(['status'=>'1']);
+                    $responseData = json_decode($response->getBody(), true);
+                    return redirect()->back()->with('success',$responseData);
+                } else {
+                    return redirect()->back()->with('error',$response->getStatusCode());
+                }
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', $e->getMessage());
             }
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
         }
     }
     private function generateAccessToken()

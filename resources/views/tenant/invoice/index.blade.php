@@ -37,7 +37,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $invoice as $invoice )
+                            @foreach ($invoice as $invoice)
                             @php
                             $class='';
                             $name='';
@@ -48,18 +48,16 @@
                             $class='badge-light-success';
                             $name='Paid';
                             }
-                            // $invoiceCreatedDate = strtotime($invoice->created_at);
-                            // $previousMonthDate = strtotime('-1 month', $invoiceCreatedDate);
-                            // $previousMonthFormattedDate = date('F, Y', $previousMonthDate);
+                            $amount = number_format($invoice->leaseInfo->rent_amount +
+                            $invoice->leaseInfo->rental_deposit_amount +
+                            $invoice->leaseInfo->deposit->deposit_amount, 2) ;
                             @endphp
                             <tr>
                                 <td>{{$invoice->invoice_number}}</td>
                                 <td>{{$invoice->leaseInfo->generate_invoice ."-". date('m-Y',strtotime($invoice->created_at)) }}</td>
                                 <td>{{$invoice->leaseInfo->lease_code}}</td>
                                 <td>{{date('F, Y', strtotime($invoice->created_at))}}</td>
-                                <td id="totalamount-{{$invoice->id}}">{{ number_format($invoice->leaseInfo->rent_amount +
-                                    $invoice->leaseInfo->rental_deposit_amount +
-                                    $invoice->leaseInfo->deposit->deposit_amount, 2) }}</td>
+                                <td>{{ $amount }}</td>
                                 <td>{{number_format(0,2)}}</td>
                                 <td>{{ number_format($invoice->leaseInfo->rent_amount +
                                     $invoice->leaseInfo->rental_deposit_amount +
@@ -73,11 +71,12 @@
                                     {{-- <a href="{{route('admin.invoice.create')}}" class="item-edit"><i data-feather='eye' class='font-medium-4'></i>
                                     </a> --}}
                                     <a href="javascript:;" class="item-edit border border-1 rounded" style="padding:6px;">
-                                        <button type="button" class="btn" onclick="fetchInvoiceData({{$invoice->id}},{{$invoice->leaseInfo->tenant_info->user->phone_number}})">
+                                        <button type="button" class="btn" {{$invoice->status == '1' ? 'disabled' : ''}} onclick="fetchInvoiceData({{$invoice->id}},{{$invoice->leaseInfo->tenant_info->user->phone_number}},{{ $amount }})">
                                             + Pay</button></a>
                                 </td>
                             </tr>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -117,12 +116,12 @@
         , "autoWidth": false
     , });
 
-    function fetchInvoiceData(id,number) {
-        invoice_amount = $('#totalamount-'+id).text();
-        amount =  $('input[name="amount"]').val(invoice_amount);
-        $('input[name="phonenumber"]').val(number);
-        console.log(number);
-        var paymentModelModal = $('#inlineForm').modal('show');
+    function fetchInvoiceData(id, number, amount) {
+        console.log(id, number, amount);
+        $('#invoice_id').val(id);
+        $('#invoice_amount').val(amount);
+        $('#invoice_phonenumber').val(number);
+        $('#inlineForm').modal('show');
     }
 
     $('.showmodal').on('click', function() {
@@ -145,5 +144,6 @@
             }
         });
     });
+
 </script>
 @endsection
