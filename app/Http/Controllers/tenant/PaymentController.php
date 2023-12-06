@@ -9,6 +9,7 @@ use Safaricom\Mpesa\Mpesa;
 use GuzzleHttp\Client;
 use App\Http\Controllers\ClientException;
 use App\Http\Controllers\tenant\Carbon;
+// use Safaricom\Mpesa\C2B;
 use App\Models\Invoice;
 
 class PaymentController extends Controller
@@ -134,7 +135,7 @@ class PaymentController extends Controller
         }
     }
 }
-    
+
     private function generateAccessToken()
     {
         $consumerKey = env('MPESA_CONSUMER_KEY');
