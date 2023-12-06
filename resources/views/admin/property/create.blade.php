@@ -305,11 +305,11 @@
 
                         <hr />
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-outline-secondary btn-prev" disabled>
+                            <button  type="button" class="btn btn-outline-secondary btn-prev" disabled>
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -409,11 +409,11 @@
 
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev">
+                            <button type="button" class="btn btn-primary btn-prev">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button  type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -518,11 +518,11 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev">
+                            <button type="button" class="btn btn-primary btn-prev">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -632,11 +632,11 @@ required
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev">
+                            <button type="button" class="btn btn-primary btn-prev">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -721,7 +721,7 @@ required
 
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-outline-secondary btn-prev disable">
+                            <button type="button" class="btn btn-outline-secondary btn-prev disable">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none ">Previous</span>
                             </button>
