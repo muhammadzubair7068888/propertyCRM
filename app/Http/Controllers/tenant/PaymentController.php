@@ -111,10 +111,7 @@ class PaymentController extends Controller
             'Msisdn' => $request->phonenumber,
             'BillRefNumber' => 'CompanyXLTD',
         ];
-
         $client = new Client();
-        dd($client);
-
         try {
             $response = $client->post($url, [
                 'headers' => [

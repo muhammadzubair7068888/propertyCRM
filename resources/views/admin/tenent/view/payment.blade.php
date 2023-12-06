@@ -39,9 +39,7 @@
                                             class="item-edit pe-1 text-success">
                                             <i data-feather="download" class="font-medium-4"></i>
                                         </a>
-
                                     </td>
-
                                 </tr>
                             @endforeach
 
@@ -52,9 +50,6 @@
         </div>
     </div>
 </section>
-
-
-
 <!-- Multilingual -->
 
 <!--/ Multilingual -->

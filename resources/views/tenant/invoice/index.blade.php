@@ -63,6 +63,7 @@
                                             $invoice->leaseInfo->deposit->deposit_amount,
                                             2
                                         );
+                                        $amount = number_format(0, 2);
                                     }
                                 @endphp
                             <tr>
@@ -80,10 +81,10 @@
                                 </td>
                                 <td>
                                     @if ($invoice->status == '1')
-                                    <button type="button" class="btn btn-success" id="viewInvoiceButton" onclick="viewInvoice({{$invoice->id}})">
+                                    <button type="button" class="btn btn-success" id="viewInvoiceButton" 
+                                   onclick="viewInvoice('{{$invoice->invoice_number}}', '{{$invoice->leaseInfo->lease_code}}', '{{$amount}}', '{{$name}}')">
                                         View
-                                    </button>
-                                    
+                                      </button>
                                     @else
                                         <button type="button" class="btn btn-primary" onclick="fetchInvoiceData({{$invoice->id}},{{$invoice->leaseInfo->tenant_info->user->phone_number}},{{ $amount }})">
                                             Pay
@@ -139,12 +140,13 @@
         $('#inlineForm').modal('show');
     }
 
-    function viewInvoice(invoice) {
-        console.log(invoice);
+    function viewInvoice(invoice_number, lease_code, amount, status) {
+        $('#inv_number').val(invoice_number);
+        $('#lease_new').val(lease_code);
+        $('#amount_new').val(amount);
+        $('#status_new').val(status);
         $('#viewInvoiceModal').modal('show');
     }
-
-
 
     $('.showmodal').on('click', function() {
     $('#showmodal').modal('show');

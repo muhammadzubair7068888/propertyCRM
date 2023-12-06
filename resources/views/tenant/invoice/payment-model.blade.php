@@ -63,23 +63,19 @@
                 <div class="row">
                     <div class="col-12">
                         <label class="form-label">Invoice Number</label>
-                        <input class="form-control" type="text" id="inv_number" disabled>
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label">Invoice Date</label>
-                        <input class="form-control" type="text" id="inv_date" disabled>
+                        <input class="form-control" type="text" id="inv_number" value="{{ $invoice->id }}" disabled>
                     </div>
                     <div class="col-12">
                         <label class="form-label">Lease</label>
-                        <input class="form-control" type="text" id="lease" disabled>
+                        <input class="form-control" type="text" id="lease_new" disabled>
                     </div>
                     <div class="col-12">
                         <label class="form-label">Amount</label>
-                        <input class="form-control" type="text" id="amount" disabled>
+                        <input class="form-control" type="text" id="amount_new" disabled>
                     </div>
                     <div class="col-12">
                         <label class="form-label">Status</label>
-                        <input class="form-control" type="text" id="status" disabled>
+                        <input class="form-control" type="text" id="status_new" disabled>
                     </div>
                 </div>
             </div>
