@@ -70,9 +70,7 @@
                                         <label class="form-label" for="phone_number">phone_number<span class="text-danger fs-5">*</span></label>
                                         <input type="text" id="phone_number"
                                             class="form-control @error('phone_number') border-1 border-danger @enderror"
-                                            data-parsley-pattern="^\d+$"
-       data-parsley-pattern-message="Only numbers are allowed."
-       required
+                                            data-parsley-pattern="^\+254[0-9]{9}$" data-parsley-pattern-message="Please enter a valid Kenyan phone number." required
                                             name="phone_number" placeholder="Phone" value="{{ @$user->phone_number ?? old('phone_number') }}"/>
                                         @error('phone_number')
                                             <div class="text-danger">{{ $message }}</div>
