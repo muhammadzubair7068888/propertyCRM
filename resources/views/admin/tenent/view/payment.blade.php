@@ -9,9 +9,7 @@
                             <tr>
                                 <th></th>
                                 <th>Amount</th>
-
                                 <th>Payment Date</th>
-
                                 <th> Lease</th>
                                 <th> Property</th>
                                 <th>Receipt Number</th>

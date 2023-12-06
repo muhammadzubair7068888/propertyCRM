@@ -113,6 +113,7 @@ class PaymentController extends Controller
         ];
 
         $client = new Client();
+        dd($client);
 
         try {
             $response = $client->post($url, [

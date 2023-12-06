@@ -16,7 +16,7 @@
     "laravel/sanctum": "^2.15",
     "laravel/tinker": "^2.5",
     "safaricom/mpesa": "^1.0",
-    // "twilio/sdk": "^7.12"
+    "twilio/sdk": "^7.12"
   },
   "require-dev": {
     "facade/ignition": "^2.5",
