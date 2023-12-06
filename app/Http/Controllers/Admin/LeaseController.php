@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
@@ -123,6 +124,7 @@ class LeaseController extends Controller
 
 public function store(Request $request)
 {
+   try{
     $request->validate([
         'form.property_id' => 'required',
         'form.property_unit_id' => 'required',
@@ -205,6 +207,17 @@ public function store(Request $request)
             return redirect()->route('admin.leases.index')->with(['success' => 'Lease Created Successfully']);
         }
     }
+   }catch (\Illuminate\Validation\ValidationException $e) {
+    // ValidationException will contain the validation errors
+    return redirect()->back()->withInput()->withErrors($e->errors())->with('error', 'Please correct the following errors and try again.');
+} catch (\Exception $e) {
+    // Log the error or handle it in a way that makes sense for your application
+    // For example, you can log the error using Laravel's logging facilities
+    \Log::error('Error creating property record: ' . $e->getMessage());
+
+    // Redirect back with an error message and input data
+    return redirect()->back()->withInput()->with('error', 'An error occurred while adding the Lease. Please try again.');
+}
 }
 
 

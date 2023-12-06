@@ -67,11 +67,11 @@
 
                                         <td class="d-flex">
                                             <button type="button" payment_id="{{ $item->id }}"
-                                                class="item-edit border-0 bg-white text-success pe-1 showmodal">
+                                                class="item-edit border-0 bg-white text-success pe-1 showmodal" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
                                                 <i data-feather="eye" class="font-medium-4 text-primary"></i>
                                             </button>
                                             <a href="{{ route('admin.payment.show', $item->id) }}"
-                                                class="item-edit pe-1 text-success">
+                                                class="item-edit pe-1 text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="download">
                                                 <i data-feather="download" class="font-medium-4"></i>
                                             </a>
                                         </td>

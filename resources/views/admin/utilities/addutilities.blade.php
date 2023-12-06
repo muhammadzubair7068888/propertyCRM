@@ -32,25 +32,25 @@
                                         @error('property_id')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
-
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-1">
                                         <label class="form-label" for="select2-basic">Utility</label>
-                                        <select class="select2  form-select" id="select2-basic" name="utility_id">
-
+                                        <select class="select2 form-select" id="select2-basic" name="utility_id">
                                             @foreach ($utility as $utilities)
-                                                <option value="{{ $utilities->id }}">{{ $utilities->name }}</option>
+                                                <option value="{{ $utilities->id }}" {{ old('utility_id') == $utilities->id ? 'selected' : '' }}>
+                                                    {{ $utilities->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         @error('utility_id')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
-
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="demo-inline-spacing">
                                     <div class="form-check form-check-inline">
@@ -58,11 +58,11 @@
                                             value="option1" checked required />
                                         <label class="form-check-label" for="inlineRadio1">Manual Entry</label>
                                     </div>
-                                    <div class="form-check form-check-inline">
+                                    {{-- <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="entry_type" id="inlineRadio2"
                                             value="option2" required />
                                         <label class="form-check-label" for="inlineRadio2">Auto Import(CSV or Excel)</label>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="mt-1">

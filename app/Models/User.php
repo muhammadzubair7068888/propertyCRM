@@ -79,4 +79,8 @@ class User extends Authenticatable
     public function tenantInfo(){
         return $this->hasMany(TenantInfo::class);
     }
+    public function properties()
+{
+    return $this->hasMany(Property::class);
+}
 }

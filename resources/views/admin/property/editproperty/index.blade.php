@@ -83,9 +83,7 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="vertical-property">Property Name</label>
                                 <input type="text" id="vertical-property" value="{{ $property->property_name }}"
-                                    class="form-control @error('property[property_name]')
-                                border-1 border-danger
-                                @enderror"
+                                    class="form-control "
                                     placeholder="Property Name" name="property[property_name]" />
                                 @error('property.property_name')
                                     <div class="text-danger">{{ $message }}</div>
@@ -164,6 +162,7 @@
                         </div>
 
                         <div>
+                            <h4>Units</h4>
                             @foreach($property->property_unit as $unit)
                             <div id="sourceForm">
                                 <div class="row d-flex align-items-end rept">
@@ -173,7 +172,7 @@
                                                 onclick="unitModal({{$loop->iteration}})" id="unitName" placeholder="Units" />
                                         </div>
                                     </div>
-                                    <div class="col-md-2 col-12 ">
+                                    {{-- <div class="col-md-2 col-12 ">
                                         <div class="mb-1">
                                             <a class="btn btn-outline-danger text-nowrap px-1">
                                                 <i data-feather="x" class="me-25"></i>
@@ -183,13 +182,13 @@
                                                 <i data-feather="copy" class="me-25"></i>
                                             </a>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="modal fade" id="addNewAddressModal{{$loop->iteration}}" tabindex="-1" aria-labelledby="addNewAddressTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header bg-transparent">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                                             </div>
                                             <div class="modal-body pb-5 px-sm-4 mx-50">
                                                 <div class="row gy-1 gx-2" id="unit_form">
@@ -294,10 +293,10 @@
 
 
                                                     <div class="col-12 text-center d-flex justify-content-between">
-                                                        <a class="btn btn-outline-secondary mt-2" onclick="unitModalDiscard()">
+                                                        {{-- <a class="btn btn-outline-secondary mt-2" onclick="unitModalDiscard()"> --}}
                                                             Discard
                                                         </a>
-                                                        <a class="btn btn-primary me-1 mt-2" onclick="unitModalSubmit()">Submit</a>
+                                                        <a class="btn btn-primary me-1 mt-2" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="unitModalSubmit()">Submit</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -307,14 +306,14 @@
                             </div>
                             @endforeach
                             <div id="targetForm"></div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-12">
                                     <a class="btn btn-icon btn-primary" onclick="addNew('sourceForm','targetForm')">
                                         <i data-feather="plus" class="me-25"></i>
                                         <span>Add New</span>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <hr />
@@ -396,8 +395,8 @@
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-2 col-12 mb-1 ">
-                                            <div>
+                                        {{-- <div class="col-md-2 col-12 mb-1 ">
+                                             <div>
                                                 <a class="btn btn-outline-danger text-nowrap px-1">
                                                     <i data-feather="x" class="me-25"></i>
                                                 </a>
@@ -406,20 +405,20 @@
                                                     <i data-feather="copy" class="me-25"></i>
                                                 </a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             @endforeach
 
                                 <div id="paymentAppend"></div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-12 pb-2">
                                         <a class="btn btn-icon btn-primary" onclick="addNew('payment','paymentAppend')">
                                             <i data-feather="plus" class="me-25"></i>
                                             <span>Add New</span>
                                         </a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
@@ -512,7 +511,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-md-2 col-12 ">
+                                            {{-- <div class="col-md-2 col-12 ">
                                                 <div>
                                                     <a class="btn btn-outline-danger text-nowrap px-1">
                                                         <i data-feather="x" class="me-25"></i>
@@ -522,7 +521,7 @@
                                                         <i data-feather="copy" class="me-25"></i>
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -530,7 +529,7 @@
 
 
                                 <div id="extraChargeAppend"></div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-12 pb-2">
                                         <a class="btn btn-icon btn-primary"
                                             onclick="addNew('extraCharge','extraChargeAppend')">
@@ -538,7 +537,7 @@
                                             <span>Add New</span>
                                         </a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
@@ -632,14 +631,14 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="col-md-2 col-12 ">
+                                                {{-- <div class="col-md-2 col-12 ">
                                                     <a class="btn btn-outline-danger text-nowrap px-1 mt-2">
                                                         <i data-feather="x" class="me-25"></i>
                                                     </a>
                                                     <a class="btn btn-outline-success text-nowrap px-1 mt-2" onclick="addNew('lateFee','latefeeAppend')">
                                                         <i data-feather="copy" class="me-25"></i>
                                                     </a>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -648,14 +647,14 @@
 
 
                                 <div id="latefeeAppend"></div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-12 pb-2">
                                         <a class="btn btn-icon btn-primary" onclick="addNew('lateFee','latefeeAppend')">
                                             <i data-feather="plus" class="me-25"></i>
                                             <span>Add New</span>
                                         </a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -723,28 +722,28 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2 col-12">
+                                        {{-- <div class="col-md-2 col-12">
                                             <a class="btn btn-outline-danger text-nowrap px-1">
                                                 <i data-feather="x" class="me-25"></i>
                                             </a>
                                             <a class="btn btn-outline-success text-nowrap px-1" onclick="addNew('utitiltyAdd','utitiltyAppend')">
                                                 <i data-feather="copy" class="me-25"></i>
                                             </a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 @endforeach
 
                                 </div>
                             </div>
                             <div id="utitiltyAppend"></div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-12 pb-2">
                                     <a class="btn btn-icon btn-primary" onclick="addNew('utitiltyAdd','utitiltyAppend')">
                                         <i data-feather="plus" class="me-25"></i>
                                         <span>Add New</span>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-outline-secondary btn-prev disable">

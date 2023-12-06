@@ -46,8 +46,37 @@ class LandlordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $req)
+    // {
+    //     $req->validate([
+    //         'first_name' => 'required',
+    //         'middle_name' => 'required',
+    //         'last_name' => 'required',
+    //         'phone_number' => 'required',
+    //         'email' => 'required|email|unique:users,email',
+    //         'registration_date' => 'required|date',
+    //         'country' => 'required',
+    //         'national_id' => 'required',
+    //         'state' => 'required',
+    //         'city' => 'required',
+    //         'postal_address' => 'required',
+    //         'physical_address' => 'required',
+    //         'residential_address' => 'required',
+    //         'password' => 'required',
+    //         // 'password' => 'required|confirmed',
+    //     ]);
+
+    //     $data = $req->except('_token');
+    //     User::create($data);
+
+    //     $message = 'Your Landlord account has been created successfully!';
+
+
+    //     return redirect()->route('admin.landlord.index')->with('success', 'Landlord added successfully');
+    // }
     public function store(Request $req)
-    {
+{
+    try {
         $req->validate([
             'first_name' => 'required',
             'middle_name' => 'required',
@@ -62,8 +91,9 @@ class LandlordController extends Controller
             'postal_address' => 'required',
             'physical_address' => 'required',
             'residential_address' => 'required',
-            'password' => 'required',
-            // 'password' => 'required|confirmed',
+            // 'password' => 'required|min:6',
+            'password' => 'required|min:6|confirmed',
+
         ]);
 
         $data = $req->except('_token');
@@ -71,9 +101,26 @@ class LandlordController extends Controller
 
         $message = 'Your Landlord account has been created successfully!';
 
-
         return redirect()->route('admin.landlord.index')->with('success', 'Landlord added successfully');
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        // ValidationException will contain the validation errors
+        $errors = $e->errors();
+
+        // Log the error or handle it in a way that makes sense for your application
+        \Log::error('Error creating landlord account: ' . $e->getMessage());
+
+        // Redirect back with an error message and validation errors
+        return redirect()->back()->withInput()->withErrors($errors)->with('error', 'An error occurred while creating the landlord account. Please try again.');
+    } catch (\Exception $e) {
+        // Log the error or handle it in a way that makes sense for your application
+        \Log::error('Error creating landlord account: ' . $e->getMessage());
+
+        // Redirect back with an error message
+        return redirect()->back()->withInput()->with('error', 'An error occurred while creating the landlord account. Please try again.');
     }
+}
+
+
 
 
     /**
@@ -117,13 +164,48 @@ class LandlordController extends Controller
      */
     public function update(Request $req, $id)
     {
-        $data = $req->except('_token');
-        $user = User::find($id)->update($data);
-        if ($user) {
-            return redirect()->route('admin.landlord.index')->with('success', 'Record updated successfully');
-        } else {
-            return redirect()->back()->with('error', 'User not found');
-        };
+        try{
+            $req->validate([
+                'first_name' => 'required',
+                'middle_name' => 'required',
+                'last_name' => 'required',
+                'phone_number' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'registration_date' => 'required|date',
+                'country' => 'required',
+                'national_id' => 'required',
+                'state' => 'required',
+                'city' => 'required',
+                'postal_address' => 'required',
+                'physical_address' => 'required',
+                'residential_address' => 'required',
+                'password' => 'required|confirmed',
+            ]);
+
+            $data = $req->except('_token');
+            $user = User::find($id)->update($data);
+            if ($user) {
+                return redirect()->route('admin.landlord.index')->with('success', 'Record updated successfully');
+            } else {
+                return redirect()->back()->with('error', 'User not found');
+            };
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // ValidationException will contain the validation errors
+            $errors = $e->errors();
+
+            // Log the error or handle it in a way that makes sense for your application
+            \Log::error('Error creating landlord account: ' . $e->getMessage());
+
+            // Redirect back with an error message and validation errors
+            return redirect()->back()->withInput()->withErrors($errors)->with('error', 'An error occurred while creating the landlord account. Please try again.');
+        } catch (\Exception $e) {
+            // Log the error or handle it in a way that makes sense for your application
+            \Log::error('Error creating landlord account: ' . $e->getMessage());
+
+            // Redirect back with an error message
+            return redirect()->back()->withInput()->with('error', 'An error occurred while creating the landlord account. Please try again.');
+        }
+
     }
 
     /**

@@ -4,7 +4,7 @@
 <form class="needs-validation" action="{{route('admin.setting.update',$generalSetting->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
-        <div class="mb-1 col-8">
+        <div class="mb-1 col-12">
             <div class="mb-1 col-12">
                 <label class="form-label" for="basic-addon-name">Company Name</label>
                 <input type="text" id="basic-addon-name" class="form-control" placeholder="Name" aria-label="Name"
@@ -60,7 +60,7 @@
                 </select>
             </div> --}}
         </div>
-        <div class="col-4">
+        {{-- <div class="col-4">
             <div class="d-flex flex-column align-items-center">
                 <img src="{{ asset($generalSetting->logo) }}" id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0"
                     width="170" height="110" alt="Blog Featured Image" />
@@ -68,7 +68,7 @@
                     <input class="form-control" type="file" id="blogCustomFile" accept="image/*" name="logo" />
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="row">
         <div class="mb-1 col-12">

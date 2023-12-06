@@ -21,11 +21,11 @@ $(function () {
       onkeyup: function (element) {
         $(element).valid();
       },*/
-      
-      // * ? To enable validation on focusout
+      /*
+      * ? To enable validation on focusout
       onfocusout: function (element) {
         $(element).valid();
-      }, 
+      }, */
       rules: {
         'login-email': {
           required: true,

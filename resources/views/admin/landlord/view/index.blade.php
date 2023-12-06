@@ -70,7 +70,7 @@
               >Info</a
             >
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a
               class="nav-link"
               id="profile-tab-justified"
@@ -93,7 +93,7 @@
               aria-selected="false"
               >Documents</a
             >
-          </li>
+          </li> --}}
 
         </ul>
 

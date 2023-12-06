@@ -75,19 +75,22 @@
                                                 class="badge rounded-pill {{ $class }}">{{ $name }}</span>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.landlord.show', $user->id) }}" class="item-edit pe-1">
+                                            <a href="{{ route('admin.landlord.show', $user->id) }}" class="item-edit pe-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show ">
                                                 <i data-feather="eye" class="font-medium-4"></i>
                                             </a>
-                                            <a href="{{ route('admin.landlord.edit', $user->id) }}"
+
+
+
+                                            <a href="{{ route('admin.landlord.edit', $user->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit "
                                                 class="item-edit pe-1 text-success">
                                                 <i data-feather="edit" class="font-medium-4"></i>
                                             </a>
                                             <a onclick="Alert(`{{ $url }}`,'{{ $message }}','{{ $btn }}','{{$alert_icon}}','{{$color}}')"
-                                                class="item-edit pe-1 text-danger">
+                                                class="item-edit pe-1 text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Active ">
                                                 <i data-feather="{{ $icon }}" class="{{ $icon_class }} font-medium-4"></i>
                                             </a>
                                             <a onclick="Alert(`{{ route('admin.landlord.destroy', $user->id) }}`,'Are you sure you want to delete this user?','Delete','error','danger')"
-                                                class="item-edit text-danger">
+                                                class="item-edit text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete ">
                                                 <i data-feather="trash" class="font-medium-4"></i>
                                             </a>
                                         </td>

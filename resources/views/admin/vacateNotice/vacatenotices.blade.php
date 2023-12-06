@@ -35,7 +35,7 @@
                 <label class="form-label" for="Leases">Leases</label>
                 <select class="select-2 form-select" id="leases" name="lease_id" required>
                     <option value=""></option>
-                   
+
                 </select>
                 @error('lease_id')
                 <div class="text-danger">{{ $message }}</div>
@@ -50,7 +50,8 @@
 
             <div class="col-md-6 mb-1">
                 <label class="form-label" for="fp-default">Vacating Date</label>
-                <input type="date" id="Vacating Date" class="form-control flatpickr-basic" placeholder="Vacating Date" name="vacate_date" required>
+                <input type="date" id="Vacating Date" class="form-control " placeholder="Vacating Date" name="vacate_date" value="{{ old('vacate_date') }}" required>
+
                 @error('vacate_date')
                 <div class="text-danger">{{ $message }}</div>
                  @enderror

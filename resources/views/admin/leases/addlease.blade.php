@@ -15,7 +15,15 @@
 @endsection
 
 @section('content')
-
+<style>
+    ul.parsley-errors-list{
+        padding-left: 0px !important;
+    }
+    .parsley-errors-list li{
+        list-style: none !important;
+        color: red !important;
+    }
+</style>
 
     <!-- Vertical Wizard -->
     <section class="vertical-wizard">
@@ -99,7 +107,7 @@
                 </div>
             </div>
             <div class="bs-stepper-content">
-                <form action="{{ route('admin.leases.store') }}" method="post" id="multiStepForm" >
+                <form action="{{ route('admin.leases.store') }}" method="post" id="multiStepForm" data-parsley-validate>
                     @csrf
 
                     <div id="account-details-vertical" class="content" role="tabpanel"
@@ -110,8 +118,9 @@
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="property">Property</label>
-                                <select class="select2 form-select" id="lease-property" name="form[property_id]">
+                                <label class="form-label" for="property">Property<span class="text-danger fs-5">*</span></label>
+                                <select class="select2 form-select" id="lease-property" name="form[property_id]" required
+                                    data-parsley-errors-container="#property_error">
                                     <option value=""></option>
                                     @foreach ($property as $property)
                                         <option value="{{ $property->id }}" {{ old('form.property_id') == $property->id ? 'selected' : '' }}>
@@ -119,15 +128,17 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <span id="property_error" class="text-danger"></span>
                                 @error('form.property_id')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="unit">Unit</label>
-                                <select class="select2 form-select" id="property-unit" name="form[property_unit_id]">
+                                <label class="form-label" for="unit">Unit<span class="text-danger fs-5">*</span></label>
+                                <select class="select2 form-select" id="property-unit" name="form[property_unit_id]" required data-parsley-errors-container="#unit_error">
                                     <option value=""></option>
                                 </select>
+                                <span id="unit_error" class="text-danger"></span>
                                 @error('form.property_unit_id')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -135,23 +146,27 @@
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="lease-type">Lease Type</label>
-                                <select class="select2 form-select" id="lease-type" name="form[lease_type_id]">
-                                    <option value=""></option>
+                                <label class="form-label" for="lease-type">Lease Type<span class="text-danger fs-5">*</span></label>
+                                <select class="select2 form-select" id="lease-type" name="form[lease_type_id]" required data-parsley-errors-container="#lease_error">
+                                    <option value="" ></option>
                                     @foreach ($leasetype as $lease)
                                         <option value="{{ $lease->id }}" {{ old('form.lease_type_id') == $lease->id ? 'selected' : '' }}>
                                             {{ $lease->name }}
                                         </option>
                                     @endforeach
                                 </select>
+                                <span id="lease_error" class="text-danger"></span>
                                 @error('form.lease_type_id')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
 
                             </div>
                             <div class="mb-1 form-password-toggle col-md-6">
-                                <label class="form-label" for="rent-amount">Rent Amount</label>
-                                <input type="number" id="rent-amount" class="form-control" placeholder="rent_amount"
+                                <label class="form-label" for="rent-amount">Rent Amount<span class="text-danger fs-5">*</span></label>
+                                <input type="number" id="rent-amount" class="form-control"
+                                data-parsley-pattern="^\d+$"
+                                data-parsley-pattern-message="Only numbers are allowed."
+                                required placeholder="rent_amount"
                                 name="form[rent_amount]" value="{{ old('form.rent_amount') }}" />
                             @error('form.rent_amount')
                                 <div class="text-danger">{{ $message }}</div>
@@ -160,16 +175,17 @@
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="lease-date">Starts Date</label>
+                                <label class="form-label" for="lease-date">Starts Date<span class="text-danger fs-5">*</span></label>
                                 <input type="date" id="lease-date" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD"
-                                name="form[start_date]" value="{{ old('form.start_date') }}" />
+                                name="form[start_date]" value="{{ old('form.start_date') }}" required />
                                 @error('form.start_date')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="lease-date">Due On(Day of Month)</label>
-                                <select class="select2 form-select" id="lease-date" name="form[due_on]">
+                                <label class="form-label" for="lease-date">Due On(Day of Month)<span class="text-danger fs-5">*</span></label>
+                                <select class="select2 form-select" id="lease-date" name="form[due_on]" required
+                                data-parsley-errors-container="#due_error">
                                     <option value=""></option>
                                     @for ($i = 1; $i <= 28; $i++)
                                         <option value="{{ $i }}" {{ old('form.due_on') == $i ? 'selected' : '' }}>
@@ -177,17 +193,18 @@
                                         </option>
                                     @endfor
                                 </select>
+                                <span id="due_error" class="text-danger"></span>
                                 @error('form.due_on')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-outline-secondary btn-prev" disabled>
+                            <button type="button" class="btn btn-outline-secondary btn-prev" disabled>
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -203,8 +220,10 @@
                         <div class="row">
                             <div>
                                 <div class="mb-1 col-md-12">
-                                    <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount</label>
-                                    <input type="number" id="rent-deposit-amount" class="form-control"
+                                    <label class="form-label" for="rent-deposit-amount">Rent Deposit Amount<span class="text-danger fs-5">*</span></label>
+                                    <input type="number" id="rent-deposit-amount" class="form-control" data-parsley-pattern="^\d+$"
+                                    data-parsley-pattern-message="Only numbers are allowed."
+                                    required
                                     placeholder="Rent Deposit Amount" name="form[rental_deposit_amount]"
                                     value="{{ old('form.rental_deposit_amount') }}" />
                                         @error('form.rental_deposit_amount')
@@ -263,11 +282,11 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev">
+                            <button type="button" class="btn btn-primary btn-prev">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -281,8 +300,8 @@
                         </div>
                         <div class="row">
                             <div class="mb-1 col-md-12">
-                                <label class="form-label" for="tenant">Tenant</label>
-                                <select class="select2 w-100 " id="tenant" name="form[tenant_info_id]">
+                                <label class="form-label" for="tenant">Tenant<span class="text-danger fs-5">*</span></label>
+                                <select class="select2 w-100 " id="tenant" name="form[tenant_info_id]" required data-parsley-errors-container="#tenanat_error">
                                     <option value=""></option>
                                     @foreach ($tenant as $tenant)
                                         <option value="{{ $tenant->id }}" {{ old('form.tenant_info_id') == $tenant->id ? 'selected' : '' }}>
@@ -290,6 +309,7 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <span id="tenanat_error" class="text-danger"></span>
                                 @error('form.tenant_info_id')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -298,11 +318,11 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev">
+                            <button type="button" class="btn btn-primary btn-prev">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -318,11 +338,11 @@
 
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev">
+                            <button type="button" class="btn btn-primary btn-prev">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -339,11 +359,11 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev">
+                            <button type="button" class="btn btn-primary btn-prev">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -360,11 +380,11 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev">
+                            <button  type="button" class="btn btn-primary btn-prev">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -381,11 +401,11 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev">
+                            <button type="button" class="btn btn-primary btn-prev">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>
-                            <button class="btn btn-primary btn-next">
+                            <button type="button" class="btn btn-primary btn-next">
                                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                                 <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                             </button>
@@ -399,8 +419,8 @@
                             <div class="row">
                                 <div class="mb-1 col-md-12">
                                     <label class="form-label" for="generate-invoice">Generate Invoice On (Day of
-                                        Month)</label>
-                                        <select class="select2 form-select" id="generate-invoice" name="form[generate_invoice]">
+                                        Month)<span class="text-danger fs-5">*</span></label>
+                                        <select class="select2 form-select" id="generate-invoice" name="form[generate_invoice]" required data-parsley-errors-container="#generate_error">
                                             <option value=""></option>
                                             @for ($i = 1; $i <= 28; $i++)
                                                 <option value="{{ $i }}" {{ old('form.generate_invoice') == $i ? 'selected' : '' }}>
@@ -408,6 +428,7 @@
                                                 </option>
                                             @endfor
                                         </select>
+                                        <span id="generate_error" class="text-danger"></span>
                                         @error('form.generate_invoice')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -444,7 +465,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev disable">
+                            <button type="button" class="btn btn-primary btn-prev disable">
                                 <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                             </button>

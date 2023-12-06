@@ -2,6 +2,7 @@
 @extends('layouts/contentLayoutMaster')
 @section('title', 'Property')
 @section('vendor-style')
+
     {{-- vendor css files --}}
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
@@ -48,16 +49,16 @@
                                     <td>{{ $data->complaint_date}}</td>
                                     <td id="status-column-{{$data->id}}" class="text-success" data-status="{{$data->status}}">{{$data->status}}</td>
                                     <td>
-                                    <div class="btn-group">
-                                    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        &#8942;
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item status-update" href="#" data-id="{{$data->id}}" data-status="Approve">Approve</a></li>
-                                        <li><a class="dropdown-item status-update" href="#" data-id="{{$data->id}}" data-status="Pending">Pending</a></li>
-                                        <li><a class="dropdown-item status-update" href="#" data-id="{{$data->id}}" data-status="Not Possible">Not Possible</a></li>
-                                    </ul>
-                                    </div>
+                                        <div class="btn-group" id="dropdown-container">
+                                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                &#8942;
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item status-update" href="#" data-id="{{$data->id}}" data-status="Approve">Approve</a></li>
+                                                <li><a class="dropdown-item status-update" href="#" data-id="{{$data->id}}" data-status="Pending">Pending</a></li>
+                                                <li><a class="dropdown-item status-update" href="#" data-id="{{$data->id}}" data-status="Not Possible">Not Possible</a></li>
+                                            </ul>
+                                        </div>
                                     </td>
 
                                 </tr>
@@ -106,6 +107,9 @@
     //         tdElement.textContent = selectedAction;
     //     });
     // });
+
+
+
     $(document).ready(function () {
         $('.status-update').on('click', function () {
             var id = $(this).data('id');

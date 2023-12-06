@@ -25,34 +25,35 @@
           <h4 class="card-title">Properties</h4>
         </div>
        <div class="card-datatable">
-          <table class="dt-multilingual table">
+        <table class="dt-multilingual table">
             <thead>
-               <tr>
-                <th>ID</th>
-                <th>Property Code</th>
-                <th>Property Name</th>
-                <th>Location</th>
-                <th>Unit</th>
-                <th>Action </th>
-             </tr>
-             <tbody>
-                @foreach ($property as $data )
-
                 <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$data->property_code}}</td>
-                    <td>{{$data->property_name}}</td>
-                    <td>{{$data->location}}</td>
-                    <td>{{$data->agent_commission_type}}</td>
-                    <td>
-                        <a href="{{route('landlord.property.show',$data->id)}}"><i data-feather="eye" class="font-medium-4"></i></a>
-
-                    </td>
+                    <th>ID</th>
+                    <th>Property Code</th>
+                    <th>Property Name</th>
+                    <th>Location</th>
+                    <th>Unit</th>
+                    <th>Action</th>
                 </tr>
-                @endforeach
-             </tbody>
             </thead>
-          </table>
+            {{-- {{dd($properties)}} --}}
+            <tbody>
+                @foreach ($properties as $property)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $property->property_code }}</td>
+                        <td>{{ $property->property_name }}</td>
+                        <td>{{ $property->location }}</td>
+                        <td>{{ $property->agent_commission_type }}</td>
+                        <td>
+                            <a href="{{ route('landlord.property.show', $property->id) }}">
+                                <i data-feather="eye" class="font-medium-4"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
         </div>
       </div>
     </div>
