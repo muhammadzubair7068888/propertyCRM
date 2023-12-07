@@ -142,9 +142,8 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="date">Date<span class="text-danger fs-5">*</span></label>
                                 <input type="text" id="date"
-                                    class="form-control @error('form[user][registration_date]') border-1 border-danger @enderror"data-parsley-pattern="^[a-zA-Z\s]+$"
-                                    data-parsley-pattern-message="Only letters and spaces are allowed."
-                                    required
+                                    class="form-control @error('form[user][registration_date]') border-1 border-danger @enderror"
+
                                     readonly name="form[user][registration_date]" placeholder="Date"
                                     value="{{ @$tenant->user->registration_date ?? date('Y-m-d') }}" />
                                 @error('form.user.registration_date')
@@ -154,9 +153,7 @@
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="passport">National ID or Passport<span class="text-danger fs-5">*</span></label>
-                                    <input type="text" id="passport" class="form-control" data-parsley-pattern="^[a-zA-Z\s]+$"
-                                    data-parsley-pattern-message="Only letters and spaces are allowed."
-                                    required
+                                    <input type="text" id="passport" class="form-control" data-parsley-pattern="^[0-9]+$" data-parsley-pattern-message="Only numbers are allowed." required
                                         placeholder="National ID or Passport" name="form[user][national_id]" value="{{@$tenant->user->national_id ?? old('form.user.national_id')}}" />
                                     @error('form.user.national_id')
                                         <div class="text-danger">{{ $message }}</div>
@@ -176,9 +173,7 @@
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="phone">Phone<span class="text-danger fs-5">*</span></label>
-                                    <input type="text" id="phone" class="form-control" data-parsley-pattern="^[a-zA-Z\s]+$"
-                                    data-parsley-pattern-message="Only letters and spaces are allowed."
-                                    required
+                                    <input type="text" id="phone" class="form-control" data-parsley-pattern="^\+254[0-9]{9}$" data-parsley-pattern-message="Please enter a valid Kenyan phone number." required
                                         name="form[user][phone_number]" placeholder="Phone" value="{{@$tenant->user->phone_number ?? old('form.user.phone_number')}}" />
                                     @error('form.user.phone_number')
                                         <div class="text-danger">{{ $message }}</div>
@@ -188,9 +183,7 @@
                             <div class="mb-1 col-md-6">
                                 <div class="mb-1">
                                     <label class="form-label" for="email-id-column">Email<span class="text-danger fs-5">*</span></label>
-                                    <input type="email" id="email-id-column" class="form-control" data-parsley-pattern="^[a-zA-Z\s]+$"
-                                    data-parsley-pattern-message="Only letters and spaces are allowed."
-                                    required
+                                    <input type="email" id="email-id-column" class="form-control" required data-parsley-type-message="Please enter a valid email address."
                                         name="form[user][email]" @if(@$tenant->user->email !== null) readonly @endif placeholder="Email" value="{{@$tenant->user->email ?? old('form.user.email')}}"/>
                                     @error('form.user.email')
                                         <div class="text-danger">{{ $message }}</div>
@@ -257,7 +250,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-12 col-12">
                                 <div class="mb-1">
                                     <label class="form-label" for="password">Password<span class="text-danger fs-5">*</span></label>
                                     <input type="password" id="password" class="form-control" placeholder="Password" name="form[user][password]" />
@@ -267,7 +260,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 col-12">
+                            {{-- <div class="col-md-6 col-12">
                                 <div class="mb-1">
                                     <label class="form-label" for="confirm-password">Confirm Password<span class="text-danger fs-5">*</span></label>
                                     <input type="password" id="confirm-password" class="form-control @error('confirmed') border-1 border-danger @enderror" placeholder="Confirm Password" name="confirmed" />
@@ -275,7 +268,7 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                         <div class="d-flex justify-content-between">
@@ -312,9 +305,7 @@
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="kin-phone">Kin Phone<span class="text-danger fs-5">*</span></label>
-                                <input type="text" id="kin-phone" class="form-control" placeholder="Kin Phone"   data-parsley-pattern="^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$"
-                                data-parsley-pattern-message="Only letters and spaces are allowed."
-                                required
+                                <input type="text" id="kin-phone" class="form-control" placeholder="Kin Phone"   data-parsley-pattern="^\+254[0-9]{9}$" data-parsley-pattern-message="Please enter a valid Kenyan phone number." required
                                     name="form[tenantInfo][kin_phone_number]" value="{{@$tenant->kin_phone_number ?? old('form.tenantInfo.kin_phone_number')}}" />
                                 @error('form.tenantInfo.kin_phone_number')
                                     <div class="text-danger">{{ $message }}</div>
@@ -349,9 +340,7 @@
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="emergency-phone">Emergency Phone<span class="text-danger fs-5">*</span></label>
                                 <input type="text" id="emergency-phone" class="form-control"
-                                    placeholder="Emergency Phone" data-parsley-pattern="^[a-zA-Z\s]+$"
-                                    data-parsley-pattern-message="Only letters and spaces are allowed."
-                                    required
+                                    placeholder="Emergency Phone" data-parsley-pattern="^\+254[0-9]{9}$" data-parsley-pattern-message="Please enter a valid Kenyan phone number." required
                                     name="form[tenantInfo][kin_emergency_phone_number]"  value="{{@$tenant->kin_emergency_phone_number ?? old('form.tenantInfo.kin_emergency_phone_number')}}" />
                                 @error('form.tenantInfo.kin_emergency_phone_number')
                                     <div class="text-danger">{{ $message }}</div>
@@ -360,8 +349,8 @@
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="emergency-email">Emergency Email<span class="text-danger fs-5">*</span></label>
-                                <input type="text" id="emergency-email" class="form-control" data-parsley-pattern="^[a-zA-Z\s]+$"
-                                data-parsley-pattern-message="Only letters and spaces are allowed."
+                                <input type="email" id="emergency-email" class="form-control"
+                                data-parsley-pattern-message="Enter valid Email"
                                 required
                                     placeholder="Emergency Email" name="form[tenantInfo][kin_emergency_emial]" value="{{@$tenant->kin_emergency_emial ?? old('form.tenantInfo.kin_emergency_emial')}}" />
                                 @error('form.tenantInfo.kin_emergency_emial')
@@ -454,9 +443,7 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label class="form-label" for="pincode2">Employment Contact Phone<span class="text-danger fs-5">*</span></label>
-                                <input type="text" id="pincode2" class="form-control"   data-parsley-pattern="^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$"
-                                data-parsley-pattern-message="Enter a valid phone number."
-                                required
+                                <input type="text" id="pincode2" class="form-control"   data-parsley-pattern="^\+254[0-9]{9}$" data-parsley-pattern-message="Please enter a valid Kenyan phone number." required
                                     placeholder="Employment Contact Phone"
                                     name="form[tenantInfo][employment_contact_phone]" value="{{@$tenant->employment_contact_phone ?? old('form.tenantInfo.employment_contact_phone')}}" />
                                 @error('form.tenantInfo.employment_contact_phone')
@@ -465,10 +452,8 @@
 
                             </div>
                             <div class="mb-1 col-md-6">
-                                <label class="form-label" for="employment-email">Employment Contact Phone<span class="text-danger fs-5">*</span></label>
-                                <input type="text" id="employment-email" class="form-control"  data-parsley-pattern="^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$"
-                                data-parsley-pattern-message="Enter a valid phone number."
-                                required
+                                <label class="form-label" for="employment-email">Employment  Email<span class="text-danger fs-5">*</span></label>
+                                <input type="email" id="employment-email" class="form-control"   data-parsley-pattern-message="Please enter a valid Email." required
                                     placeholder="Employment Contact Email"
                                     name="form[tenantInfo][employment_contact_email]" value="{{@$tenant->employment_contact_email ?? old('form.tenantInfo.employment_contact_email')}}" />
                                 @error('form.tenantInfo.employment_contact_email')

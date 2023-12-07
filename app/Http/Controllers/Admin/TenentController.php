@@ -184,7 +184,7 @@ class TenentController extends Controller
                         'form.user.physical_address' => 'required',
                         'form.user.user_type' => 'required',
                         // 'form.user.password' => 'required',
-                        'form.user.password' => 'required|min:6|confirmed', // Add your password validation rules here
+                        'form.user.password' => 'required', // Add your password validation rules here
                         // 'confirmed' => 'required|same:form.user.password',
 
                         'form.tenantInfo.kin_name' => 'required',
