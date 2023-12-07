@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\tenant;
 use Illuminate\Http\Client\Response;
 use App\Http\Controllers\Controller;
-use App\Models\Invoice;
+use App\Models\{Invoice, Lease};
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -18,7 +18,9 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $pagedata['invoice']=Invoice::all();
+        $invoices = auth()->user()->invoices;
+        // $invoice=auth()->user()->properties()->;
+        $pagedata['invoice']=$invoices;
         return view('tenant.invoice.index',$pagedata);
     }
 
@@ -42,70 +44,6 @@ class InvoiceController extends Controller
     {
         //
     }
-//     public function paymentMethod(Request $request)
-// {
-//     $url='https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-
-//     $curl_post_data=[
-        // 'BusinessShortCode'=>174379,
-        // 'Password'=>"bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
-        // // 'Timestamp'=>,
-
-        // 'TransactionType'=> "CustomerPayBillOnline",
-        // 'Amount'=>$request->amount,
-        // 'PartyA'=>254708374149,
-        // 'PartyB'=>174379,
-        // 'PhoneNumber'=>$request->phonenumber,
-        // 'CallBackURL'=>'http://propertmanagementsystem.pk/tenant/invoice',
-        // 'AccountReference'=>'CompanyXLTD',
-        // 'TransactionDesc'=>'Payment of X'
-//     ];
-
-//     $data_string=json_encode($curl_post_data);
-
-//     $curl=curl_init();
-//     curl_setopt($curl,CURLOPT_URL,$url);
-//     curl_setopt($curl,CURLOPT_HTTPHEADER,array('Content-Type:application/json','Authorization:Bearer '.$this->newaccesstoken()));
-//     curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
-//     curl_setopt($curl,CURLOPT_POST,true);
-//     curl_setopt($curl,CURLOPT_POSTFIELDS,$data_string);
-
-//     $curl_response=curl_exec($curl);
-//     return $curl_response;
-// }
-//     public function paymentMethod(Request $request)
-//     {
-
-
-//     $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-//     // Define the API request body
-//     $payload = [
-//         'BusinessShortCode'=>174379,
-//         'Password'=>"bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
-//         'Timestamp'=>Carbon::rawParse('now')->format('YmdHms'),
-//         // $password = base64_encode($businessShortCode.$passkey.$timestamp);
-//         'TransactionType'=> "CustomerPayBillOnline",
-//         'Amount'=>$request->amount,
-//         'PartyA'=>254708374149,
-//         'PartyB'=>174379,
-//         'PhoneNumber'=>$request->phonenumber,
-//         'CallBackURL'=>'http://propertmanagementsystem.pk/tenant/invoice',
-//         'AccountReference'=>'CompanyXLTD',
-//         'TransactionDesc'=>'Payment of X'
-//     ];
-//     // Send the API request and handle the response
-//     $response = \Http::withOptions(['verify' => false])->post($url, $payload);
-//     // dd($response);
-//     if ($response->successful()) {
-//         $responseData = $response->json();
-//         // Process the API response data as needed
-//         return response()->json($responseData);
-//     } else {
-//         // Handle the API request failure
-//         return response()->json(['error' => 'API request failed'], $response->status());
-//     }
-//     return redirect()->route('tenant.invoice.index')->with('success','payment has been successfully');
-// }
 
 public function paymentMethod(Request $request)
 {

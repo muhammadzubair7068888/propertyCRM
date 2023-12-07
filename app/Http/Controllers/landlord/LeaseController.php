@@ -12,11 +12,14 @@ class LeaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
-    {
-        $pagedata['lease']=Lease::all();
-        return view('landlord.leases.index',$pagedata);
-    }
+{
+
+     $pagedata['lease']=Lease::all();
+
+    return view('landlord.leases.index', $pagedata);
+}
 
     /**
      * Show the form for creating a new resource.

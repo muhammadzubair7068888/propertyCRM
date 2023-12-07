@@ -15,7 +15,9 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        $pagedate['lease']=Lease::all();
+        $lease = auth()->user()->tenantInfo->leases;
+
+        $pagedate['lease']=$lease;
         return view('tenant.leases.index',$pagedate);
     }
 
