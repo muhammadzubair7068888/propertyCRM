@@ -103,7 +103,7 @@ class PaymentController extends Controller
         $businessShortCode = '174379';
         $passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
         $password = base64_encode($businessShortCode . $passkey);
-        $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+        $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/processrequest';
         $payload = [
             'ShortCode' => $businessShortCode,
             'CommandID' => 'CustomerPayBillOnline',
@@ -122,9 +122,9 @@ class PaymentController extends Controller
             ]);
 
             if ($response->getStatusCode() == 200) {
-                Invoice::where('id', $request->invoice_id)->save(['status' => '1']);
+                Invoice::where('id', $request->invoice_id)->update(['status' => '1']);
                 $responseData = json_decode($response->getBody(), true);
-                return redirect()->back()->with('success', $responseData);
+                return redirect()->route('invoice.payment')->with('success', $responseData);
             } else {
                 return redirect()->back()->with('error', $response->getStatusCode());
             }
@@ -133,14 +133,13 @@ class PaymentController extends Controller
         }
     }
 }
-
     private function generateAccessToken()
     {
         $consumerKey = env('MPESA_CONSUMER_KEY');
         $consumerSecret = env('MPESA_CONSUMER_SECRET');
         $credentials = base64_encode($consumerKey . ':' . $consumerSecret);
         $client = new Client();
-        $response = $client->get('https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials', [
+        $response = $client->get('https://sandbox.safaricom.co.ke/mpesa/c2b/v1/processrequest', [
             'headers' => [
                 'Authorization' => 'Basic ' . $credentials,
             ],

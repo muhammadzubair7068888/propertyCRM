@@ -16,12 +16,8 @@
     "laravel/framework": "^8.40",
     "laravel/sanctum": "^2.15",
     "laravel/tinker": "^2.5",
-<<<<<<< HEAD
     "safaricom/mpesa": "^1.0",
     "twilio/sdk": "^7.12"
-=======
-    "safaricom/mpesa": "^1.0"
->>>>>>> gulshair
   },
   "require-dev": {
     "facade/ignition": "^2.5",

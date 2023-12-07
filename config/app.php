@@ -233,7 +233,5 @@ return [
         'Helper' => App\Helpers\Helper::class,
         'Mpesa'=> \Safaricom\Mpesa\MpesaServiceProvider::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-
     ],
-
 ];

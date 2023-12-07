@@ -27,7 +27,7 @@
                                 <th>Invoice Number</th>
                                 <th>Invoice Date</th>
                                 <th>Lease</th>
-                                <th> Period</th>
+                                <th>Period</th>
                                 <th>Amount</th>
                                 <th>Paid</th>
                                 <th>Balance</th>
@@ -41,8 +41,8 @@
                                 @php
                                     $class = '';
                                     $name = '';
-                                    $amount = number_format(0, 2);
-                                    $paid = number_format(0, 2);
+                                    $amount = '';
+                                    $paid = '';
                                     if ($invoice->status == 0) {
                                         $class = 'badge-light-warning';
                                         $name = 'Over Due';
@@ -52,7 +52,7 @@
                                             $invoice->leaseInfo->deposit->deposit_amount,
                                             2
                                         );
-                                        // Set $paid to 0 for Over Due invoices
+                                        // paid invoices 
                                         $paid = number_format(0, 2);
                                     } elseif ($invoice->status == 1) {
                                         $class = 'badge-light-success';
@@ -71,9 +71,9 @@
                                 <td>{{$invoice->leaseInfo->generate_invoice ."-". date('m-Y',strtotime($invoice->created_at)) }}</td>
                                 <td>{{$invoice->leaseInfo->lease_code}}</td>
                                 <td>{{date('F, Y', strtotime($invoice->created_at))}}</td>
-                                <td>{{ @$amount }}</td>
-                                <td>{{number_format(0,2)}}</td>
-                                <td>{{ @$paid }}</td>
+                                <td>{{ $amount }}</td>
+                                <td>{{ $paid }}</td>
+                                <td>{{ $paid ?? $amount }}</td>
                                 <td>{{$invoice->leaseInfo->due_on ."-". date('m-Y', strtotime($invoice->created_at))}}
                                 </td>
                                 <td>
@@ -82,7 +82,7 @@
                                 <td>
                                     @if ($invoice->status == '1')
                                     <button type="button" class="btn btn-success" id="viewInvoiceButton" 
-                                   onclick="viewInvoice('{{$invoice->invoice_number}}', '{{$invoice->leaseInfo->lease_code}}', '{{$amount}}', '{{$name}}')">
+                                   onclick="viewInvoice('{{$invoice->invoice_number}}', '{{$invoice->leaseInfo->lease_code}}', '{{$paid}}', '{{$name}}')">
                                         View
                                       </button>
                                     @else
