@@ -87,7 +87,7 @@
                                       </button>
                                     @else
                                         <button type="button" class="btn btn-primary" onclick="fetchInvoiceData({{$invoice->id}},{{$invoice->leaseInfo->tenant_info->user->phone_number}},{{ $amount }})">
-                                            Pay
+                                            Pay+
                                         </button>
                                     @endif
                                 </td>

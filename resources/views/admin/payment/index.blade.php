@@ -64,6 +64,7 @@
                                         <td>RS00{{ $item->id }}</td>
                                         <td><span class="badge rounded-pill {{ $class }}">{{ $name }}</span>
                                         </td>
+
                                         <td class="d-flex">
                                             <button type="button" payment_id="{{ $item->id }}"
                                                 class="item-edit border-0 bg-white text-success pe-1 showmodal" data-bs-toggle="tooltip" data-bs-placement="top" title="View">

@@ -24,7 +24,6 @@ class PaymentController extends Controller
         $pagedata['payment']=Payment::all();
         return view('tenant.payment.index', $pagedata);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +34,6 @@ class PaymentController extends Controller
 
         return view ('tenant.payment.receipt');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -46,7 +44,6 @@ class PaymentController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -57,7 +54,6 @@ class PaymentController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -68,7 +64,6 @@ class PaymentController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -91,8 +86,6 @@ class PaymentController extends Controller
     {
         //
     }
-
-
     public function paymentMethod(Request $request)
 {
     $invoice = Invoice::where('id', $request->invoice_id)->first();
@@ -120,7 +113,6 @@ class PaymentController extends Controller
                 ],
                 'json' => $payload,
             ]);
-
             if ($response->getStatusCode() == 200) {
                 Invoice::where('id', $request->invoice_id)->update(['status' => '1']);
                 // $responseData = json_decode($response->getBody(), true);

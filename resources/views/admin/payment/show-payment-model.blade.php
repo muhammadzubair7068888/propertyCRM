@@ -1,4 +1,4 @@
-<!-- Modal -->
+ <!-- Modal -->
 <div class="modal fade text-start" id="showmodal" tabindex="-1" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -48,8 +48,49 @@
         </div>
     </div>
 </div>
-
-
+<div class="modal" tabindex="-1" id="viewInvoiceModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="invoice_id" name="invoice_id" value="">
+                    <!-- Other hidden fields for payment details -->
+                    <div class="row">
+                        <div class="col-md-12 mb-1">
+                            <label class="form-label" for="basicSelectpay-method">Payment Method</label>
+                            <select class="form-select text-black" id="basicSelectpay-method" disabled>
+                                <option>Mpesa</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label class="form-label" for="basicSelectcurrency">Currency</label>
+                            <select class="form-select text-black" id="basicSelectcurrency" disabled>
+                                <option selected>KES (Kenyan Shilling) - Kenya</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="invoice_amount">Amount</label>
+                            <input type="text" id="invoice_payment" class="form-control" readonly name="amount" />
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="invoice_phonenumber">Phone Number</label>
+                            <input type="number" id="invoice_phonenumber" class="form-control" placeholder="PhoneNumber" name="phonenumber" />
+                        </div>
+                    </div>
+                    <div class="text">
+                        <p>Equity Bank Acc No. 123456789112</p>
+                        <p class="text-success">Important: Keep your phone unlocked. Mpesa will prompt for PIN to complete payment.</p>
+                    </div>
+                    <div class="d-grid col-lg-12 col-md-12 mb-1 mb-lg-0">
+                        <button type="submit" class="btn btn-primary">Lipa Na Mpesa</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Approved modal -->
 <!-- {{-- <section id="form-and-scrolling-components">
