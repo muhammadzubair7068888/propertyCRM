@@ -98,12 +98,12 @@ class PaymentController extends Controller
     $invoice = Invoice::where('id', $request->invoice_id)->first();
 
     if ($invoice->status == '1') {
-        return redirect()->back()->with('error', 'Invoice not found!');
+        return redirect()->back()->with('error', 'Invoice already paid!');
     } elseif ($invoice->status != 1) {
         $businessShortCode = '174379';
         $passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
         $password = base64_encode($businessShortCode . $passkey);
-        $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/processrequest';
+        $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
         $payload = [
             'ShortCode' => $businessShortCode,
             'CommandID' => 'CustomerPayBillOnline',
@@ -123,8 +123,9 @@ class PaymentController extends Controller
 
             if ($response->getStatusCode() == 200) {
                 Invoice::where('id', $request->invoice_id)->update(['status' => '1']);
-                $responseData = json_decode($response->getBody(), true);
-                return redirect()->route('invoice.payment')->with('success', $responseData);
+                // $responseData = json_decode($response->getBody(), true);
+                // dd($responseData);
+                return redirect()->back()->with('success', 'Invoice Paid Successfully!');
             } else {
                 return redirect()->back()->with('error', $response->getStatusCode());
             }
@@ -139,7 +140,7 @@ class PaymentController extends Controller
         $consumerSecret = env('MPESA_CONSUMER_SECRET');
         $credentials = base64_encode($consumerKey . ':' . $consumerSecret);
         $client = new Client();
-        $response = $client->get('https://sandbox.safaricom.co.ke/mpesa/c2b/v1/processrequest', [
+        $response = $client->get('https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials', [
             'headers' => [
                 'Authorization' => 'Basic ' . $credentials,
             ],

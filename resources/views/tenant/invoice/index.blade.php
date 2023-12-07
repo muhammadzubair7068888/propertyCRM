@@ -52,7 +52,7 @@
                                             $invoice->leaseInfo->deposit->deposit_amount,
                                             2
                                         );
-                                        // paid invoices 
+                                        // paid invoices
                                         $paid = number_format(0, 2);
                                     } elseif ($invoice->status == 1) {
                                         $class = 'badge-light-success';
@@ -67,7 +67,7 @@
                                     }
                                 @endphp
                             <tr>
-                                <td>{{$invoice->invoice_number}}</td>
+                                <td>{{ $invoice->invoice_number }}</td>
                                 <td>{{$invoice->leaseInfo->generate_invoice ."-". date('m-Y',strtotime($invoice->created_at)) }}</td>
                                 <td>{{$invoice->leaseInfo->lease_code}}</td>
                                 <td>{{date('F, Y', strtotime($invoice->created_at))}}</td>
@@ -81,7 +81,7 @@
                                 </td>
                                 <td>
                                     @if ($invoice->status == '1')
-                                    <button type="button" class="btn btn-success" id="viewInvoiceButton" 
+                                    <button type="button" class="btn btn-success" id="viewInvoiceButton"
                                    onclick="viewInvoice('{{$invoice->invoice_number}}', '{{$invoice->leaseInfo->lease_code}}', '{{$paid}}', '{{$name}}')">
                                         View
                                       </button>
