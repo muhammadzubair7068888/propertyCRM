@@ -63,7 +63,7 @@
                                 class="item-edit pe-1">
                                 <i data-feather="eye" class="font-medium-4"></i>
                             </a>
-                            <button type="button" class="item-edit text-success openModalLink border-0 bg-white "
+                            {{-- <button type="button" class="item-edit text-success openModalLink border-0 bg-white "
                                 tenant_id="{{ $notice->id }}" data-bs-target="#addNewCard">
                                 <i data-feather="edit" class="font-medium-4"></i>
                             </button>
@@ -71,7 +71,7 @@
                             <a href="{{ route('admin.vacate_notice.destroy', $notice->id) }}"
                                 class="item-edit pe-1 text-danger">
                                 <i data-feather="trash" class="font-medium-4"></i>
-                            </a>
+                            </a> --}}
 
                         </td>
                     </tr>
@@ -83,8 +83,8 @@
       </div>
     </div>
   </div>
-  @include('tenant.vacateNotice.add-vacatenotice')
-  @include('admin.vacateNotice.editnotices')
+  {{-- @include('tenant.vacateNotice.add-vacatenotice')
+  @include('admin.vacateNotice.editnotices') --}}
 </section>
 
 
