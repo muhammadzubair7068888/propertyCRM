@@ -34,7 +34,7 @@
                 <th>Property</th>
                 <th>Receipt Number</th>
                 <th>Status</th>
-                <th>Status</th>
+                <th>Action</th>
 
               </tr>
             </thead>
@@ -55,10 +55,10 @@
                             <button type="button"  payment_id="{{$item->id}}" class="item-edit border-0 bg-white text-success pe-1 showmodal">
                                 <i data-feather="eye" class="font-medium-4 text-primary"></i>
                             </button>
-                            <a href="{{route('admin.payment.show',$item->id)}}"
+                            {{-- <a href="{{route('admin.payment.show',$item->id)}}"
                                 class="item-edit pe-1 text-success">
                                 <i data-feather="download" class="font-medium-4"></i>
-                            </a>
+                            </a> --}}
 
                     </td>
 

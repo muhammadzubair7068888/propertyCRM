@@ -32,7 +32,7 @@
                 <th>Start Date</th>
                 <th>Last Billing</th>
                 <th>Status</th>
-                <th>Statement</th>
+                {{-- <th>Statement</th> --}}
                 <th>Action</th>
               </tr>
             </thead>
@@ -49,11 +49,11 @@
                         <td>{{$lease->start_date}}</td>
                         <td>{{$lease->start_date}}</td>
                         <td><span class="badge rounded-pill badge-light-success">Active</span></td>
-                        <td>
+                        {{-- <td>
                           <a href="#" class="item-edit pe-1">
                             <i data-feather="file-text" class="font-medium-4"></i>
                         </a>
-                        </td>
+                        </td> --}}
                         <td>
                            <a href="{{route('admin.view.leases',$lease->id)}}" class="item-edit pe-1">
                                 <i data-feather="eye" class="font-medium-4"></i>

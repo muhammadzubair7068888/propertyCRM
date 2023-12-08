@@ -32,11 +32,11 @@
                 <th>Payment Date</th>
                 <th>Tenant</th>
                 <th>Lease</th>
-                <th>Property</th>
+                {{-- <th>Property</th> --}}
                 <th>Receipt Number</th>
 
                 <th>Status</th>
-                <th>Status</th>
+                <th>Action</th>
 
               </tr>
             </thead>
@@ -58,7 +58,7 @@
                     <td>{{$item->payment_date}}</td>
                     <td>{{$item->tenant_info->user->first_name ." ".$item->tenant_info->user->last_name}}</td>
                     <td>{{$item->lease->lease_code}}</td>
-                    <td>property</td>
+                    {{-- <td>property</td> --}}
                     <td>RS00{{$item->id}}</td>
                     <td><span class="badge rounded-pill {{ $class }}">{{ $name }}</span></td>
 
@@ -66,10 +66,10 @@
                             <button type="button"   payment_id="{{$item->id}}" class="item-edit border-0 bg-white text-success pe-1 showmodal">
                                 <i data-feather="eye" class="font-medium-4 text-primary"></i>
                             </button>
-                            <a href="{{route('admin.payment.show',$item->id)}}"
+                            {{-- <a href="{{route('admin.payment.show',$item->id)}}"
                                 class="item-edit pe-1 text-success">
                                 <i data-feather="download" class="font-medium-4"></i>
-                            </a>
+                            </a> --}}
                     </td>
                 </tr>
                 @endforeach
