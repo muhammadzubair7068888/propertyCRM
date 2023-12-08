@@ -20,7 +20,9 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $pagedata['payment']=Payment::all();
+        $data=auth()->user()->tenantInfo->id;
+        // $pagedata['notices']=VacateNotice::where('tenant_info_id',$data)->get();
+        $pagedata['payment']=Payment::where('tenant_info_id',$data)->get();
         return view('tenant.payment.index', $pagedata);
     }
     /**

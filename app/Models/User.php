@@ -77,10 +77,18 @@ class User extends Authenticatable
     // }
 
     public function tenantInfo(){
-        return $this->hasMany(TenantInfo::class);
+        return $this->hasOne(TenantInfo::class);
     }
     public function properties()
-{
-    return $this->hasMany(Property::class);
-}
+    {
+        return $this->hasMany(Property::class);
+    }
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+// public function leases()
+// {
+//     return $this->hasMany(Lease::class);
+// }
 }

@@ -15,6 +15,7 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('lease_id')->constrained('leases')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('invoice_number')->unique();
             $table->enum('status',['0','1'])->default('0');

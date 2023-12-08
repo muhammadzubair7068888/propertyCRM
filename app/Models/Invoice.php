@@ -15,8 +15,12 @@ class Invoice extends Model
         'status',
        ];
 
-      public function  leaseInfo(){
+      public function leaseInfo(){
         return $this->belongsTo(Lease::class,'lease_id');
+      }
+
+      public function user(){
+        return $this->belongsTo(User::class,'user_id');
       }
 }
 

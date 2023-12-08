@@ -19,9 +19,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $landlord = auth()->user(); // Assuming the logged-in user is a landlord
 
-        $pagedata['properties'] = $landlord->properties;
+        $pagedata['properties'] = Property::where('user_id',auth()->user()->id)->get();
 
 
         return view("landlord.property.index",  $pagedata);

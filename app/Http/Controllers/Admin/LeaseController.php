@@ -178,7 +178,6 @@ public function store(Request $request)
     }
 
     $lease = Lease::create($Info);
-
     foreach ($payment_rows as $payment) {
         LeaseDepositAmount::create([
             'lease_id' => $lease->id,
@@ -196,10 +195,19 @@ public function store(Request $request)
     $invoiceCode = 'INV00' . ++$last_invoice;
     $lease_id = $lease->id;
 
-    $invoice = Invoice::create([
-        'lease_id' => $lease_id,
-        'invoice_number' => $invoiceCode
-    ]);
+    // dd($lease->tenant_info->user_id);
+
+    $invoice = new Invoice();
+    $invoice->user_id = $lease->tenant_info->user_id ;
+    $invoice->lease_id = $lease_id;
+    $invoice->invoice_number = $invoiceCode;
+    $invoice->save();
+
+    // $invoice = Invoice::create([
+    //     'user_id' => $lease->tenant_info->user_id,
+    //     'lease_id' => $lease_id,
+    //     'invoice_number' => $invoiceCode
+    // ]);
     $message = 'Your Lease Invoice has been created successfully!';
     if ($lease->tenant_info->user->phone_number) {
         $result = sendOnfonMessage($lease->tenant_info->user->phone_number, $message);
@@ -214,7 +222,7 @@ public function store(Request $request)
     // Log the error or handle it in a way that makes sense for your application
     // For example, you can log the error using Laravel's logging facilities
     \Log::error('Error creating property record: ' . $e->getMessage());
-
+    dd($e->getMessage());
     // Redirect back with an error message and input data
     return redirect()->back()->withInput()->with('error', 'An error occurred while adding the Lease. Please try again.');
 }

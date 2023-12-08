@@ -17,11 +17,12 @@ class VacateNoticeController extends Controller
      */
     public function index()
     {
-     $pagedata['notices']=VacateNotice::all();
-     $pagedata['tenant']=TenantInfo::all();
-        return view('tenant.vacateNotice.index',$pagedata);
+        $data=auth()->user()->tenantInfo->id;
+     $pagedata['notices']=VacateNotice::where('tenant_info_id',$data)->get();
+     return view('tenant.vacateNotice.index',$pagedata);
     }
 
+    //  $pagedata['tenant']=TenantInfo::all();
     /**
      * Show the form for creating a new resource.
      *
