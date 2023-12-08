@@ -33,7 +33,7 @@ class InvoiceController extends Controller
         $pagedata['invoice'] = Invoice::find($id);
 
         if (!$pagedata['invoice']) {
-           
+
             abort(404, 'Invoice not found');
         }
 
@@ -41,11 +41,6 @@ class InvoiceController extends Controller
 
         return $pdf->download('genInvoice.pdf');
     }
-
-
-
-
-
 
     /**
      * Show the form for creating a new resource.
