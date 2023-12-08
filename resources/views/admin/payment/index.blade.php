@@ -19,8 +19,8 @@
                 <div class="card">
                     <div class="card-header border-bottom">
                         <h4 class="card-title">Vacate Notices</h4>
-                        <button type="submit" class="btn btn-primary" id="addNewCardTitle"
-                            data-bs-toggle="modal" data-bs-target="#addNewCard">+ Add Payment</button>
+                        <button type="submit" class="btn btn-primary" id="addNewCardTitle" data-bs-toggle="modal"
+                            data-bs-target="#addNewCard">+ Add Payment</button>
                     </div>
                     <div class="card-datatable">
                         <table class="datatables-table table">
@@ -43,37 +43,44 @@
                                     @php
                                         $class = '';
                                         $name = '';
+                                        $payment = '';
                                         if ($item->status == 1) {
                                             $class = 'badge-light-success';
                                             $name = 'Paid';
-                                        }
-                                        elseif ($item->status == 0) {
+                                            $pay = $item->amount;
+                                            $payment = $item->tenant_info->user->first_name . ' ' . $item->tenant_info->user->last_name;
+                                        } elseif ($item->status == 0) {
                                             $class = 'badge-light-warning';
                                             $name = 'Pending';
+                                            $pay = $item->amount;
+                                            $payment = $item->tenant_info->user->first_name . ' ' . $item->tenant_info->user->last_name;
                                         }
-                                        $payment = $item->tenant_info->user->first_name . ' ' . $item->tenant_info->user->last_name
+
                                     @endphp
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{ $item->amount }}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pay }}</td>
                                         <td>{{ $item->payment_method->name }}</td>
                                         <td>{{ $item->payment_date }}</td>
                                         <td>{{ $payment }}</td>
                                         <td>{{ $item->lease->lease_code }}</td>
                                         <td>{{ $item->lease->property->property_name }}</td>
                                         <td>RS00{{ $item->id }}</td>
-                                        <td><span class="badge rounded-pill {{ $class }}">{{ $name }}</span>
+                                        <td><span
+                                                class="badge rounded-pill {{ $class }}">{{ $name }}</span>
                                         </td>
-
                                         <td class="d-flex">
-                                            <button type="button" payment_id="{{ $item->id }}"
-                                                class="item-edit border-0 bg-white text-success pe-1 showmodal" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                <i data-feather="eye" class="font-medium-4 text-primary"></i>
+                                        @if ($item->status == '1')
+                                            <button type="button" class="btn btn-success" id="viewPaymentButton"
+                                                onclick="viewPayment({{ $item->amount }}, {{ $item->tenant_info->user->phone_number }}, '{{ $name }}')">
+                                                View
                                             </button>
-                                            <a href="{{ route('admin.payment.show', $item->id) }}"
-                                                class="item-edit pe-1 text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="download">
-                                                <i data-feather="download" class="font-medium-4"></i>
-                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-primary" id="viewInvoiceButton"
+                                                onclick="viewInvoice({{ $item->id }}, {{ $item->amount }},{{ $item->tenant_info->user->phone_number }})">
+                                                Pay+
+                                            </button>
+                                        @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -138,6 +145,7 @@
                 }
             });
         })
+
         function getLease(val, name) {
             $('#lease').empty();
             $('#paidby').val(name);
@@ -163,56 +171,56 @@
 
         }
     </script>
-   <script>
-    // Add
-    $('#tenant').on('change', function() {
-        $('#leases').empty();
-        var selected_tenant = $(this).find('option:selected').val();
-        // console.log(selected_tenant);
-        if (selected_tenant != '') {
-            $.ajax({
-                type: "get",
-                url: "{{ route('admin.fetch-lease') }}",
-                data: {
-                    id: selected_tenant,
-                },
-                success: function(response) {
-                    response.lease.forEach(lease => {
-                        console.log(lease);
-                        var option = `
+    <script>
+        // Add
+        $('#tenant').on('change', function() {
+            $('#leases').empty();
+            var selected_tenant = $(this).find('option:selected').val();
+            // console.log(selected_tenant);
+            if (selected_tenant != '') {
+                $.ajax({
+                    type: "get",
+                    url: "{{ route('admin.fetch-lease') }}",
+                    data: {
+                        id: selected_tenant,
+                    },
+                    success: function(response) {
+                        response.lease.forEach(lease => {
+                            console.log(lease);
+                            var option = `
         <option value="${lease.id}">${lease.lease_code}</option>
         `;
-                        $('#leases').append(option)
-                    });
-                }
-            });
-        }
-    });
-    // Edit
-    $('#edittenant').on('change', function() {
-        $('#editleases').empty();
-        var selected_tenant = $(this).find('option:selected').val();
-        console.log(selected_tenant);
-        if (selected_tenant != '') {
-            $.ajax({
-                type: "get",
-                url: "{{ route('admin.fetch-lease') }}",
-                data: {
-                    id: selected_tenant,
-                },
-                success: function(response) {
-                    response.lease.forEach(lease => {
-                        console.log(lease);
-                        var option = `
+                            $('#leases').append(option)
+                        });
+                    }
+                });
+            }
+        });
+        // Edit
+        $('#edittenant').on('change', function() {
+            $('#editleases').empty();
+            var selected_tenant = $(this).find('option:selected').val();
+            console.log(selected_tenant);
+            if (selected_tenant != '') {
+                $.ajax({
+                    type: "get",
+                    url: "{{ route('admin.fetch-lease') }}",
+                    data: {
+                        id: selected_tenant,
+                    },
+                    success: function(response) {
+                        response.lease.forEach(lease => {
+                            console.log(lease);
+                            var option = `
         <option value="${lease.id}">${lease.lease_code}</option>
         `;
-                        $('#editleases').append(option)
-                    });
-                }
-            });
-        }
-    });
-</script>
+                            $('#editleases').append(option)
+                        });
+                    }
+                });
+            }
+        });
+    </script>
     <script>
         const textarea = document.getElementById('floatingTextarea2');
         const charCount = document.getElementById('charCount');
@@ -227,5 +235,18 @@
                 charCount.textContent = '150 / 150 characters';
             }
         });
+        function viewInvoice(id, amount, phoneNumber) {
+            $('#payment_id').val(id);
+            $('#invoice_payment').val(amount);
+            $('#invoice_phonenumber').val(phoneNumber);
+            $('#viewInvoiceModal').modal('show');
+        }
+
+        function viewPayment(amount, phonenumber, status) {
+        $('#payment_receipt').val(amount);
+        $('#viewReceiptbutton').modal('show');
+        $('#phonenumber_payment').val(phonenumber);
+        $('#payment_status').val(status)
+}
     </script>
 @endsection
