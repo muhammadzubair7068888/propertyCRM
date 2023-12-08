@@ -42,6 +42,15 @@
             </thead>
             <tbody>
                 @foreach ($payment as $item )
+                @php
+                    if ($item->status == '1'){
+                        $class = 'badge-light-success';
+                        $name = 'paid';
+                    }elseif($item->status == '0'){
+                        $class = 'badge-light-warning';
+                        $name = 'pending';
+                    }
+                @endphp
                 <tr>
                     <td></td>
                     <td>{{$item->amount}}</td>
@@ -51,7 +60,7 @@
                     <td>{{$item->lease->lease_code}}</td>
                     <td>property</td>
                     <td>RS00{{$item->id}}</td>
-                    <td>pending</td>
+                    <td><span class="badge rounded-pill {{ $class }}">{{ $name }}</span></td>
 
                         <td class="d-flex">
                             <button type="button"   payment_id="{{$item->id}}" class="item-edit border-0 bg-white text-success pe-1 showmodal">
@@ -61,9 +70,7 @@
                                 class="item-edit pe-1 text-success">
                                 <i data-feather="download" class="font-medium-4"></i>
                             </a>
-
                     </td>
-
                 </tr>
                 @endforeach
 
