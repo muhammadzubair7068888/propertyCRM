@@ -29,7 +29,8 @@
           <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
             <div>
               <div class="logo-wrapper">
-                <svg
+                <img src="{{ asset('images/logo/logo3.png') }}" width="250px" alt="">
+                {{-- <svg
                   viewBox="0 0 139 95"
                   version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +85,7 @@
                     </g>
                   </g>
                 </svg>
-                <h3 class="text-primary invoice-logo">Butterfly Prime Realtors</h3>
+                <h3 class="text-primary invoice-logo">Butterfly Prime Realtors</h3> --}}
               </div>
               <p class="card-text mb-25">Kingsway Avenue</p>
               <p class="card-text mb-25">P.O Box 1234 . 568 Nairobi,Kenya</p>
@@ -99,7 +100,8 @@
               </h4>
               <div class="invoice-date-wrapper">
                 <p class="invoice-date-title">Date Issued:</p>
-                <p class="invoice-date">{{date('F, Y', strtotime($invoice->created_at))}}</p>
+                <p class="invoice-date">{{ date('j F, Y', strtotime($invoice->created_at)) }}
+                </p>
               </div>
               <div class="invoice-date-wrapper">
                 <p class="invoice-date-title">Due Date:</p>
@@ -114,11 +116,11 @@
           <table class="table">
             <thead>
               <tr>
-                <th class="py-1">Date</th>
-                <th class="py-1">Naration</th>
-                <th class="py-1">Debit</th>
-                <th class="py-1">Credit</th>
-                <th class="py-1">Balance</th>
+                <th class="py-1">DATE</th>
+                <th class="py-1">LEASE</th>
+                <th class="py-1">AMOUNT</th>
+                <th class="py-1">DUE ON</th>
+                <th class="py-1">BALANCE</th>
               </tr>
             </thead>
             <tbody>
@@ -127,16 +129,16 @@
                     <p class="card-text fw-bold mb-25">{{ now()->format('Y-m-d') }}</p>
                 </td>
                 <td class="py-1">
-                  <p class="card-text fw-bold mb-25">Native App Development</p>
+                  <p class="card-text fw-bold mb-25">{{$invoice->leaseInfo->lease_code}}</p>
                 </td>
                 <td class="py-1">
-                  <span class="fw-bold">$60.00</span>
+                  <span class="fw-bold">{{ number_format($invoice->leaseInfo->rent_amount + $invoice->leaseInfo->rental_deposit_amount + $invoice->leaseInfo->deposit->deposit_amount, 2) }}</span>
                 </td>
                 <td class="py-1">
-                  <span class="fw-bold">30</span>
+                  <span class="fw-bold">{{$invoice->leaseInfo->due_on ."-". date('m-Y', strtotime($invoice->created_at))}}</span>
                 </td>
                 <td class="py-1">
-                  <span class="fw-bold">$1,800.00</span>
+                  <span class="fw-bold">{{ number_format($invoice->leaseInfo->rent_amount + $invoice->leaseInfo->rental_deposit_amount + $invoice->leaseInfo->deposit->deposit_amount, 2) }}</span>
                 </td>
               </tr>
 

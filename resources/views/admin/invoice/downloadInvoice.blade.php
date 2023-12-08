@@ -160,24 +160,22 @@
                                 <tr>
                                     <td class="py-1">
                                         <p class="card-text fw-bold mb-25">{{ now()->format('Y-m-d') }}</p>
-
-
                                     </td>
                                     <td class="py-1">
-                                      <p class="card-text fw-bold mb-25">Native App Development</p>
-
+                                      <p class="card-text fw-bold mb-25">{{$invoice->leaseInfo->lease_code}}</p>
                                     </td>
                                     <td class="py-1">
-                                      <span class="fw-bold">$60.00</span>
+                                      <span class="fw-bold">{{ number_format($invoice->leaseInfo->rent_amount + $invoice->leaseInfo->rental_deposit_amount + $invoice->leaseInfo->deposit->deposit_amount, 2) }}</span>
                                     </td>
                                     <td class="py-1">
-                                      <span class="fw-bold">30</span>
+                                      <span class="fw-bold">{{$invoice->leaseInfo->due_on ."-". date('m-Y', strtotime($invoice->created_at))}}</span>
                                     </td>
                                     <td class="py-1">
-                                      <span class="fw-bold">$1,800.00</span>
+                                      <span class="fw-bold">{{ number_format($invoice->leaseInfo->rent_amount + $invoice->leaseInfo->rental_deposit_amount + $invoice->leaseInfo->deposit->deposit_amount, 2) }}</span>
                                     </td>
                                   </tr>
-                            </tbody>
+
+                                </tbody>
                         </table>
                     </div>
 
