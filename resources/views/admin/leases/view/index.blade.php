@@ -27,7 +27,7 @@
                   >Info</a
                 >
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a
                   class="nav-link"
                   id="profile-tab-fill"
@@ -38,7 +38,7 @@
                   aria-selected="false"
                   >Invoice</a
                 >
-              </li>
+              </li> --}}
 
             </ul>
 
