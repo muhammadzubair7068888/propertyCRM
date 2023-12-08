@@ -9,9 +9,7 @@
                             <tr>
                                 <th></th>
                                 <th>Amount</th>
-
                                 <th>Payment Date</th>
-
                                 <th> Lease</th>
                                 <th> Property</th>
                                 <th>Receipt Number</th>
@@ -41,9 +39,7 @@
                                             class="item-edit pe-1 text-success">
                                             <i data-feather="download" class="font-medium-4"></i>
                                         </a>
-
                                     </td>
-
                                 </tr>
                             @endforeach
 
@@ -54,9 +50,6 @@
         </div>
     </div>
 </section>
-
-
-
 <!-- Multilingual -->
 
 <!--/ Multilingual -->

@@ -9,6 +9,7 @@ use Safaricom\Mpesa\Mpesa;
 use GuzzleHttp\Client;
 use App\Http\Controllers\ClientException;
 use App\Http\Controllers\tenant\Carbon;
+// use Safaricom\Mpesa\C2B;
 use App\Models\Invoice;
 
 class PaymentController extends Controller
@@ -99,7 +100,7 @@ class PaymentController extends Controller
     $invoice = Invoice::where('id', $request->invoice_id)->first();
 
     if ($invoice->status == '1') {
-        return redirect()->back()->with('error', 'Invoice not found!');
+        return redirect()->back()->with('error', 'Invoice already paid!');
     } elseif ($invoice->status != 1) {
         $businessShortCode = '174379';
         $passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
@@ -112,9 +113,7 @@ class PaymentController extends Controller
             'Msisdn' => $request->phonenumber,
             'BillRefNumber' => 'CompanyXLTD',
         ];
-
         $client = new Client();
-
         try {
             $response = $client->post($url, [
                 'headers' => [
@@ -125,9 +124,10 @@ class PaymentController extends Controller
             ]);
 
             if ($response->getStatusCode() == 200) {
-                Invoice::where('id', $request->invoice_id)->save(['status' => '1']);
-                $responseData = json_decode($response->getBody(), true);
-                return redirect()->back()->with('success', $responseData);
+                Invoice::where('id', $request->invoice_id)->update(['status' => '1']);
+                // $responseData = json_decode($response->getBody(), true);
+                // dd($responseData);
+                return redirect()->back()->with('success', 'Invoice Paid Successfully!');
             } else {
                 return redirect()->back()->with('error', $response->getStatusCode());
             }
@@ -136,7 +136,6 @@ class PaymentController extends Controller
         }
     }
 }
-
     private function generateAccessToken()
     {
         $consumerKey = env('MPESA_CONSUMER_KEY');

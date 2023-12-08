@@ -19,11 +19,6 @@
 @section('page-script')
 <script src="{{asset('js/scripts/pages/app-invoice.js')}}"></script>
 @endsection
-
-
-
-
-
 <section class="invoice-preview-wrapper">
   <div class="row invoice-preview">
     <!-- Invoice -->
@@ -114,10 +109,7 @@
           </div>
           <!-- Header ends -->
         </div>
-
         <hr class="invoice-spacing" />
-
-
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -133,12 +125,9 @@
               <tr>
                 <td class="py-1">
                     <p class="card-text fw-bold mb-25">{{ now()->format('Y-m-d') }}</p>
-
-
                 </td>
                 <td class="py-1">
                   <p class="card-text fw-bold mb-25">Native App Development</p>
-
                 </td>
                 <td class="py-1">
                   <span class="fw-bold">$60.00</span>
@@ -154,8 +143,6 @@
             </tbody>
           </table>
         </div>
-
-
         <!-- Invoice Description ends -->
 
         <hr class="invoice-spacing" />

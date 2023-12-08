@@ -49,18 +49,10 @@ public function paymentMethod(Request $request)
 {
     // API endpoint
     $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-
-    // Replace 'YourBusinessShortCode' and 'YourPasskey' with your actual values
     $businessShortCode = '174379';
     $passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
-
-    // Generate the timestamp
     $timestamp = Carbon::now()->format('YmdHis');
-
-    // Calculate the password
     $password = base64_encode($businessShortCode . $passkey . $timestamp);
-
-    // Define the API request body including the generated password and timestamp
     $payload = [
         'BusinessShortCode' => $businessShortCode,
         'Password' => $password,
@@ -74,26 +66,18 @@ public function paymentMethod(Request $request)
         'AccountReference' => 'CompanyXLTD',
         'TransactionDesc' => 'Payment of X',
     ];
-
-    // Initialize the Guzzle client
     $client = new Client();
-
-    // Send the API request and handle the response
     $response = $client->post($url, [
         'json' => $payload,
     ]);
     if ($response->successful()) {
         $responseData = $response->json();
-        // Process the API response data as needed
         return response()->json($responseData);
     } else {
-        // Handle the API request failure
         return response()->json(['error' => 'API request failed'], $response->status());
     }
     return redirect()->route('tenant.invoice.index')->with('success', 'Payment has been successfully');
 }
-
-
     /**
      * Display the specified resource.
      *

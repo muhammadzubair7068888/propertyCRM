@@ -41,30 +41,29 @@
                             <tbody>
                                 @foreach ($payment as $item)
                                     @php
+                                        $class = '';
+                                        $name = '';
                                         if ($item->status == 1) {
                                             $class = 'badge-light-success';
                                             $name = 'Paid';
-                                        } elseif ($item->status == 2) {
-                                            $class = 'badge-light-danger';
-                                            $name = 'Cancelled';
-                                        } elseif ($item->status == 0) {
+                                        }
+                                        elseif ($item->status == 0) {
                                             $class = 'badge-light-warning';
                                             $name = 'Pending';
                                         }
+                                        $payment = $item->tenant_info->user->first_name . ' ' . $item->tenant_info->user->last_name
                                     @endphp
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{ $item->amount }}</td>
                                         <td>{{ $item->payment_method->name }}</td>
                                         <td>{{ $item->payment_date }}</td>
-                                        <td>{{ $item->tenant_info->user->first_name . ' ' . $item->tenant_info->user->last_name }}
-                                        </td>
+                                        <td>{{ $payment }}</td>
                                         <td>{{ $item->lease->lease_code }}</td>
                                         <td>{{ $item->lease->property->property_name }}</td>
                                         <td>RS00{{ $item->id }}</td>
                                         <td><span class="badge rounded-pill {{ $class }}">{{ $name }}</span>
                                         </td>
-
                                         <td class="d-flex">
                                             <button type="button" payment_id="{{ $item->id }}"
                                                 class="item-edit border-0 bg-white text-success pe-1 showmodal" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
