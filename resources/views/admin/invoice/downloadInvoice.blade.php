@@ -149,12 +149,12 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="py-1">Date</th>
-                                    <th class="py-1">Narration</th>
-                                    <th class="py-1">Debit</th>
-                                    <th class="py-1">Credit</th>
-                                    <th class="py-1">Balance</th>
-                                </tr>
+                                    <th class="py-1">DATE</th>
+                                    <th class="py-1">LEASE</th>
+                                    <th class="py-1">AMOUNT</th>
+                                    <th class="py-1">DUE ON</th>
+                                    <th class="py-1">BALANCE</th>
+                                  </tr>
                             </thead>
                             <tbody>
                                 <tr>
