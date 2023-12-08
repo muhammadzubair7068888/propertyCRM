@@ -112,6 +112,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('fetch-lease',[PaymentController::class,'fetchLease'])->name('fetch-lease');
 
     Route::resource('vacate_notice', VacateNoticeController::class);
+    Route::post('pay_amount', [PaymentController::class, 'payAmount'])->name('pay_amount');
 
     Route::prefix('vacate-notice')->name('vacate_notice.')->group(function(){
         Route::get('/', [VacateNoticeController::class,'index'])->name('index');

@@ -9,7 +9,6 @@ use Safaricom\Mpesa\Mpesa;
 use GuzzleHttp\Client;
 use App\Http\Controllers\ClientException;
 use App\Http\Controllers\tenant\Carbon;
-// use Safaricom\Mpesa\C2B;
 use App\Models\Invoice;
 
 class PaymentController extends Controller
@@ -26,7 +25,6 @@ class PaymentController extends Controller
         $pagedata['payment']=Payment::where('tenant_info_id',$data)->get();
         return view('tenant.payment.index', $pagedata);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -37,7 +35,6 @@ class PaymentController extends Controller
 
         return view ('tenant.payment.receipt');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -48,7 +45,6 @@ class PaymentController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -59,7 +55,6 @@ class PaymentController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -70,7 +65,6 @@ class PaymentController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -93,8 +87,6 @@ class PaymentController extends Controller
     {
         //
     }
-
-
     public function paymentMethod(Request $request)
 {
     $invoice = Invoice::where('id', $request->invoice_id)->first();
@@ -122,7 +114,6 @@ class PaymentController extends Controller
                 ],
                 'json' => $payload,
             ]);
-
             if ($response->getStatusCode() == 200) {
                 Invoice::where('id', $request->invoice_id)->update(['status' => '1']);
                 // $responseData = json_decode($response->getBody(), true);
@@ -135,7 +126,7 @@ class PaymentController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
-}
+ }
     private function generateAccessToken()
     {
         $consumerKey = env('MPESA_CONSUMER_KEY');
